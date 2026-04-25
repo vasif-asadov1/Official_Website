@@ -1,0 +1,4367 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+        <link rel="prev" href="../01_data_preparation/">
+      
+      
+        <link rel="next" href="../03_customer_analysis/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Macro Performance - Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#business-performance-metrics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Macro Performance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-performance-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macro Performance Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Performance Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gross-profit-and-gross-margin-over-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gross Profit and Gross Margin over Time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#year-over-year-yoy-revenue-growth-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year-over-Year (YoY) Revenue Growth Rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seasonality-of-sales-and-quarterly-revenue-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seasonality of Sales and Quarterly Revenue Drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#average-order-value-aov-vs-total-order-volume-tov" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Average Order Value (AOV) vs Total Order Volume (TOV)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#year-to-date-ytd-revenue-and-profitability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year-to-Date (YTD) Revenue and Profitability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-performance-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macro Performance Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Performance Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gross-profit-and-gross-margin-over-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gross Profit and Gross Margin over Time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#year-over-year-yoy-revenue-growth-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year-over-Year (YoY) Revenue Growth Rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seasonality-of-sales-and-quarterly-revenue-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seasonality of Sales and Quarterly Revenue Drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#average-order-value-aov-vs-total-order-volume-tov" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Average Order Value (AOV) vs Total Order Volume (TOV)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#year-to-date-ytd-revenue-and-profitability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year-to-Date (YTD) Revenue and Profitability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="business-performance-metrics">Business Performance Metrics<a class="headerlink" href="#business-performance-metrics" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In this section, we will answer the 23 business questions that we defined in the previous section using SQL queries and data analysis techniques. We will use the star schema that we created in the previous section to write SQL queries. Each question will be answered with a SQL query that retrieves the relevant data from the database, and we will also provide insights and interpretations of the results to help us understand the implications of our findings for the business. </p>
+<p>The questions are designed in a way that they will help us to get business insights on the following domains:</p>
+<ol>
+<li>Makro Performance Analysis: Here we will analyze the overall performance of the business by looking at metrics such as total sales, profit, and customer count. We will also analyze the performance of different product categories and subcategories to identify trends and patterns in customer behavior. Questions 1-5 fall under this domain.</li>
+<li>Customer Behavior Analysis: In this domain, we will analyze customer behavior by looking at metrics such as customer demographics, purchasing patterns, and customer loyalty. We will also analyze the impact of different factors such as discounts and promotions on customer behavior. Questions 6-10 fall under this domain.</li>
+<li>Product Performance Analysis: Here we will analyze the performance of different products and product categories by looking at financial metrics such as Gross Profit, Gross Margin, Product Margin, and Sales Amount. We will also analyze the impact of different factors such as discounts and promotions on product performance. Questions 11-15 fall under this domain.</li>
+<li>Sales Reason and Customer Preference Analysis: In this domain, we will analyze the reasons behind sales and customer preferences by looking at metrics such as sales reasons, importance of promotional discounts, and preference of product categories. Questions 16-19 fall under this domain.</li>
+<li>Regional and Logistic Operations Analysis: Here we will analyze the performance of the business in different regions by looking at the Regional Preferences, Tax and Freight Costs, and Regional Bias for specific product categories. SLA and delivery performance will also be analyzed in this domain. Questions 20-23 fall under this domain.</li>
+</ol>
+<p>For better clarity and organization, I will give a separate page for each domain and answer the relevant questions in that page. This way, we can focus on specific areas of analysis and gain deeper insights into each domain. As this is the first page of the SQL analysis section, we will start with the first domain, which is Makro Performance Analysis, and answer the first 5 questions related to that domain.</p>
+<h2 id="macro-performance-analysis">Macro Performance Analysis<a class="headerlink" href="#macro-performance-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="gross-profit-and-gross-margin-over-time">Gross Profit and Gross Margin over Time<a class="headerlink" href="#gross-profit-and-gross-margin-over-time" title="Permanent link">&para;</a></h3>
+<p><code>1.  What is the overall Gross Profit and Gross Margin for the B2C channel, and how has it trended year over year?</code></p>
+<p><strong>Solution Method:</strong> To answer this question, we will write a SQL query that retrieves the Gross Profit and Gross Margin for the B2C channel from the fact table, and then we will group the results by year to analyze the trend over time. We will also calculate the year-over-year growth rate for both Gross Profit and Gross Margin to understand how they have changed over time. This requires  simple select statements grouped by year and filtered by the B2C channel.</p>
+<details>
+<summary>Show SQL Code</summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">select</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">[</span><span class="k">year</span><span class="p">],</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_revenue</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">TotalProductCost</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_cost</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">TotalProductCost</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">gross_profit</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">salesamount</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">TotalProductCost</span><span class="p">))</span><span class="w"> </span><span class="o">/</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">nullif</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">gross_margin_pct</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Calendar</span><span class="w"> </span><span class="k">c</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">DateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDateKey</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">where</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span><span class="mi">2014</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">[</span><span class="k">year</span><span class="p">]</span><span class="w"> </span><span class="k">asc</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>total_revenue</th>
+<th>total_cost</th>
+<th>gross_profit</th>
+<th>gross_margin_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2011</td>
+<td>7075525.9300</td>
+<td>4231462.1900</td>
+<td>2844063.7400</td>
+<td>40.20</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>5842485.2000</td>
+<td>3414478.1700</td>
+<td>2428007.0300</td>
+<td>41.56</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>16351550.3400</td>
+<td>9586139.3700</td>
+<td>6765410.9700</td>
+<td>41.37</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong></p>
+<p>The overall Gross Profit for the B2C channel has shown a significant increase from 2011 to 2013, with a growth rate of approximately 138% from 2011 to 2013. The Gross Margin has also improved over the years, increasing from 40.20% in 2011 to 41.37% in 2013. This indicates that the B2C channel has been able to generate more profit from its sales while maintaining a healthy margin, which is a positive sign for the business. The increase in Gross Profit and Gross Margin could be attributed to various factors such as increased sales volume, better pricing strategies, or improved cost management. Further analysis would be needed to identify the specific drivers behind this growth.</p>
+<h3 id="year-over-year-yoy-revenue-growth-rate">Year-over-Year (YoY) Revenue Growth Rate<a class="headerlink" href="#year-over-year-yoy-revenue-growth-rate" title="Permanent link">&para;</a></h3>
+<p><code>2. What is the Year-over-Year (YoY) revenue growth rate for each month?</code></p>
+<p><strong>Solution Method:</strong> To answer this question, we will write a SQL query that retrieves the revenue for each month from the fact table, and then we will group the results by month and year to calculate the Year-over-Year (YoY) revenue growth rate. We will use the LAG function to compare the revenue of each month with the same month in the previous year to calculate the growth rate. In order to prevent any duplication problem, we should use Common Table Expressions (CTEs) which helps us to organize our query and make it more readable as well as to avoid any potential issues with duplicate data when calculating the YoY growth rate.</p>
+<details>
+<summary>Show SQL Code</summary>
+
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">with</span><span class="w"> </span><span class="n">calculations</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">select</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">[</span><span class="k">year</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthName</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">curr_total_revenue</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">lag</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="w"> </span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="k">asc</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">prev_total_revenue</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">join</span><span class="w"> </span><span class="n">Calendar</span><span class="w"> </span><span class="k">c</span><span class="w"> </span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">DateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDateKey</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span><span class="mi">2014</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="p">,</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthName</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="k">select</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="p">[</span><span class="k">year</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="n">month_number</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="n">round</span><span class="p">(</span><span class="n">curr_total_revenue</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="n">round</span><span class="p">(</span><span class="n">prev_total_revenue</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">curr_total_revenue</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prev_total_revenue</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">        </span><span class="k">nullif</span><span class="p">(</span><span class="n">prev_total_revenue</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">revenue_growth_pct</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="k">from</span><span class="w"> </span><span class="n">calculations</span><span class="w"> </span><span class="n">cal</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">[</span><span class="k">year</span><span class="p">],</span><span class="w"> </span><span class="n">month_number</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>month_number</th>
+<th>curr_total_revenue</th>
+<th>prev_total_revenue</th>
+<th>revenue_growth_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2011</td>
+<td>1</td>
+<td>469823.9100</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>2</td>
+<td>466334.9000</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>3</td>
+<td>485198.6600</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>4</td>
+<td>502073.8500</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>5</td>
+<td>561681.4800</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>6</td>
+<td>737839.8200</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>7</td>
+<td>596746.5600</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>8</td>
+<td>614557.9400</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>9</td>
+<td>603083.5000</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>10</td>
+<td>708208.0000</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>11</td>
+<td>660545.8100</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>12</td>
+<td>669431.5000</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2012</td>
+<td>1</td>
+<td>495364.1300</td>
+<td>469823.9100</td>
+<td>5.44</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>2</td>
+<td>506994.1900</td>
+<td>466334.9000</td>
+<td>8.72</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>3</td>
+<td>373483.0100</td>
+<td>485198.6600</td>
+<td>-23.02</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>4</td>
+<td>400335.6100</td>
+<td>502073.8500</td>
+<td>-20.26</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>5</td>
+<td>358877.8900</td>
+<td>561681.4800</td>
+<td>-36.11</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>6</td>
+<td>555160.1400</td>
+<td>737839.8200</td>
+<td>-24.76</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>7</td>
+<td>444558.2300</td>
+<td>596746.5600</td>
+<td>-25.50</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>8</td>
+<td>523917.3800</td>
+<td>614557.9400</td>
+<td>-14.75</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>9</td>
+<td>486177.4500</td>
+<td>603083.5000</td>
+<td>-19.38</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>10</td>
+<td>535159.4800</td>
+<td>708208.0000</td>
+<td>-24.43</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>11</td>
+<td>537955.5200</td>
+<td>660545.8100</td>
+<td>-18.56</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>12</td>
+<td>624502.1700</td>
+<td>669431.5000</td>
+<td>-6.71</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>857689.9100</td>
+<td>495364.1300</td>
+<td>73.14</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>771348.7400</td>
+<td>506994.1900</td>
+<td>52.14</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>1049907.3900</td>
+<td>373483.0100</td>
+<td>181.11</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>1046022.7700</td>
+<td>400335.6100</td>
+<td>161.29</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>1284592.9300</td>
+<td>358877.8900</td>
+<td>257.95</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>1643177.7800</td>
+<td>555160.1400</td>
+<td>195.98</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>1371675.8100</td>
+<td>444558.2300</td>
+<td>208.55</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>8</td>
+<td>1551065.5600</td>
+<td>523917.3800</td>
+<td>196.05</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>9</td>
+<td>1447495.6900</td>
+<td>486177.4500</td>
+<td>197.73</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>10</td>
+<td>1673293.4100</td>
+<td>535159.4800</td>
+<td>212.67</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>11</td>
+<td>1780920.0600</td>
+<td>537955.5200</td>
+<td>231.05</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>12</td>
+<td>1874360.2900</td>
+<td>624502.1700</td>
+<td>200.14</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong> The Year-over-Year (YoY) revenue growth rate for each month shows significant fluctuations over the years. In 2012, there was a decline in revenue growth for most months compared to 2011, with some months experiencing a negative growth rate. However, in 2013, there was a substantial increase in revenue growth for all months compared to 2012, with some months experiencing a growth rate of over 200%. This indicates that the business experienced a significant recovery and growth in revenue in 2013 after a challenging year in 2012. The fluctuations in revenue growth could be attributed to various factors such as changes in market conditions, customer behavior, or the effectiveness of marketing and sales strategies. Or maybe the company launched better and became a more competitive player in the market in 2013, which led to a significant increase in revenue growth. </p>
+<h3 id="seasonality-of-sales-and-quarterly-revenue-drivers">Seasonality of Sales and Quarterly Revenue Drivers<a class="headerlink" href="#seasonality-of-sales-and-quarterly-revenue-drivers" title="Permanent link">&para;</a></h3>
+<p><code>3. What is the monthly seasonality of our sales, and which quarter  drives the most revenue historically?</code></p>
+<p><strong>Solution Method:</strong> To answer this question, I have written a SQL query that calculates the monthly revenue for each month and quarter, and then identifies the quarter that drives the most revenue historically. The query uses Common Table Expressions (CTEs) to organize the calculations and make it easier to read. The first CTE calculates the monthly revenue for each month and quarter, while the second CTE calculates the total revenue for each quarter. Finally, we calculate the growth rate of each quarter compared to the previous quarter to identify trends in seasonality. To prevent any duplication and wrong calculations, we have used CTEs in a sequence in which the financial metrics are derived first, then grouped by quarter, and then grouped with window functions get the previous quarter's revenue for growth rate calculation.</p>
+<details>
+<summary>Show SQL Code</summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">with</span><span class="w"> </span><span class="n">revenue_calculations</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">select</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarQuarter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">[</span><span class="n">Quarter</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">MonthName</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">[</span><span class="k">Month</span><span class="p">],</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="k">coalesce</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">revenue</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">join</span><span class="w"> </span><span class="n">Calendar</span><span class="w"> </span><span class="k">c</span><span class="w"> </span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">DateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDateKey</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="k">and</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span><span class="w"> </span><span class="mi">2014</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarQuarter</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">MonthName</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">),</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">curr_quarter_revenue_calc</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="k">select</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span><span class="p">[</span><span class="n">Quarter</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="p">[</span><span class="k">Month</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span><span class="n">revenue</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">monthly_revenue</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">[</span><span class="n">Quarter</span><span class="p">])</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">curr_quarter_revenue</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">revenue_calculations</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="p">),</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="n">growth_calc</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="k">select</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">            </span><span class="p">[</span><span class="n">Quarter</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">            </span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">            </span><span class="p">[</span><span class="k">Month</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">            </span><span class="n">monthly_revenue</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">            </span><span class="n">curr_quarter_revenue</span><span class="p">,</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">            </span><span class="n">lag</span><span class="p">(</span><span class="n">curr_quarter_revenue</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">[</span><span class="n">Quarter</span><span class="p">],</span><span class="w"> </span><span class="n">month_number</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">prev_quarter_revenue</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">curr_quarter_revenue_calc</span><span class="w"> </span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="p">)</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">    </span><span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">    </span><span class="k">cast</span><span class="w"> </span><span class="p">((</span><span class="n">curr_quarter_revenue</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prev_quarter_revenue</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">prev_quarter_revenue</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">        </span><span class="k">as</span><span class="w"> </span><span class="n">Q_revenue_growth_pct</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="k">from</span><span class="w"> </span><span class="n">growth_calc</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">    </span><span class="p">[</span><span class="n">Quarter</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">    </span><span class="n">month_number</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Quarter</th>
+<th>month_number</th>
+<th>Month</th>
+<th>monthly_revenue</th>
+<th>curr_quarter_revenue</th>
+<th>prev_quarter_revenue</th>
+<th>Q_revenue_growth_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>January</td>
+<td>1822877.9509</td>
+<td>5476144.8363</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>February</td>
+<td>1744677.8306</td>
+<td>5476144.8363</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>March</td>
+<td>1908589.0548</td>
+<td>5476144.8363</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>April</td>
+<td>1948432.2303</td>
+<td>7089762.2710</td>
+<td>5476144.8363</td>
+<td>0.29</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>May</td>
+<td>2205152.2965</td>
+<td>7089762.2710</td>
+<td>5476144.8363</td>
+<td>0.29</td>
+</tr>
+<tr>
+<td>2</td>
+<td>6</td>
+<td>June</td>
+<td>2936177.7442</td>
+<td>7089762.2710</td>
+<td>5476144.8363</td>
+<td>0.29</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7</td>
+<td>July</td>
+<td>2412980.5949</td>
+<td>7639278.1092</td>
+<td>7089762.2710</td>
+<td>0.08</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8</td>
+<td>August</td>
+<td>2689540.8765</td>
+<td>7639278.1092</td>
+<td>7089762.2710</td>
+<td>0.08</td>
+</tr>
+<tr>
+<td>3</td>
+<td>9</td>
+<td>September</td>
+<td>2536756.6378</td>
+<td>7639278.1092</td>
+<td>7089762.2710</td>
+<td>0.08</td>
+</tr>
+<tr>
+<td>4</td>
+<td>10</td>
+<td>October</td>
+<td>2916660.8978</td>
+<td>9064376.2478</td>
+<td>7639278.1092</td>
+<td>0.19</td>
+</tr>
+<tr>
+<td>4</td>
+<td>11</td>
+<td>November</td>
+<td>2979421.3902</td>
+<td>9064376.2478</td>
+<td>7639278.1092</td>
+<td>0.19</td>
+</tr>
+<tr>
+<td>4</td>
+<td>12</td>
+<td>December</td>
+<td>3168293.9598</td>
+<td>9064376.2478</td>
+<td>7639278.1092</td>
+<td>0.19</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong> The monthly seasonality of our sales shows that the revenue tends to increase in the second and fourth quarters of the year, with the fourth quarter driving the most revenue historically. The growth rate of the second quarter compared to the first quarter is approximately 29%, while the growth rate of the fourth quarter compared to the third quarter is approximately 19%. This indicates that there is a significant increase in sales during these quarters, which could be attributed to various factors such as seasonal demand, holidays, or promotional activities. Understanding this seasonality can help us to plan our inventory, marketing campaigns, and staffing levels more effectively to capitalize on these peak periods and maximize our revenue.</p>
+<h3 id="average-order-value-aov-vs-total-order-volume-tov">Average Order Value (AOV) vs Total Order Volume (TOV)<a class="headerlink" href="#average-order-value-aov-vs-total-order-volume-tov" title="Permanent link">&para;</a></h3>
+<p><code>4. What is the Average Order Value (AOV) for the B2C channel, and how has it trended over time?</code></p>
+<p><strong>Solution Method:</strong> This question is quite straitforward. We should calculate the Average Order Value (AOV) for the B2C channel by dividing the total sales amount by the number of distinct orders. We will group the results by year and month to analyze the trend over time. The query uses a simple aggregation to calculate the total sales amount and count of distinct orders, and then divides these two metrics to get the AOV for each month and year. I did not include the years - 2010 and 2014 in the analysis as they are incomplete years in our dataset, which could skew the results and provide an inaccurate representation of the AOV trend over time. By excluding these years, we can ensure that our analysis is based on complete data and provides a more accurate picture of the AOV trend for the B2C channel.</p>
+<details>
+<summary>Show SQL Code</summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">select</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="n">calendar_year</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesOrderNumber</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">num_distinct_orders</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">OrderQuantity</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">num_items</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="k">count</span><span class="w"> </span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesOrderNumber</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">float</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="k">as</span><span class="w"> </span><span class="n">avg_order_value</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">join</span><span class="w"> </span><span class="n">Calendar</span><span class="w"> </span><span class="k">c</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">DateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDateKey</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span><span class="w"> </span><span class="mi">2014</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="p">,</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="n">calendar_year</span><span class="p">,</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="n">month_number</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>calendar_year</th>
+<th>month_number</th>
+<th>num_distinct_orders</th>
+<th>num_items</th>
+<th>avg_order_value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2011</td>
+<td>1</td>
+<td>144</td>
+<td>144</td>
+<td>3262.666</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>2</td>
+<td>144</td>
+<td>144</td>
+<td>3238.4368</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>3</td>
+<td>150</td>
+<td>150</td>
+<td>3234.6577</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>4</td>
+<td>157</td>
+<td>157</td>
+<td>3197.9225</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>5</td>
+<td>174</td>
+<td>174</td>
+<td>3228.0544</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>6</td>
+<td>230</td>
+<td>230</td>
+<td>3207.9992</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>7</td>
+<td>188</td>
+<td>188</td>
+<td>3174.1838</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>8</td>
+<td>193</td>
+<td>193</td>
+<td>3184.238</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>9</td>
+<td>185</td>
+<td>185</td>
+<td>3259.9107</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>10</td>
+<td>221</td>
+<td>221</td>
+<td>3204.5611</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>11</td>
+<td>208</td>
+<td>208</td>
+<td>3175.701</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>12</td>
+<td>222</td>
+<td>222</td>
+<td>3015.4572</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>1</td>
+<td>252</td>
+<td>252</td>
+<td>1965.7306</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>2</td>
+<td>260</td>
+<td>260</td>
+<td>1949.9776</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>3</td>
+<td>212</td>
+<td>212</td>
+<td>1761.7122</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>4</td>
+<td>219</td>
+<td>219</td>
+<td>1828.0165</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>5</td>
+<td>207</td>
+<td>207</td>
+<td>1733.7096</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>6</td>
+<td>318</td>
+<td>318</td>
+<td>1745.7866</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>7</td>
+<td>246</td>
+<td>246</td>
+<td>1807.1472</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>8</td>
+<td>294</td>
+<td>294</td>
+<td>1782.0319</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>9</td>
+<td>269</td>
+<td>269</td>
+<td>1807.3511</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>10</td>
+<td>313</td>
+<td>313</td>
+<td>1709.7747</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>11</td>
+<td>324</td>
+<td>324</td>
+<td>1660.3565</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>12</td>
+<td>355</td>
+<td>483</td>
+<td>1759.161</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>632</td>
+<td>1662</td>
+<td>1357.1042</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>1421</td>
+<td>3453</td>
+<td>542.821</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>1690</td>
+<td>4087</td>
+<td>621.2469</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>1612</td>
+<td>3979</td>
+<td>648.8975</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>1792</td>
+<td>4399</td>
+<td>716.8487</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>2007</td>
+<td>5025</td>
+<td>818.7233</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>1875</td>
+<td>4671</td>
+<td>731.5604</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>8</td>
+<td>1966</td>
+<td>4865</td>
+<td>788.9448</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>9</td>
+<td>1884</td>
+<td>4616</td>
+<td>768.3098</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>10</td>
+<td>2131</td>
+<td>5300</td>
+<td>785.2151</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>11</td>
+<td>2087</td>
+<td>5224</td>
+<td>853.3397</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>12</td>
+<td>2192</td>
+<td>5520</td>
+<td>855.0913</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong> The Average Order Value (AOV) has shown a significant decline from 2011 to 2013. In 2011, the AOV was consistently above $3000, while in 2012, it dropped to around <span class="arithmatex">\(1700-\)</span>1900, and in 2013, it further declined to around <span class="arithmatex">\(500-\)</span>800. This indicates that customers in the B2C channel are spending less per order over time. The decline in AOV could be attributed to various factors such as changes in customer behavior, increased competition, or the effectiveness of marketing and sales strategies. It is important for the business to analyze the underlying reasons for this decline and take appropriate actions to improve the AOV, such as offering promotions or bundling products to encourage customers to spend more per order. Conversely, the increase in the number of distinct orders and items sold over the years suggests that while customers are spending less per order, they are making more purchases overall, which could indicate a shift in customer behavior towards more frequent but smaller purchases. Toward the end of 2013, customers tend to buy more items per order, but spend less on average per order, which could indicate a shift in customer behavior towards more frequent but smaller purchases. Overall, that compensates for the decline in AOV and could be a positive sign for the business as it indicates that customers are still engaged and making purchases, even if they are spending less per order. However, it is important to monitor this trend closely and take appropriate actions to ensure that the business continues to grow and remain competitive in the market. </p>
+<h3 id="year-to-date-ytd-revenue-and-profitability">Year-to-Date (YTD) Revenue and Profitability<a class="headerlink" href="#year-to-date-ytd-revenue-and-profitability" title="Permanent link">&para;</a></h3>
+<p><code>5. What is the Year-to-Date (YTD) revenue and profitability for the current year compared to the previous year?</code></p>
+<p><strong>Solution Method:</strong> I solved this question by using window function <code>sum</code> with <code>order by day_number</code> to calculate the cumulative revenue for each day of the year. The financial metrics are calculated in a CTE on a daily basis and then for the cumulative ytd calculations, <code>sum</code> window function is used. </p>
+<details>
+<summary>Show SQL Code</summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">with</span><span class="w"> </span><span class="n">revenue_calculation</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="k">select</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">calendar_year</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">DayNumberOfYear</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">day_number</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesOrderNumber</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">num_orders</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="k">coalesce</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">salesamount</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">daily_revenue</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="k">right</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Calendar</span><span class="w"> </span><span class="k">c</span><span class="w"> </span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">DateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDateKey</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2013</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">CalendarYear</span><span class="p">,</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="p">,</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">DayNumberOfYear</span><span class="w">       </span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="p">)</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">select</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="k">sum</span><span class="p">(</span><span class="n">daily_revenue</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">day_number</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cumulative_revenue</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="k">from</span><span class="w"> </span><span class="n">revenue_calculation</span><span class="w"> </span><span class="n">r</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">    </span><span class="n">calendar_year</span><span class="p">,</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">    </span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="n">day_number</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>calendar_year</th>
+<th>month_number</th>
+<th>day_number</th>
+<th>num_orders</th>
+<th>daily_revenue</th>
+<th>cumulative_revenue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>1</td>
+<td>15</td>
+<td>29456.2500</td>
+<td>29456.2500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>2</td>
+<td>6</td>
+<td>12775.3300</td>
+<td>42231.5800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>3</td>
+<td>17</td>
+<td>32708.4500</td>
+<td>74940.0300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>4</td>
+<td>15</td>
+<td>27369.3400</td>
+<td>102309.3700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>5</td>
+<td>21</td>
+<td>32681.4400</td>
+<td>134990.8100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>6</td>
+<td>15</td>
+<td>21787.0200</td>
+<td>156777.8300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>7</td>
+<td>23</td>
+<td>43285.7400</td>
+<td>200063.5700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>8</td>
+<td>15</td>
+<td>22765.5900</td>
+<td>222829.1600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>9</td>
+<td>17</td>
+<td>29735.1400</td>
+<td>252564.3000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>10</td>
+<td>16</td>
+<td>27143.7400</td>
+<td>279708.0400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>11</td>
+<td>19</td>
+<td>30792.0700</td>
+<td>310500.1100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>12</td>
+<td>14</td>
+<td>24151.7200</td>
+<td>334651.8300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>13</td>
+<td>16</td>
+<td>29332.0600</td>
+<td>363983.8900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>14</td>
+<td>9</td>
+<td>16864.1700</td>
+<td>380848.0600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>15</td>
+<td>13</td>
+<td>17740.4800</td>
+<td>398588.5400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>16</td>
+<td>24</td>
+<td>43007.0600</td>
+<td>441595.6000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>17</td>
+<td>9</td>
+<td>10662.1000</td>
+<td>452257.7000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>18</td>
+<td>17</td>
+<td>29251.1300</td>
+<td>481508.8300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>19</td>
+<td>15</td>
+<td>27969.6300</td>
+<td>509478.4600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>20</td>
+<td>28</td>
+<td>46251.4900</td>
+<td>555729.9500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>21</td>
+<td>15</td>
+<td>24486.9700</td>
+<td>580216.9200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>22</td>
+<td>18</td>
+<td>37173.2900</td>
+<td>617390.2100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>23</td>
+<td>15</td>
+<td>20063.2400</td>
+<td>637453.4500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>24</td>
+<td>16</td>
+<td>21670.4100</td>
+<td>659123.8600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>25</td>
+<td>25</td>
+<td>46265.1100</td>
+<td>705388.9700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>26</td>
+<td>12</td>
+<td>21245.6500</td>
+<td>726634.6200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>27</td>
+<td>18</td>
+<td>32820.6000</td>
+<td>759455.2200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>28</td>
+<td>46</td>
+<td>22444.7800</td>
+<td>781900.0000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>29</td>
+<td>43</td>
+<td>17544.6500</td>
+<td>799444.6500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>30</td>
+<td>54</td>
+<td>34958.3200</td>
+<td>834402.9700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>1</td>
+<td>31</td>
+<td>46</td>
+<td>23286.9400</td>
+<td>857689.9100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>32</td>
+<td>42</td>
+<td>10631.9600</td>
+<td>868321.8700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>33</td>
+<td>46</td>
+<td>31641.0400</td>
+<td>899962.9100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>34</td>
+<td>58</td>
+<td>39821.9000</td>
+<td>939784.8100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>35</td>
+<td>67</td>
+<td>41050.1100</td>
+<td>980834.9200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>36</td>
+<td>51</td>
+<td>36502.4900</td>
+<td>1017337.4100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>37</td>
+<td>36</td>
+<td>9256.8800</td>
+<td>1026594.2900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>38</td>
+<td>43</td>
+<td>23441.9800</td>
+<td>1050036.2700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>39</td>
+<td>61</td>
+<td>38978.8800</td>
+<td>1089015.1500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>40</td>
+<td>53</td>
+<td>27145.6800</td>
+<td>1116160.8300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>41</td>
+<td>55</td>
+<td>22354.9400</td>
+<td>1138515.7700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>42</td>
+<td>38</td>
+<td>8935.5300</td>
+<td>1147451.3000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>43</td>
+<td>55</td>
+<td>24718.8800</td>
+<td>1172170.1800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>44</td>
+<td>56</td>
+<td>30727.6500</td>
+<td>1202897.8300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>45</td>
+<td>52</td>
+<td>43821.1300</td>
+<td>1246718.9600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>46</td>
+<td>63</td>
+<td>32532.8800</td>
+<td>1279251.8400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>47</td>
+<td>42</td>
+<td>22848.5000</td>
+<td>1302100.3400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>48</td>
+<td>47</td>
+<td>22208.3300</td>
+<td>1324308.6700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>49</td>
+<td>33</td>
+<td>16582.6700</td>
+<td>1340891.3400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>50</td>
+<td>41</td>
+<td>23768.6400</td>
+<td>1364659.9800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>51</td>
+<td>64</td>
+<td>38394.4200</td>
+<td>1403054.4000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>52</td>
+<td>65</td>
+<td>34077.1600</td>
+<td>1437131.5600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>53</td>
+<td>52</td>
+<td>33445.8200</td>
+<td>1470577.3800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>54</td>
+<td>55</td>
+<td>16562.7900</td>
+<td>1487140.1700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>55</td>
+<td>49</td>
+<td>29636.8500</td>
+<td>1516777.0200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>56</td>
+<td>56</td>
+<td>33871.0600</td>
+<td>1550648.0800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>57</td>
+<td>53</td>
+<td>30886.4900</td>
+<td>1581534.5700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>58</td>
+<td>52</td>
+<td>25334.1600</td>
+<td>1606868.7300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>2</td>
+<td>59</td>
+<td>36</td>
+<td>22169.9200</td>
+<td>1629038.6500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>60</td>
+<td>58</td>
+<td>39771.1000</td>
+<td>1668809.7500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>61</td>
+<td>52</td>
+<td>39824.6300</td>
+<td>1708634.3800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>62</td>
+<td>58</td>
+<td>27876.1300</td>
+<td>1736510.5100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>63</td>
+<td>44</td>
+<td>37420.7100</td>
+<td>1773931.2200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>64</td>
+<td>46</td>
+<td>34742.5300</td>
+<td>1808673.7500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>65</td>
+<td>57</td>
+<td>30966.9000</td>
+<td>1839640.6500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>66</td>
+<td>62</td>
+<td>36027.7100</td>
+<td>1875668.3600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>67</td>
+<td>64</td>
+<td>39610.7600</td>
+<td>1915279.1200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>68</td>
+<td>45</td>
+<td>31852.7300</td>
+<td>1947131.8500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>69</td>
+<td>37</td>
+<td>22015.5400</td>
+<td>1969147.3900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>70</td>
+<td>64</td>
+<td>38930.5000</td>
+<td>2008077.8900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>71</td>
+<td>67</td>
+<td>55983.3400</td>
+<td>2064061.2300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>72</td>
+<td>60</td>
+<td>36316.7000</td>
+<td>2100377.9300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>73</td>
+<td>54</td>
+<td>31670.5900</td>
+<td>2132048.5200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>74</td>
+<td>47</td>
+<td>22219.7800</td>
+<td>2154268.3000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>75</td>
+<td>50</td>
+<td>25425.5800</td>
+<td>2179693.8800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>76</td>
+<td>58</td>
+<td>32091.4500</td>
+<td>2211785.3300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>77</td>
+<td>72</td>
+<td>57809.7900</td>
+<td>2269595.1200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>78</td>
+<td>59</td>
+<td>46671.4900</td>
+<td>2316266.6100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>79</td>
+<td>54</td>
+<td>23583.0900</td>
+<td>2339849.7000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>80</td>
+<td>51</td>
+<td>41473.8800</td>
+<td>2381323.5800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>81</td>
+<td>60</td>
+<td>36721.2200</td>
+<td>2418044.8000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>82</td>
+<td>51</td>
+<td>25622.8100</td>
+<td>2443667.6100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>83</td>
+<td>44</td>
+<td>31296.5600</td>
+<td>2474964.1700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>84</td>
+<td>54</td>
+<td>28647.1200</td>
+<td>2503611.2900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>85</td>
+<td>62</td>
+<td>38171.1600</td>
+<td>2541782.4500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>86</td>
+<td>47</td>
+<td>22332.0700</td>
+<td>2564114.5200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>87</td>
+<td>40</td>
+<td>22851.9900</td>
+<td>2586966.5100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>88</td>
+<td>54</td>
+<td>30160.3500</td>
+<td>2617126.8600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>89</td>
+<td>52</td>
+<td>23935.6900</td>
+<td>2641062.5500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>3</td>
+<td>90</td>
+<td>67</td>
+<td>37883.4900</td>
+<td>2678946.0400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>91</td>
+<td>54</td>
+<td>31103.1300</td>
+<td>2710049.1700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>92</td>
+<td>50</td>
+<td>34252.6900</td>
+<td>2744301.8600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>93</td>
+<td>58</td>
+<td>40796.0400</td>
+<td>2785097.9000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>94</td>
+<td>69</td>
+<td>44971.0700</td>
+<td>2830068.9700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>95</td>
+<td>54</td>
+<td>25428.9400</td>
+<td>2855497.9100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>96</td>
+<td>77</td>
+<td>45482.0100</td>
+<td>2900979.9200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>97</td>
+<td>54</td>
+<td>39051.4200</td>
+<td>2940031.3400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>98</td>
+<td>55</td>
+<td>27693.9000</td>
+<td>2967725.2400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>99</td>
+<td>46</td>
+<td>39658.4900</td>
+<td>3007383.7300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>100</td>
+<td>52</td>
+<td>37216.3600</td>
+<td>3044600.0900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>101</td>
+<td>48</td>
+<td>34319.7400</td>
+<td>3078919.8300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>102</td>
+<td>57</td>
+<td>37204.9100</td>
+<td>3116124.7400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>103</td>
+<td>63</td>
+<td>37378.3400</td>
+<td>3153503.0800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>104</td>
+<td>37</td>
+<td>26819.8400</td>
+<td>3180322.9200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>105</td>
+<td>48</td>
+<td>36773.1100</td>
+<td>3217096.0300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>106</td>
+<td>59</td>
+<td>45650.0900</td>
+<td>3262746.1200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>107</td>
+<td>45</td>
+<td>39352.1200</td>
+<td>3302098.2400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>108</td>
+<td>53</td>
+<td>22301.6700</td>
+<td>3324399.9100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>109</td>
+<td>53</td>
+<td>34310.9300</td>
+<td>3358710.8400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>110</td>
+<td>57</td>
+<td>43325.9800</td>
+<td>3402036.8200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>111</td>
+<td>59</td>
+<td>38076.7000</td>
+<td>3440113.5200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>112</td>
+<td>45</td>
+<td>17996.0600</td>
+<td>3458109.5800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>113</td>
+<td>48</td>
+<td>27583.8400</td>
+<td>3485693.4200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>114</td>
+<td>65</td>
+<td>44684.9300</td>
+<td>3530378.3500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>115</td>
+<td>39</td>
+<td>31332.8100</td>
+<td>3561711.1600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>116</td>
+<td>55</td>
+<td>35940.8000</td>
+<td>3597651.9600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>117</td>
+<td>56</td>
+<td>27813.4100</td>
+<td>3625465.3700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>118</td>
+<td>52</td>
+<td>36069.5700</td>
+<td>3661534.9400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>119</td>
+<td>53</td>
+<td>36041.5000</td>
+<td>3697576.4400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>4</td>
+<td>120</td>
+<td>51</td>
+<td>27392.3700</td>
+<td>3724968.8100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>121</td>
+<td>59</td>
+<td>38023.4200</td>
+<td>3762992.2300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>122</td>
+<td>69</td>
+<td>49081.4000</td>
+<td>3812073.6300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>123</td>
+<td>58</td>
+<td>28476.5400</td>
+<td>3840550.1700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>124</td>
+<td>53</td>
+<td>32476.9600</td>
+<td>3873027.1300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>125</td>
+<td>52</td>
+<td>38762.5700</td>
+<td>3911789.7000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>126</td>
+<td>60</td>
+<td>39303.6200</td>
+<td>3951093.3200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>127</td>
+<td>41</td>
+<td>28390.2200</td>
+<td>3979483.5400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>128</td>
+<td>55</td>
+<td>46553.4100</td>
+<td>4026036.9500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>129</td>
+<td>58</td>
+<td>52843.5600</td>
+<td>4078880.5100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>130</td>
+<td>41</td>
+<td>18442.1900</td>
+<td>4097322.7000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>131</td>
+<td>55</td>
+<td>36868.6700</td>
+<td>4134191.3700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>132</td>
+<td>58</td>
+<td>36145.2100</td>
+<td>4170336.5800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>133</td>
+<td>57</td>
+<td>36084.7400</td>
+<td>4206421.3200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>134</td>
+<td>61</td>
+<td>41838.9900</td>
+<td>4248260.3100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>135</td>
+<td>52</td>
+<td>38193.1600</td>
+<td>4286453.4700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>136</td>
+<td>59</td>
+<td>41496.5200</td>
+<td>4327949.9900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>137</td>
+<td>62</td>
+<td>39300.1900</td>
+<td>4367250.1800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>138</td>
+<td>57</td>
+<td>43510.9200</td>
+<td>4410761.1000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>139</td>
+<td>39</td>
+<td>26966.2000</td>
+<td>4437727.3000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>140</td>
+<td>62</td>
+<td>38025.5000</td>
+<td>4475752.8000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>141</td>
+<td>65</td>
+<td>58402.9600</td>
+<td>4534155.7600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>142</td>
+<td>54</td>
+<td>38000.7600</td>
+<td>4572156.5200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>143</td>
+<td>72</td>
+<td>61004.7500</td>
+<td>4633161.2700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>144</td>
+<td>44</td>
+<td>35148.8500</td>
+<td>4668310.1200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>145</td>
+<td>55</td>
+<td>42799.3400</td>
+<td>4711109.4600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>146</td>
+<td>62</td>
+<td>50332.8200</td>
+<td>4761442.2800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>147</td>
+<td>75</td>
+<td>53495.7100</td>
+<td>4814937.9900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>148</td>
+<td>62</td>
+<td>45631.1100</td>
+<td>4860569.1000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>149</td>
+<td>62</td>
+<td>33988.4500</td>
+<td>4894557.5500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>150</td>
+<td>66</td>
+<td>63052.5900</td>
+<td>4957610.1400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>5</td>
+<td>151</td>
+<td>67</td>
+<td>51951.6000</td>
+<td>5009561.7400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>152</td>
+<td>62</td>
+<td>62935.4600</td>
+<td>5072497.2000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>153</td>
+<td>71</td>
+<td>51323.5800</td>
+<td>5123820.7800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>154</td>
+<td>64</td>
+<td>55816.6800</td>
+<td>5179637.4600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>155</td>
+<td>81</td>
+<td>72376.4600</td>
+<td>5252013.9200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>156</td>
+<td>91</td>
+<td>77359.3400</td>
+<td>5329373.2600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>157</td>
+<td>69</td>
+<td>47438.0100</td>
+<td>5376811.2700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>158</td>
+<td>61</td>
+<td>46708.2500</td>
+<td>5423519.5200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>159</td>
+<td>52</td>
+<td>28462.0600</td>
+<td>5451981.5800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>160</td>
+<td>71</td>
+<td>57790.0200</td>
+<td>5509771.6000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>161</td>
+<td>72</td>
+<td>69712.4900</td>
+<td>5579484.0900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>162</td>
+<td>79</td>
+<td>59151.7000</td>
+<td>5638635.7900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>163</td>
+<td>61</td>
+<td>60327.8000</td>
+<td>5698963.5900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>164</td>
+<td>79</td>
+<td>57660.1800</td>
+<td>5756623.7700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>165</td>
+<td>56</td>
+<td>36793.0700</td>
+<td>5793416.8400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>166</td>
+<td>70</td>
+<td>49744.4100</td>
+<td>5843161.2500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>167</td>
+<td>69</td>
+<td>67078.7600</td>
+<td>5910240.0100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>168</td>
+<td>64</td>
+<td>63750.5500</td>
+<td>5973990.5600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>169</td>
+<td>71</td>
+<td>67958.6800</td>
+<td>6041949.2400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>170</td>
+<td>66</td>
+<td>63875.1500</td>
+<td>6105824.3900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>171</td>
+<td>43</td>
+<td>34686.2900</td>
+<td>6140510.6800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>172</td>
+<td>69</td>
+<td>54909.8000</td>
+<td>6195420.4800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>173</td>
+<td>66</td>
+<td>43262.2000</td>
+<td>6238682.6800</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>174</td>
+<td>68</td>
+<td>51595.5600</td>
+<td>6290278.2400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>175</td>
+<td>72</td>
+<td>60689.6500</td>
+<td>6350967.8900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>176</td>
+<td>58</td>
+<td>48388.7800</td>
+<td>6399356.6700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>177</td>
+<td>61</td>
+<td>54856.9200</td>
+<td>6454213.5900</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>178</td>
+<td>77</td>
+<td>53955.4300</td>
+<td>6508169.0200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>179</td>
+<td>60</td>
+<td>59653.1500</td>
+<td>6567822.1700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>180</td>
+<td>80</td>
+<td>58523.1500</td>
+<td>6626345.3200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>6</td>
+<td>181</td>
+<td>44</td>
+<td>26394.2000</td>
+<td>6652739.5200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>182</td>
+<td>59</td>
+<td>42043.5000</td>
+<td>6694783.0200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>183</td>
+<td>56</td>
+<td>46519.0800</td>
+<td>6741302.1000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>184</td>
+<td>54</td>
+<td>39773.7300</td>
+<td>6781075.8300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>185</td>
+<td>57</td>
+<td>38727.3700</td>
+<td>6819803.2000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>186</td>
+<td>59</td>
+<td>35559.6100</td>
+<td>6855362.8100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>187</td>
+<td>59</td>
+<td>53206.9300</td>
+<td>6908569.7400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>188</td>
+<td>75</td>
+<td>49743.6100</td>
+<td>6958313.3500</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>189</td>
+<td>51</td>
+<td>35343.9500</td>
+<td>6993657.3000</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>190</td>
+<td>73</td>
+<td>48424.3400</td>
+<td>7042081.6400</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>191</td>
+<td>66</td>
+<td>48800.9800</td>
+<td>7090882.6200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>192</td>
+<td>50</td>
+<td>46615.6000</td>
+<td>7137498.2200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>193</td>
+<td>50</td>
+<td>41774.3100</td>
+<td>7179272.5300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>194</td>
+<td>66</td>
+<td>45260.8300</td>
+<td>7224533.3600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>195</td>
+<td>70</td>
+<td>50908.5600</td>
+<td>7275441.9200</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>196</td>
+<td>75</td>
+<td>43804.2400</td>
+<td>7319246.1600</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>197</td>
+<td>52</td>
+<td>30545.3700</td>
+<td>7349791.5300</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>198</td>
+<td>62</td>
+<td>29326.1400</td>
+<td>7379117.6700</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>199</td>
+<td>49</td>
+<td>34962.3400</td>
+<td>7414080.0100</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>7</td>
+<td>200</td>
+<td>75</td>
+<td>59580.2200</td>
+<td>7473660.2300</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong> The Year-to-Date (YTD) revenue for the current year (2013) shows a steady increase over time, with cumulative revenue reaching approximately $7.47 million by the end of July. The profitability trend can be analyzed by comparing the daily revenue and cumulative revenue, which indicates that the business is generating consistent revenue growth throughout the year. The significant increase in revenue in June and July could be attributed to seasonal factors, promotional activities, or increased customer demand during these months. It is important for the business to continue monitoring the YTD revenue and profitability trends to make informed decisions about inventory management, marketing strategies, and resource allocation to sustain growth and maximize profitability.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>The first domain is focused on analyzing the revenue growth, seasonality of sales, average order value, and year-to-date revenue and profitability for the B2C channel. According to the results of the SQL queries we derived following insights:</p>
+<ul>
+<li>The Year-over-Year (YoY) revenue growth rate for each month shows significant fluctuations over the years, with a substantial increase in revenue growth in 2013 compared to 2012.</li>
+<li>The monthly seasonality of sales indicates that the second and fourth quarters of the year drive the most revenue historically, with significant growth rates compared to the previous quarters.</li>
+<li>The Average Order Value (AOV) for the B2C channel has shown a significant decline from 2011 to 2013, while the number of distinct orders and items sold has increased, indicating a shift in customer behavior towards more frequent but smaller purchases.</li>
+<li>The Year-to-Date (YTD) revenue for the current year (2013) shows a steady increase over time, with significant growth in June and July, which could be attributed to seasonal factors or increased customer demand during these months.
+Overall, these insights provide valuable information for the business to make informed decisions about inventory management, marketing strategies, and resource allocation to sustain growth and maximize profitability in the B2C channel. It is important for the business to continue monitoring these trends and take appropriate actions to ensure continued growth and competitiveness in the market.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

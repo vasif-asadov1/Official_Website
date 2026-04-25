@@ -1,0 +1,1978 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+      
+        <link rel="next" href="data_analysis/adventureworks_bike_sales/00_problem_description/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#home-about-me" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home / About Me
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#professional-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Professional Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about-webpage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About Webpage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="About Webpage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-analysis-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Analysis Projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-science-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Science Projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-articles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Articles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux Roadmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master-thesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Master Thesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-skillset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Skillset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        My Certificates 🏆
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/adventureworks_bike_sales/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/adventureworks_bike_sales/01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/adventureworks_bike_sales/02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/adventureworks_bike_sales/03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/adventureworks_bike_sales/04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/adventureworks_bike_sales/05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/adventureworks_bike_sales/06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/adventureworks_bike_sales/07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/olist_e_commerce/09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/home_credit_risk/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/home_credit_risk/01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/home_credit_risk/02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/home_credit_risk/03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_analysis/home_credit_risk/04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#professional-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Professional Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about-webpage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About Webpage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="About Webpage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-analysis-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Analysis Projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-science-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Science Projects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-articles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Articles
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-roadmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux Roadmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#master-thesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Master Thesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-skillset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Skillset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#my-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        My Certificates 🏆
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="home-about-me">Home / About Me<a class="headerlink" href="#home-about-me" title="Permanent link">&para;</a></h1>
+<div style="display: flex; align-items: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap;">
+  <img src="images/vasif-photo.png" alt="Vasif Asadov" style="width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 4px solid #4f46e5; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);">
+
+  <div style="flex: 1; min-width: 300px;">
+    <h1 style="margin: 0; font-size: 2.5rem; border-bottom: none;">Vasif Asadov</h1>
+    <p style="font-size: 1.4rem; color: #4f46e5; font-weight: 600; margin: 5px 0;">Junior Data Scientist</p>
+    <p style="max-width: 650px; margin-top: 15px; line-height: 1.7; text-align: justify;">
+      I am a <b>Control and Automation Engineer</b> currently pursuing a Master's degree at <b>Yildiz Technical University</b>. 
+      I specialize in building efficient data pipelines, performing advanced analytics, and developing AI-based systems. 
+      I am passionate about high-performance tools and highly optimized Linux environments.
+    </p>
+
+    <div style="display: flex; gap: 20px; margin-top: 20px; align-items: center; flex-wrap: wrap;">
+      <a href="https://github.com/vasif-asadov1" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
+        <strong>📁 GitHub</strong>
+      </a>
+      <a href="https://www.linkedin.com/in/vasif-asadov1/" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
+        <strong>👔 LinkedIn</strong>
+      </a>
+      <a href="https://www.youtube.com/@data_insights_vasif" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
+        <strong>📺 YouTube</strong>
+      </a>
+      <!-- Download CV Button -->
+      <a href="certificates/Vasif_Asadov_Data_Analyst.pdf" target="_blank" style="text-decoration: none; color: #4f46e5; border: 1.5px solid #4f46e5; padding: 6px 15px; border-radius: 10px; display: flex; align-items: center; gap: 8px; transition: 0.3s;" onmouseover="this.style.background='rgba(79, 70, 229, 0.1)'" onmouseout="this.style.background='transparent'">
+        <strong>📄 Download CV</strong>
+      </a>
+    </div>
+  </div>
+</div>
+
+<hr />
+<h2 id="professional-summary"><strong>Professional Summary</strong><a class="headerlink" href="#professional-summary" title="Permanent link">&para;</a></h2>
+<p>I am <strong>Vasif Asadov</strong>, a <strong>Junior Data Scientist</strong> and a Master's student in <strong>Control and Automation Engineering</strong> at <strong>Yildiz Technical University</strong>. My academic background is based on high-level analytical performance, starting with a <strong>perfect score of 700/700</strong> on the Azerbaijan National Entrance Exam, which earned me a <strong>Presidential Scholarship</strong>.</p>
+<p>I have a strong engineering foundation and practical experience in data lifecycle management. During my internship at <strong>SOCAR</strong>, I worked with <strong>SQL Server</strong> to clean and store data and developed plant automation systems. Later, I completed a 6-month <strong>Full Stack Data Science</strong> internship where I mastered the entire pipeline: from data cleaning and <strong>Exploratory Data Analysis (EDA)</strong> to building and deploying <strong>Machine Learning</strong> models using <strong>Python, SQL, R, and Tableau</strong>.</p>
+<p>As a <strong>Microsoft Certified Power BI Data Analyst Associate</strong>, I am experienced in creating professional dashboards that help in decision-making processes. My technical focus is on high-performance tools; I prefer using <strong>Polars</strong> and <strong>DuckDB</strong> for fast data processing. My current Master's thesis focuses on <strong>"AI-based Model Predictive Control of Nonlinear Systems,"</strong> where I combine deep learning with control theory.</p>
+<p>I am an advanced <strong>Linux user</strong> (CachyOS/Niri) and I enjoy documenting my technical processes using <strong>Markdown, Quarto, and LaTeX</strong>. I am a self-motivated learner who aims to build efficient, automated, and data-driven systems.</p>
+<hr />
+<h2 id="about-webpage">About Webpage<a class="headerlink" href="#about-webpage" title="Permanent link">&para;</a></h2>
+<p>This platform is my official digital space, built using the <strong>MkDocs-Material</strong> library. My goal is to provide a structured environment where I share my technical journey across five main categories:</p>
+<ol>
+<li>
+<h3 id="data-analysis-projects"><font color="#4f46e5">Data Analysis Projects</font><a class="headerlink" href="#data-analysis-projects" title="Permanent link">&para;</a></h3>
+<p>Comprehensive projects shared with <em>full documentation and source code</em>. This section covers complex queries across multiple engines (<strong>T-SQL, PL/SQL, PostgreSQL, MySQL</strong>), interactive dashboards using <strong>Tableau, Power BI, Streamlit,</strong> and <strong>Apache Superset</strong>, and advanced data cleaning via <strong>Pandas, Polars,</strong> and <strong>DuckDB SQL</strong>. The primary focus here is on <strong>SQL</strong>, <strong>Business Intelligence</strong>, and <em>data storytelling</em>.</p>
+</li>
+<li>
+<h3 id="data-science-projects"><font color="#4f46e5">Data Science Projects</font><a class="headerlink" href="#data-science-projects" title="Permanent link">&para;</a></h3>
+<p>Advanced implementation of <strong>Regression, Classification,</strong> and <strong>Clustering</strong> models. You will find projects involving <strong>Neural Networks</strong>, <strong>Computer Vision</strong>, and <strong>Image Processing</strong> tasks. These projects are primarily developed using <strong>Python</strong> and <strong>R</strong>, focusing on <em>end-to-end machine learning pipelines</em>.</p>
+</li>
+<li>
+<h3 id="data-articles"><font color="#4f46e5">Data Articles</font><a class="headerlink" href="#data-articles" title="Permanent link">&para;</a></h3>
+<p>A collection of my <em>research, curated readings, and summaries</em> regarding <strong>Machine Learning</strong> and <strong>Artificial Intelligence</strong>. I specifically concentrate on "must-to-know" topics for <strong>Data Science interviews</strong>, making this section an effective resource for both beginners and professionals.</p>
+</li>
+<li>
+<h3 id="linux-roadmap"><font color="#4f46e5">Linux Roadmap</font><a class="headerlink" href="#linux-roadmap" title="Permanent link">&para;</a></h3>
+<p>As a dedicated Linux user, I share my experiences with a variety of <strong>Distros</strong> and <strong>Desktop Environments (DEs)</strong>. Having tested almost all major distributions, I provide a clear guide on the <em>advantages, disadvantages, and technical challenges</em> I encountered. This serves as a practical roadmap for anyone looking to transition into the <strong>Linux Environment</strong>.</p>
+</li>
+<li>
+<h3 id="master-thesis"><font color="#4f46e5">Master Thesis</font><a class="headerlink" href="#master-thesis" title="Permanent link">&para;</a></h3>
+<p>A dedicated log of my academic journey at <strong>Yildiz Technical University</strong>. My thesis, titled <em>"Deep Learning based Model Predictive Control of Nonlinear Systems,"</em> aims to build a bridge between <strong>AI</strong> and <strong>Classical Control Theory</strong>. This section is <em>constantly updated</em> as my research progresses.</p>
+</li>
+</ol>
+<hr />
+<p><em>I hope you find the content here valuable. Feel free to contact me regarding any technical topics, collaborations, or feedback. I am committed to maintaining this site as a high-quality knowledge base.</em></p>
+<h2 id="technical-skillset">Technical Skillset<a class="headerlink" href="#technical-skillset" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Languages:</strong> Python, R, SQL</li>
+<li><strong>Database Tools:</strong> T-SQL, PL/SQL, PostgreSQL, MySQL, MongoDB</li>
+<li><strong>Data Science:</strong> Machine Learning (Regression, Classification), Feature Engineering, Dimensionality Reduction</li>
+<li><strong>Statistics:</strong> Descriptive Statistics, Predictive Statistics, A/B Testing, SHAP Analysis</li>
+<li><strong>Tools &amp; BI:</strong> Power BI (Certified), Tableau, Excel, Apache Superset</li>
+<li><strong>Cloud Tools:</strong> Git, GitHub, Docker, AWS (S3, EC2, IAM), Snowflake, Databricks </li>
+<li><strong>Documentation:</strong> LaTeX, Quarto, Markdown</li>
+</ul>
+<h2 id="my-certificates">My Certificates 🏆<a class="headerlink" href="#my-certificates" title="Permanent link">&para;</a></h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
+
+  <a href="certificates/ms_powerbi.pdf" target="_blank" style="padding: 20px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s; display: block;">
+    <strong style="display: block; font-size: 1.1rem; color: #4f46e5;">Microsoft Certified: Power BI Analyst</strong>
+    <span style="color: #64748b; font-size: 0.9rem;">PL-300 Associate Certificate</span>
+  </a>
+
+  <a href="certificates/data_science_academy_certificate.pdf" target="_blank" style="padding: 20px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s; display: block;">
+    <strong style="display: block; font-size: 1.1rem; color: #4f46e5;">Full Stack Data Scientist</strong>
+    <span style="color: #64748b; font-size: 0.9rem;">Data Science Academy Certificate</span>
+  </a>
+
+  <a href="certificates/talent_report_snapshot.pdf" target="_blank" style="padding: 20px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(22, 163, 74, 0.2); border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s; display: block;">
+    <strong style="display: block; font-size: 1.1rem; color: #4f46e5;">Talent Report Snapshot</strong>
+    <span style="color: #64748b; font-size: 0.9rem;">One-Page Performance Summary</span>
+  </a>
+
+
+  <a href="certificates/vasif_asadov_talent_report.pdf" target="_blank" style="padding: 20px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s; display: block;">
+    <strong style="display: block; font-size: 1.1rem; color: #4f46e5;">Data Talent Report</strong>
+    <span style="color: #64748b; font-size: 0.9rem;">Full Technical & Soft Skill Evaluation</span>
+  </a>
+
+  <a href="certificates/sql_certificate.pdf" target="_blank" style="padding: 20px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s; display: block;">
+    <strong style="display: block; font-size: 1.1rem; color: #4f46e5;">Advanced SQL Certification</strong>
+    <span style="color: #64748b; font-size: 0.9rem;">BTK Academy Professional Development</span>
+  </a>
+
+
+  <a href="certificates/vasif_asadov_toefl.pdf" target="_blank" style="padding: 20px; background: rgba(79, 70, 229, 0.05); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 12px; text-decoration: none; color: inherit; transition: 0.3s; display: block;">
+    <strong style="display: block; font-size: 1.1rem; color: #4f46e5;">TOEFL iBT Score Report</strong>
+    <span style="color: #64748b; font-size: 0.9rem;">English Proficiency (C1 Level)</span>
+  </a>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
