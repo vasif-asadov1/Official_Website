@@ -1,0 +1,77 @@
+site_name: Vasif Asadov Portfolio
+site_description: Data Science, Analysis, and Linux Journey
+site_author: Vasif Asadov
+
+theme:
+  name: material
+  palette:
+    scheme: slate 
+    primary: indigo
+    accent: blue
+  features:
+    - content.code.copy
+    - toc.follow
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+
+nav:
+  - Home / About Me: index.md
+  
+  - Data Analysis Projects:
+    - AdventureWorks Bike Sales:
+        - Problem Description: data_analysis/adventureworks_bike_sales/00_problem_description.md
+        - Data Preparation: data_analysis/adventureworks_bike_sales/01_data_preparation.md
+        - Macro Performance: data_analysis/adventureworks_bike_sales/02_macro_performance.md
+        - Customer Analysis: data_analysis/adventureworks_bike_sales/03_customer_analysis.md
+        - Performance Analysis: data_analysis/adventureworks_bike_sales/04_performance_analysis.md
+        - Sales Reasons: data_analysis/adventureworks_bike_sales/05_sales_reasons.md
+        - Regional Analysis: data_analysis/adventureworks_bike_sales/06_regional_analysis.md
+        - Executive Dashboard: data_analysis/adventureworks_bike_sales/07_executive_dashboard.md
+    - Olist E-Commerce Analysis:
+        - Problem Description: data_analysis/olist_e_commerce/00_problem_description.md
+        - Data Normalization: data_analysis/olist_e_commerce/01_data_normalization.md
+        - Business Questions: data_analysis/olist_e_commerce/02_business_questions.md
+        - Customer Retention: data_analysis/olist_e_commerce/03_customer_retention.md
+        - Orders & Sales Performance: data_analysis/olist_e_commerce/04_orders_sales_performance.md
+        - Delivery & Logistics: data_analysis/olist_e_commerce/05_delivery_logistics.md
+        - Seller Performance: data_analysis/olist_e_commerce/06_seller_performance.md
+        - Payments & Risk Analysis: data_analysis/olist_e_commerce/07_payments_and_risk.md
+        - Customer Reviews: data_analysis/olist_e_commerce/08_customer_reviews.md
+        - Time Series Analysis: data_analysis/olist_e_commerce/09_time_series.md
+    - Home Credit Default Risk Analysis: 
+        - Problem Description:  data_analysis/home_credit_risk/00_problem_description.md
+        - Data Analysis with DuckDB SQL: data_analysis/home_credit_risk/01_duckdb_sql_analysis.md
+        - Feature Engineering with DuckDB SQL: data_analysis/home_credit_risk/02_duckdb_feature_engineering.md
+        - Data Cleaning with Python: data_analysis/home_credit_risk/03_python_data_cleaning.md
+        - Default Risk Prediction with Python: data_analysis/home_credit_risk/04_python_machine_learning.md  
+  - Data Science Projects:
+    - Customer Revenue Prediction: data_science/customer_revenue_prediction/00_problem_description.md
+    - Road Crash Prediction: data_science/road_crash_prediction/00_problem_description.md
+      
+  - Master Thesis Research:
+    - Thesis Description: master_thesis/00_thesis_description.md
+    - Dataset Preparation: master_thesis/01_dataset_preparation.md
+      
+  - Data Articles:
+    - Polars vs Pandas: data_articles/00_polars_vs_pandas.md
+      
+  - Linux Roadmap:
+    - Linux Distros: linux_roadmap/00_linux_distros.md
+    - Best Desktop Environment: linux_roadmap/01_best_desktop_environment.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
