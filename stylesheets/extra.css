@@ -1,0 +1,12 @@
+/* Ana içerik alanının maksimum genişliğini artırıyoruz */
+.md-grid {
+    max-width: 85rem; /* Standart 60rem'dir, biz 85 yaparak ciddi yer açıyoruz */
+}
+
+/* Eğer ekran çok genişse içeriğin iyice yayılmasına izin ver */
+@media screen and (min-width: 76.25em) {
+    .md-main__inner {
+        display: flex;
+        max-width: 100%;
+    }
+}
