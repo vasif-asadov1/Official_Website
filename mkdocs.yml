@@ -1,4 +1,4 @@
-site_name: Vasif Asadov Portfolio
+site_name: Vasif Asadov Website
 site_description: Data Science, Analysis, and Linux Journey
 site_author: Vasif Asadov
 
@@ -11,11 +11,10 @@ theme:
   features:
     - content.code.copy
     - toc.follow
-    - navigation.expand
-    - navigation.sections
     - search.suggest
     - search.highlight
     - navigation.tabs.sticky
+    - navigation.indexes  
 extra_css:
   - stylesheets/extra.css
 
@@ -23,6 +22,7 @@ nav:
   - Home / About Me: index.md
   
   - Data Analysis Projects:
+    - data_analysis/index.md
     - AdventureWorks Bike Sales:
         - Problem Description: data_analysis/adventureworks_bike_sales/00_problem_description.md
         - Data Preparation: data_analysis/adventureworks_bike_sales/01_data_preparation.md
@@ -51,21 +51,27 @@ nav:
         - Data Cleaning with Python: data_analysis/home_credit_risk/03_python_data_cleaning.md
         - Default Risk Prediction with Python: data_analysis/home_credit_risk/04_python_machine_learning.md  
   - Data Science Projects:
+    - data_science/index.md
     - Customer Revenue Prediction: data_science/customer_revenue_prediction/00_problem_description.md
     - Road Crash Prediction: data_science/road_crash_prediction/00_problem_description.md
       
   - Master Thesis Research:
+    - master_thesis/index.md
     - Thesis Description: master_thesis/00_thesis_description.md
     - Dataset Preparation: master_thesis/01_dataset_preparation.md
       
   - Data Articles:
+    - data_articles/index.md
     - Polars vs Pandas: data_articles/00_polars_vs_pandas.md
       
   - Linux Roadmap:
+    - linux_roadmap/index.md
     - Linux Distros: linux_roadmap/00_linux_distros.md
     - Best Desktop Environment: linux_roadmap/01_best_desktop_environment.md
 
 markdown_extensions:
+  - attr_list     # Kartlar için zorunlu (YENİ)
+  - md_in_html    # İç içe HTML desteklemek için zorunlu (YENİ)
   - toc:
       permalink: true
       toc_depth: 3
