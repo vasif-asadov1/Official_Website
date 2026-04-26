@@ -1,0 +1,3134 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Advanced SQL Analysis with DuckDB SQL - Part 3 - Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#advanced-sql-analysis-with-duckdb-sql-part-3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Advanced SQL Analysis with DuckDB SQL - Part 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with SQL Part 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_duckdb_sql_analysis2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with SQL Part 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with SQL Part
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#external-reputation-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External Reputation Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="External Reputation Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-hidden-leverage-ratio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Hidden Leverage” Ratio
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-active-burden-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Active Burden” Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-blacklist-check-bureau-balance-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Blacklist” Check (Bureau Balance Status)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-prolongation-red-flag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Prolongation” Red Flag
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-microloan-vs-mortgage-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Microloan” vs. ”Mortgage” Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-credit-seeker-velocity-recency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Credit Seeker” Velocity (Recency)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-currency-risk-macro-economics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Currency” Risk (Macro Economics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bridge Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bridge Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-true-debt-to-income-ratio-bureau-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”True” Debt-to-Income Ratio (Bureau + Application)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-jekyll-hyde-borrower-bureau-installments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Jekyll &amp; Hyde” Borrower (Bureau + Installments)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-living-beyond-means-flag-credit-card-income" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Living Beyond Means” Flag (Credit Card + Income)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-shopping-spree-velocity-previous-app-bureau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Shopping Spree” Velocity (Previous App + Bureau)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-asset-contradiction-housing-credit-card" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Asset Contradiction” (Housing + Credit Card)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-loyalty-defense-previous-app-current-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ”Loyalty” Defense (Previous App + Current Risk)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="advanced-sql-analysis-with-duckdb-sql-part-3">Advanced SQL Analysis with DuckDB SQL - Part 3<a class="headerlink" href="#advanced-sql-analysis-with-duckdb-sql-part-3" title="Permanent link">&para;</a></h1>
+<h2 id="introduction"><font color="#94d6d5">Introduction  </font><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In this section, we will continue our SQL analysis on the remaining tables in the dataset. We will focus on the external behavior of the clients, such as their payment behavior on the other banks and their credit history. Besides that, we will do <strong>bridge analysis</strong> to understand the relationship between the different tables and how they can be used together to get insights about the default risk. </p>
+<h2 id="external-reputation-analysis"><font color="#94d6d5"> External Reputation Analysis  </font><a class="headerlink" href="#external-reputation-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="the-hidden-leverage-ratio"><font color="#8da2e0"> The ”Hidden Leverage” Ratio </font><a class="headerlink" href="#the-hidden-leverage-ratio" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: (AMT CREDIT SUM DEBT) divided by the client’s Income predict default better than just the internal loan amount?</strong></p>
+<p><strong>Objective:</strong> Home Credit knows the client’s income, but only bureau knows their total debt. A client might look safe with a small loan here, but have $100k debt elsewhere. We must calculate the True Debt-to-Income Ratio.</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="s2">with external_debt_agg as (</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="s2">    select </span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="s2">        -- Sum up the current debt reported by the Credit Bureau</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s2">        -- We filter for &#39;Active&#39; credits to measure current burden</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s2">        sum(coalesce(AMT_CREDIT_SUM_DEBT, 0)) as total_external_debt</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s2">    from bureau</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="s2">    where CREDIT_ACTIVE = &#39;Active&#39;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="s2">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="s2">select </span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="s2">    -- Calculate True Debt-to-Income Ratio (External Debt / Annual Income)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="s2">    case </span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="s2">        when b.total_external_debt is null or b.total_external_debt = 0 then &#39;No External Debt&#39;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="s2">        -- Safe Zone: Debt is less than half of annual income</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="s2">        when (b.total_external_debt / nullif(a.AMT_INCOME_TOTAL, 0)) &lt; 0.5 then &#39;Low Leverage (&lt; 0.5x Income)&#39;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="s2">        -- Manageable Zone: Debt is roughly equal to one year&#39;s income</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="s2">        when (b.total_external_debt / nullif(a.AMT_INCOME_TOTAL, 0)) &lt; 1.0 then &#39;Moderate (0.5x - 1.0x Income)&#39;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="s2">        -- Warning Zone: Debt is 1x to 3x annual income</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="s2">        when (b.total_external_debt / nullif(a.AMT_INCOME_TOTAL, 0)) &lt; 3.0 then &#39;High Leverage (1.0x - 3.0x Income)&#39;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="s2">        -- Danger Zone: Debt is more than 3x annual income (Very hard to service)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="s2">        else &#39;Extreme Leverage (&gt; 3.0x Income)&#39;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="s2">    end as external_dti_segment,</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="s2">from applications a</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="s2">left join external_debt_agg b on a.SK_ID_CURR = b.SK_ID_CURR</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="s2">group by 1</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="s2">order by </span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="n">t1</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="n">t1</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">external_dti_segment</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Extreme Leverage (&gt; 3.0x Income)</td>
+<td style="text-align: right;">84528</td>
+<td style="text-align: right;">9.3</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Leverage (1.0x - 3.0x Income)</td>
+<td style="text-align: right;">51935</td>
+<td style="text-align: right;">8.4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Low Leverage (&lt; 0.5x Income)</td>
+<td style="text-align: right;">27657</td>
+<td style="text-align: right;">7.7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Moderate (0.5x - 1.0x Income)</td>
+<td style="text-align: right;">20734</td>
+<td style="text-align: right;">7.5</td>
+</tr>
+<tr>
+<td style="text-align: left;">No External Debt</td>
+<td style="text-align: right;">122657</td>
+<td style="text-align: right;">7.3</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>The data clearly validates the hypothesis that "hidden" debt held at other institutions is a strong predictor of default risk. Unlike the previous task where the sample size was an issue, this feature shows a robust signal across large population segments.</p>
+<p>There is a direct, positive correlation between external leverage and risk. Clients with "No External Debt" are the safest cohort in this category, with a baseline default rate of 7.3%. As the ratio of Debt-to-Income rises, the risk steadily increases, peaking in the "Extreme Leverage" segment (&gt;3.0x Income). This group has a default probability of 9.3%, which is a significant jump from the baseline.</p>
+<p>Crucially, this "Extreme Leverage" group is not a small outlier—it contains 84,528 applicants. This means a substantial portion of our portfolio is carrying heavy external debt loads that we wouldn't see if we only looked at their application data. The fact that nearly 1 in 10 of these highly leveraged clients defaults makes this a critical feature for the model.</p>
+<p>Interestingly, the risk remains relatively flat for low-to-moderate leverage (hovering around 7.5% - 7.7%), suggesting that having some debt is normal and manageable. The danger signal really only activates once the debt exceeds the client's annual income.</p>
+<h3 id="the-active-burden-check"><font color= "8da2e0"> The ”Active Burden” Check </font><a class="headerlink" href="#the-active-burden-check" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question Is the raw count of Active loans at other banks a linear risk factor? (i.e.,Is 5 active loans riskier than 2, or is there a threshold?)</strong></p>
+<p><strong>Objective:</strong> To distinguish between ”Past Experience” and ”Current Stress.” Having 10 closed loans is good (experience). Having 10 active loans is bad (desperation/stress).</p>
+<details>
+<summary>Show Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="s2">with active_loan_counts as (</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="s2">    select </span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="s2">        -- Count only the loans that are currently Active</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="s2">        count(*) as active_count</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="s2">    from bureau</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="s2">    where CREDIT_ACTIVE = &#39;Active&#39;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="s2">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="s2">select </span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="s2">    -- Segment clients by their number of Active external loans</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="s2">    case </span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="s2">        when b.active_count is null or b.active_count = 0 then &#39;No Active Loans&#39;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="s2">        when b.active_count = 1 then &#39;Single Loan (1)&#39;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="s2">        when b.active_count between 2 and 3 then &#39;Manageable (2-3)&#39;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="s2">        when b.active_count between 4 and 6 then &#39;High Load (4-6)&#39;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="s2">        when b.active_count between 7 and 10 then &#39;Very High (7-10)&#39;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="s2">        else &#39;Extreme (&gt; 10)&#39;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="s2">    end as active_burden_segment,</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="s2">from applications a</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="s2">left join active_loan_counts b on a.SK_ID_CURR = b.SK_ID_CURR</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="s2">group by 1</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="s2">order by </span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="n">t2</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="n">t2</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">active_burden_segment</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Extreme (&gt; 10)</td>
+<td style="text-align: right;">445</td>
+<td style="text-align: right;">25.8</td>
+</tr>
+<tr>
+<td style="text-align: left;">Very High (7-10)</td>
+<td style="text-align: right;">6009</td>
+<td style="text-align: right;">14.2</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Load (4-6)</td>
+<td style="text-align: right;">40199</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr>
+<td style="text-align: left;">No Active Loans</td>
+<td style="text-align: right;">90361</td>
+<td style="text-align: right;">7.8</td>
+</tr>
+<tr>
+<td style="text-align: left;">Manageable (2-3)</td>
+<td style="text-align: right;">96394</td>
+<td style="text-align: right;">7.8</td>
+</tr>
+<tr>
+<td style="text-align: left;">Single Loan (1)</td>
+<td style="text-align: right;">74103</td>
+<td style="text-align: right;">7.1</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>We investigated whether the sheer number of active loans a client has at other institutions is a direct indicator of stress. The results confirm that while having a history of loans is fine, carrying too many active loans simultaneously is a massive risk factor.</p>
+<p>The data shows a clear "danger zone" starting at 4 active loans.</p>
+<ul>
+<li>
+<p>Safe Zone (1-3 Active Loans): Clients with a manageable number of loans (1-3) are actually the safest in the portfolio, with default rates between 7.1% and 7.8%. This suggests that moderate credit activity is a healthy sign of financial stability.</p>
+</li>
+<li>
+<p>Warning Zone (4-6 Active Loans): As soon as a client hits 4 active loans, the risk jumps to 10%.</p>
+</li>
+<li>
+<p>Critical Zone (&gt;7 Active Loans): The risk accelerates rapidly here. Clients with 7-10 active loans have a 14.2% default rate.</p>
+</li>
+<li>
+<p>Extreme Risk (&gt;10 Active Loans): This group is almost guaranteed to be problematic. With a default rate of 25.8%, more than 1 in 4 of these clients will crash. Although this group is small (445 cases), the signal is incredibly strong.</p>
+</li>
+</ul>
+<p>This proves that loan count is not linear; it is exponential. There is a distinct threshold at 4 active loans where the "experience" benefit turns into a "burden" risk.</p>
+<h3 id="the-blacklist-check-bureau-balance-status"><font color= "8da2e0"> The ”Blacklist” Check (Bureau Balance Status) </font><a class="headerlink" href="#the-blacklist-check-bureau-balance-status" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: If a client had a ”Written Off” or ”Severe Default” status (Status 5) at any point in the last 2 years, is their default probability effectively 100%?</strong></p>
+<p><strong>Objective:</strong> This is the most critical query in the file. bureau balance tracks if a client was ever 120+ days late (STATUS = ’5’) or Sold (STATUS = ’5’) at another bank.</p>
+<details>
+<summary>Show Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="s2">with blacklist_events as (</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="s2">    select </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="s2">        b.SK_ID_CURR</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="s2">    from bureau_balance bb</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="s2">    -- We must join to the BUREAU table first to get the Client ID (SK_ID_CURR)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="s2">    join bureau b on bb.SK_ID_BUREAU = b.SK_ID_BUREAU</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="s2">    where bb.STATUS = &#39;5&#39; -- Status 5 = Sold, Written Off, or &gt; 120 Days Past Due</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="s2">      and bb.MONTHS_BALANCE &gt;= -24 -- Restrict to the last 2 years (recency matters)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="s2">    group by b.SK_ID_CURR</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="s2">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="s2">select </span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="s2">    -- Segment clients based on presence of a &quot;Nuclear&quot; event</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="s2">    case </span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="s2">        when bl.SK_ID_CURR is not null then &#39;Blacklisted (Severe Default &lt; 2 Yrs)&#39;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="s2">        else &#39;Clean (No Recent Severe Default)&#39;</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="s2">    end as blacklist_check,</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="s2">from applications a</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="s2">left join blacklist_events bl on a.SK_ID_CURR = bl.SK_ID_CURR</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="s2">group by 1</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="s2">order by </span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="n">t3</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="n">t3</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">blacklist_check</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Blacklisted (Severe Default &lt; 2 Yrs)</td>
+<td style="text-align: right;">1285</td>
+<td style="text-align: right;">11.4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Clean (No Recent Severe Default)</td>
+<td style="text-align: right;">306226</td>
+<td style="text-align: right;">8.1</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>The investigation into severe past defaults produced a counter-intuitive result that challenges the common assumption that a "written off" client is automatically a lost cause.</p>
+<p>First, looking at the volume, the vast majority of our applicants are indeed "Clean." Out of the entire dataset, 306,226 applicants have no record of severe defaults in the last two years. Only a tiny fraction—1,285 applicants—fall into the "Blacklisted" category. This confirms that severe delinquency (Status 5) is a very rare event in this population.</p>
+<p>Second, and most importantly, the data disproves the hypothesis that these clients have a "100% default probability." While the "Blacklisted" group is definitely riskier than average (11.4% vs 8.1%), they are nowhere near a guaranteed default. In fact, nearly 89% of the people who had a severe default in the past are currently paying their new loans successfully.</p>
+<p>This tells us that while a past "write-off" is a negative signal, it is not a "fatal" one. A client can have a terrible history at another bank and still perform reasonably well with us, perhaps because our loan terms are different or their financial situation has improved.</p>
+<p><br></p>
+<h3 id="the-prolongation-red-flag"><font color = "8da2e0">The ”Prolongation” Red Flag </font><a class="headerlink" href="#the-prolongation-red-flag" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: Does the act of ”Prolonging” a loan (even if eventually paid) signal a high-risk personality?</strong></p>
+<p><strong>Objective:</strong> To detect ”Struggling” borrowers. CNT CREDIT PROLONG counts how many times a client asked to extend a loan deadline. This is a subtle sign of inability to pay on time.</p>
+<details>
+<summary>Show Code</summary>
+
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="s2">with prolongation_stats as (</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="s2">    select </span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s2">        -- Sum how many times the client prolonged ANY loan at the bureau</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s2">        sum(CNT_CREDIT_PROLONG) as total_prolongations,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s2">        -- Count how many active loans involved prolongations</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s2">        count(case when CNT_CREDIT_PROLONG &gt; 0 then 1 end) as loans_with_prolongation</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s2">    from bureau</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="s2">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="s2">select </span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="s2">    -- Segment clients by their history of pushing deadlines</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="s2">    case </span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="s2">        when p.total_prolongations is null then &#39;No Bureau History&#39;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="s2">        when p.total_prolongations = 0 then &#39;Never Prolonged (Disciplined)&#39;</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="s2">        when p.total_prolongations = 1 then &#39;Occasional Slip-up (1 time)&#39;</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="s2">        when p.total_prolongations between 2 and 5 then &#39;Struggling (2-5 times)&#39;</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="s2">        else &#39;Chronic Extender (&gt; 5 times)&#39;</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="s2">    end as prolongation_behavior,</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="s2">    round(avg(a.TARGET), 3) * 100 as risk_probability</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="s2">from applications a</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="s2">left join prolongation_stats p on a.SK_ID_CURR = p.SK_ID_CURR</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="s2">group by 1</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="s2">order by </span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="n">t4</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="n">t4</span>
+</code></pre></div>
+
+</details>
+
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">prolongation_behavior</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">No Bureau History</td>
+<td style="text-align: right;">44020</td>
+<td style="text-align: right;">10.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Chronic Extender (&gt; 5 times)</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">9.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Occasional Slip-up (1 time)</td>
+<td style="text-align: right;">6869</td>
+<td style="text-align: right;">8.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">Struggling (2-5 times)</td>
+<td style="text-align: right;">1628</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">Never Prolonged (Disciplined)</td>
+<td style="text-align: right;">254983</td>
+<td style="text-align: right;">7.7</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>We investigated whether asking for a loan extension (prolongation) is a sign of a "high-risk personality." The data actually disproves this hypothesis. We found that "Prolongation" is a very weak predictor of default, unlike the strong signals we saw with "Active Loans" or "Utilization."</p>
+<p>First, the vast majority of applicants (254,983) fall into the "Never Prolonged" category, establishing a stable baseline risk of 7.7%. When we look at clients who have extended loans, the risk barely changes. Those with an "Occasional Slip-up" (1 extension) rise slightly to 8.9%, and interestingly, the "Struggling" group (2-5 extensions) actually has a lower risk of 7.9%, effectively identical to the disciplined payers.</p>
+<p>We also found a "Chronic Extender" group (&gt;5 times), but with only 11 applicants, this segment is statistically irrelevant and should be ignored.</p>
+<p>The most significant finding here actually concerns the "No Bureau History" group. These 44,020 applicants have the highest default rate in this entire analysis at 10.1%. This suggests that having no track record is actually more dangerous than having a track record of extending loans. In summary, existing clients who negotiate extensions tend to pay them back; it is the unknown clients who pose the real risk.</p>
+<h3 id="the-microloan-vs-mortgage-profile"><font color = "8da2e0"> The ”Microloan” vs. ”Mortgage” Profile </font><a class="headerlink" href="#the-microloan-vs-mortgage-profile" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: Does the Type of Credit held at other banks (CREDIT TYPE) radically change the risk profile?</strong></p>
+<p><strong>Objective:</strong> Not all debt is equal. A ”Mortgage” usually implies stability (Homeowner). A ”Microloan” usually implies poverty or desperation.</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="s2">with credit_type_flags as (</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="s2">    select </span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="s2">        -- Check for specific high-signal credit types</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="s2">        -- &#39;Microloan&#39; often signals inability to get bank financing (Desperation)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="s2">        max(case when CREDIT_TYPE = &#39;Microloan&#39; then 1 else 0 end) as has_microloan,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="s2">        -- &#39;Mortgage&#39; signals asset ownership and stability</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="s2">        max(case when CREDIT_TYPE = &#39;Mortgage&#39; then 1 else 0 end) as has_mortgage</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="s2">    from bureau</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="s2">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="s2">select </span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="s2">    -- Create a Hierarchy of Credit Profile Risk</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="s2">    case </span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="s2">        when c.SK_ID_CURR is null then &#39;No Bureau History&#39;</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="s2">        -- Priority 1: The Microloan Signal (Desperation overrides Stability)</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="s2">        -- Even if they have a mortgage, needing a microloan is a major distress signal.</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="s2">        when c.has_microloan = 1 then &#39;Microloan User (High Risk / Desperation)&#39;</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="s2">        -- Priority 2: The Mortgage Signal (Stability)</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="s2">        -- Has Mortgage, but NO Microloans.</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="s2">        when c.has_mortgage = 1 then &#39;Mortgage Holder (Stability / Asset Owner)&#39;</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="s2">        -- Priority 3: Standard Borrowers</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="s2">        else &#39;Standard Consumer Credit Only&#39;</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="s2">    end as credit_profile_segment,</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="s2">from applications a</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="s2">left join credit_type_flags c on a.SK_ID_CURR = c.SK_ID_CURR</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="s2">group by 1</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="s2">order by </span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="n">t5</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="n">t5</span>
+</code></pre></div>
+
+</details>
+
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">credit_profile_segment</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Microloan User (High Risk / Desperation)</td>
+<td style="text-align: right;">3499</td>
+<td style="text-align: right;">20.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">No Bureau History</td>
+<td style="text-align: right;">44020</td>
+<td style="text-align: right;">10.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Standard Consumer Credit Only</td>
+<td style="text-align: right;">245806</td>
+<td style="text-align: right;">7.7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mortgage Holder (Stability / Asset Owner)</td>
+<td style="text-align: right;">14186</td>
+<td style="text-align: right;">5.1</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>We tested whether the type of credit a client holds at other institutions is a signal of their financial health. The results provide one of the clearest risk segmentations in the entire project: Credit Type is a massive predictor of default.</p>
+<p>The data reveals a stark contrast between "desperation" credit and "stability" credit:</p>
+<p>The Danger Zone: Clients who use "Microloans" show an incredibly high default rate of 20.1%. This confirms that reliance on high-interest, short-term micro-credit is a major indicator of financial distress. Even though this group is smaller (3,499 applicants), their risk is nearly 3x the portfolio average.</p>
+<p>The Safe Zone: On the opposite end, "Mortgage Holders" are the safest group in the entire dataset, with a default probability of just 5.1%. Owning a home (and qualifying for a mortgage) implies asset ownership and long-term stability, making these clients excellent borrowers.</p>
+<p>The Average: The vast majority of applicants (245,806) hold "Standard Consumer Credit", sitting right at the average risk level of 7.7%.</p>
+<p>Interestingly, the "No Bureau History" group again shows elevated risk (10.1%), reinforcing the finding that "unknown" entities are riskier than established "average" borrowers.</p>
+<h3 id="the-credit-seeker-velocity-recency"><font color = "8da2e0"> The ”Credit Seeker” Velocity (Recency) </font><a class="headerlink" href="#the-credit-seeker-velocity-recency" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: Does a spike in New Loans Opened (e.g., in the last 90 days) correlate with default risk?</strong></p>
+<p><strong>Objective:</strong> To measure ”Hunger” for credit. DAYS CREDIT tells us when they opened the loan. If they opened 3 new loans in the last 30 days, they are ”Credit Seeking.”</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="s2">with recent_activity as (</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="s2">    select </span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="s2">        -- Count loans opened in the last 90 days (DAYS_CREDIT is negative relative to application)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="s2">        -- -90 means &quot;90 days ago&quot;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="s2">        count(*) as new_loans_90d</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="s2">    from bureau</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s2">    where DAYS_CREDIT &gt;= -90</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="s2">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="s2">select </span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="s2">    -- Segment clients based on their &quot;Velocity&quot; of opening new accounts</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="s2">    case </span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="s2">        when r.new_loans_90d is null then &#39;No Recent Activity (Stable/Cold)&#39;</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="s2">        when r.new_loans_90d = 1 then &#39;Moderate Seeking (1 New Loan)&#39;</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="s2">        when r.new_loans_90d = 2 then &#39;High Seeking (2 New Loans)&#39;</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="s2">        else &#39;Desperate / Bust-out Behavior (&gt; 2 New Loans)&#39;</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="s2">    end as credit_velocity_segment,</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="s2">from applications a</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="s2">left join recent_activity r on a.SK_ID_CURR = r.SK_ID_CURR</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="s2">group by 1</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="s2">order by </span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="n">t6</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="n">t6</span>
+</code></pre></div>
+
+</details>
+
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">credit_velocity_segment</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Desperate / Bust-out Behavior (&gt; 2 New Loans)</td>
+<td style="text-align: right;">1791</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Seeking (2 New Loans)</td>
+<td style="text-align: right;">5147</td>
+<td style="text-align: right;">14.3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Moderate Seeking (1 New Loan)</td>
+<td style="text-align: right;">31541</td>
+<td style="text-align: right;">10.6</td>
+</tr>
+<tr>
+<td style="text-align: left;">No Recent Activity (Stable/Cold)</td>
+<td style="text-align: right;">269032</td>
+<td style="text-align: right;">7.6</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>We analyzed whether a sudden spike in opening new loans (Credit Seeking) is a predictor of default. The results confirm that "Credit Hunger" is one of the most immediate and dangerous risk signals we have found.</p>
+<p>There is a clear, stair-step increase in risk as a client opens more loans:</p>
+<ul>
+<li>
+<p>The Baseline: The vast majority of clients (269,032) have "No Recent Activity". They are the safest group with a default rate of 7.6%. This confirms that stability is key to safety.</p>
+</li>
+<li>
+<p>The Warning: Clients who opened just 1 New Loan recently see their risk jump to 10.6%.</p>
+</li>
+<li>
+<p>The Danger Zone: Opening 2 New Loans pushes the risk to 14.3%.</p>
+</li>
+<li>
+<p>The Bust-Out: The most critical finding is the "Desperate / Bust-out" group (&gt;2 new loans). Although this group is smaller (1,791 applicants), their default rate explodes to 22%. This suggests that anyone aggressively opening 3+ loans in a short window is likely planning to bust out (take the money and run) or is in severe distress.</p>
+</li>
+</ul>
+<p>Conclusion: Velocity matters. A client who was safe yesterday becomes toxic today if they suddenly open multiple accounts in a short period.</p>
+<h3 id="the-currency-risk-macro-economics"><font color = "8da2e0"> The ”Currency” Risk (Macro Economics) </font><a class="headerlink" href="#the-currency-risk-macro-economics" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: Are clients with loans in foreign currencies (Currency 2, 3, etc.) riskier than those with local currency loans?</strong></p>
+<p><strong>Objective:</strong> (Optional but impressive). Some loans are in different currencies (CREDIT CURRENCY). In emerging markets, foreign currency loans can be risky if the local currency crashes.</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="s2">with currency_exposure as (</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="s2">    select </span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s2">        -- &#39;currency 1&#39; is the standard local currency.</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s2">        -- We flag anyone who has ever touched a different currency (2, 3, or 4).</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s2">        max(case when CREDIT_CURRENCY != &#39;currency 1&#39; then 1 else 0 end) as has_foreign_currency</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s2">    from bureau</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="s2">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="s2">select </span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="s2">    -- Segment clients by their FX (Foreign Exchange) exposure</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="s2">    case </span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="s2">        when c.SK_ID_CURR is null then &#39;No Bureau History&#39;</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="s2">        -- These clients have loans susceptible to exchange rate fluctuations</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="s2">        when c.has_foreign_currency = 1 then &#39;Foreign Currency Exposure (High Risk)&#39;</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="s2">        -- These clients borrow exclusively in the local currency</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="s2">        else &#39;Local Currency Only (Standard)&#39;</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="s2">    end as currency_profile,</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="s2">from applications a</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="s2">left join currency_exposure c on a.SK_ID_CURR = c.SK_ID_CURR</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="s2">group by 1</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="s2">order by </span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="n">t7</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="n">t7</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">currency_profile</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">No Bureau History</td>
+<td style="text-align: right;">44020</td>
+<td style="text-align: right;">10.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Local Currency Only (Standard)</td>
+<td style="text-align: right;">262523</td>
+<td style="text-align: right;">7.7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Foreign Currency Exposure (High Risk)</td>
+<td style="text-align: right;">968</td>
+<td style="text-align: right;">5.4</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>We investigated whether holding loans in foreign currencies (which can be volatile) is a risk factor. The results were surprising and completely inverted our hypothesis. We assumed foreign currency debt would be dangerous, but the data shows it is actually a strong signal of safety.</p>
+<p>Clients with "Foreign Currency Exposure" have the lowest default probability in this category at just 5.4%. This is significantly safer than the "Local Currency Only" group, which sits at the standard portfolio average of 7.7%.</p>
+<p>Why is this happening? In many emerging markets, foreign currency loans (like USD or EUR) are often reserved for "Premium" or "Corporate" clients with high stability, while the general public is restricted to local currency. Therefore, this feature acts as a proxy for "Wealth" or "Sophistication" rather than distress.</p>
+<p>Once again, the highest risk actually comes from the "No Bureau History" group (10.1%), confirming that the "Unknown" is always riskier than the "Known".</p>
+<h2 id="bridge-analysis"><font color="#94d6d5"> Bridge Analysis </font><a class="headerlink" href="#bridge-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="the-true-debt-to-income-ratio-bureau-application"><font color="#8da2e0"> The ”True” Debt-to-Income Ratio (Bureau + Application)</font><a class="headerlink" href="#the-true-debt-to-income-ratio-bureau-application" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: When we combine the Annual Payment of the current loan (AMT ANNUITY) with the estimated monthly payments of their external debts (Bureau: AMT ANNUITY), does the risk profile change for ”seemingly safe” clients?</strong></p>
+<p><strong>Objective:</strong> In applications table, we only calculate the ratio for our loan. But the client might be drowning in debt elsewhere. We need the Global DTI.</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="s2">with external_commitments as (</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s2">    select </span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s2">        -- Summing up the annuity (periodic payment) for all ACTIVE external loans.</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s2">        -- We filter for &#39;Active&#39; because closed loans don&#39;t require current payments.</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="s2">        -- Note: AMT_ANNUITY in bureau is often NULL, implying missing data, so we coalesce to 0.</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="s2">        sum(coalesce(AMT_ANNUITY, 0)) as external_annuity_total</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="s2">    from bureau</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="s2">    where CREDIT_ACTIVE = &#39;Active&#39;</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="s2">)</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="s2">select </span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="s2">    -- Calculate Global DTI: (Current Loan Payment + External Debt Payments) / Total Income</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="s2">    -- We measure what </span><span class="si">% o</span><span class="s2">f the client&#39;s Total Income is eaten up by debt obligations.</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="s2">    case </span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="s2">        when a.AMT_INCOME_TOTAL is null or a.AMT_INCOME_TOTAL = 0 then &#39;Invalid Income&#39;</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="s2">        -- Safe: Total debt payments are less than 20</span><span class="si">% o</span><span class="s2">f income. Plenty of buffer.</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="s2">        when ((coalesce(a.AMT_ANNUITY, 0) + coalesce(e.external_annuity_total, 0)) / a.AMT_INCOME_TOTAL) &lt; 0.20 </span>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="s2">            then &#39;Very Safe (&lt; 20% DTI)&#39;</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="s2">        -- Standard: 20-40</span><span class="si">% o</span><span class="s2">f income goes to debt. This is the banking norm.</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="s2">        when ((coalesce(a.AMT_ANNUITY, 0) + coalesce(e.external_annuity_total, 0)) / a.AMT_INCOME_TOTAL) &lt; 0.40 </span>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="s2">            then &#39;Manageable (20-40% DTI)&#39;</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="s2">        -- High: 40-60</span><span class="si">% o</span><span class="s2">f income. Any income shock (job loss, sickness) will cause default.</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="s2">        when ((coalesce(a.AMT_ANNUITY, 0) + coalesce(e.external_annuity_total, 0)) / a.AMT_INCOME_TOTAL) &lt; 0.60 </span>
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="s2">            then &#39;High Burden (40-60% DTI)&#39;</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="s2">        -- Critical: &gt; 60</span><span class="si">% o</span><span class="s2">f income goes to debt service. They are likely borrowing just to pay interest.</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="s2">        else &#39;Over-Leveraged (&gt; 60% DTI)&#39;</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="s2">    end as global_dti_segment,</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a>
+<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="s2">from applications a</span>
+<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="s2">left join external_commitments e on a.SK_ID_CURR = e.SK_ID_CURR</span>
+<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a><span class="s2">group by 1</span>
+<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="s2">order by </span>
+<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a>
+<a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a><span class="n">t1</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a><span class="n">t1</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">global_dti_segment</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Over-Leveraged (&gt; 60% DTI)</td>
+<td style="text-align: right;">7606</td>
+<td style="text-align: right;">10.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Burden (40-60% DTI)</td>
+<td style="text-align: right;">16092</td>
+<td style="text-align: right;">8.8</td>
+</tr>
+<tr>
+<td style="text-align: left;">Manageable (20-40% DTI)</td>
+<td style="text-align: right;">104414</td>
+<td style="text-align: right;">8.5</td>
+</tr>
+<tr>
+<td style="text-align: left;">Very Safe (&lt; 20% DTI)</td>
+<td style="text-align: right;">179399</td>
+<td style="text-align: right;">7.6</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>We calculated the "Global DTI" by combining the loan payments for the current application with the payments the client is already making to other banks. This gives us a much more realistic picture of their monthly burden than just looking at our loan in isolation.</p>
+<p>The data confirms that as the total debt burden rises, the risk of default increases steadily. The safest clients are those with "Very Safe" ratios (&lt; 20% of income going to debt), who make up the majority of the portfolio (179,399 applicants) and have a low default rate of 7.6%. As we move up the ladder, the risk climbs: clients with a "High Burden" (40-60% DTI) sit at 8.8% risk.</p>
+<p>The most critical finding is the "Over-Leveraged" group (&gt; 60% DTI). These 7,606 clients are paying more than half their income just to service debt. Their default rate jumps to 10.9%, which is significantly higher than the baseline. This proves that we cannot accurately assess a client's safety unless we look at their total wallet, including debts at other institutions.</p>
+<h3 id="the-jekyll-hyde-borrower-bureau-installments"><font color="#8da2e0"> The ”Jekyll &amp; Hyde” Borrower (Bureau + Installments) </font><a class="headerlink" href="#the-jekyll-hyde-borrower-bureau-installments" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: Are clients who are ”Perfect Payers” with Home Credit (0 days late) but ”Delinquent” with other banks (Bureau Status ¿ 0) highly likely to default on us eventually?</strong></p>
+<p><strong>Objective:</strong> To detect ”Selective Default.” Some clients pay their Mortgage (to keep their house) but default on their Credit Cards. Others pay Home Credit (to keep their phone) but default on other banks.</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="s2">with internal_performance as (</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s2">    select </span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="s2">        -- Calculate max DPD on Home Credit loans.</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="s2">        -- GREATEST(0, ...) ensures we don&#39;t count early payments as negative days.</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="s2">        -- A max_dpd of 0 means they have NEVER been late on a recorded installment.</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="s2">        max(GREATEST(0, DAYS_ENTRY_PAYMENT - DAYS_INSTALMENT)) as max_internal_dpd</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="s2">    from installments_payments</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="s2">    where DAYS_ENTRY_PAYMENT is not null</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="s2">),</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="s2">external_performance as (</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="s2">    select </span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="s2">        b.SK_ID_CURR,</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="s2">        -- Check if client has ANY record of delinquency (Status 1-5) in Bureau Balance</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="s2">        -- Status 0 = OK, C = Closed, X = Unknown. </span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="s2">        -- Status 1-5 = Days Past Due ranges (Bad).</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="s2">        max(case </span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="s2">            when bb.STATUS in (&#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;) then 1 </span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="s2">            else 0 </span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="s2">        end) as has_external_delinquency</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="s2">    from bureau b</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="s2">    join bureau_balance bb on b.SK_ID_BUREAU = bb.SK_ID_BUREAU</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="s2">    group by b.SK_ID_CURR</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="s2">)</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="s2">select </span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="s2">    -- Segment the Borrower Types</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="s2">    case </span>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="s2">        when i.max_internal_dpd is null then &#39;Insufficient Internal History&#39;</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="s2">        -- Segment 1: The &quot;Jekyll &amp; Hyde&quot; (Selective Defaulter)</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="s2">        -- They pay US perfectly (0 DPD), but have defaulted elsewhere.</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="s2">        -- This signals they are prioritizing bills and we might be next to be dropped.</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="s2">        when i.max_internal_dpd = 0 and e.has_external_delinquency = 1 </span>
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="s2">            then &#39;Jekyll &amp; Hyde (Perfect Internal / Bad External)&#39;</span>
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a>
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="s2">        -- Segment 2: The &quot;True Saint&quot;</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a><span class="s2">        -- Perfect record with us AND perfect record externally.</span>
+<a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a><span class="s2">        when i.max_internal_dpd = 0 and (e.has_external_delinquency = 0 or e.has_external_delinquency is null)</span>
+<a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a><span class="s2">            then &#39;True Saint (Perfect Everywhere)&#39;</span>
+<a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a>
+<a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a><span class="s2">        -- Segment 3: The &quot;Known Risk&quot;</span>
+<a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a><span class="s2">        -- They are already late with us. External data just confirms what we know.</span>
+<a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a><span class="s2">        when i.max_internal_dpd &gt; 0 </span>
+<a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a><span class="s2">            then &#39;Known Internal Risk (Late with Home Credit)&#39;</span>
+<a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a>
+<a id="__codelineno-8-50" name="__codelineno-8-50" href="#__codelineno-8-50"></a><span class="s2">        else &#39;Unknown / No External Data&#39;</span>
+<a id="__codelineno-8-51" name="__codelineno-8-51" href="#__codelineno-8-51"></a><span class="s2">    end as borrower_profile,</span>
+<a id="__codelineno-8-52" name="__codelineno-8-52" href="#__codelineno-8-52"></a>
+<a id="__codelineno-8-53" name="__codelineno-8-53" href="#__codelineno-8-53"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-8-54" name="__codelineno-8-54" href="#__codelineno-8-54"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-8-55" name="__codelineno-8-55" href="#__codelineno-8-55"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-8-56" name="__codelineno-8-56" href="#__codelineno-8-56"></a>
+<a id="__codelineno-8-57" name="__codelineno-8-57" href="#__codelineno-8-57"></a><span class="s2">from applications a</span>
+<a id="__codelineno-8-58" name="__codelineno-8-58" href="#__codelineno-8-58"></a><span class="s2">-- We only analyze clients who have at least some payment history with Home Credit</span>
+<a id="__codelineno-8-59" name="__codelineno-8-59" href="#__codelineno-8-59"></a><span class="s2">inner join internal_performance i on a.SK_ID_CURR = i.SK_ID_CURR</span>
+<a id="__codelineno-8-60" name="__codelineno-8-60" href="#__codelineno-8-60"></a><span class="s2">left join external_performance e on a.SK_ID_CURR = e.SK_ID_CURR</span>
+<a id="__codelineno-8-61" name="__codelineno-8-61" href="#__codelineno-8-61"></a><span class="s2">group by 1</span>
+<a id="__codelineno-8-62" name="__codelineno-8-62" href="#__codelineno-8-62"></a><span class="s2">order by </span>
+<a id="__codelineno-8-63" name="__codelineno-8-63" href="#__codelineno-8-63"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-8-64" name="__codelineno-8-64" href="#__codelineno-8-64"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-8-65" name="__codelineno-8-65" href="#__codelineno-8-65"></a>
+<a id="__codelineno-8-66" name="__codelineno-8-66" href="#__codelineno-8-66"></a><span class="n">t2</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-8-67" name="__codelineno-8-67" href="#__codelineno-8-67"></a><span class="n">t2</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">borrower_profile</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Known Internal Risk (Late with Home Credit)</td>
+<td style="text-align: right;">154999</td>
+<td style="text-align: right;">9.4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Jekyll &amp; Hyde (Perfect Internal / Bad External)</td>
+<td style="text-align: right;">8830</td>
+<td style="text-align: right;">8.4</td>
+</tr>
+<tr>
+<td style="text-align: left;">True Saint (Perfect Everywhere)</td>
+<td style="text-align: right;">127806</td>
+<td style="text-align: right;">6.7</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>We tested the "Selective Default" theory to see if clients who treat us well (Perfect Internal history) but treat other banks badly (Bad External history) are a hidden risk. The data confirms that looking outside our own walls is valuable for spotting these "fakers."</p>
+<p>The safest borrowers are the "True Saints"—people who pay everyone on time. They have the lowest default rate of 6.7%.</p>
+<p>The "Jekyll &amp; Hyde" group (perfect with us, but bad elsewhere) is definitely riskier, with a default rate of 8.4%. This confirms that even if a client looks perfect on our internal reports, trouble at another bank is a strong warning sign that we might be next. This helps us flag 8,830 clients who would otherwise fly under the radar.</p>
+<p>However, the strongest predictor is still how they treat us directly. The "Known Internal Risk" group (people who are already late with Home Credit) remains the most dangerous segment at 9.4%. This tells us that while external data adds value, a client's behavior with our own loans is still the "loudest" signal of all.</p>
+<h3 id="the-living-beyond-means-flag-credit-card-income"><font color="#8da2e0"> The ”Living Beyond Means” Flag (Credit Card + Income)</font><a class="headerlink" href="#the-living-beyond-means-flag-credit-card-income" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: Is the ratio of ”Credit Card Limit” to ”Reported Income” a risk factor? (Does having access to credit 5x your salary make you safer or riskier?)</strong></p>
+<p><strong>Objective:</strong> To validate reported income. If a client reports 30k income but has a credit card limit of <code>$100k</code> and spends <code>$50k/year</code>, they are likely lying about their income (or have hidden wealth).</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="s2">with client_credit_limits as (</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="s2">    select </span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="s2">        -- We look for the maximum credit limit the client has ever been approved for.</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="s2">        -- This serves as a proxy for the maximum &quot;trust&quot; banks have extended to them.</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="s2">        -- Using MAX avoids issues with recent months missing or limits fluctuating temporarily.</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="s2">        max(AMT_CREDIT_LIMIT_ACTUAL) as max_credit_limit</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="s2">    from credit_card_balance</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="s2">    where AMT_CREDIT_LIMIT_ACTUAL &gt; 0</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="s2">)</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="s2">select </span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="s2">    -- Calculate the &quot;Limit-to-Income&quot; Ratio (Credit Limit / Annual Income)</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="s2">    case </span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="s2">        when c.max_credit_limit is null then &#39;No Credit Card History&#39;</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="s2">        when a.AMT_INCOME_TOTAL is null or a.AMT_INCOME_TOTAL = 0 then &#39;Invalid Income Data&#39;</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="s2">        -- Segment 1: Low Trust. Limit is a small fraction of annual income.</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="s2">        when (c.max_credit_limit / a.AMT_INCOME_TOTAL) &lt;= 0.20 </span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="s2">            then &#39;Conservative Limit (&lt; 20% Income)&#39;</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="s2">        -- Segment 2: Standard Banking Practice.</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="s2">        when (c.max_credit_limit / a.AMT_INCOME_TOTAL) &lt;= 0.50 </span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="s2">            then &#39;Standard Limit (20-50% Income)&#39;</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="s2">        -- Segment 3: High Trust. Limit approaches full annual salary.</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="s2">        when (c.max_credit_limit / a.AMT_INCOME_TOTAL) &lt;= 1.00 </span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="s2">            then &#39;High Trust (50-100% Income)&#39;</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="s2">        -- Segment 4: Very High. Limit exceeds annual salary.</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="s2">        when (c.max_credit_limit / a.AMT_INCOME_TOTAL) &lt;= 2.00 </span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="s2">            then &#39;Very High Trust (1x - 2x Income)&#39;</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="s2">        -- Segment 5: Outlier. Limit is massive compared to reported income.</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="s2">        else &#39;&quot;Hidden Wealth&quot; or Extreme (&gt; 2x Income)&#39;</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="s2">    end as limit_income_ratio,</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a>
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="s2">from applications a</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="s2">left join client_credit_limits c on a.SK_ID_CURR = c.SK_ID_CURR</span>
+<a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a><span class="s2">group by 1</span>
+<a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="s2">order by </span>
+<a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a>
+<a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a><span class="n">t3</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-9-52" name="__codelineno-9-52" href="#__codelineno-9-52"></a><span class="n">t3</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">limit_income_ratio</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Very High Trust (1x - 2x Income)</td>
+<td style="text-align: right;">26978</td>
+<td style="text-align: right;">9.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Trust (50-100% Income)</td>
+<td style="text-align: right;">23146</td>
+<td style="text-align: right;">8.5</td>
+</tr>
+<tr>
+<td style="text-align: left;">"Hidden Wealth" or Extreme (&gt; 2x Income)</td>
+<td style="text-align: right;">21861</td>
+<td style="text-align: right;">8.4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Standard Limit (20-50% Income)</td>
+<td style="text-align: right;">12522</td>
+<td style="text-align: right;">8.2</td>
+</tr>
+<tr>
+<td style="text-align: left;">No Credit Card History</td>
+<td style="text-align: right;">221475</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">Conservative Limit (&lt; 20% Income)</td>
+<td style="text-align: right;">1529</td>
+<td style="text-align: right;">7.8</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>We investigated whether having a Credit Card Limit that is significantly higher than the client's reported income is a sign of danger (living beyond means) or a sign of trust (hidden wealth). The data suggests it is primarily a risk factor, disproving the "hidden wealth" safety theory for this specific portfolio.</p>
+<p>There is a clear positive correlation: as the limit grows relative to income, the default risk increases.</p>
+<p>The Safest Group: Clients with "Conservative Limits" (&lt; 20% of their income) are the safest, with a default probability of 7.8%. This indicates that keeping credit lines proportional to income is a healthy sign.</p>
+<p>The Risk Escalation: As the limit rises to "Standard" (20-50%) and "High Trust" (50-100%), the risk creeps up to 8.2% and 8.5% respectively.</p>
+<p>The Danger Peak: The highest risk is found in the "Very High Trust" group (Limit is 1x - 2x Income), where the default rate hits 9.1%. This suggests that when banks extend too much credit relative to a salary, it often backfires.</p>
+<p>However, there is an interesting twist at the very top. The "Hidden Wealth / Extreme" group (Limit &gt; 2x Income) actually sees the risk drop slightly to 8.4%. This implies that at the extreme end, some of these clients likely do have unreported income or assets that justify the massive limits, making them slightly safer than the "Very High Trust" group, but still riskier than the conservative borrowers.</p>
+<h3 id="the-shopping-spree-velocity-previous-app-bureau"><font color="#8da2e0"> The ”Shopping Spree” Velocity (Previous App + Bureau) </font><a class="headerlink" href="#the-shopping-spree-velocity-previous-app-bureau" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: If a client applied for a Home Credit loan (Previous App) AND an External Loan (Bureau) in the same month, does this ”Simultaneous Seeking” signal high risk?</strong></p>
+<p><strong>Objective:</strong> To measure ”Total Market Thirst.” We want to know if they are applying for loans everywhere simultaneously.</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="s2">with internal_dates as (</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="s2">    select SK_ID_CURR, DAYS_DECISION</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="s2">    from previous_applications</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="s2">),</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="s2">external_dates as (</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="s2">    select SK_ID_CURR, DAYS_CREDIT</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="s2">    from bureau</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="s2">),</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="s2">simultaneous_events as (</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="s2">    select </span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="s2">        i.SK_ID_CURR,</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="s2">        -- Count how many times an internal application &#39;overlapped&#39; with an external one</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="s2">        -- ABS(diff) &lt;= 30 checks if they happened within the same month-long window</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="s2">        count(*) as spree_count</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="s2">    from internal_dates i</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="s2">    join external_dates e on i.SK_ID_CURR = e.SK_ID_CURR</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="s2">    where abs(i.DAYS_DECISION - e.DAYS_CREDIT) &lt;= 30</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="s2">    group by i.SK_ID_CURR</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="s2">)</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="s2">select </span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="s2">    -- Segment clients by their &quot;Market Thirst&quot;</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="s2">    case </span>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="s2">        when s.spree_count is null then &#39;No Simultaneous Activity&#39;</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="s2">        when s.spree_count = 0 then &#39;No Simultaneous Activity&#39;</span>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a>
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="s2">        -- Occasional overlap could be coincidence or normal mortgage shopping</span>
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="s2">        when s.spree_count between 1 and 2 then &#39;Coincidence / Normal Shopping (1-2)&#39;</span>
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a>
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="s2">        -- Multiple overlaps indicate a pattern of applying everywhere at once</span>
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="s2">        when s.spree_count between 3 and 5 then &#39;High Thirst (3-5 Overlaps)&#39;</span>
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="s2">        -- Extreme overlap is a &quot;Bust-out&quot; signal (Desperation)</span>
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a><span class="s2">        else &#39;Desperate / Shotgun Approach (&gt; 5 Overlaps)&#39;</span>
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a><span class="s2">    end as shopping_spree_behavior,</span>
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a>
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a>
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a><span class="s2">from applications a</span>
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a><span class="s2">left join simultaneous_events s on a.SK_ID_CURR = s.SK_ID_CURR</span>
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a><span class="s2">group by 1</span>
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a><span class="s2">order by </span>
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>
+<a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a><span class="n">t4</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a><span class="n">t4</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">shopping_spree_behavior</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Desperate / Shotgun Approach (&gt; 5 Overlaps)</td>
+<td style="text-align: right;">12071</td>
+<td style="text-align: right;">12.7</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Thirst (3-5 Overlaps)</td>
+<td style="text-align: right;">22239</td>
+<td style="text-align: right;">9.8</td>
+</tr>
+<tr>
+<td style="text-align: left;">Coincidence / Normal Shopping (1-2)</td>
+<td style="text-align: right;">64305</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr>
+<td style="text-align: left;">No Simultaneous Activity</td>
+<td style="text-align: right;">208896</td>
+<td style="text-align: right;">7.7</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>We analyzed whether applying for loans at Home Credit and other banks at the exact same time ("Simultaneous Seeking") is a sign of desperation. The results show a clear distinction between "healthy shopping" and "desperate shotgunning."</p>
+<p>For most clients, a little bit of overlap is perfectly normal. The "Coincidence / Normal Shopping" group (1-2 overlaps) has a default rate of 7.9%, which is almost identical to the baseline of 7.7% for clients with "No Simultaneous Activity". This tells us that if a client is just checking a couple of options to find the best rate, they are safe.</p>
+<p>The red flag only appears when the behavior becomes aggressive.</p>
+<p>High Thirst: Clients with 3-5 simultaneous applications see their risk rise to 9.8%.</p>
+<p>The Shotgun Approach: The real danger zone is clients with &gt;5 overlaps. These 12,071 applicants have a default rate of 12.7%.</p>
+<p>This confirms that applying for credit "everywhere at once" is a strong predictor of default, but only when the volume is high. It signals that the client is likely being rejected elsewhere and is frantically trying to get approved by anyone who will say yes.</p>
+<h3 id="the-asset-contradiction-housing-credit-card"><font color="#8da2e0"> The ”Asset Contradiction” (Housing + Credit Card) </font><a class="headerlink" href="#the-asset-contradiction-housing-credit-card" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: Are clients who list ”High Status” housing but show ”Desperate” spending behavior (High Cash Withdrawals) actually high risk?</strong></p>
+<p><strong>Objective</strong> To find ”Fake Wealth.” A client claims to live in a ”High-End Apartment” (Application data) but frequently withdraws Cash from ATMs (Credit Card data). This contradiction suggests they might be living in a family home but are personally broke.</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="s2">with spending_behavior as (</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="s2">    select </span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="s2">        -- Summing ATM withdrawals and Total Spend</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="s2">        sum(coalesce(AMT_DRAWINGS_ATM_CURRENT, 0)) as atm_spend,</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="s2">        sum(coalesce(AMT_DRAWINGS_CURRENT, 0)) as total_spend</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="s2">    from credit_card_balance</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="s2">    where AMT_DRAWINGS_CURRENT &gt; 0 -- Filter for active cards only</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="s2">)</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="s2">select </span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="s2">    -- Segment: Cross-reference Housing Status (Region Rating) with Spending Behavior (ATM Usage)</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="s2">    case </span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="s2">        when s.SK_ID_CURR is null then &#39;No Credit Card Data&#39;</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="s2">        -- The &quot;Contradiction&quot;: Living in a Top Region (Rating 1) but living on Cash (Desperate?)</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="s2">        -- ATM usage &gt; 50</span><span class="si">% o</span><span class="s2">f total spending</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="s2">        when a.REGION_RATING_CLIENT = 1 and (s.atm_spend / s.total_spend) &gt; 0.50 </span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="s2">            then &#39;Fake Wealth (Top Region / High Cash Reliance)&#39;</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="s2">        -- The &quot;Real Deal&quot;: Top Region and uses card for goods (Financially Sophisticated)</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="s2">        when a.REGION_RATING_CLIENT = 1 and (s.atm_spend / s.total_spend) &lt;= 0.50 </span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="s2">            then &#39;True Wealth (Top Region / Card Spender)&#39;</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="s2">        -- The &quot;Struggling&quot;: Lower Region and living on Cash</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="s2">        when a.REGION_RATING_CLIENT &gt; 1 and (s.atm_spend / s.total_spend) &gt; 0.50 </span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="s2">            then &#39;Struggling (Lower Region / High Cash Reliance)&#39;</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="s2">        -- The &quot;Standard&quot;: Lower Region but standard card usage</span>
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="s2">        else &#39;Standard (Lower Region / Card Spender)&#39;</span>
+<a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="s2">    end as asset_contradiction_segment,</span>
+<a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a>
+<a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a>
+<a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="s2">from applications a</span>
+<a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="s2">left join spending_behavior s on a.SK_ID_CURR = s.SK_ID_CURR</span>
+<a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="s2">group by 1</span>
+<a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a><span class="s2">order by </span>
+<a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a>
+<a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a><span class="n">t5</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a><span class="n">t5</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">asset_contradiction_segment</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Struggling (Lower Region / High Cash Reliance)</td>
+<td style="text-align: right;">37167</td>
+<td style="text-align: right;">10.8</td>
+</tr>
+<tr>
+<td style="text-align: left;">Standard (Lower Region / Card Spender)</td>
+<td style="text-align: right;">15274</td>
+<td style="text-align: right;">10.4</td>
+</tr>
+<tr>
+<td style="text-align: left;">No Credit Card Data</td>
+<td style="text-align: right;">247875</td>
+<td style="text-align: right;">7.6</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fake Wealth (Top Region / High Cash Reliance)</td>
+<td style="text-align: right;">4784</td>
+<td style="text-align: right;">6.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">True Wealth (Top Region / Card Spender)</td>
+<td style="text-align: right;">2411</td>
+<td style="text-align: right;">5.3</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>This cross-check between where clients live and how they spend money produced a surprising result that actually contradicts our "Fake Wealth" theory. We initially thought that people living in expensive areas but relying on cash withdrawals (ATM usage) would be hiding financial stress, but the data shows they are actually quite safe.</p>
+<p>The "Fake Wealth" group (Top Region + High Cash Reliance) has a very low default rate of just 6.1%. This is significantly better than the portfolio average. This suggests that for wealthier clients, using cash isn't necessarily a sign of desperation—it might just be a lifestyle preference or used for specific types of purchases that require cash. The safest group of all is the "True Wealth" segment (Top Region + Card Spenders), with a rock-bottom risk of 5.3%.</p>
+<p>The real danger zone is clearly determined by the region rather than the spending method. The "Struggling" group (Lower Region + High Cash Reliance) has the highest default rate in this category at 10.8%. Even the "Standard" group in these lower regions is risky at 10.4%. Essentially, the economic stability of the region is a much stronger predictor than whether the client uses an ATM or a POS terminal.</p>
+<h3 id="the-loyalty-defense-previous-app-current-risk"><font color="#8da2e0"> The ”Loyalty” Defense (Previous App + Current Risk) </font><a class="headerlink" href="#the-loyalty-defense-previous-app-current-risk" title="Permanent link">&para;</a></h3>
+<p><strong>Business Question: Does a high count of ”Previously Completed Loans” neutralize the risk of ”Bad Demographics” (e.g., Young Age, Low Income)?</strong></p>
+<p><strong>Objective:</strong> To see if ”Relationship History” overrides ”Demographic Risk.” Can a ”Young, Single Laborer” (usually High Risk) become ”Low Risk” if they have successfully paid off 3 previous Home Credit loans?</p>
+<details>
+<summary>Show Code</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="s2">with loyalty_history as (</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="s2">    select </span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="s2">        SK_ID_CURR,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="s2">        -- Count how many previous loans were actually flagged as &#39;Completed&#39;</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="s2">        -- We count DISTINCT SK_ID_PREV to count contracts, not installments.</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="s2">        count(distinct SK_ID_PREV) as count_completed_loans</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="s2">    from pos_cash_balance</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="s2">    where NAME_CONTRACT_STATUS = &#39;Completed&#39;</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="s2">    group by SK_ID_CURR</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="s2">)</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="s2">select </span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="s2">    -- 1. Define the Demographic Risk Profile</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="s2">    -- &#39;Young&#39; (&lt; 30 years old) is typically the highest risk demographic segment.</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="s2">    -- DAYS_BIRTH is negative days. -10950 days is approx 30 years.</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="s2">    case </span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="s2">        when a.DAYS_BIRTH &gt;= -10950 then &#39;High Risk Demo (Young &lt; 30)&#39;</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="s2">        else &#39;Low Risk Demo (Mature 30+)&#39;</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="s2">    end as demographic_profile,</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="s2">    -- 2. Define the Relationship / Loyalty Depth</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="s2">    case </span>
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="s2">        when l.count_completed_loans is null or l.count_completed_loans = 0 then &#39;No History (New)&#39;</span>
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="s2">        when l.count_completed_loans = 1 then &#39;Testing Waters (1 Loan)&#39;</span>
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="s2">        when l.count_completed_loans = 2 then &#39;Recurring (2 Loans)&#39;</span>
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="s2">        else &#39;Loyal (&gt; 2 Loans)&#39;</span>
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a><span class="s2">    end as loyalty_status,</span>
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a><span class="s2">    -- Risk Metrics</span>
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="s2">    count(*) as total_count,</span>
+<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span class="s2">    round(avg(a.TARGET), 3)*100 as risk_probability</span>
+<a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>
+<a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="s2">from applications a</span>
+<a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a><span class="s2">left join loyalty_history l on a.SK_ID_CURR = l.SK_ID_CURR</span>
+<a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a><span class="s2">group by 1, 2</span>
+<a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a><span class="s2">order by </span>
+<a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a><span class="s2">    risk_probability desc</span>
+<a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a>
+<a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a><span class="n">t6</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a><span class="n">t6</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">demographic_profile</th>
+<th style="text-align: left;">loyalty_status</th>
+<th style="text-align: right;">total_count</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">High Risk Demo (Young &lt; 30)</td>
+<td style="text-align: left;">Testing Waters (1 Loan)</td>
+<td style="text-align: right;">17419</td>
+<td style="text-align: right;">13.1</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Risk Demo (Young &lt; 30)</td>
+<td style="text-align: left;">No History (New)</td>
+<td style="text-align: right;">7938</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Risk Demo (Young &lt; 30)</td>
+<td style="text-align: left;">Recurring (2 Loans)</td>
+<td style="text-align: right;">10077</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Risk Demo (Young &lt; 30)</td>
+<td style="text-align: left;">Loyal (&gt; 2 Loans)</td>
+<td style="text-align: right;">9587</td>
+<td style="text-align: right;">9.3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Low Risk Demo (Mature 30+)</td>
+<td style="text-align: left;">Testing Waters (1 Loan)</td>
+<td style="text-align: right;">87445</td>
+<td style="text-align: right;">8.3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Low Risk Demo (Mature 30+)</td>
+<td style="text-align: left;">No History (New)</td>
+<td style="text-align: right;">42357</td>
+<td style="text-align: right;">8.2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Low Risk Demo (Mature 30+)</td>
+<td style="text-align: left;">Recurring (2 Loans)</td>
+<td style="text-align: right;">57215</td>
+<td style="text-align: right;">7.2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Low Risk Demo (Mature 30+)</td>
+<td style="text-align: left;">Loyal (&gt; 2 Loans)</td>
+<td style="text-align: right;">75473</td>
+<td style="text-align: right;">6.5</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>This final cross-check reveals that while customer loyalty is valuable, it is not a magic shield against demographic risk. We hoped that a young, "high-risk" client who has paid off multiple loans would become as safe as an older client, but the data tells a different story.</p>
+<p>Loyalty definitely helps reduce risk within each group. For "High Risk" applicants (Young &lt; 30), the default rate drops from a dangerous 13.1% (for those testing the waters) down to 9.3% for "Loyal" clients who have completed more than 2 loans. This is a significant improvement, proving that trust is earned over time.</p>
+<p>However, the "Demographic Gravity" is still stronger than loyalty. The most critical finding is that a "Loyal" Young client (9.3% risk) is still riskier than a "New" Mature client (8.2% risk). Even after proving themselves multiple times, a young borrower cannot reach the safety level of a standard older borrower.</p>
+<p>Conclusion: Loyalty acts as a discount on risk, but it does not neutralize it. A young applicant is always inherently riskier, no matter how many times they have paid us back in the past.</p>
+<h2 id="conclusion"><font color="#94d6d5"> Conclusion </font><a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Finally, we have completed our comprehensive risk analysis by cross-checking multiple data sources to uncover hidden patterns and contradictions. The key takeaways from this deep dive are:</p>
+<ul>
+<li><strong>Behavioral Velocity Matters:</strong> Clients who suddenly open multiple loans in a short period are significantly riskier, confirming that "Credit Hunger" is a powerful signal of distress.</li>
+<li><strong>Foreign Currency Loans Are Not Always Risky:</strong> Contrary to our initial hypothesis, clients with foreign currency exposure were actually safer, likely because these loans are reserved for wealthier, more stable clients.</li>
+<li><strong>Global DTI Is Essential:</strong> Assessing a client's total debt burden across all institutions provides a much clearer picture of their financial health than looking at our loan in isolation.</li>
+<li><strong>Selective Default Exists:</strong> Clients who are perfect with us but delinquent elsewhere are a hidden risk segment that we can now identify and monitor.</li>
+<li><strong>Credit Limits Relative to Income Are Telling:</strong> Having a credit limit that is too high compared to reported income is a strong risk factor, while conservative limits are a sign of safety.</li>
+<li><strong>Simultaneous Loan Seeking Is a Red Flag:</strong> Applying for multiple loans at the same time is a strong predictor of default, especially when the volume of applications is high.</li>
+<li><strong>Contradictory Signals Can Be Misleading:</strong> Living in a high-end area but relying heavily on cash withdrawals was initially thought to be a sign of fake wealth, but it turned out to be a lifestyle choice that is actually associated with lower risk.</li>
+<li><strong>Loyalty Reduces but Does Not Eliminate Risk:</strong> While having a history of completed loans reduces risk, it does not fully neutralize the inherent risk associated with certain demographics, such as young age.  </li>
+<li><strong>Data-Driven Decision Making Is Key:</strong> These insights allow us to refine our risk models, improve our credit policies, and ultimately make smarter lending decisions that balance growth with portfolio health. By leveraging the full spectrum of data available, we can move beyond surface-level analysis and uncover the deeper truths about our clients' financial behaviors and risks.</li>
+</ul>
+<p><strong>Next Steps:</strong> We defined the important risk signals and segments. Now we will use these insights to engineer new features for our machine learning models, and also to create targeted strategies for monitoring and managing high-risk clients. We will create a final dataframe which consists of all the important features we have discovered, and then we will move on to the modeling phase where we will build predictive models to forecast default risk based on these features.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
