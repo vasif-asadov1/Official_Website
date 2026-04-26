@@ -1,12 +1,100 @@
-/* Ana içerik alanının maksimum genişliğini artırıyoruz */
-.md-grid {
-    max-width: 85rem; /* Standart 60rem'dir, biz 85 yaparak ciddi yer açıyoruz */
+/* --- 1. ANA YERLEŞİM (LAYOUT) VE RENKLER --- */
+.md-grid { max-width: 85rem; }
+@media screen and (min-width: 76.25em) { .md-main__inner { display: flex; max-width: 100%; } }
+
+.md-content {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Eğer ekran çok genişse içeriğin iyice yayılmasına izin ver */
-@media screen and (min-width: 76.25em) {
-    .md-main__inner {
-        display: flex;
-        max-width: 100%;
-    }
+.md-content h1, .md-content h2, .md-content h3, .md-content h4, .md-content h5, .md-content h6 {
+    color: #ffffff !important;
 }
+.md-content code { color: var(--md-code-fg-color); }
+
+/* --- 2. YAN MENÜLER (GHOSTING / TRANSPARENT) --- */
+.md-nav__link, .md-toc__link {
+    color: rgba(255, 255, 255, 0.4) !important;
+    transition: color 0.3s ease;
+}
+.md-nav__link:hover, .md-toc__link:hover, .md-nav__link--active, .md-toc__link--active {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* --- 3. NOTION STYLE CARDS & TAGS (YENİ EKLENEN KISIM) --- */
+
+/* Kartların üzerine gelince yukarı doğru süzülme efekti (Float Effect) */
+.cards > ul > li {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.03) !important; /* Kart içi çok hafif aydınlık */
+}
+
+.cards > ul > li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3) !important;
+    border-color: var(--md-primary-fg-color) !important;
+}
+
+/* Etiketlerin (Tags) kapsayıcısı */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Genel Etiket (Tag) Stili - Minimal ve Yuvarlak Hatlı */
+.tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+    display: inline-block;
+}
+
+/* Renkli Etiketler (Notion Dark Mode Renk Paleti) */
+.tag.sql     { background-color: rgba(65, 137, 230, 0.15); color: #6fb3ff; border: 1px solid rgba(65, 137, 230, 0.3); }
+.tag.duckdb  { background-color: rgba(255, 210, 63, 0.15);  color: #ffd659; border: 1px solid rgba(255, 210, 63, 0.3); }
+.tag.python  { background-color: rgba(55, 118, 171, 0.15); color: #64a6e8; border: 1px solid rgba(55, 118, 171, 0.3); }
+.tag.pandas  { background-color: rgba(164, 145, 249, 0.15); color: #bcaafc; border: 1px solid rgba(164, 145, 249, 0.3); }
+.tag.powerbi { background-color: rgba(242, 200, 17, 0.15);  color: #f2cb30; border: 1px solid rgba(242, 200, 17, 0.3); }
+.tag.ml      { background-color: rgba(232, 62, 140, 0.15);  color: #f07aa0; border: 1px solid rgba(232, 62, 140, 0.3); }
+
+
+/* Renkli proje tag'leri */
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin: 2px 4px 2px 0;
+  line-height: 1.6;
+}
+
+.tag.sql        { background: #185FA5; color: #B5D4F4; }
+.tag.powerbi    { background: #854F0B; color: #FAC775; }
+.tag.python     { background: #3B6D11; color: #C0DD97; }
+.tag.pandas     { background: #533AB7; color: #CECBF6; }
+.tag.duckdb     { background: #0F6E56; color: #9FE1CB; }
+.tag.ml         { background: #993556; color: #F4C0D1; }
+.tag.azure      { background: #0C447C; color: #B5D4F4; }
+.tag.dbt        { background: #27500A; color: #C0DD97; }
+.tag.kafka      { background: #712B13; color: #F5C4B3; }
+.tag.spark      { background: #A32D2D; color: #F7C1C1; }
+.tag.snowflake  { background: #185FA5; color: #E6F1FB; }
+.tag.looker     { background: #533AB7; color: #EEEDFE; }
+.tag.bigquery   { background: #3B6D11; color: #EAF3DE; }
+.tag.gcp        { background: #854F0B; color: #FAEEDA; }
+.tag.tableau    { background: #0F6E56; color: #E1F5EE; }
+.tag.databricks { background: #993C1D; color: #F5C4B3; }
+.tag.sklearn    { background: #993556; color: #FBEAF0; }
+.tag.airflow    { background: #3C3489; color: #EEEDFE; }
