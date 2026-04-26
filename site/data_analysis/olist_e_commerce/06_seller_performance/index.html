@@ -1,0 +1,3811 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+        <link rel="prev" href="../05_delivery_logistics/">
+      
+      
+        <link rel="next" href="../07_payments_and_risk/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Seller Performance - Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#seller-performance-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Seller Performance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#order-fulfillment-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order Fulfillment Efficiency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pareto-analysis-for-sellers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Analysis for Sellers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seller-churn-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seller Churn Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-underperforming-sellers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifying Underperforming Sellers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#order-fulfillment-efficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order Fulfillment Efficiency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pareto-analysis-for-sellers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Analysis for Sellers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seller-churn-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seller Churn Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifying-underperforming-sellers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identifying Underperforming Sellers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="seller-performance-analysis">Seller Performance Analysis<a class="headerlink" href="#seller-performance-analysis" title="Permanent link">&para;</a></h1>
+<h2 id="order-fulfillment-efficiency">Order Fulfillment Efficiency<a class="headerlink" href="#order-fulfillment-efficiency" title="Permanent link">&para;</a></h2>
+<p><font color = "#9dc9cf">16. What is the average time gap between <code>order_approved_at</code> and <code>order_delivered_carrier_date</code> for each seller? Who are the 'Bottom 10%' of sellers who consistently take the longest to hand over packaged orders to the logistics partner?</font></p>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>
+<p><strong>Firstly, we calculate the dispatch time per order (<code>seller_lead_times</code> CTE)</strong>: We join the <code>orders</code> and <code>order_items</code> tables to calculate the exact <code>dispatch_hours</code> for each order by finding the difference between <code>order_approved_at</code> and <code>order_delivered_carrier_date</code>. We use minutes divided by 60.0 to safely prevent integer overflow errors, and filter out 'canceled' or 'unavailable' orders.</p>
+</li>
+<li>
+<p><strong>Secondly, we aggregate and filter seller performance (<code>seller_performance_summary</code> CTE)</strong>: Grouping by <code>seller_id</code>, we calculate the <code>avg_dispatch_hours</code> and the total number of orders fulfilled. Crucially, we filter out negative time values (potential data entry errors) and use a <code>HAVING</code> clause to only include sellers with at least 5 orders, ensuring our averages are statistically relevant.</p>
+</li>
+<li>
+<p><strong>Thirdly, we segment sellers into deciles (<code>seller_efficiency_ranks</code> CTE)</strong>: We use the <code>ntile(10)</code> window function ordered by <code>avg_dispatch_hours desc</code>. This divides the sellers into 10 equal buckets, placing the absolute slowest 10% of sellers into bucket 1.</p>
+</li>
+<li>
+<p><strong>Finally, we isolate the worst offenders (Final <code>SELECT</code>)</strong>: We filter the results to only include <code>efficiency_decile = 1</code> (the bottom 10%). We format the output to show both the average dispatch hours and days, highlighting the sellers who consistently take the longest to hand over packages to the logistics partner.</p>
+</li>
+</ol>
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">with</span><span class="w"> </span><span class="n">seller_lead_times</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="c1">-- step 1: calculate hours between approval and carrier handover</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="c1">-- FIX: Changed &#39;second&#39; to &#39;minute&#39; to prevent integer overflow from data anomalies</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="n">dispatch_hours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">datediff</span><span class="p">(</span><span class="k">minute</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_approved_at</span><span class="p">,</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_delivered_carrier_date</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">60</span><span class="p">.</span><span class="mi">0</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="n">order_items</span><span class="w"> </span><span class="n">oi</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="n">o</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;canceled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unavailable&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="k">and</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_approved_at</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="k">and</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_delivered_carrier_date</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p">),</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">seller_performance_summary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="c1">-- step 2: aggregate averages per seller</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_orders_fulfilled</span><span class="p">,</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="k">avg</span><span class="p">(</span><span class="n">dispatch_hours</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_dispatch_hours</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="n">seller_lead_times</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="n">dispatch_hours</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="c1">-- filtering out potential data entry errors</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">        </span><span class="n">seller_id</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="k">having</span><span class="w"> </span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="c1">-- filtering for sellers with enough history to be statistically relevant</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="p">),</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="n">seller_efficiency_ranks</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="c1">-- step 3: segment sellers into deciles based on speed</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">    </span><span class="c1">-- ntile(10) with order by desc puts the slowest 10% into bucket 1</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">        </span><span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="n">efficiency_decile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ntile</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">avg_dispatch_hours</span><span class="w"> </span><span class="k">desc</span><span class="p">)</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">        </span><span class="n">seller_performance_summary</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="p">)</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="c1">-- final output: isolating the &quot;bottom 10%&quot; slowest sellers</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">    </span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="n">total_orders_fulfilled</span><span class="p">,</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">avg_dispatch_hours</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_dispatch_hours</span><span class="p">,</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">avg_dispatch_hours</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">24</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_dispatch_days</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="n">seller_efficiency_ranks</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">    </span><span class="n">efficiency_decile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="c1">-- selecting the slowest decile</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">    </span><span class="n">avg_dispatch_hours</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong> <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1"></p>
+<table>
+<thead>
+<tr>
+<th>seller_id</th>
+<th>total_orders_fulfilled</th>
+<th>avg_dispatch_hours</th>
+<th>avg_dispatch_days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ecccfa2bb93b34a3bf033cc5d1dcdc69</td>
+<td>14</td>
+<td>622.66</td>
+<td>25.94</td>
+</tr>
+<tr>
+<td>6cf476a4ca74498db55cbccdaa9dcfb6</td>
+<td>5</td>
+<td>537.57</td>
+<td>22.40</td>
+</tr>
+<tr>
+<td>5d378b73ab7dd6f0418d743e5dcb0bd1</td>
+<td>7</td>
+<td>520.27</td>
+<td>21.68</td>
+</tr>
+<tr>
+<td>fa74b2f3287d296e9fbd2cc80f2d1cf1</td>
+<td>5</td>
+<td>431.49</td>
+<td>17.98</td>
+</tr>
+<tr>
+<td>66e0557ecc2b4dbea057e93f215f68d8</td>
+<td>30</td>
+<td>430.22</td>
+<td>17.93</td>
+</tr>
+<tr>
+<td>4b1eaadf791bdbbad8c4a35b65236d52</td>
+<td>5</td>
+<td>427.52</td>
+<td>17.81</td>
+</tr>
+<tr>
+<td>6ee85be3693ed79a8e80718743d80655</td>
+<td>5</td>
+<td>406.15</td>
+<td>16.92</td>
+</tr>
+<tr>
+<td>ed859002ad59dbf8cf3602696a6c3000</td>
+<td>7</td>
+<td>401.96</td>
+<td>16.75</td>
+</tr>
+<tr>
+<td>54965bbe3e4f07ae045b90b0b8541f52</td>
+<td>73</td>
+<td>401.74</td>
+<td>16.74</td>
+</tr>
+<tr>
+<td>cf8ab1616079e2793aa29d524df01bb1</td>
+<td>6</td>
+<td>375.38</td>
+<td>15.64</td>
+</tr>
+<tr>
+<td>5058e8c1e82653974541e83690655b4a</td>
+<td>62</td>
+<td>368.89</td>
+<td>15.37</td>
+</tr>
+<tr>
+<td>c990d6cf976a5718aaedc539f383ab88</td>
+<td>9</td>
+<td>364.59</td>
+<td>15.19</td>
+</tr>
+<tr>
+<td>b5abf4f36adc043117b4fca82c22984c</td>
+<td>8</td>
+<td>360.96</td>
+<td>15.04</td>
+</tr>
+<tr>
+<td>633ecdf879b94b5337cca303328e4a25</td>
+<td>6</td>
+<td>360.05</td>
+<td>15.00</td>
+</tr>
+<tr>
+<td>7fc87cc3e89b3d1d5cabdca32f8485aa</td>
+<td>14</td>
+<td>353.33</td>
+<td>14.72</td>
+</tr>
+<tr>
+<td>38874e327ce94d11390b96eb42d61928</td>
+<td>6</td>
+<td>347.97</td>
+<td>14.50</td>
+</tr>
+<tr>
+<td>817f85dbb65aa3e70831d90fe75cdf89</td>
+<td>11</td>
+<td>345.08</td>
+<td>14.38</td>
+</tr>
+<tr>
+<td>b1b3948701c5c72445495bd161b83a4c</td>
+<td>15</td>
+<td>338.28</td>
+<td>14.10</td>
+</tr>
+<tr>
+<td>6fd52c528dcb38be2eea044946b811f8</td>
+<td>67</td>
+<td>331.49</td>
+<td>13.81</td>
+</tr>
+<tr>
+<td>8bd0e3abda539b9479c4b44a691be1ec</td>
+<td>6</td>
+<td>330.62</td>
+<td>13.78</td>
+</tr>
+<tr>
+<td>822b63912576852aea9a8436d72317b7</td>
+<td>6</td>
+<td>311.81</td>
+<td>12.99</td>
+</tr>
+<tr>
+<td>538caafddff204241cecbf3a02e6b3cf</td>
+<td>8</td>
+<td>310.68</td>
+<td>12.95</td>
+</tr>
+<tr>
+<td>8603f0038fe0e52fedd3382d266723de</td>
+<td>10</td>
+<td>303.20</td>
+<td>12.63</td>
+</tr>
+<tr>
+<td>c42fd8e4d47dfb18ce5222f2dd7752f9</td>
+<td>7</td>
+<td>300.21</td>
+<td>12.51</td>
+</tr>
+<tr>
+<td>8d46553a36e68f95350a200c12f8f2e2</td>
+<td>9</td>
+<td>290.26</td>
+<td>12.09</td>
+</tr>
+<tr>
+<td>95b293867b5862941c9cd74f756a3c68</td>
+<td>9</td>
+<td>289.23</td>
+<td>12.05</td>
+</tr>
+<tr>
+<td>6d988d6174a2c27441597174f8905515</td>
+<td>19</td>
+<td>288.83</td>
+<td>12.03</td>
+</tr>
+<tr>
+<td>17f51e7198701186712e53a39c564617</td>
+<td>56</td>
+<td>281.81</td>
+<td>11.74</td>
+</tr>
+<tr>
+<td>adcf50477d6a1f5d91bb9d54c4903cb5</td>
+<td>18</td>
+<td>281.75</td>
+<td>11.74</td>
+</tr>
+<tr>
+<td>b19f3ca2ea475913750f25a5c37c8d8f</td>
+<td>19</td>
+<td>279.30</td>
+<td>11.64</td>
+</tr>
+<tr>
+<td>7c67e1448b00f6e969d365cea6b010ab</td>
+<td>980</td>
+<td>278.39</td>
+<td>11.60</td>
+</tr>
+<tr>
+<td>cee48807215b30a12ca2ca10ffb5f250</td>
+<td>39</td>
+<td>273.07</td>
+<td>11.38</td>
+</tr>
+<tr>
+<td>d32e3909cfb714fb2a6cb092c85b9c5f</td>
+<td>10</td>
+<td>269.76</td>
+<td>11.24</td>
+</tr>
+<tr>
+<td>8444e55c1f13cd5c179851e5ca5ebd00</td>
+<td>93</td>
+<td>262.63</td>
+<td>10.94</td>
+</tr>
+<tr>
+<td>973f21788dfab357250f69a8dcb7ddee</td>
+<td>9</td>
+<td>262.33</td>
+<td>10.93</td>
+</tr>
+<tr>
+<td>ad781527c93d00d89a11eecd9dcad7c1</td>
+<td>39</td>
+<td>261.46</td>
+<td>10.89</td>
+</tr>
+<tr>
+<td>ea6b12bf9ffe2bac34602ec631d97a47</td>
+<td>9</td>
+<td>259.74</td>
+<td>10.82</td>
+</tr>
+<tr>
+<td>d71d863e5ef30d94e440c11be17dcd8f</td>
+<td>23</td>
+<td>259.41</td>
+<td>10.81</td>
+</tr>
+<tr>
+<td>312ba1d77e9c332ef21f9598b7f64cd7</td>
+<td>7</td>
+<td>258.87</td>
+<td>10.79</td>
+</tr>
+<tr>
+<td>4cf490a58259286ada5ba8525ba9e84a</td>
+<td>8</td>
+<td>257.20</td>
+<td>10.72</td>
+</tr>
+<tr>
+<td>a7f13822ceb966b076af67121f87b063</td>
+<td>75</td>
+<td>256.97</td>
+<td>10.71</td>
+</tr>
+<tr>
+<td>f1ed6bd0a9b11b581f16c851c6a5a527</td>
+<td>17</td>
+<td>256.92</td>
+<td>10.70</td>
+</tr>
+<tr>
+<td>a2e874074c877c5a05abae80ad6e488f</td>
+<td>40</td>
+<td>255.92</td>
+<td>10.66</td>
+</tr>
+<tr>
+<td>2eb70248d66e0e3ef83659f71b244378</td>
+<td>188</td>
+<td>253.07</td>
+<td>10.54</td>
+</tr>
+<tr>
+<td>20b54c376b794ed028df09a3cd88e8dc</td>
+<td>7</td>
+<td>243.37</td>
+<td>10.14</td>
+</tr>
+<tr>
+<td>579891617139df7d8671d373f0669622</td>
+<td>7</td>
+<td>243.31</td>
+<td>10.14</td>
+</tr>
+<tr>
+<td>a425f92c199eb576938df686728acd20</td>
+<td>16</td>
+<td>242.70</td>
+<td>10.11</td>
+</tr>
+<tr>
+<td>b55638ad525e906c698fa2ce742c1742</td>
+<td>11</td>
+<td>239.22</td>
+<td>9.97</td>
+</tr>
+<tr>
+<td>1b8b75e227c9a9c100d0c210fb6176ce</td>
+<td>17</td>
+<td>236.98</td>
+<td>9.87</td>
+</tr>
+<tr>
+<td>02d35243ea2e497335cd0f076b45675d</td>
+<td>14</td>
+<td>234.78</td>
+<td>9.78</td>
+</tr>
+<tr>
+<td>a2fa0bdc798ee84cdb08281337cf4fb6</td>
+<td>8</td>
+<td>233.81</td>
+<td>9.74</td>
+</tr>
+<tr>
+<td>3faf68a3b0af94b10bac70d86077be49</td>
+<td>7</td>
+<td>232.27</td>
+<td>9.68</td>
+</tr>
+<tr>
+<td>30c7f28fd3a5897b2c82d152bb760c17</td>
+<td>6</td>
+<td>230.73</td>
+<td>9.61</td>
+</tr>
+<tr>
+<td>70b52a4cfc823994561b00bad161b4ed</td>
+<td>8</td>
+<td>228.05</td>
+<td>9.50</td>
+</tr>
+<tr>
+<td>610f72e407cdd7caaa2f8167b0163fd8</td>
+<td>15</td>
+<td>221.48</td>
+<td>9.23</td>
+</tr>
+<tr>
+<td>835f0f7810c76831d6c7d24c7a646d4d</td>
+<td>42</td>
+<td>219.52</td>
+<td>9.15</td>
+</tr>
+<tr>
+<td>2089a6d640999f9b9141ac719b2af596</td>
+<td>42</td>
+<td>219.48</td>
+<td>9.14</td>
+</tr>
+<tr>
+<td>054694fa03fe82cec4b7551487331d74</td>
+<td>21</td>
+<td>215.54</td>
+<td>8.98</td>
+</tr>
+<tr>
+<td>38102b031c2a15e54623d711bfc753d3</td>
+<td>9</td>
+<td>205.01</td>
+<td>8.54</td>
+</tr>
+<tr>
+<td>f4c4daa86e30c7e5a553a8d518ac03a5</td>
+<td>18</td>
+<td>204.63</td>
+<td>8.53</td>
+</tr>
+<tr>
+<td>f1b93673502375d491780bb49d615dbc</td>
+<td>8</td>
+<td>199.69</td>
+<td>8.32</td>
+</tr>
+<tr>
+<td>93dc87703c046b603023e75222018b45</td>
+<td>35</td>
+<td>198.00</td>
+<td>8.25</td>
+</tr>
+<tr>
+<td>ec4608a1f76453166bb312b2968aeaf4</td>
+<td>17</td>
+<td>197.64</td>
+<td>8.24</td>
+</tr>
+<tr>
+<td>54219883e72aad869adfb2a54b7bfa0f</td>
+<td>5</td>
+<td>196.32</td>
+<td>8.18</td>
+</tr>
+<tr>
+<td>f76a3b1349b6df1ee875d1f3fa4340f0</td>
+<td>24</td>
+<td>194.54</td>
+<td>8.11</td>
+</tr>
+<tr>
+<td>5f67c6082caacb26e431a7b17940cece</td>
+<td>13</td>
+<td>192.03</td>
+<td>8.00</td>
+</tr>
+<tr>
+<td>87e24fc7052259b1f7f607d61c10d8be</td>
+<td>7</td>
+<td>191.80</td>
+<td>7.99</td>
+</tr>
+<tr>
+<td>33576ec5412fb5905d876f12f33bfde6</td>
+<td>31</td>
+<td>191.75</td>
+<td>7.99</td>
+</tr>
+<tr>
+<td>c37b2059d4f90d4feead554e5246565e</td>
+<td>12</td>
+<td>191.61</td>
+<td>7.98</td>
+</tr>
+<tr>
+<td>4917cee8d902e13428c3ec4b1ca6f315</td>
+<td>31</td>
+<td>191.43</td>
+<td>7.98</td>
+</tr>
+<tr>
+<td>88460e8ebdecbfecb5f9601833981930</td>
+<td>243</td>
+<td>191.06</td>
+<td>7.96</td>
+</tr>
+<tr>
+<td>9baf5cb77970f539089d09a38bcec5c3</td>
+<td>31</td>
+<td>189.97</td>
+<td>7.92</td>
+</tr>
+<tr>
+<td>dc8798cbf453b7e0f98745e396cc5616</td>
+<td>37</td>
+<td>186.29</td>
+<td>7.76</td>
+</tr>
+<tr>
+<td>89bc797e2e29667aa035d4368f9b7f92</td>
+<td>17</td>
+<td>185.90</td>
+<td>7.75</td>
+</tr>
+<tr>
+<td>b335c59ab742f751a85db9c411a86739</td>
+<td>30</td>
+<td>184.34</td>
+<td>7.68</td>
+</tr>
+<tr>
+<td>7ecd59e5e20407131822c1a68ac59c1f</td>
+<td>24</td>
+<td>184.16</td>
+<td>7.67</td>
+</tr>
+<tr>
+<td>9539213aa8e023c01937bef95dc006da</td>
+<td>9</td>
+<td>184.06</td>
+<td>7.67</td>
+</tr>
+<tr>
+<td>81336a0f57a33776419727a300249e90</td>
+<td>16</td>
+<td>183.55</td>
+<td>7.65</td>
+</tr>
+<tr>
+<td>834f8533b2ecb6598dd004ff3de7203a</td>
+<td>41</td>
+<td>182.89</td>
+<td>7.62</td>
+</tr>
+<tr>
+<td>38e6dada03429a47197d5d584d793b41</td>
+<td>7</td>
+<td>182.66</td>
+<td>7.61</td>
+</tr>
+<tr>
+<td>8f78f0903005064036736c7173a5c2ed</td>
+<td>13</td>
+<td>181.55</td>
+<td>7.56</td>
+</tr>
+<tr>
+<td>6bd69102ab48df500790a8cecfc285c2</td>
+<td>5</td>
+<td>180.75</td>
+<td>7.53</td>
+</tr>
+<tr>
+<td>41ab63a91b8b264e8c8780368bf1dd5b</td>
+<td>12</td>
+<td>180.66</td>
+<td>7.53</td>
+</tr>
+<tr>
+<td>f419677537694f0462a91990df6ca44f</td>
+<td>6</td>
+<td>179.79</td>
+<td>7.49</td>
+</tr>
+<tr>
+<td>213b25e6f54661939f11710a6fddb871</td>
+<td>153</td>
+<td>178.06</td>
+<td>7.42</td>
+</tr>
+<tr>
+<td>ab3e0c171fe84a7ba7de130f19cfb485</td>
+<td>6</td>
+<td>175.02</td>
+<td>7.29</td>
+</tr>
+<tr>
+<td>784ba75dd9d20200c4caed3d7a77141a</td>
+<td>19</td>
+<td>173.63</td>
+<td>7.23</td>
+</tr>
+<tr>
+<td>741f8c587cb4248ebc5b779a0e8e0e51</td>
+<td>5</td>
+<td>173.47</td>
+<td>7.23</td>
+</tr>
+<tr>
+<td>cb41bfbcbda0aea354a834ab222f9a59</td>
+<td>11</td>
+<td>171.51</td>
+<td>7.15</td>
+</tr>
+<tr>
+<td>6562efe88ce0826a4ca4f189f03b4b84</td>
+<td>9</td>
+<td>171.48</td>
+<td>7.15</td>
+</tr>
+<tr>
+<td>f7496d659ca9fdaf323c0aae84176632</td>
+<td>25</td>
+<td>170.90</td>
+<td>7.12</td>
+</tr>
+<tr>
+<td>5151aea44289d6c6b090ee31c2132508</td>
+<td>7</td>
+<td>170.73</td>
+<td>7.11</td>
+</tr>
+<tr>
+<td>c60b801f2d52c7f7f91de00870882a75</td>
+<td>40</td>
+<td>169.90</td>
+<td>7.08</td>
+</tr>
+<tr>
+<td>5882820ef11c4c068eea0677a7a879b4</td>
+<td>14</td>
+<td>168.89</td>
+<td>7.04</td>
+</tr>
+<tr>
+<td>ffff564a4f9085cd26170f4732393726</td>
+<td>8</td>
+<td>168.42</td>
+<td>7.02</td>
+</tr>
+<tr>
+<td>a67780aba9dd436e7ac0aa1f889e73ec</td>
+<td>6</td>
+<td>167.90</td>
+<td>7.00</td>
+</tr>
+<tr>
+<td>db2956745b3a8e9f3785c99f34b5d25e</td>
+<td>46</td>
+<td>166.93</td>
+<td>6.96</td>
+</tr>
+<tr>
+<td>1b7e5006cb25dd23ce8686691013b121</td>
+<td>11</td>
+<td>166.48</td>
+<td>6.94</td>
+</tr>
+<tr>
+<td>b6dc74ed30f124f95227bed4e43a3bed</td>
+<td>11</td>
+<td>166.43</td>
+<td>6.93</td>
+</tr>
+<tr>
+<td>cb5df0dcb9e280b1780e9d589889f2c7</td>
+<td>11</td>
+<td>165.89</td>
+<td>6.91</td>
+</tr>
+<tr>
+<td>cce6ab8d1682639fe45ab70234f1665f</td>
+<td>62</td>
+<td>164.88</td>
+<td>6.87</td>
+</tr>
+<tr>
+<td>a49928bcdf77c55c6d6e05e09a9b4ca5</td>
+<td>98</td>
+<td>164.35</td>
+<td>6.85</td>
+</tr>
+<tr>
+<td>0307f7565ff85b299b6e5ef162b1b1a9</td>
+<td>6</td>
+<td>163.34</td>
+<td>6.81</td>
+</tr>
+<tr>
+<td>c1ed9e3daf6154542826a6996af0fb8c</td>
+<td>8</td>
+<td>163.29</td>
+<td>6.80</td>
+</tr>
+<tr>
+<td>c6381d2d013342748761e906d45aff76</td>
+<td>15</td>
+<td>162.97</td>
+<td>6.79</td>
+</tr>
+<tr>
+<td>712e6ed8aa4aa1fa65dab41fed5737e4</td>
+<td>79</td>
+<td>162.96</td>
+<td>6.79</td>
+</tr>
+<tr>
+<td>e504a4e2efaa45cbff7e268a2c58c956</td>
+<td>10</td>
+<td>162.95</td>
+<td>6.79</td>
+</tr>
+<tr>
+<td>beadbee30901a7f61d031b6b686095ad</td>
+<td>64</td>
+<td>162.53</td>
+<td>6.77</td>
+</tr>
+<tr>
+<td>1da366cade6d8276e7d8beea7af5d4bf</td>
+<td>43</td>
+<td>161.53</td>
+<td>6.73</td>
+</tr>
+<tr>
+<td>7fdb0720c8d7c9075538b365dc8c3a22</td>
+<td>9</td>
+<td>159.16</td>
+<td>6.63</td>
+</tr>
+<tr>
+<td>85d9eb9ddc5d00ca9336a2219c97bb13</td>
+<td>506</td>
+<td>158.41</td>
+<td>6.60</td>
+</tr>
+<tr>
+<td>4e17c65a516f69d023a2ae78b84f28d6</td>
+<td>60</td>
+<td>158.16</td>
+<td>6.59</td>
+</tr>
+<tr>
+<td>dd7ddc04e1b6c2c614352b383efe2d36</td>
+<td>121</td>
+<td>157.70</td>
+<td>6.57</td>
+</tr>
+<tr>
+<td>a888faf2d1baececa6baf9c3d603ee1f</td>
+<td>53</td>
+<td>157.43</td>
+<td>6.56</td>
+</tr>
+<tr>
+<td>c64a2aec32cc408a8a4c6d7c46017f91</td>
+<td>9</td>
+<td>157.34</td>
+<td>6.56</td>
+</tr>
+<tr>
+<td>1976a05ecf2996d6ffb7b5430e635fe7</td>
+<td>8</td>
+<td>156.38</td>
+<td>6.52</td>
+</tr>
+<tr>
+<td>6c177e38df6d3f34182b1f1d427231bf</td>
+<td>55</td>
+<td>154.76</td>
+<td>6.45</td>
+</tr>
+<tr>
+<td>6a51fc556dab5f766ced6fbc860bc613</td>
+<td>25</td>
+<td>153.92</td>
+<td>6.41</td>
+</tr>
+<tr>
+<td>d5b9a084373da994a6e37f732169a853</td>
+<td>7</td>
+<td>153.90</td>
+<td>6.41</td>
+</tr>
+<tr>
+<td>f97e2b0650c2068227e1d366140eb62f</td>
+<td>16</td>
+<td>153.14</td>
+<td>6.38</td>
+</tr>
+<tr>
+<td>e21a1e8be4715b0fcfd5385643bc49c4</td>
+<td>21</td>
+<td>152.46</td>
+<td>6.35</td>
+</tr>
+<tr>
+<td>6039e27294dc75811c0d8a39069f52c0</td>
+<td>64</td>
+<td>152.18</td>
+<td>6.34</td>
+</tr>
+<tr>
+<td>1dcfa3835714681d4ba4a93bc1e0fd41</td>
+<td>12</td>
+<td>150.38</td>
+<td>6.27</td>
+</tr>
+<tr>
+<td>8378eb36b6b70c5734e83ad7b8cdc3b7</td>
+<td>7</td>
+<td>149.29</td>
+<td>6.22</td>
+</tr>
+<tr>
+<td>de66a66f2dd06bb9ec37aa96987466a3</td>
+<td>7</td>
+<td>148.99</td>
+<td>6.21</td>
+</tr>
+<tr>
+<td>ba6ce6de456f6c11d08c17701ba5c26f</td>
+<td>6</td>
+<td>148.86</td>
+<td>6.20</td>
+</tr>
+<tr>
+<td>df560393f3a51e74553ab94004ba5c87</td>
+<td>28</td>
+<td>148.54</td>
+<td>6.19</td>
+</tr>
+<tr>
+<td>7bcd7c5f8631701474db233ccf1c094b</td>
+<td>9</td>
+<td>147.80</td>
+<td>6.16</td>
+</tr>
+<tr>
+<td>ffeee66ac5d5a62fe688b9d26f83f534</td>
+<td>14</td>
+<td>147.67</td>
+<td>6.15</td>
+</tr>
+<tr>
+<td>33c51922b6e3c16b24a8f28e5833c99d</td>
+<td>18</td>
+<td>145.64</td>
+<td>6.07</td>
+</tr>
+<tr>
+<td>8a87611c08849ffeeccab52aa798b6c7</td>
+<td>6</td>
+<td>145.53</td>
+<td>6.06</td>
+</tr>
+<tr>
+<td>dfc475d54e1b6dbeeb7d7d9bdaa63827</td>
+<td>18</td>
+<td>144.34</td>
+<td>6.01</td>
+</tr>
+<tr>
+<td>e81e1f9c3e762e620f3fb60a51499e16</td>
+<td>17</td>
+<td>143.37</td>
+<td>5.97</td>
+</tr>
+<tr>
+<td>c24173065483e421f9e5e7f599de101d</td>
+<td>9</td>
+<td>143.09</td>
+<td>5.96</td>
+</tr>
+<tr>
+<td>99002261c568a84cce14d43fcffb43ea</td>
+<td>36</td>
+<td>142.65</td>
+<td>5.94</td>
+</tr>
+<tr>
+<td>5b179e9e8cc7ab6fd113a46ca584da81</td>
+<td>34</td>
+<td>142.05</td>
+<td>5.92</td>
+</tr>
+<tr>
+<td>71271995e85f5b8530be99ed54a91b89</td>
+<td>6</td>
+<td>141.72</td>
+<td>5.90</td>
+</tr>
+<tr>
+<td>8e6cc767478edae941d9bd9eb778d77a</td>
+<td>104</td>
+<td>140.90</td>
+<td>5.87</td>
+</tr>
+<tr>
+<td>c3acdfac4e3e97ff87529454fbc03642</td>
+<td>12</td>
+<td>140.80</td>
+<td>5.87</td>
+</tr>
+<tr>
+<td>f08a5b9dd6767129688d001acafc21e5</td>
+<td>11</td>
+<td>140.71</td>
+<td>5.86</td>
+</tr>
+<tr>
+<td>5b0cc932433fa5184b5b94bfe6bcc256</td>
+<td>12</td>
+<td>140.10</td>
+<td>5.84</td>
+</tr>
+<tr>
+<td>bbad7e518d7af88a0897397ffdca1979</td>
+<td>68</td>
+<td>139.96</td>
+<td>5.83</td>
+</tr>
+<tr>
+<td>855668e0971d4dfd7bef1b6a4133b41b</td>
+<td>306</td>
+<td>139.38</td>
+<td>5.81</td>
+</tr>
+<tr>
+<td>e06f09ec0a4aca210779cf1cfc63cf19</td>
+<td>29</td>
+<td>139.33</td>
+<td>5.81</td>
+</tr>
+<tr>
+<td>8a40ae794fa3f9892cee24bd5af0488b</td>
+<td>5</td>
+<td>139.15</td>
+<td>5.80</td>
+</tr>
+<tr>
+<td>04308b1ee57b6625f47df1d56f00eedf</td>
+<td>93</td>
+<td>139.12</td>
+<td>5.80</td>
+</tr>
+<tr>
+<td>37dd29b36c458d82f74a953c40c43645</td>
+<td>7</td>
+<td>138.78</td>
+<td>5.78</td>
+</tr>
+<tr>
+<td>e067ad2c1c0b48758eb1b5228bcf7a68</td>
+<td>54</td>
+<td>138.37</td>
+<td>5.77</td>
+</tr>
+<tr>
+<td>eb4df17aed01d918c65f0f8d650900c0</td>
+<td>11</td>
+<td>137.84</td>
+<td>5.74</td>
+</tr>
+<tr>
+<td>6973a06f484aacf400ece213dbf3d946</td>
+<td>92</td>
+<td>137.67</td>
+<td>5.74</td>
+</tr>
+<tr>
+<td>f9903dd0f812c7e771fcad47b6fff231</td>
+<td>10</td>
+<td>137.38</td>
+<td>5.72</td>
+</tr>
+<tr>
+<td>f9244d45189d3a3605499abddeade7d5</td>
+<td>21</td>
+<td>136.88</td>
+<td>5.70</td>
+</tr>
+<tr>
+<td>9dda5bbacd45e18d6485fee649205d09</td>
+<td>19</td>
+<td>136.88</td>
+<td>5.70</td>
+</tr>
+<tr>
+<td>e8b3a3a38279a82f0e5d006d5e5b7d2c</td>
+<td>80</td>
+<td>136.76</td>
+<td>5.70</td>
+</tr>
+<tr>
+<td>d93844a9c55ba7ce353388bcf849ea56</td>
+<td>12</td>
+<td>136.60</td>
+<td>5.69</td>
+</tr>
+<tr>
+<td>271c58a1d139c45eaf3316107c6d3a3b</td>
+<td>28</td>
+<td>135.53</td>
+<td>5.65</td>
+</tr>
+<tr>
+<td>236585a4ddb5fea9fa40233e2249ed91</td>
+<td>11</td>
+<td>134.85</td>
+<td>5.62</td>
+</tr>
+<tr>
+<td>4c8b8048e33af2bf94f2eb547746a916</td>
+<td>19</td>
+<td>134.26</td>
+<td>5.59</td>
+</tr>
+<tr>
+<td>25debeafbce801fdd479539350185eee</td>
+<td>5</td>
+<td>133.99</td>
+<td>5.58</td>
+</tr>
+<tr>
+<td>cac4c8e7b1ca6252d8f20b2fc1a2e4af</td>
+<td>74</td>
+<td>132.26</td>
+<td>5.51</td>
+</tr>
+<tr>
+<td>656591be56071d4c9ef4e5fee78a578a</td>
+<td>7</td>
+<td>132.12</td>
+<td>5.50</td>
+</tr>
+<tr>
+<td>c4d51195486dc781531876a7d00453d8</td>
+<td>17</td>
+<td>131.29</td>
+<td>5.47</td>
+</tr>
+<tr>
+<td>4d600e08ecbe08258c79e536c5a42fee</td>
+<td>7</td>
+<td>129.89</td>
+<td>5.41</td>
+</tr>
+<tr>
+<td>184a67a8f9f63234d3a92340bbdb727f</td>
+<td>8</td>
+<td>129.79</td>
+<td>5.41</td>
+</tr>
+<tr>
+<td>dd2bdf855a9172734fbc3744021ae9b9</td>
+<td>106</td>
+<td>128.78</td>
+<td>5.37</td>
+</tr>
+<tr>
+<td>63b464dbf392c7b80d12d932fa7cafed</td>
+<td>36</td>
+<td>128.64</td>
+<td>5.36</td>
+</tr>
+<tr>
+<td>cd843d4cf8ef32827de0396605163ba3</td>
+<td>5</td>
+<td>128.59</td>
+<td>5.36</td>
+</tr>
+<tr>
+<td>4e8dacf3d38f281ae26c3e0321d92d88</td>
+<td>8</td>
+<td>128.42</td>
+<td>5.35</td>
+</tr>
+<tr>
+<td>343e716476e3748b069f980efbaa294e</td>
+<td>17</td>
+<td>127.90</td>
+<td>5.33</td>
+</tr>
+<tr>
+<td>014c0679dd340a0e338872e7ec85666a</td>
+<td>14</td>
+<td>127.87</td>
+<td>5.33</td>
+</tr>
+<tr>
+<td>e819bcfade7b5d88a27325eb6cfd62c5</td>
+<td>5</td>
+<td>127.71</td>
+<td>5.32</td>
+</tr>
+<tr>
+<td>6e0908ef4d4efadbc3cc2b74ea477cb0</td>
+<td>8</td>
+<td>127.41</td>
+<td>5.31</td>
+</tr>
+<tr>
+<td>575df70bde3f9f2b30bf8d2e9910d725</td>
+<td>27</td>
+<td>127.12</td>
+<td>5.30</td>
+</tr>
+<tr>
+<td>0873d9f8f36123f8d910f4760e788cfb</td>
+<td>6</td>
+<td>126.96</td>
+<td>5.29</td>
+</tr>
+<tr>
+<td>373ee4a3a775a733770ca3f790b8b9ac</td>
+<td>13</td>
+<td>126.89</td>
+<td>5.29</td>
+</tr>
+<tr>
+<td>062ce95fa2ad4dfaedfc79260130565f</td>
+<td>54</td>
+<td>126.73</td>
+<td>5.28</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Insight:</strong> </p>
+<ul>
+<li><strong>Extreme Outliers:</strong> The absolute slowest seller (<code>ecccfa...</code>) takes an average of 25.9 days just to hand over the package to the carrier! However, the worst offenders at the very top of the list mostly have low order volumes (between 5 and 14 orders), suggesting they might be inactive, poorly managed, or drop-shipping from overseas.</li>
+<li><strong>The High-Volume Red Flag:</strong> Seller <code>7c67e144...</code> is a massive problem for the platform. They fulfilled 980 orders but have an incredibly slow average dispatch time of 11.6 days. Because of their high volume, this single seller is likely generating a huge amount of late deliveries and negative customer reviews.</li>
+<li><strong>Unacceptable Baselines:</strong> In modern e-commerce, dispatching an item should take 1 to 2 days. The sellers on this "Bottom" list are consistently taking over a week (7+ days) just to get the product out of their warehouse. This indicates a severe supply chain or inventory management issue on the seller's side.</li>
+<li><strong>Actionable Next Step:</strong> Olist needs to enforce strict Service Level Agreements (SLAs). Sellers like <code>7c67e144...</code> should be penalized or warned, as they are large enough to seriously damage Olist's brand reputation with their 11-day packing delays.</li>
+</ul>
+<h2 id="pareto-analysis-for-sellers">Pareto Analysis for Sellers<a class="headerlink" href="#pareto-analysis-for-sellers" title="Permanent link">&para;</a></h2>
+<p><font color = "#9dc9cf">17. Do the top 10% of sellers generate more than 50% of the platform's total revenue? Furthermore, which product categories are dominated by a single 'Monopoly Seller' vs. categories with a healthy, competitive mix of multiple vendors?</font></p>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>
+<p><strong>Firstly, we calculate global seller revenue (<code>seller_global_revenue</code> and <code>global_pareto</code> CTEs)</strong>: We join the <code>order_items</code>, <code>payments</code>, and <code>orders</code> tables to sum up the total revenue for each seller across the entire platform. We then use the <code>ntile(10)</code> window function to rank sellers into deciles, which helps identify the platform-wide revenue concentration.</p>
+</li>
+<li>
+<p><strong>Secondly, we calculate seller market share per category (<code>category_seller_share</code> CTE)</strong>: We group the sales data by both <code>product_category_name</code> and <code>seller_id</code> to find how much revenue each seller generated in that specific category. We also use a window function <code>sum() over (partition by product_category_name)</code> to calculate the total overall revenue for the entire category without grouping away the seller-level details.</p>
+</li>
+<li>
+<p><strong>Thirdly, we identify the top seller's dominance (<code>category_dominance</code> CTE)</strong>: Grouping strictly by category, we count the total number of unique vendors (<code>total_vendors</code>) and find the highest revenue generated by a single seller (<code>max(seller_category_revenue)</code>). By dividing this top seller's revenue by the total category revenue, we calculate the exact market share percentage held by the leading vendor (<code>leader_market_share_pct</code>).</p>
+</li>
+<li>
+<p><strong>Finally, we classify the competitive health of each market (Final <code>SELECT</code>)</strong>: We use a <code>CASE</code> statement to evaluate the market conditions. Categories where a single seller holds over 50% market share alongside fewer than 5 total vendors are flagged as 'Monopoly / Highly Concentrated', while categories with a leading share under 15% and over 20 vendors are labeled as 'Healthy / Fragmented Competition'.</p>
+</li>
+</ol>
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">with</span><span class="w"> </span><span class="n">seller_global_revenue</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="c1">-- step 1: calculate total revenue for every seller across the platform</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">payment_value</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_seller_revenue</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="n">order_items</span><span class="w"> </span><span class="n">oi</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="n">payments</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="n">o</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;canceled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unavailable&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">),</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">global_pareto</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="c1">-- step 2: rank sellers into deciles to check platform-wide concentration</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">        </span><span class="n">total_seller_revenue</span><span class="p">,</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">        </span><span class="n">ntile</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">total_seller_revenue</span><span class="w"> </span><span class="k">desc</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">seller_decile</span><span class="p">,</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">total_seller_revenue</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">platform_total_revenue</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">        </span><span class="n">seller_global_revenue</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="p">),</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="n">category_seller_share</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="c1">-- step 3: calculate revenue share for each seller within their specific category</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">        </span><span class="n">prod</span><span class="p">.</span><span class="n">product_category_name</span><span class="p">,</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">payment_value</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">seller_category_revenue</span><span class="p">,</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">payment_value</span><span class="p">))</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">prod</span><span class="p">.</span><span class="n">product_category_name</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_category_revenue</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">        </span><span class="n">order_items</span><span class="w"> </span><span class="n">oi</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">        </span><span class="n">products</span><span class="w"> </span><span class="n">prod</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prod</span><span class="p">.</span><span class="n">product_id</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">        </span><span class="n">payments</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">        </span><span class="n">o</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;canceled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unavailable&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">        </span><span class="k">and</span><span class="w"> </span><span class="n">prod</span><span class="p">.</span><span class="n">product_category_name</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="w">        </span><span class="n">prod</span><span class="p">.</span><span class="n">product_category_name</span><span class="p">,</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="p">),</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="n">category_dominance</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a><span class="w">    </span><span class="c1">-- step 4: identify the share of the &#39;top seller&#39; in each category</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="w">        </span><span class="n">product_category_name</span><span class="p">,</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">seller_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_vendors</span><span class="p">,</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="w">        </span><span class="k">max</span><span class="p">(</span><span class="n">seller_category_revenue</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">top_seller_revenue</span><span class="p">,</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="w">        </span><span class="n">total_category_revenue</span><span class="p">,</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="w">        </span><span class="c1">-- market share of the leading seller</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="w">        </span><span class="k">cast</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">seller_category_revenue</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_category_revenue</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">leader_market_share_pct</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="w">        </span><span class="n">category_seller_share</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="w">        </span><span class="n">product_category_name</span><span class="p">,</span><span class="w"> </span><span class="n">total_category_revenue</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="p">)</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="c1">-- final output: categorizing product categories by competitive health</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="w">    </span><span class="n">product_category_name</span><span class="p">,</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="w">    </span><span class="n">total_vendors</span><span class="p">,</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="w">    </span><span class="n">leader_market_share_pct</span><span class="p">,</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">leader_market_share_pct</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">total_vendors</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Monopoly / Highly Concentrated&#39;</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">leader_market_share_pct</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Dominant Leader&#39;</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">leader_market_share_pct</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">15</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">total_vendors</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Healthy / Fragmented Competition&#39;</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Moderate Competition&#39;</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="w">    </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">market_health_status</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="w">    </span><span class="n">category_dominance</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a><span class="w">    </span><span class="n">leader_market_share_pct</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong> <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1"></p>
+<table>
+<thead>
+<tr>
+<th>product_category_name</th>
+<th>total_vendors</th>
+<th>leader_market_share_pct</th>
+<th>market_health_status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cds_dvds_musicais</td>
+<td>1</td>
+<td>100.00</td>
+<td>Monopoly / Highly Concentrated</td>
+</tr>
+<tr>
+<td>la_cuisine</td>
+<td>2</td>
+<td>94.95</td>
+<td>Monopoly / Highly Concentrated</td>
+</tr>
+<tr>
+<td>portateis_cozinha_e_preparadores_de_alimentos</td>
+<td>5</td>
+<td>74.34</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>moveis_escritorio</td>
+<td>34</td>
+<td>72.74</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>casa_conforto_2</td>
+<td>4</td>
+<td>71.76</td>
+<td>Monopoly / Highly Concentrated</td>
+</tr>
+<tr>
+<td>telefonia_fixa</td>
+<td>49</td>
+<td>70.72</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>tablets_impressao_imagem</td>
+<td>6</td>
+<td>68.33</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>fraldas_higiene</td>
+<td>7</td>
+<td>67.53</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>pcs</td>
+<td>9</td>
+<td>67.33</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>seguros_e_servicos</td>
+<td>2</td>
+<td>64.42</td>
+<td>Monopoly / Highly Concentrated</td>
+</tr>
+<tr>
+<td>pc_gamer</td>
+<td>2</td>
+<td>59.92</td>
+<td>Monopoly / Highly Concentrated</td>
+</tr>
+<tr>
+<td>flores</td>
+<td>3</td>
+<td>51.52</td>
+<td>Monopoly / Highly Concentrated</td>
+</tr>
+<tr>
+<td>portateis_casa_forno_e_cafe</td>
+<td>15</td>
+<td>50.67</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>moveis_colchao_e_estofado</td>
+<td>5</td>
+<td>46.49</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>eletrodomesticos</td>
+<td>48</td>
+<td>46.29</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>casa_conforto</td>
+<td>20</td>
+<td>46.09</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>livros_importados</td>
+<td>7</td>
+<td>45.89</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>artes</td>
+<td>35</td>
+<td>43.33</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>bebidas</td>
+<td>36</td>
+<td>43.13</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>fashion_roupa_feminina</td>
+<td>11</td>
+<td>42.24</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>artigos_de_festas</td>
+<td>12</td>
+<td>41.25</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>fashion_calcados</td>
+<td>13</td>
+<td>41.23</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>artigos_de_natal</td>
+<td>17</td>
+<td>40.30</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>fashion_underwear_e_moda_praia</td>
+<td>9</td>
+<td>39.90</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>dvds_blu_ray</td>
+<td>10</td>
+<td>36.88</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>fashion_roupa_infanto_juvenil</td>
+<td>4</td>
+<td>34.49</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>agro_industria_e_comercio</td>
+<td>34</td>
+<td>34.30</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>36</td>
+<td>34.18</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>papelaria</td>
+<td>173</td>
+<td>34.14</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>industria_comercio_e_negocios</td>
+<td>29</td>
+<td>33.68</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>eletrodomesticos_2</td>
+<td>46</td>
+<td>32.97</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>ferramentas_jardim</td>
+<td>235</td>
+<td>32.57</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>artes_e_artesanato</td>
+<td>13</td>
+<td>32.06</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>livros_interesse_geral</td>
+<td>53</td>
+<td>31.98</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_iluminacao</td>
+<td>36</td>
+<td>31.82</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_ferramentas</td>
+<td>24</td>
+<td>30.68</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>fashion_esporte</td>
+<td>10</td>
+<td>30.27</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>moveis_sala</td>
+<td>55</td>
+<td>30.00</td>
+<td>Dominant Leader</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_jardim</td>
+<td>32</td>
+<td>29.79</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_seguranca</td>
+<td>34</td>
+<td>29.18</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>fashion_roupa_masculina</td>
+<td>13</td>
+<td>28.79</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>sinalizacao_e_seguranca</td>
+<td>46</td>
+<td>28.41</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>livros_tecnicos</td>
+<td>26</td>
+<td>27.78</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>moveis_quarto</td>
+<td>23</td>
+<td>23.77</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>malas_acessorios</td>
+<td>73</td>
+<td>23.52</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>alimentos_bebidas</td>
+<td>33</td>
+<td>22.65</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>consoles_games</td>
+<td>81</td>
+<td>22.19</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td></td>
+<td>256</td>
+<td>22.11</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>cool_stuff</td>
+<td>263</td>
+<td>21.04</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>musica</td>
+<td>19</td>
+<td>20.20</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>instrumentos_musicais</td>
+<td>68</td>
+<td>20.18</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>telefonia</td>
+<td>146</td>
+<td>19.99</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>market_place</td>
+<td>59</td>
+<td>19.92</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>cine_foto</td>
+<td>14</td>
+<td>19.66</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>climatizacao</td>
+<td>52</td>
+<td>19.63</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>moveis_decoracao</td>
+<td>366</td>
+<td>19.03</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>casa_construcao</td>
+<td>68</td>
+<td>18.41</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>alimentos</td>
+<td>58</td>
+<td>18.17</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>eletroportateis</td>
+<td>101</td>
+<td>16.91</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>perfumaria</td>
+<td>174</td>
+<td>16.69</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>relogios_presentes</td>
+<td>98</td>
+<td>16.31</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>brinquedos</td>
+<td>249</td>
+<td>15.49</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>cama_mesa_banho</td>
+<td>195</td>
+<td>15.05</td>
+<td>Moderate Competition</td>
+</tr>
+<tr>
+<td>bebes</td>
+<td>242</td>
+<td>14.60</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_construcao</td>
+<td>127</td>
+<td>14.08</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>eletronicos</td>
+<td>146</td>
+<td>12.82</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>moveis_cozinha_area_de_servico_jantar_e_jardim</td>
+<td>51</td>
+<td>12.82</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>fashion_bolsas_e_acessorios</td>
+<td>99</td>
+<td>11.58</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>automotivo</td>
+<td>374</td>
+<td>11.09</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>informatica_acessorios</td>
+<td>285</td>
+<td>10.01</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>pet_shop</td>
+<td>135</td>
+<td>7.22</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>utilidades_domesticas</td>
+<td>463</td>
+<td>7.10</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>esporte_lazer</td>
+<td>477</td>
+<td>5.27</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+<tr>
+<td>beleza_saude</td>
+<td>489</td>
+<td>5.22</td>
+<td>Healthy / Fragmented Competition</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Insights:</strong> </p>
+<ul>
+<li><strong>True Monopolies in Niche Markets:</strong> Very small categories like <em>cds_dvds_musicais</em> and <em>la_cuisine</em> are completely run by 1 or 2 sellers holding 95% to 100% of the market share. This is expected for low-demand or highly specialized items.</li>
+<li><strong>The Illusion of Competition:</strong> This is a major finding. Categories like <em>moveis_escritorio</em> (office furniture) look competitive on paper because they have 34 vendors. However, one single seller controls almost 73% of the market. We see the exact same thing in <em>telefonia_fixa</em> (landline phones), where the top seller holds 70% despite having 48 competitors.</li>
+<li><strong>Healthy Core Markets:</strong> The best news for Olist is that its top-earning categories are heavily fragmented. <em>Beleza_saude</em> (health &amp; beauty) and <em>esporte_lazer</em> (sports &amp; leisure) each have nearly 500 active vendors, and the top seller only controls about 5% of the sales. This means the platform's core revenue is highly secure.</li>
+<li><strong>Single Point of Failure (Risk):</strong> Any category tagged as "Dominant Leader" carries a huge supply chain risk. If the top seller in <em>pcs</em> (67% share) or <em>moveis_escritorio</em> leaves the platform or starts delivering late, Olist's revenue and reputation in that entire category will instantly tank. </li>
+<li><strong>The Pareto Principle in Action:</strong> While the table focuses on category breakdowns rather than the overall platform revenue, it perfectly illustrates the 80/20 rule. Across dozens of categories, a single vendor is doing the heavy lifting and generating the vast majority of the sales volume.</li>
+</ul>
+<h2 id="seller-churn-analysis">Seller Churn Analysis<a class="headerlink" href="#seller-churn-analysis" title="Permanent link">&para;</a></h2>
+<p><font color = "#9dc9cf">18. What is the churn rate of sellers on the platform? Specifically, how many sellers who made a sale in 2017 became inactive (zero sales) in 2018? Is there a correlation between high 'Order Cancellation Rates' and subsequent seller churn?</font></p>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>
+<p><strong>Firstly, we aggregate annual activity per seller (<code>seller_activity</code> CTE)</strong>: We join the <code>orders</code> and <code>order_items</code> tables to calculate each seller's <code>total_orders</code> and <code>canceled_orders</code> grouped by the specific year they occurred (extracted from the timestamp using the <code>year()</code> function).</p>
+</li>
+<li>
+<p><strong>Secondly, we build the 2017 cohort and identify churn (<code>seller_cohort_2017</code> CTE)</strong>: We isolate sellers who were active in 2017 and perform a <code>LEFT JOIN</code> against their own 2018 activity data. If the 2018 record is missing (<code>s18.seller_id is null</code>), we classify them as 'Churned (Inactive in 2018)', otherwise they are 'Retained'. We also compute their individual 2017 cancellation rate percentage here.</p>
+</li>
+<li>
+<p><strong>Finally, we aggregate metrics by churn status (Final <code>SELECT</code>)</strong>: We group the cohort by their <code>churn_status</code> to count the exact number of sellers that stayed versus left. By averaging the <code>cancellation_rate_2017</code> and the <code>orders_2017</code> volume for both groups, we can directly observe the correlation between poor fulfillment performance (high cancellations) and subsequent seller churn on the platform.</p>
+</li>
+</ol>
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">with</span><span class="w"> </span><span class="n">seller_activity</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="c1">-- step 1: identify activity years and cancellation counts for every seller</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="k">year</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">order_purchase_timestamp</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">activity_year</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canceled&#39;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">canceled_orders</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="n">order_items</span><span class="w"> </span><span class="n">oi</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">order_purchase_timestamp</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">),</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">seller_cohort_2017</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="c1">-- step 2: isolate sellers who were active in 2017 and track their 2018 status</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="n">s17</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="n">s17</span><span class="p">.</span><span class="n">total_orders</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">orders_2017</span><span class="p">,</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span><span class="k">cast</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">s17</span><span class="p">.</span><span class="n">canceled_orders</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">s17</span><span class="p">.</span><span class="n">total_orders</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cancellation_rate_2017</span><span class="p">,</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="n">s18</span><span class="p">.</span><span class="n">seller_id</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Churned (Inactive in 2018)&#39;</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Retained (Active in 2018)&#39;</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">        </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">churn_status</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">        </span><span class="n">seller_activity</span><span class="w"> </span><span class="n">s17</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">        </span><span class="n">seller_activity</span><span class="w"> </span><span class="n">s18</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">s17</span><span class="p">.</span><span class="n">seller_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s18</span><span class="p">.</span><span class="n">seller_id</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">s18</span><span class="p">.</span><span class="n">activity_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2018</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">        </span><span class="n">s17</span><span class="p">.</span><span class="n">activity_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2017</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="p">)</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="c1">-- final output: comparing cancellation rates across churned vs retained sellers</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">    </span><span class="n">churn_status</span><span class="p">,</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">    </span><span class="k">count</span><span class="p">(</span><span class="n">seller_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">seller_count</span><span class="p">,</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">    </span><span class="c1">-- average cancellation rate to identify the correlation</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">cancellation_rate_2017</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_cancellation_rate_pct</span><span class="p">,</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">    </span><span class="c1">-- average volume to see if smaller or larger sellers churn more</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">orders_2017</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_2017_order_volume</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">    </span><span class="n">seller_cohort_2017</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">    </span><span class="n">churn_status</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong> <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1"></p>
+<table>
+<thead>
+<tr>
+<th>churn_status</th>
+<th>seller_count</th>
+<th>avg_cancellation_rate_pct</th>
+<th>avg_2017_order_volume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Churned (Inactive in 2018)</td>
+<td>685</td>
+<td>6.06</td>
+<td>6.34</td>
+</tr>
+<tr>
+<td>Retained (Active in 2018)</td>
+<td>1099</td>
+<td>0.48</td>
+<td>37.07</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Insights:</strong> </p>
+<ul>
+<li><strong>Massive Drop-Off Rate:</strong> A huge chunk of the seller base did not survive into 2018. Out of 1,784 sellers who made sales in 2017, 685 of them (around 38%) completely stopped operating the following year.</li>
+<li><strong>Low Traction Means High Flight Risk:</strong> The sellers who churned never really gained momentum. They averaged only 6.34 orders for the entirety of 2017. In contrast, the retained sellers were moving roughly 37 orders a year. If a vendor doesn't see quick sales, they abandon the platform.</li>
+<li><strong>The Cancellation Red Flag:</strong> There is a massive, direct correlation between failing to fulfill orders and leaving the platform. The churned sellers had an average cancellation rate of 6.06%, which is over 12 times worse than the healthy, retained sellers (who kept cancellations under 0.5%).</li>
+<li><strong>Profile of a Failing Seller:</strong> The data paints a very clear picture. The typical seller who leaves Olist is a low-volume vendor who struggles to actually deliver the few orders they get. This poor performance likely leads to account suspension or them simply giving up.</li>
+</ul>
+<h2 id="identifying-underperforming-sellers">Identifying Underperforming Sellers<a class="headerlink" href="#identifying-underperforming-sellers" title="Permanent link">&para;</a></h2>
+<p><font color = "#9dc9cf">
+ 19. Which sellers have a high sales volume (&gt;50 orders) but a consistently low average review score. Can we identify specific sellers who are responsible for a disproportionate number of the platforms 1-star reviews? </font></p>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>
+<p><strong>Firstly, we analyze the seller churn correlation (Part 1)</strong>: We aggregate annual activity and cancellation rates per seller (<code>seller_activity</code> CTE), then isolate the 2017 cohort to track whether they were retained or churned in 2018 (<code>seller_cohort_2017</code> CTE). The first output aggregates the average cancellation rates and order volumes for churned versus retained sellers.</p>
+</li>
+<li>
+<p><strong>Secondly, we aggregate review statistics per seller (Part 2 - <code>seller_review_stats</code> CTE)</strong>: To evaluate seller quality, we join the <code>order_items</code>, <code>orders</code>, and <code>order_reviews</code> tables. Grouping strictly by <code>seller_id</code>, we calculate their <code>total_orders</code>, their <code>avg_review_score</code>, and calculate their specific <code>one_star_count</code>.</p>
+</li>
+<li>
+<p><strong>Thirdly, we calculate the platform-wide baseline (Part 2 - <code>platform_total_one_stars</code> CTE)</strong>: We independently calculate the <code>grand_total_one_stars</code> across the entire database. This acts as the denominator for measuring an individual seller's negative impact against the whole platform.</p>
+</li>
+<li>
+<p><strong>Finally, we identify the worst offenders and their platform impact (Part 2 Final <code>SELECT</code>)</strong>: We <code>CROSS JOIN</code> the seller stats with the platform baseline. We filter for high-volume sellers (<code>total_orders &gt; 50</code>) with poor ratings (<code>avg_review_score &lt; 3</code>). By computing <code>pct_of_platform_one_stars</code>, we can pinpoint exactly how much of the platform's total negative feedback is disproportionately driven by these specific vendors.</p>
+</li>
+</ol>
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">with</span><span class="w"> </span><span class="n">seller_activity</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="c1">-- step 1: identify activity years and cancellation counts for every seller</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="k">year</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">order_purchase_timestamp</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">activity_year</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;canceled&#39;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">canceled_orders</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="n">order_items</span><span class="w"> </span><span class="n">oi</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span><span class="w"> </span><span class="k">year</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">order_purchase_timestamp</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">),</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">seller_cohort_2017</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="c1">-- step 2: isolate sellers who were active in 2017 and track their 2018 status</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="n">s17</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">        </span><span class="n">s17</span><span class="p">.</span><span class="n">total_orders</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">orders_2017</span><span class="p">,</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">        </span><span class="k">cast</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">s17</span><span class="p">.</span><span class="n">canceled_orders</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">s17</span><span class="p">.</span><span class="n">total_orders</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cancellation_rate_2017</span><span class="p">,</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">            </span><span class="k">when</span><span class="w"> </span><span class="n">s18</span><span class="p">.</span><span class="n">seller_id</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Churned (Inactive in 2018)&#39;</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Retained (Active in 2018)&#39;</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">        </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">churn_status</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">        </span><span class="n">seller_activity</span><span class="w"> </span><span class="n">s17</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">    </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">        </span><span class="n">seller_activity</span><span class="w"> </span><span class="n">s18</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">s17</span><span class="p">.</span><span class="n">seller_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s18</span><span class="p">.</span><span class="n">seller_id</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">s18</span><span class="p">.</span><span class="n">activity_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2018</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">        </span><span class="n">s17</span><span class="p">.</span><span class="n">activity_year</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2017</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="p">)</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="c1">-- output 1: comparing cancellation rates across churned vs retained sellers</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">    </span><span class="n">churn_status</span><span class="p">,</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">    </span><span class="k">count</span><span class="p">(</span><span class="n">seller_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">seller_count</span><span class="p">,</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">cancellation_rate_2017</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_cancellation_rate_pct</span><span class="p">,</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">orders_2017</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_2017_order_volume</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">    </span><span class="n">seller_cohort_2017</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">    </span><span class="n">churn_status</span><span class="p">;</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="cm">/* PART 2: Seller Review Performance &amp; 1-Star Concentration</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="cm">    Objective: </span>
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="cm">        1. Identify high-volume sellers (&gt;50 orders) with poor ratings (&lt;3 stars).</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="cm">        2. Calculate their contribution to the platform&#39;s total 1-star reviews.</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="cm">*/</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="k">with</span><span class="w"> </span><span class="n">seller_review_stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a><span class="w">    </span><span class="c1">-- step 1: aggregate review scores and total 1-stars per seller</span>
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a><span class="w">        </span><span class="k">avg</span><span class="p">(</span><span class="n">orv</span><span class="p">.</span><span class="n">review_score</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_review_score</span><span class="p">,</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">orv</span><span class="p">.</span><span class="n">review_score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">one_star_count</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="w">        </span><span class="n">order_items</span><span class="w"> </span><span class="n">oi</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">oi</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a><span class="w">        </span><span class="n">order_reviews</span><span class="w"> </span><span class="n">orv</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orv</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a><span class="w">        </span><span class="n">oi</span><span class="p">.</span><span class="n">seller_id</span>
+<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="p">),</span>
+<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>
+<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a><span class="n">platform_total_one_stars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a><span class="w">    </span><span class="c1">-- step 2: get the total number of 1-star reviews across the whole platform</span>
+<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">review_score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">end</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">grand_total_one_stars</span>
+<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">order_reviews</span>
+<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a><span class="p">)</span>
+<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>
+<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a><span class="c1">-- output 2: flagging high-risk sellers based on volume and negative sentiment</span>
+<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">seller_id</span><span class="p">,</span>
+<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">avg_review_score</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_review_score</span><span class="p">,</span>
+<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">one_star_count</span><span class="p">,</span>
+<a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a><span class="w">    </span><span class="c1">-- concentration: what % of the entire platform&#39;s 1-star reviews come from this one seller?</span>
+<a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">one_star_count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">grand_total_one_stars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pct_of_platform_one_stars</span>
+<a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a><span class="w">    </span><span class="n">seller_review_stats</span><span class="w"> </span><span class="n">s</span>
+<a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a><span class="k">cross</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a><span class="w">    </span><span class="n">platform_total_one_stars</span><span class="w"> </span><span class="n">p</span>
+<a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">total_orders</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span>
+<a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a><span class="w">    </span><span class="k">and</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">avg_review_score</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span>
+<a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a><span class="w">    </span><span class="n">s</span><span class="p">.</span><span class="n">one_star_count</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results 1:</strong> <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1"></p>
+<table>
+<thead>
+<tr>
+<th>churn_status</th>
+<th>seller_count</th>
+<th>avg_cancellation_rate_pct</th>
+<th>avg_2017_order_volume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Churned (Inactive in 2018)</td>
+<td>685</td>
+<td>6.06</td>
+<td>6.34</td>
+</tr>
+<tr>
+<td>Retained (Active in 2018)</td>
+<td>1099</td>
+<td>0.48</td>
+<td>37.07</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Results 2:</strong> <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1"></p>
+<table>
+<thead>
+<tr>
+<th>seller_id</th>
+<th>total_orders</th>
+<th>avg_review_score</th>
+<th>one_star_count</th>
+<th>pct_of_platform_one_stars</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2eb70248d66e0e3ef83659f71b244378</td>
+<td>198</td>
+<td>2.71</td>
+<td>81</td>
+<td>0.71</td>
+</tr>
+<tr>
+<td>1ca7077d890b907f89be8c954a02686a</td>
+<td>114</td>
+<td>2.20</td>
+<td>80</td>
+<td>0.70</td>
+</tr>
+<tr>
+<td>a49928bcdf77c55c6d6e05e09a9b4ca5</td>
+<td>98</td>
+<td>2.95</td>
+<td>37</td>
+<td>0.32</td>
+</tr>
+<tr>
+<td>54965bbe3e4f07ae045b90b0b8541f52</td>
+<td>74</td>
+<td>2.94</td>
+<td>34</td>
+<td>0.30</td>
+</tr>
+<tr>
+<td>972d0f9cf61b499a4812cf0bfa3ad3c4</td>
+<td>79</td>
+<td>2.96</td>
+<td>29</td>
+<td>0.25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Insights:</strong> </p>
+<ul>
+<li><strong>The Worst Offenders:</strong> We isolated five specific sellers who process a solid volume of orders (between 74 and 198) but consistently fail their customers, keeping their average rating below 3 stars. </li>
+<li><strong>Disproportionate Damage:</strong> The top two sellers on this list (<code>2eb702...</code> and <code>1ca707...</code>) are incredibly toxic to the platform. Together, these two vendors are responsible for 1.41% of <em>all</em> 1-star reviews generated across the entire Olist marketplace.</li>
+<li><strong>High Volume, High Failure Rate:</strong> Seller <code>1ca7077d...</code> is the most concerning data point. They fulfilled 114 orders and racked up 80 one-star reviews. This suggests that a massive majority of their customers had a terrible experience, dragging their average score down to an abysmal 2.20.</li>
+<li><strong>Reputation Risk at Scale:</strong> Sellers hovering around the 2.9 score (<code>a499...</code>, <code>5496...</code>, <code>972d...</code>) might not look as disastrous at first glance, but because they process 70 to 100 orders, they are consistently delivering bad experiences to a large group of people. </li>
+<li><strong>Actionable Next Step:</strong> These vendors are actively hurting the Olist brand. The platform should immediately suspend or heavily penalize these top 5 sellers to protect future buyers.</li>
+</ul>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p><strong>What We Did:</strong>
+* Calculated the average dispatch times for sellers to identify the worst bottlenecks in the fulfillment process.
+* Performed a Pareto analysis on market share to see which categories are dominated by monopolies versus those with healthy competition.
+* Analyzed seller churn rates between 2017 and 2018, comparing the performance metrics of retained versus inactive vendors.
+* Isolated high-volume, low-rated sellers to measure their specific impact on the platform's overall 1-star review count.</p>
+<p><strong>What We Obtained (Key Findings):</strong>
+* <strong>Severe Dispatch Delays:</strong> While some sellers operate efficiently, the bottom tier is completely failing. We identified high-volume vendors taking over 11 days just to pack an item, which creates a massive bottleneck.
+* <strong>The "Dominant Leader" Risk:</strong> Many categories look competitive but are actually carried by a single vendor holding up to 70% of the market. This creates a huge supply chain risk if that seller leaves. Luckily, our biggest revenue categories (like health &amp; beauty) are highly fragmented and safe.
+* <strong>Failure Drives Churn:</strong> About 38% of 2017 sellers quit in 2018. The data shows they didn't just leave; they failed out. Churned sellers averaged only 6 orders a year and had a cancellation rate 12 times higher than successful, active sellers.
+* <strong>A Few Bad Apples:</strong> We pinpointed a tiny group of sellers who are actively damaging the platform's reputation. Just two specific vendors generated over 1.4% of <em>all</em> 1-star reviews on Olist, proving that strict seller quality enforcement is urgently needed.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

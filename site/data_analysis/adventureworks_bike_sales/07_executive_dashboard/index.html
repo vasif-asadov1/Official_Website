@@ -1,0 +1,1935 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+        <link rel="prev" href="../06_regional_analysis/">
+      
+      
+        <link rel="next" href="../../olist_e_commerce/00_problem_description/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Executive Dashboard - Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#executive-tableau-dashboard" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Executive Dashboard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-dashboard-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting Dashboard Tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-for-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data for Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building the Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#selecting-dashboard-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selecting Dashboard Tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-for-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data for Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-the-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building the Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="executive-tableau-dashboard">Executive Tableau Dashboard<a class="headerlink" href="#executive-tableau-dashboard" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Solving business questions with SQL queries is a powerful way to gain insights and make informed decisions. However, tabular results are mainly for the analysts and may not be easily digestible for executives or stakeholders who have limited time and want to quickly understand the key takeaways. To address this, as a data analyst we should always build an executive dashboard that summarizes the key insights from our analysis in a visually appealing and easy-to-understand format. This dashboard will include charts, graphs, key performance indicators (KPIs) and concise summaries that highlight the most important findings from our analysis. By doing so, we can effectively communicate our insights to not only the analysts but also to the executives and stakeholders, enabling them to make informed decisions based on the data. </p>
+<p>Since the dashboard will be used by executives, it is crucial to be concise and focus on the most impactful insights that can drive business decisions. We should prioritize the key findings that have the greatest potential to influence strategic initiatives. Additionally, we should use clear and simple visualizations without overloading the dashboard with too much and complex information. Some people may think that colorful and flashy dashboards are more engaging, but in reality, a clean and minimalist design is often more effective in conveying the message and allowing the executives to quickly focus on the key insights rather than getting distracted by unnecessary elements and themes. Therefore, we should aim for a balance between visual appeal and clarity, ensuring that the dashboard is both informative and easy to understand for our executive audience. By doing so, we can maximize the impact of our analysis and facilitate data-driven decision-making at the executive level.</p>
+<h2 id="selecting-dashboard-tool">Selecting Dashboard Tool<a class="headerlink" href="#selecting-dashboard-tool" title="Permanent link">&para;</a></h2>
+<p>When it comes to selecting a dashboard tool for our executive dashboard, there are several options available in the market, each with its own strengths and weaknesses. Some popular dashboard tools include Tableau, Power BI, Looker, and Google Data Studio. As a data analyst, I am experienced mainly with Tableau and Power BI, which are both powerful and widely used tools for creating interactive and visually appealing dashboards. Tableau is known for its user-friendly interface and robust data visualization capabilities, making it a great choice for creating complex and dynamic dashboards. Power BI, on the other hand, is tightly integrated with Microsoft products and offers strong data modeling and reporting features, making it a good option for organizations that are already using the Microsoft ecosystem. Ultimately, the choice of dashboard tool will depend on factors such as the specific requirements of the dashboard, the existing technology stack of the organization, and the preferences of the stakeholders. </p>
+<p>Besides the drag-and-drop BI tools, there are also other options for creating dashboards, such as using programming languages like Python or R with libraries like Dash or Shiny. These options can provide more flexibility and customization but require more technical expertise and coding skills. Therefore, as a data analyst, if you have limited time and want to quickly create a dashboard, using a BI tool is often the most efficient and effective choice. However, if you have enough domain knowledge and technical understanding, you can build quite highly customized dashboards even with the Microsoft Excel and Google Sheets, which are widely accessible and familiar to many users. Ultimately, the key is to choose a tool that allows you to effectively communicate your insights and meet the needs of your executive audience while also considering your own skills and resources as a data analyst.</p>
+<p>In this project I will use Tableau as a BI tool to build my executive dashboard, as I have experience with it and it offers a wide range of features for creating interactive and visually appealing dashboards. </p>
+<h2 id="data-for-dashboard">Data for Dashboard<a class="headerlink" href="#data-for-dashboard" title="Permanent link">&para;</a></h2>
+<p>In order to create an effective executive dashboard, we have two options for the data we can use: </p>
+<ol>
+<li><strong>Using original data:</strong> We can use the original data which is multi-table in our case and require creating lots of calculated fields and paramaters in Tableau. We should also connect / join these tables in Tableau and then create the dashboard in order to make the filters applicable. This approach is not preferred in large-scale projects as it will definitely cause performance issues and slow down the dashboard, especially if the data is large and complex. Each time we apply a filter, Tableau will have to query the data source and perform calculations on the fly, which can lead to long loading times and a poor user experience for the executives who are using the dashboard.</li>
+<li><strong>Using aggregated data:</strong> We can create an aggregated table in SQL that contains all the necessary metrics and dimensions for our dashboard. This approach is more efficient and will significantly improve the performance of the dashboard, as Tableau will be querying a pre-aggregated dataset rather than performing calculations on the fly. By using an aggregated table, we can ensure that the dashboard loads quickly and provides a smooth user experience for the executives who are using it. We can create this aggregated tables by writing SQL queries and then restoring them as views in our database. Then we can connect Tableau to our SQL database and use these views as the data source for our dashboard. This way, we can leverage the power of SQL for data transformation and aggregation while still benefiting from the interactive and visual capabilities of Tableau for our executive dashboard. In that case, all heavy calculations and groupings will be applied in SQL and making the Tableau free from heavy calculations and improving the performance of the dashboard significantly.</li>
+</ol>
+<p>I created a single aggregated table in SQL that contains all the necessary metrics and dimensions for our executive dashboard. I prepared my data at the order line level in which each row represents a single order line item, and includes dimensions such as Order Date, Ship Date, Country, Product Category, and measures such as Sales Amount, Profit Margin, Freight Cost, Tax Amount, etc. I joined all dimension tables to the fact table at the order line level and then performed all necessary calculations and aggregations in SQL to create a comprehensive dataset that can be easily used in Tableau for building the executive dashboard. These types of aggregated tables are often referred to as 360-degree views or data marts, as they provide a holistic view of the data and allow for efficient analysis and reporting in BI tools like Tableau. By using this approach, we can ensure that our executive dashboard is both performant and provides the necessary insights for informed decision-making at the executive level. Following SQL query is used to create the aggregated table for our executive dashboard:</p>
+<details>
+<summary>SQL Query for Creating Aggregated Table</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">create</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">orderline_level_agg</span><span class="w"> </span><span class="k">as</span><span class="w"> </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">with</span><span class="w"> </span><span class="n">get_last_date</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="k">max</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">reference_day</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">select</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesOrderNumber</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">order_number</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesOrderLineNumber</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">order_line_number</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="c1">-- product info</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">fis</span><span class="p">.</span><span class="n">ProductKey</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">product_key</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="n">pr</span><span class="p">.</span><span class="n">ProductName</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="n">sub</span><span class="p">.</span><span class="n">ProductSubcategoryName</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">product_subcategory</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="n">cat</span><span class="p">.</span><span class="n">ProductCategoryName</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">product_category</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">pr</span><span class="p">.</span><span class="n">ListPrice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">product_list_price</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="c1">-- customer info</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="n">cus</span><span class="p">.</span><span class="n">customerkey</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">customer_key</span><span class="p">,</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="n">concat</span><span class="p">(</span><span class="n">cus</span><span class="p">.</span><span class="n">FirstName</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">cus</span><span class="p">.</span><span class="n">LastName</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">customer_name</span><span class="p">,</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="n">DATEDIFF</span><span class="p">(</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">cus</span><span class="p">.</span><span class="n">BirthDate</span><span class="p">,</span><span class="w"> </span><span class="n">gld</span><span class="p">.</span><span class="n">reference_day</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">customer_age</span><span class="p">,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="n">cus</span><span class="p">.</span><span class="n">Gender</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">customer_gender</span><span class="p">,</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="n">cus</span><span class="p">.</span><span class="n">MaritalStatus</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">customer_marital_status</span><span class="p">,</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="n">cus</span><span class="p">.</span><span class="n">Education</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">customer_education</span><span class="p">,</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="n">cus</span><span class="p">.</span><span class="n">Occupation</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">customer_occupation</span><span class="p">,</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="n">cus</span><span class="p">.</span><span class="n">YearlyIncome</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">customer_income</span><span class="p">,</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="c1">-- regional sales info</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryGroup</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sales_territory_group</span><span class="p">,</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryCountry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sales_country</span><span class="p">,</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryRegion</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sales_region</span><span class="p">,</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">    </span><span class="n">geo</span><span class="p">.</span><span class="n">StateProvinceName</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sales_state</span><span class="p">,</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="n">geo</span><span class="p">.</span><span class="n">City</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sales_city</span><span class="p">,</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="n">geo</span><span class="p">.</span><span class="n">PostalCode</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sales_postal_code</span><span class="p">,</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="n">geo</span><span class="p">.</span><span class="n">IpAddressLocator</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sales_ip_address</span><span class="p">,</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">    </span><span class="c1">-- financial data</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">TotalProductCost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">cost</span><span class="p">,</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">TotalProductCost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">profit</span><span class="p">,</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">TaxAmt</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">tax</span><span class="p">,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">Freight</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">freight</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">UnitPrice</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">unit_price</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderQuantity</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">quantity</span><span class="p">,</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="n">cur</span><span class="p">.</span><span class="n">CurrencyName</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">currency</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="c1">-- time data</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDate</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">order_date</span><span class="p">,</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="n">fis</span><span class="p">.</span><span class="n">ShipDate</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ship_date</span><span class="p">,</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="n">fis</span><span class="p">.</span><span class="n">DueDate</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">due_date</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Customer</span><span class="w"> </span><span class="n">cus</span><span class="w"> </span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">cus</span><span class="p">.</span><span class="n">CustomerKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">CustomerKey</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">geography</span><span class="w"> </span><span class="n">geo</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">geo</span><span class="p">.</span><span class="n">geographykey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cus</span><span class="p">.</span><span class="n">geographykey</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SalesTerritory</span><span class="w"> </span><span class="n">st</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesTerritoryKey</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Products</span><span class="w"> </span><span class="n">pr</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">pr</span><span class="p">.</span><span class="n">ProductKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">ProductKey</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">ProductSubcategory</span><span class="w"> </span><span class="n">sub</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">sub</span><span class="p">.</span><span class="n">ProductSubcategoryKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pr</span><span class="p">.</span><span class="n">ProductSubcategoryKey</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">ProductCategory</span><span class="w"> </span><span class="n">cat</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">cat</span><span class="p">.</span><span class="n">ProductCategoryKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sub</span><span class="p">.</span><span class="n">ProductCategoryKey</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Currency</span><span class="w"> </span><span class="n">cur</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">cur</span><span class="p">.</span><span class="n">CurrencyKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">CurrencyKey</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">Calendar</span><span class="w"> </span><span class="n">cal</span><span class="w"> </span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">cal</span><span class="p">.</span><span class="n">DateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDateKey</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="k">cross</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">get_last_date</span><span class="w"> </span><span class="n">gld</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p>I have taken the last date from the data as a reference day to calculate the customer age, which is a common practice in data analysis when we want to calculate age based on a specific point in time. By using the last date from the data as the reference day, we can ensure that our age calculations are consistent and accurate based on the most recent information available in the dataset. This approach allows us to have a clear understanding of the age distribution of our customers at the time of their last purchase, which can provide valuable insights for marketing and customer segmentation strategies.</p>
+<h2 id="building-the-dashboard">Building the Dashboard<a class="headerlink" href="#building-the-dashboard" title="Permanent link">&para;</a></h2>
+<p>Before building the dashboard, we should firstly define the key metrics and dimensions that we want to include in our executive dashboard. These should be aligned with the business questions we want to answer and the insights we want to communicate to the executives. Then for each question - task we will dedicate one sheet in Tableau and create the necessary visualizations and calculations to answer that specific question. In my dashboard, I have included the following key metrics and dimensions:</p>
+<ol>
+<li><strong>Total Revenue:</strong> This metric represents the total sales revenue generated from our B2C operations. It is a key indicator of our overall business performance and growth.</li>
+<li><strong>Total Customers:</strong> This metric represents the total number of unique customers who have made purchases in our B2C operations. It provides insights into our customer base and market reach.</li>
+<li><strong>Total Cost:</strong> This metric represents the total cost incurred in our B2C operations, including product costs, freight costs, and tax amounts. It helps us understand our cost structure and profitability.</li>
+<li><strong>Total Orders:</strong> This metric defines the number of unique orders placed.</li>
+<li><strong>Total Profit:</strong> The difference between total revenue and total cost, which indicates the overall profitability of our sales operations.</li>
+</ol>
+<p>The above metrics are called Key Performance Indicators (KPIs) in finance and business analysis, as they provide a quick snapshot of the overall performance and health of our B2C operations. These KPIs are essential for executives to monitor and evaluate the success of our business strategies and make informed decisions based on the data. By including these KPIs in our executive dashboard, we can effectively communicate the key insights and trends in our sales performance to the executives and stakeholders, enabling them to take appropriate actions to drive business growth and profitability.</p>
+<p>In the other visualizations, I always showed / compared these metrics since our focus are these KPIs. To make the dashboard dynamic and interactive, I created a parameter in Tableau which allows the user/executive to select the specific KPI they want to focus on, and then all the visualizations below will be updated accordingly to show the selected KPI. This way, we will have a single compact and clean dashboard that can provide insights on all the key metrics without overwhelming the user with too many visualizations at once. The user can simply select the KPI they are interested in and the dashboard will update to show the relevant insights for that specific metric. This approach allows us to effectively communicate the key insights and trends in our sales performance while keeping the dashboard concise and easy to understand for our executive audience.</p>
+<ol>
+<li><strong>Revenue by Months-Years:</strong> This is a time series visualization that shows the trend of revenue over time, broken down by months and years. It helps us identify seasonal patterns, growth trends, and any fluctuations in our sales performance over time.</li>
+</ol>
+<p><img alt="Revenue by Months-Years" src="../files/revenue_bullet_chart.png" /></p>
+<ol>
+<li><strong>Education and Occupation Segmentation:</strong> This is a heatmap visualization that shows the distribution of KPIs based on their education and occupation. It helps us understand the demographics of our customer base and identify any patterns or trends in their purchasing behavior based on their education and occupation.</li>
+</ol>
+<p><img alt="Education and Occupation Segmentation" src="../files/education_vs_occupation.png" /></p>
+<ol>
+<li><strong>Age and Marital-Gender Segmentation:</strong> This is a heatmap that shows segmentation of KPIs based on age and marital status and gender. For making the dashboard more compact, I combined the marital status and  gender dimensions into a single dimension in Tableau, which allows us to show the segmentation of KPIs based on both age and marital-gender in a single visualization. This created a groups - "married male", "married female", "single male", "single female" groups and these groups together with age groups created a heatmap that shows the distribution of KPIs.</li>
+</ol>
+<p><img alt="Age and Marital-Gender Segmentation" src="../files/age_marital_gender.png" /></p>
+<ol>
+<li><strong>Countries by Revenue:</strong> This is a bar chart that shows the revenue generated from different countries. It helps us identify which countries are driving the most revenue and allows us to compare the performance of our sales across different regions.</li>
+</ol>
+<p><img alt="Countries by Revenue" src="../files/countries_by_revenue.png" /></p>
+<ol>
+<li><strong>Products Pareto Analysis:</strong> This is a Pareto chart that shows the cumulative contribution of different products to our total revenue. Pareto Analysis is a technique used to identify the most important factors that contribute to a particular outcome. For example, in our case, we can use Pareto Analysis to identify the top products that contribute to the 80% of our total revenue. For interactivity, I created a parameter that defines the pareto threshold, which allows the user to select the percentage threshold (e.g., 80%) and the chart will update accordingly to show the products that contribute to that percentage of total revenue. If the person select 0.8 as the threshold, the chart will show the products that contribute to 80% of total revenue, and if they select 0.9, it will show the products that contribute to 90% of total revenue, and so on. This way, we can easily identify the most important products that are driving our sales performance and focus our efforts on optimizing those products for maximum impact.</li>
+</ol>
+<p><img alt="Products Pareto Analysis" src="../files/products_pareto.png" /></p>
+<ol>
+<li><strong>Revenue Bullet Chart:</strong> Bullet chart is a simplier alternative to gauges and meters, which are often used in executive dashboards to show progress towards a target or goal. In our case, we can use a bullet chart to show our revenue performance against a target revenue. The bullet chart consists of a horizontal bar that represents our actual revenue, and a vertical line that represents the target revenue. The color of the bar can indicate whether we are below, at, or above the target. For example, if the bar is red, it indicates that we are below the target; if it is yellow, it indicates that we are at the target; and if it is green, it indicates that we are above the target. This visualization allows executives to quickly assess our revenue performance and understand how close we are to achieving our revenue goals.</li>
+</ol>
+<p><img alt="Revenue Bullet Chart" src="../files/revenue_bullet_chart.png" /></p>
+<h2 id="dashboard">Dashboard<a class="headerlink" href="#dashboard" title="Permanent link">&para;</a></h2>
+<p>The first and main part was creating these sheets - visualizations in Tableau. However, it does not end here since we should arrange these visualizations in a dashboard format and make it visually appealing and easy to understand for the executives. We should also add titles, labels, and concise summaries to each visualization to provide context and highlight the key insights. Additionally, we should ensure that the dashboard is organized in a logical flow, with the most important KPIs and insights placed prominently at the top or center of the dashboard. </p>
+<p>To effectively arrange the visuals I used horizontal and vertical containers together with blank objects in Tableau to create a clean and organized layout for the dashboard. I also used consistent colors, fonts, and formatting across all visualizations to create a cohesive and professional look. By using these design principles, we can create an executive dashboard that is not only visually appealing but also effectively communicates the key insights and trends in our sales performance to the executives and stakeholders, enabling them to make informed decisions based on the data.</p>
+<p>I also added some buttons which directs the users - executives to the Github Repository of this project, where they can find the SQL code and the data preparation steps that I have done for this analysis. This way, we can provide transparency and allow the executives to explore the underlying data and code if they are interested in understanding the details of our analysis. By including these buttons, we can enhance the interactivity of the dashboard and provide additional resources for executives who want to dive deeper into the data and analysis behind the insights presented in the dashboard.</p>
+<p>I also added a "Show filter" button which activates a sidebar containing all the filters and parameter selections for the dashboard. Putting these filters and parameters inside the dashboard would lead to a very cluttered and overwhelming dashboard, especially for executives who have limited time and want to quickly understand the key insights. By placing these filters and parameters in an interactive sidebar that can be toggled on and off with a button, we can keep the main dashboard clean and focused on the key insights, while still providing the option for executives to explore the data further if they choose to do so. This approach allows us to strike a balance between providing interactivity and maintaining a clear and concise dashboard that effectively communicates the key insights to our executive audience.</p>
+<p><img alt="Dashboard Filter Button toggled off" src="../files/dashboard_wo_filter.png" /></p>
+<p><img alt="Dashboard Filter Button toggled on" src="../files/dashboard_w_filter.png" /></p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Till here we have built an executive dashboard that summarizes the key insights from our analysis in a visually appealing and easy-to-understand format. The dashboard includes charts, graphs, key performance indicators (KPIs) and concise summaries that highlight the most important findings from our analysis. I organized the visuals in a logical flow, with consistent blue themed colours that will not create eye strain for the executives, and used horizontal and vertical containers together with blank objects in Tableau to create a clean and organized layout for the dashboard. I also added buttons that direct the users to the Github Repository of this project, where they can find the SQL code and the data preparation steps that I have done for this analysis, providing transparency and allowing the executives to explore the underlying data and code if they are interested in understanding the details of our analysis. Additionally, I added a "Show filter" button which activates a sidebar containing all the filters and parameter selections for the dashboard, allowing us to keep the main dashboard clean and focused on the key insights while still providing interactivity for executives who want to explore the data further. Overall, this executive dashboard effectively communicates the key insights and trends in our sales performance to the executives and stakeholders, enabling them to make informed decisions based on the data.</p>
+<p>We can further develop this dashboard by adding more dashboards which explain product domain, spatial domain and customer domain insights deeply. However, as this is an overall executive dashboard, I focused on the most important and impactful insights that can drive business decisions, and kept the dashboard concise and easy to understand for our executive audience. By doing so, we can maximize the impact of our analysis and facilitate data-driven decision-making at the executive level.</p>
+<p>You can reach out the Interactive Tableau Dashboard here: 
+<a href="https://public.tableau.com/authoring/AdventureWorksExecutiveDashboard_17723260919680/Dashboard2#1">AdventureWorks Bike Sales Executive Dashboard</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

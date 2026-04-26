@@ -42,8 +42,9 @@ nav:
         - Time Series Analysis: data_analysis/olist_e_commerce/09_time_series.md
     - Home Credit Default Risk Analysis: 
         - Problem Description:  data_analysis/home_credit_risk/00_problem_description.md
-        - Data Analysis with DuckDB SQL: data_analysis/home_credit_risk/01_duckdb_sql_analysis.md
-        - Feature Engineering with DuckDB SQL: data_analysis/home_credit_risk/02_duckdb_feature_engineering.md
+        - Data Analysis with SQL Part 1: data_analysis/home_credit_risk/01_duckdb_sql_analysis.md
+        - Data Analysis with SQL Part 2: data_analysis/home_credit_risk/01_duckdb_sql_analysis2.md
+        - Feature Engineering with SQL Part: data_analysis/home_credit_risk/02_duckdb_feature_engineering.md
         - Data Cleaning with Python: data_analysis/home_credit_risk/03_python_data_cleaning.md
         - Default Risk Prediction with Python: data_analysis/home_credit_risk/04_python_machine_learning.md  
   - Data Science Projects:

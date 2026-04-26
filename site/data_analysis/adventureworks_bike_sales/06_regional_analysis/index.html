@@ -1,0 +1,3162 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+        <link rel="prev" href="../05_sales_reasons/">
+      
+      
+        <link rel="next" href="../07_executive_dashboard/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Regional Analysis - Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#regional-sales-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Regional Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regional-sales-performance-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regional Sales Performance Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regional Sales Performance Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geographical-revenue-and-aov-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geographical Revenue and AOV Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operational-service-level-agreements-slas-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Service Level Agreements (SLAs) Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regional-freight-and-tax-cost-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regional Freight and Tax Cost Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regional-product-preferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regional Product Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regional-sales-performance-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regional Sales Performance Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regional Sales Performance Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geographical-revenue-and-aov-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geographical Revenue and AOV Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operational-service-level-agreements-slas-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Service Level Agreements (SLAs) Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regional-freight-and-tax-cost-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regional Freight and Tax Cost Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regional-product-preferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regional Product Preferences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="regional-sales-analysis">Regional Sales Analysis<a class="headerlink" href="#regional-sales-analysis" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In this part of the analysis, we will focus on understanding the regional sales performance of our B2C operations. We will analyze which countries and regions are driving the most revenue, how the Average Order Value (AOV) differs geographically, whether we are meeting our operational Service Level Agreements (SLAs), and how freight and tax costs impact the final landed cost for consumers across different countries. Additionally, we will investigate if there is a regional bias for specific product categories.</p>
+<h2 id="regional-sales-performance-analysis">Regional Sales Performance Analysis<a class="headerlink" href="#regional-sales-performance-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="geographical-revenue-and-aov-analysis">Geographical Revenue and AOV Analysis<a class="headerlink" href="#geographical-revenue-and-aov-analysis" title="Permanent link">&para;</a></h3>
+<p><code>20. Which countries and regions drive the most B2C revenue, and how does the Average Order Value (AOV) differ geographically?*</code></p>
+<p><strong>Solution Method:</strong> To analyze the regional sales performance, we will aggregate the sales data by country and region. We will calculate the total revenue, total number of orders, total number of customers, and the Average Order Value (AOV) for each country and region. This will allow us to identify which regions are driving the most revenue and how AOV differs geographically</p>
+<details>
+<summary>Show SQL Code</summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">select</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryCountry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">country</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryRegion</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">region</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_revenue</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesOrderNumber</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">CustomerKey</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_customers</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesOrderNumber</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_order_value</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SalesTerritory</span><span class="w"> </span><span class="n">st</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesTerritoryKey</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryCountry</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryRegion</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="n">total_revenue</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>country</th>
+<th>region</th>
+<th>total_revenue</th>
+<th>total_orders</th>
+<th>total_customers</th>
+<th>avg_order_value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Australia</td>
+<td>Australia</td>
+<td>9061000.5844</td>
+<td>6718</td>
+<td>3591</td>
+<td>1348.765</td>
+</tr>
+<tr>
+<td>United States</td>
+<td>Southwest</td>
+<td>5718150.8122</td>
+<td>5473</td>
+<td>4450</td>
+<td>1044.793</td>
+</tr>
+<tr>
+<td>United States</td>
+<td>Northwest</td>
+<td>3649866.5512</td>
+<td>4058</td>
+<td>3341</td>
+<td>899.425</td>
+</tr>
+<tr>
+<td>United Kingdom</td>
+<td>United Kingdom</td>
+<td>3391712.2109</td>
+<td>3031</td>
+<td>1913</td>
+<td>1119.008</td>
+</tr>
+<tr>
+<td>Germany</td>
+<td>Germany</td>
+<td>2894312.3382</td>
+<td>2484</td>
+<td>1780</td>
+<td>1165.182</td>
+</tr>
+<tr>
+<td>France</td>
+<td>France</td>
+<td>2644017.7143</td>
+<td>2484</td>
+<td>1810</td>
+<td>1064.419</td>
+</tr>
+<tr>
+<td>Canada</td>
+<td>Canada</td>
+<td>1977844.8621</td>
+<td>3375</td>
+<td>1571</td>
+<td>586.028</td>
+</tr>
+<tr>
+<td>United States</td>
+<td>Southeast</td>
+<td>12238.8496</td>
+<td>17</td>
+<td>12</td>
+<td>719.932</td>
+</tr>
+<tr>
+<td>United States</td>
+<td>Northeast</td>
+<td>6532.4682</td>
+<td>10</td>
+<td>8</td>
+<td>653.247</td>
+</tr>
+<tr>
+<td>United States</td>
+<td>Central</td>
+<td>3000.8296</td>
+<td>9</td>
+<td>8</td>
+<td>333.426</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong> We can derive the following insights from the above results:</p>
+<ul>
+<li>Australia is the top-performing country in terms of total revenue, with a significant contribution from the Australia region. This indicates a strong market presence and customer base in that region.   </li>
+<li>The United States has a substantial revenue contribution from the Southwest and Northwest regions, suggesting that these areas are key markets for our B2C operations. However, the AOV in these regions is lower compared to Australia, which may indicate different purchasing behaviors or product preferences among customers in the United States.</li>
+<li>The United Kingdom, Germany, and France also contribute significantly to total revenue, with relatively high AOVs, indicating that customers in these countries may be purchasing higher-priced products or making larger orders.</li>
+<li>Canada has a moderate total revenue contribution but a lower AOV compared to other countries, which may suggest that customers in Canada are purchasing lower-priced products or making smaller orders on average.</li>
+<li>The United States regions of Southeast, Northeast, and Central have significantly lower total revenue and AOV compared to other regions, indicating that these areas may not be as strong in terms of market presence or customer engagement, and may require further investigation to understand the underlying reasons for the lower performance in these regions.</li>
+</ul>
+<h3 id="operational-service-level-agreements-slas-analysis">Operational Service Level Agreements (SLAs) Analysis<a class="headerlink" href="#operational-service-level-agreements-slas-analysis" title="Permanent link">&para;</a></h3>
+<p><code>21. Are we meeting our operational Service Level Agreements (SLAs)? What is the average lead time between Order Date and Ship Date?</code></p>
+<p><strong>Solution Method:</strong> To evaluate whether we are meeting our operational Service Level Agreements (SLAs), we will calculate the average lead time between the Order Date and Ship Date for each region and month. We will compare the average lead time against our SLA targets to determine if we are meeting our commitments to customers. Additionally, we will categorize the delivery performance as "late delivery", "early delivery", or "on-time delivery" based on how the average lead time compares to the SLA targets for each region. </p>
+<details>
+<summary>Show SQL Code</summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">with</span><span class="w"> </span><span class="n">shipping_days</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">select</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesOrderNumber</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDateKey</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryRegion</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">region</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="k">min</span><span class="p">(</span><span class="n">datediff</span><span class="p">(</span><span class="k">day</span><span class="p">,</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">,</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">ShipDate</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">days_to_ship</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">SalesTerritory</span><span class="w"> </span><span class="n">st</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesTerritoryKey</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesOrderNumber</span><span class="p">,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="n">fis</span><span class="p">.</span><span class="n">OrderDateKey</span><span class="p">,</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryRegion</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="k">select</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthName</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="n">sd</span><span class="p">.</span><span class="n">region</span><span class="p">,</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="k">coalesce</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">sd</span><span class="p">.</span><span class="n">days_to_ship</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">int</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_days_to_ship</span><span class="p">,</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sd</span><span class="p">.</span><span class="n">days_to_ship</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">sd</span><span class="p">.</span><span class="n">days_to_ship</span><span class="p">))</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">sd</span><span class="p">.</span><span class="n">region</span><span class="p">)</span><span class="w"> </span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">            </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;late delivery&#39;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">sd</span><span class="p">.</span><span class="n">days_to_ship</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">sd</span><span class="p">.</span><span class="n">days_to_ship</span><span class="p">))</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">sd</span><span class="p">.</span><span class="n">region</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">            </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;early delivery&#39;</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;on-time delivery&#39;</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">delivery_performance</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="k">from</span><span class="w"> </span><span class="n">Calendar</span><span class="w"> </span><span class="k">c</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">shipping_days</span><span class="w"> </span><span class="n">sd</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="k">on</span><span class="w"> </span><span class="n">sd</span><span class="p">.</span><span class="n">OrderDateKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">DateKey</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthNumberOfYear</span><span class="w"> </span><span class="p">,</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">    </span><span class="k">c</span><span class="p">.</span><span class="n">MonthName</span><span class="w"> </span><span class="p">,</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">    </span><span class="n">sd</span><span class="p">.</span><span class="n">region</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">    </span><span class="n">month_number</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>month_number</th>
+<th>month_name</th>
+<th>region</th>
+<th>avg_days_to_ship</th>
+<th>delivery_performance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>January</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>1</td>
+<td>January</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>1</td>
+<td>January</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>1</td>
+<td>January</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>1</td>
+<td>January</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>1</td>
+<td>January</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>1</td>
+<td>January</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>1</td>
+<td>January</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>1</td>
+<td>January</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td>Northeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>2</td>
+<td>February</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>3</td>
+<td>March</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>3</td>
+<td>March</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>3</td>
+<td>March</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>3</td>
+<td>March</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>3</td>
+<td>March</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>3</td>
+<td>March</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>3</td>
+<td>March</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>3</td>
+<td>March</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td>Central</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>4</td>
+<td>April</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>Central</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>Northeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>5</td>
+<td>May</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>Central</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>Northeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>6</td>
+<td>June</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>7</td>
+<td>July</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>7</td>
+<td>July</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>7</td>
+<td>July</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>7</td>
+<td>July</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>7</td>
+<td>July</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>7</td>
+<td>July</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>7</td>
+<td>July</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>7</td>
+<td>July</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>7</td>
+<td>July</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>Central</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>Northeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>8</td>
+<td>August</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>9</td>
+<td>September</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>9</td>
+<td>September</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>9</td>
+<td>September</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>9</td>
+<td>September</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>9</td>
+<td>September</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>9</td>
+<td>September</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>9</td>
+<td>September</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>9</td>
+<td>September</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td>Northeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>10</td>
+<td>October</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>Central</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>Northeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>11</td>
+<td>November</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>Central</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>France</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>United Kingdom</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>Germany</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>Southwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>Southeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>Canada</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>Australia</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td></td>
+<td>0</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>Northeast</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+<tr>
+<td>12</td>
+<td>December</td>
+<td>Northwest</td>
+<td>7</td>
+<td>on-time delivery</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong> We can get the following insights from the above results:</p>
+<ul>
+<li>The average lead time between Order Date and Ship Date is consistently 7 days across all regions and months, indicating that we are meeting our operational Service Level Agreements (SLAs) for on-time delivery.</li>
+<li>There are no instances of late delivery or early delivery based on the defined SLA targets, suggesting that our logistics and supply chain operations are functioning effectively to meet customer expectations for delivery times.</li>
+<li>The consistency in average lead time across different regions and months indicates that our operational processes are standardized and reliable, which can contribute to customer satisfaction and loyalty.</li>
+<li>However, it is important to continue monitoring these metrics over time to ensure that we maintain our performance and identify any potential issues that may arise in the future, such as changes in demand, supply chain disruptions, or other factors that could impact our ability to meet SLAs.  </li>
+</ul>
+<h3 id="regional-freight-and-tax-cost-analysis">Regional Freight and Tax Cost Analysis<a class="headerlink" href="#regional-freight-and-tax-cost-analysis" title="Permanent link">&para;</a></h3>
+<p><code>22. How heavily do freight and tax costs impact the final landed cost for the consumer across different countries?</code></p>
+<p><strong>Solution Method:</strong> To analyze the impact of freight and tax costs on the final landed cost for consumers across different countries, we will calculate the total revenue, total tax, total freight, and the percentage of tax and freight costs relative to the total revenue for each country. In order to calculate these, firstly, we will create a Common Table Expression (CTE) to aggregate the sales amount, tax amount, and freight amount by sales order number and country. Then, we will sum these values at the country level and calculate the percentage of tax and freight costs relative to total revenue to understand their impact on the final landed cost for consumers in each country. </p>
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">with</span><span class="w"> </span><span class="n">country_stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">select</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="n">fis</span><span class="p">.</span><span class="n">salesordernumber</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryCountry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">country</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">revenue</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">TaxAmt</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">tax</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">Freight</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">freight</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span><span class="w"> </span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="k">join</span><span class="w"> </span><span class="n">SalesTerritory</span><span class="w"> </span><span class="n">st</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesTerritoryKey</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="n">fis</span><span class="p">.</span><span class="n">salesordernumber</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryCountry</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">select</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="n">country</span><span class="p">,</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="w"> </span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_revenue</span><span class="p">,</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">tax</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="w"> </span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_tax</span><span class="p">,</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">freight</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="w"> </span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_freight</span><span class="p">,</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">tax</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">tax_pct</span><span class="p">,</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">freight</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">freight_pct</span><span class="p">,</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">        </span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">tax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">sum</span><span class="p">(</span><span class="n">freight</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">tax_freight_pct</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="k">from</span><span class="w"> </span><span class="n">country_stats</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">    </span><span class="n">country</span><span class="w"> </span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">    </span><span class="n">total_revenue</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>country</th>
+<th>total_revenue</th>
+<th>total_tax</th>
+<th>total_freight</th>
+<th>tax_pct</th>
+<th>freight_pct</th>
+<th>tax_freight_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>United States</td>
+<td>9389789.511</td>
+<td>751183.177</td>
+<td>234745.663</td>
+<td>0.080</td>
+<td>0.025</td>
+<td>0.105</td>
+</tr>
+<tr>
+<td>Australia</td>
+<td>9061000.584</td>
+<td>724880.067</td>
+<td>226525.613</td>
+<td>0.080</td>
+<td>0.025</td>
+<td>0.105</td>
+</tr>
+<tr>
+<td>United Kingdom</td>
+<td>3391712.211</td>
+<td>271336.982</td>
+<td>84793.124</td>
+<td>0.080</td>
+<td>0.025</td>
+<td>0.105</td>
+</tr>
+<tr>
+<td>Germany</td>
+<td>2894312.338</td>
+<td>231544.991</td>
+<td>72358.065</td>
+<td>0.080</td>
+<td>0.025</td>
+<td>0.105</td>
+</tr>
+<tr>
+<td>France</td>
+<td>2644017.714</td>
+<td>211521.422</td>
+<td>66100.697</td>
+<td>0.080</td>
+<td>0.025</td>
+<td>0.105</td>
+</tr>
+<tr>
+<td>Canada</td>
+<td>1977844.862</td>
+<td>158227.592</td>
+<td>49446.448</td>
+<td>0.080</td>
+<td>0.025</td>
+<td>0.105</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong> We can derive the following insights from the above results:</p>
+<ul>
+<li>The United States has the highest total revenue, followed closely by Australia, with the United Kingdom, Germany, France, and Canada contributing significantly as well. This indicates that these countries are key markets for our B2C operations.</li>
+<li>The tax and freight costs as a percentage of total revenue are consistent across all countries, with tax costs accounting for approximately 8% of total revenue and freight costs accounting for approximately 2.5% of total revenue. This suggests that the impact of tax and freight costs on the final landed cost for consumers is relatively similar across different countries.</li>
+<li>The combined tax and freight costs account for approximately 10.5% of total revenue across all countries, indicating that these costs have a significant impact on the final landed cost for consumers. This highlights the importance of managing and optimizing these costs to ensure competitive pricing and profitability in different markets.</li>
+<li>It is important to continue monitoring these costs and their impact on the final landed cost for consumers, as changes in tax regulations, shipping costs, or other factors could affect the overall cost structure and pricing strategy in different countries. Additionally, exploring opportunities to reduce tax and freight costs, such as negotiating better shipping rates or optimizing tax strategies, could help improve profitability and competitiveness in the market.</li>
+</ul>
+<h3 id="regional-product-preferences">Regional Product Preferences<a class="headerlink" href="#regional-product-preferences" title="Permanent link">&para;</a></h3>
+<p><code>23. Is there a regional bias for specific Product Categories?</code></p>
+<p><strong>Solution Method:</strong> To analyze if there is a regional bias for specific product categories, we will aggregate the sales data by country and product category. We will calculate the total revenue for each product category within each country and then calculate the percentage of total revenue that each product category contributes to the overall revenue for that country. This will allow us to identify if certain product categories are more popular in specific regions, indicating a regional bias in consumer preferences for those categories.</p>
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">with</span><span class="w"> </span><span class="n">product_info</span><span class="w"> </span><span class="k">as</span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">select</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="n">pr</span><span class="p">.</span><span class="n">ProductKey</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="n">cat</span><span class="p">.</span><span class="n">ProductCategoryName</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">product_category</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryCountry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">country</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">fis</span><span class="p">.</span><span class="n">SalesAmount</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">revenue</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">Products</span><span class="w"> </span><span class="n">pr</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="k">join</span><span class="w"> </span><span class="n">ProductSubcategory</span><span class="w"> </span><span class="n">sub</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="n">sub</span><span class="p">.</span><span class="n">ProductSubcategoryKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pr</span><span class="p">.</span><span class="n">ProductSubcategoryKey</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="k">join</span><span class="w"> </span><span class="n">ProductCategory</span><span class="w"> </span><span class="n">cat</span><span class="w"> </span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="n">cat</span><span class="p">.</span><span class="n">ProductCategoryKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sub</span><span class="p">.</span><span class="n">ProductCategoryKey</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="k">join</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span><span class="n">fis</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">ProductKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pr</span><span class="p">.</span><span class="n">ProductKey</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="k">join</span><span class="w"> </span><span class="n">SalesTerritory</span><span class="w"> </span><span class="n">st</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="k">on</span><span class="w"> </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fis</span><span class="p">.</span><span class="n">SalesTerritoryKey</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="n">pr</span><span class="p">.</span><span class="n">ProductKey</span><span class="p">,</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="n">cat</span><span class="p">.</span><span class="n">ProductCategoryName</span><span class="p">,</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="n">st</span><span class="p">.</span><span class="n">SalesTerritoryCountry</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="p">)</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="k">select</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">        </span><span class="n">country</span><span class="p">,</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">        </span><span class="n">product_category</span><span class="p">,</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_revenue</span><span class="p">,</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">        </span><span class="k">cast</span><span class="p">(</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">            </span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">((</span><span class="k">sum</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">revenue</span><span class="p">))</span><span class="w"> </span><span class="n">over</span><span class="p">(</span><span class="n">partition</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">country</span><span class="p">)),</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">            </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">revenue_pct</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span><span class="n">product_info</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">        </span><span class="n">country</span><span class="p">,</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">        </span><span class="n">product_category</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">        </span><span class="n">country</span><span class="p">,</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">        </span><span class="n">revenue_pct</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th>country</th>
+<th>product_category</th>
+<th>total_revenue</th>
+<th>revenue_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Australia</td>
+<td>Bikes</td>
+<td>8852050.0044</td>
+<td>97.694</td>
+</tr>
+<tr>
+<td>Australia</td>
+<td>Accessories</td>
+<td>138690.6300</td>
+<td>1.531</td>
+</tr>
+<tr>
+<td>Australia</td>
+<td>Clothing</td>
+<td>70259.9500</td>
+<td>0.775</td>
+</tr>
+<tr>
+<td>Canada</td>
+<td>Bikes</td>
+<td>1821302.3921</td>
+<td>92.085</td>
+</tr>
+<tr>
+<td>Canada</td>
+<td>Accessories</td>
+<td>103377.8500</td>
+<td>5.227</td>
+</tr>
+<tr>
+<td>Canada</td>
+<td>Clothing</td>
+<td>53164.6200</td>
+<td>2.688</td>
+</tr>
+<tr>
+<td>France</td>
+<td>Bikes</td>
+<td>2553575.7143</td>
+<td>96.579</td>
+</tr>
+<tr>
+<td>France</td>
+<td>Accessories</td>
+<td>63406.7800</td>
+<td>2.398</td>
+</tr>
+<tr>
+<td>France</td>
+<td>Clothing</td>
+<td>27035.2200</td>
+<td>1.023</td>
+</tr>
+<tr>
+<td>Germany</td>
+<td>Bikes</td>
+<td>2808514.3482</td>
+<td>97.036</td>
+</tr>
+<tr>
+<td>Germany</td>
+<td>Accessories</td>
+<td>62232.5900</td>
+<td>2.150</td>
+</tr>
+<tr>
+<td>Germany</td>
+<td>Clothing</td>
+<td>23565.4000</td>
+<td>0.814</td>
+</tr>
+<tr>
+<td>United Kingdom</td>
+<td>Bikes</td>
+<td>3282842.6609</td>
+<td>96.790</td>
+</tr>
+<tr>
+<td>United Kingdom</td>
+<td>Accessories</td>
+<td>76630.0400</td>
+<td>2.259</td>
+</tr>
+<tr>
+<td>United Kingdom</td>
+<td>Clothing</td>
+<td>32239.5100</td>
+<td>0.951</td>
+</tr>
+<tr>
+<td>United States</td>
+<td>Bikes</td>
+<td>8999859.5308</td>
+<td>95.847</td>
+</tr>
+<tr>
+<td>United States</td>
+<td>Accessories</td>
+<td>256422.0700</td>
+<td>2.731</td>
+</tr>
+<tr>
+<td>United States</td>
+<td>Clothing</td>
+<td>133507.9100</td>
+<td>1.422</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong> We can derive the following insights from the above results:</p>
+<ul>
+<li>Across all countries, the Bikes product category dominates the total revenue, accounting for over 95% of the revenue in each country. This indicates a strong regional bias towards the Bikes category, suggesting that consumers in these regions have a strong preference for purchasing bikes compared to other product categories.</li>
+<li>The Accessories and Clothing categories contribute a much smaller percentage of total revenue in each country, indicating that there is less consumer interest in these categories compared to Bikes. However, there are still some variations in the revenue contribution of Accessories and Clothing across different countries, which may suggest that there are some regional differences in consumer preferences for these categories, albeit not as pronounced as the bias towards Bikes.</li>
+<li>The strong regional bias towards the Bikes category may be influenced by factors such as local market trends, cultural preferences, or the availability of products in these regions. It may be beneficial to further investigate the underlying reasons for this bias and explore opportunities to capitalize on the strong demand for bikes in these regions, such as targeted marketing campaigns, product offerings, or partnerships with local retailers to further enhance our presence in the Bikes category in these markets. Additionally, understanding the factors driving consumer preferences for the Accessories and Clothing categories could help identify potential growth opportunities in these categories, even if they currently contribute a smaller percentage of total revenue. </li>
+</ul>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>In this domain, we analyzed the regional sales performance of our B2C operations by examining geographical revenue and Average Order Value (AOV), evaluating our performance against operational Service Level Agreements (SLAs), and assessing the impact of freight and tax costs on the final landed cost for consumers across different countries. We found that certain countries, such as Australia and the United States, are driving the most revenue, with a strong regional bias towards the Bikes product category. Additionally, we observed that we are consistently meeting our SLAs for on-time delivery across all regions and months. Finally, we determined that freight and tax costs have a significant impact on the final landed cost for consumers, accounting for approximately 10.5% of total revenue across all countries. These insights can help us optimize our regional sales strategies, improve customer satisfaction through reliable delivery performance, and manage costs effectively to enhance profitability in different markets.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2368 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+        <link rel="prev" href="../00_problem_description/">
+      
+      
+        <link rel="next" href="../02_duckdb_feature_engineering/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Data Analysis with DuckDB SQL - Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#advanced-sql-analysis-with-duckdb" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Analysis with DuckDB SQL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Ingestion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Ingestion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#library-and-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Library and Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duckdb-connection-and-file-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DuckDB Connection and File Import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-the-tables-as-parquet-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting the Tables as Parquet Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-data-exploration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Data Exploration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duckdb-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DuckDB Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-sql-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed SQL Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed SQL Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#applications-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applications Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Ingestion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Ingestion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#library-and-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Library and Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duckdb-connection-and-file-import" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DuckDB Connection and File Import
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exporting-the-tables-as-parquet-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exporting the Tables as Parquet Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-data-exploration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Data Exploration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duckdb-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DuckDB Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-sql-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detailed SQL Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed SQL Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#applications-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applications Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="advanced-sql-analysis-with-duckdb">Advanced SQL Analysis with DuckDB<a class="headerlink" href="#advanced-sql-analysis-with-duckdb" title="Permanent link">&para;</a></h1>
+<h2 id="introduction"><font color="#94d6d5">Introduction  </font><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This is the first step of the analysis. In this step, I will use DuckDB SQL to do the data ingestion and initial exploration of the data. I will read the data from the csv files and do the initial exploration of the data to understand the structure of the data. The dataset consists of the following tables: </p>
+<ul>
+<li><code>application_data</code>: This table contains the main information about the customers, including their demographic information, financial information, and the target variable (whether they defaulted or not).</li>
+<li><code>bureau</code>: This table contains information about the customers' credit history from other financial institutions.</li>
+<li><code>bureau_balance</code>: This table contains information about the monthly balance of the customers' credit history from other financial institutions.</li>
+<li><code>credit_card_balance</code>: This table contains information about the customers' credit card balance and payment history.</li>
+<li><code>installments_payments</code>: This table contains information about the customers' installment payments history.</li>
+<li><code>previous_application</code>: This table contains information about the customers' previous loan applications and their outcomes.   </li>
+<li><code>POS_CASH_balance</code>: This table contains information about the customers' point of sale and cash loan balance and payment history.</li>
+</ul>
+<p>Each csv file will be read by DuckDB SQL and added to the DuckDB database. After reading the data, I will do the initial exploration of the data, I will do analysis on each table to define the unnecessary or missing features. This will help me to simplify the data and make it easier to work with in the next steps of the analysis. </p>
+<h2 id="data-ingestion"><font color="#94d6d5"> Data Ingestion </font><a class="headerlink" href="#data-ingestion" title="Permanent link">&para;</a></h2>
+<p>As is mentioned earlier, the data will be imported into the DuckDB database. <strong>DuckDB</strong> is a modern SQL engine that can run inside Python and it is optimized for analytical queries on large datasets. It is much faster than traditional Pandas reading methods and it can handle large datasets efficiently. It is my preferred method for working with large datasets, because it allows me to set hardware constraints such as <em>maximum usable ram</em>, <em>maximum usable core threads</em>. As my laptop hardware is limited with 12 GB Ram and Processor with 8 cores, I should definitely set these constraints to avoid any performance issues. </p>
+<h3 id="library-and-settings"><font color="#8da2e0"> Library and Settings </font><a class="headerlink" href="#library-and-settings" title="Permanent link">&para;</a></h3>
+<p>Firstly, let's import all necessary libraries and adjust the settings for the libraries. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span> 
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span> 
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span> <span class="c1"># for visualization</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.io</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pio</span>   
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span> 
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_columns&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="c1"># to display all columns in the output of the queries</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;notebook&quot;</span> <span class="c1"># for plotly visualizations in Jupyter Notebook</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="kn">from</span><span class="w"> </span><span class="nn">itables</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_notebook_mode</span> <span class="c1"># for interactive tables</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">init_notebook_mode</span><span class="p">(</span><span class="n">all_interactive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="duckdb-connection-and-file-import"><font color="#8da2e0"> DuckDB Connection and File Import </font><a class="headerlink" href="#duckdb-connection-and-file-import" title="Permanent link">&para;</a></h3>
+<p>Then we should define the path to the data and create a connection to the DuckDB database with hardware constraints. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">directory</span> <span class="o">=</span> <span class="s2">&quot;/home/vasif/Desktop/Home-Credit-Risk-Analysis/data/&quot;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">con</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;/home/vasif/Desktop/Home-Credit-Risk-Analysis/home_credit.duckdb&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">read_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA threads=6;&quot;</span><span class="p">)</span> <span class="c1"># define the max number of cpu cores usable by duckdb</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA memory_limit=&#39;8GB&#39;;&quot;</span><span class="p">)</span> <span class="c1"># define the max size of ram usage by duckdb</span>
+</code></pre></div>
+<p>The above code will create the DuckDB database with the name <code>home_credit.duckdb</code> in the specified path. The <code>PRAGMA</code> statements will set the maximum number of CPU cores that DuckDB can use to 6 and the maximum amount of RAM that DuckDB can use to 8 GB. This will help to optimize the performance of DuckDB when working with large datasets.</p>
+<p>Now, we can create the tables in the DuckDB database and read the data from the csv files into these tables. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot; CREATE TABLE applications AS SELECT * FROM read_csv_auto(&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">application_train.csv&#39;); &quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot; CREATE TABLE pos_cash_balance AS SELECT * FROM read_csv_auto(&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">POS_CASH_balance.csv&#39;); &quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot; CREATE TABLE bureau AS SELECT * FROM read_csv_auto(&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">bureau.csv&#39;); &quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot; CREATE TABLE bureau_balance AS SELECT * FROM read_csv_auto(&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">bureau_balance.csv&#39;); &quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot; CREATE TABLE credit_card_balance AS SELECT * FROM read_csv_auto(&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">credit_card_balance.csv&#39;); &quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot; CREATE TABLE installments_payments AS SELECT * FROM read_csv_auto(&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">installments_payments.csv&#39;); &quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot; CREATE TABLE previous_applications AS SELECT * FROM read_csv_auto(&#39;</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">previous_application.csv&#39;); &quot;&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The above code will create the tables in the DuckDB database and read the data from the csv files into these tables. The <code>read_csv_auto</code> function is a built-in function in DuckDB that automatically detects the schema of the csv file and creates the table accordingly. After executing the above code, we will have all the data from the csv files imported into the DuckDB database and we can start doing the initial exploration of the data.</p>
+<h3 id="exporting-the-tables-as-parquet-files"><font color="#8da2e0"> Exporting the Tables as Parquet Files </font><a class="headerlink" href="#exporting-the-tables-as-parquet-files" title="Permanent link">&para;</a></h3>
+<p>As we already imported the tables into the DuckDB database, each time we start a new session, we can simply connect to the database and start doing the analysis without the need to import the data again. This will save us a lot of time and resources, especially when working with large datasets. However, to guarantee our analysis is reproducible, it is better experience to convert large csv files into <strong>parquet files</strong> and read the data from parquet files instead of csv files. Parquet files are a columnar storage format that is optimized for analytical queries and it is a lot much faster than reading csv files when working with large datasets. </p>
+<p>By using DuckDB, we can easily export our tables as parquet files with the following code: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">parquet_dir</span> <span class="o">=</span> <span class="s2">&quot;/home/vasif/Desktop/Home-Credit-Risk-Analysis/parquet_files/&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">parquet_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">tables</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="s2">&quot;applications&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="s2">&quot;pos_cash_balance&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="s2">&quot;bureau&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="s2">&quot;bureau_balance&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="s2">&quot;credit_card_balance&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="s2">&quot;installments_payments&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="s2">&quot;previous_applications&quot;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">]</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parquet_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">.parquet&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="s2">        COPY (SELECT * FROM </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="s2">        TO &#39;</span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&#39; (FORMAT PARQUET)</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> exported to </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="initial-data-exploration"><font color="#8da2e0"> Initial Data Exploration </font><a class="headerlink" href="#initial-data-exploration" title="Permanent link">&para;</a></h3>
+<p>After importing the data into the DuckDB database, we can start doing the initial exploration of the data. Firstly, let's check the number of rows in each table to understand the size of the data. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">tables</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">&quot;applications&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="s2">&quot;pos_cash_balance&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s2">&quot;bureau&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s2">&quot;bureau_balance&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="s2">&quot;credit_card_balance&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="s2">&quot;installments_payments&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="s2">&quot;previous_applications&quot;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">]</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">tables</span><span class="p">:</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="n">count</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;SELECT COUNT(*) FROM </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Table &#39;</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">&#39; has </span><span class="si">{</span><span class="n">count</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> rows&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Table &#39;applications&#39; has 307,511 rows
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Table &#39;pos_cash_balance&#39; has 10,001,358 rows
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Table &#39;bureau&#39; has 1,716,428 rows
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Table &#39;bureau_balance&#39; has 27,299,925 rows
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Table &#39;credit_card_balance&#39; has 3,840,312 rows
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Table &#39;installments_payments&#39; has 13,605,401 rows
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Table &#39;previous_applications&#39; has 1,670,214 rows
+</code></pre></div>
+<p>We can observe from the results that some tables have more than 10 millions of rows. Therefore, traditional Pandas analysis methods will be very slow and inefficient when working with these tables. <strong>This is why using DuckDB SQL is a much better option for working with this data, because it is optimized for analytical queries on large datasets and it can handle large datasets efficiently.</strong> Hence, I will use DuckDB SQL to do all the analysis and feature engineering steps on the data, then create a final aggregated table with all the important features that I will use for building the prediction model. After creating the final aggregated table, I will switch to Pandas for data wrangling and model building steps, because the size of the final aggregated table will be much smaller than the original tables and it will be easier to work with in Pandas.</p>
+<h3 id="duckdb-functions"><font color="#8da2e0"> DuckDB Functions </font><a class="headerlink" href="#duckdb-functions" title="Permanent link">&para;</a></h3>
+<p>Now we can start to do our deep analysis on the data. Before starting the analysis, I should mention some of the important functions to use in DuckDB SQL for the analysis.</p>
+<p>After writing the SQL queries, we can execute them and retrieve the results with different functions: </p>
+<ul>
+<li><strong><code>fetchall()</code>:</strong> This function retrieves all the rows from the result of the query and returns them as a list of tuples. Each tuple represents a row in the result, and each element in the tuple represents a column value. This function is useful when we want to retrieve all the data from the query result and we don't mind about the memory usage. However, if the result of the query is very large, it may consume a lot of memory and cause performance issues.</li>
+<li><strong><code>fetchone()</code>:</strong> This function retrieves the next row from the result of the query and returns it as a tuple. Each element in the tuple represents a column value. This function is useful when we want to retrieve one row at a time from the query result, especially when the result is very large and we want to avoid memory issues. We can use this function in a loop to retrieve all the rows one by one.</li>
+<li><strong><code>fetchdf()</code>:</strong> This function retrieves all the rows from the result of the query and returns them as a Pandas DataFrame. Each column in the DataFrame represents a column in the query result, and each row in the DataFrame represents a row in the query result. This function is useful when we want to work with the query result in a tabular format and we want to take advantage of the functionalities provided by Pandas for data manipulation and analysis. However, if the result of the query is very large, it may consume a lot of memory and cause performance issues. </li>
+<li><strong><code>fetchpolars()</code>:</strong> This function retrieves all the rows from the result of the query and returns them as a Polars DataFrame. This function is useful when we want to work with the query result in a tabular format and we want to take advantage of the functionalities provided by <strong>Polars</strong> for data manipulation and analysis. Polars is a fast and efficient DataFrame library that is optimized for performance, especially when working with large datasets. Therefore, using <code>fetchpolars()</code> can be a better option than <code>fetchdf()</code> when working with large query results, as it can help to avoid memory issues and improve performance.</li>
+</ul>
+<p>To execute the queries and commands we have two options:</p>
+<ol>
+<li><strong><code>execute()</code>:</strong> With this method, we should write the SQL query as a string and pass it to the <code>execute()</code> method. This method will execute the query and return a cursor object that we can use to retrieve the results with the <code>fetch*()</code> methods. This method is useful when we want to execute a single query or command and we don't need to reuse the query or command multiple times.</li>
+<li><strong><code>sql()</code>:</strong> This is a more convenient method for executing SQL queries. With this method, we can write the SQL query directly as a string and pass it to the <code>sql</code> method. This method will execute the query and return the results directly without the need to use a cursor object. This method is useful when we want to execute a single query or command and we want to retrieve the results directly without the need for additional steps.</li>
+</ol>
+<h2 id="detailed-sql-analysis"><font color="#94d6d5"> Detailed SQL Analysis </font><a class="headerlink" href="#detailed-sql-analysis" title="Permanent link">&para;</a></h2>
+<p>After learning the important functions we are ready to do our deep SQL analysis on the data. Each table will be considered separately and investigated with care. With this method, we will find out the necessary and predictive features for the model building step. We will also find out the patterns and insights from the data that will help us to build a better prediction model. </p>
+<h3 id="applications-table"><font color="#8da2e0"> Applications Table </font><a class="headerlink" href="#applications-table" title="Permanent link">&para;</a></h3>
+<h4 id="task-1-the-family-burden-matrix"><font color="#8da2e0"> Task 1. The <em>Family Burden</em> Matrix</font><a class="headerlink" href="#task-1-the-family-burden-matrix" title="Permanent link">&para;</a></h4>
+<p><strong>Business Question:</strong> Does the interaction between marital status (Single vs. Married) and
+number of dependent children materially alter default risk? Is a single parent riskier than a
+married parent with the same number of children?</p>
+<p><strong>Objective:</strong> Determine whether family size functions as a financial stressor or a stability anchor. Specifically, assess whether default probability increases linearly with the number of children
+and whether marital status mitigates this effect. The outcome informs whether family-related variables should be penalized or interaction-adjusted in the risk model.</p>
+<details>
+<summary>Show Code</summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="s2">select </span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="s2">    -- 1. Create the Marital Status Groups</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s2">    NAME_FAMILY_STATUS,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="s2">    -- 2. Bin Children (0, 1, 2, 3+) to handle outliers</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s2">    CASE </span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="s2">        WHEN CNT_CHILDREN &gt;= 3 THEN &#39;3+&#39;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="s2">        ELSE CAST(CNT_CHILDREN AS VARCHAR)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="s2">    END AS Num_Children,</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="s2">    -- 3. Calculate Default Rate</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="s2">    COUNT(*) AS Total_Count,</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="s2">    ROUND(AVG(TARGET),3) AS Risk_Probability</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="s2">FROM applications</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="s2">WHERE NAME_FAMILY_STATUS IS NOT NULL </span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="s2">  AND NAME_FAMILY_STATUS != &#39;Unknown&#39;</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="s2">GROUP BY 1, 2</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="s2">ORDER BY </span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="s2">    -- Sort logic: Children 0-&gt;3+, then Marital Status</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="s2">    Risk_Probability desc</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="n">t1</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="n">markdown_table</span> <span class="o">=</span> <span class="n">t1</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="nb">print</span><span class="p">(</span><span class="n">markdown_table</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<div style="max-height: 400px; overflow: auto; white-space: nowrap;">
+
+| NAME_FAMILY_STATUS   | Num_Children   |   Total_Count |   Risk_Probability |
+|:---------------------|:---------------|--------------:|-------------------:|
+| Civil marriage       | 3+             |           304 |              0.158 |
+| Single / not married | 3+             |            98 |              0.153 |
+| Widow                | 3+             |            67 |              0.119 |
+| Civil marriage       | 2              |          1936 |              0.116 |
+| Single / not married | 2              |           958 |              0.111 |
+| Single / not married | 1              |          5578 |              0.109 |
+| Civil marriage       | 1              |          6588 |              0.103 |
+| Civil marriage       | 0              |         20947 |              0.096 |
+| Single / not married | 0              |         38810 |              0.096 |
+| Separated            | 2              |          1111 |              0.095 |
+| Married              | 3+             |          3665 |              0.094 |
+| Separated            | 1              |          4389 |              0.094 |
+| Separated            | 3+             |           138 |              0.087 |
+| Married              | 1              |         43696 |              0.085 |
+| Married              | 2              |         22496 |              0.084 |
+| Separated            | 0              |         14132 |              0.077 |
+| Widow                | 2              |           248 |              0.073 |
+| Married              | 0              |        126575 |              0.071 |
+| Widow                | 1              |           868 |              0.067 |
+| Widow                | 0              |         14905 |              0.057 |
+
+</div>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>The data reveals a clear red flag: default risk spikes significantly for families with 3 or more children. What stands out most is that 'Civil Marriage' applicants mimic the high-risk behavior of single applicants rather than married ones. This suggests that raising a large family without the legal bond of marriage points to a lower level of stability or formal commitment, making this specific combination—Civil Marriage with 3+ kids—the riskiest profile in our dataset. Single applicants trail closely behind as the second highest risk group, while widowed individuals proved to be the safest. Ultimately, the driving force here is likely simple economics: households with 3+ children operate on tighter budgets, leaving them little room for error when repaying loans.</p>
+<h4 id="task-2-the-leverage-vs-education-paradox"><font color="#8da2e0"> Task 2. The ”Leverage vs. Education” Paradox  </font><a class="headerlink" href="#task-2-the-leverage-vs-education-paradox" title="Permanent link">&para;</a></h4>
+<p><strong>Business Question: Do higher-educated clients handle high debt burdens better than lower-
+educated clients?</strong></p>
+<p><strong>Objective:</strong> To test the ”Financial Literacy” hypothesis. High debt (high annuity) usually
+predicts default. However, we suspect that highly educated clients can manage high debt better
+than less educated ones. If true, we can allow higher loan amounts for educated applicants
+without increasing risk.</p>
+<p><strong>Solution:</strong> For each of the education level (<code>NAME_EDUCATION_TYPE</code>), we should create bins using the ratio of annual credit amount (<code>AMT_ANNUITY</code>) to the total income amount (<code>AMT_INCOME_TOTAL</code>). Then for each education level - ratio bin groups, total loan volume and risk probability rate can be calculated.</p>
+<details>
+<summary>Click here to see the solution</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; </span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="s2">    select</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s2">        NAME_EDUCATION_TYPE as education,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s2">        case </span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s2">            when amt_annuity / nullif(amt_income_total, 0) &lt; 0.1 then &#39;0-10%&#39;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s2">            when amt_annuity / nullif(amt_income_total, 0) &lt; 0.2 then &#39;10-20%&#39;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="s2">            when amt_annuity / nullif(amt_income_total, 0) &lt; 0.3 then &#39;20-30%&#39;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="s2">            when amt_annuity / nullif(amt_income_total, 0) &lt; 0.4 then &#39;30-40%&#39;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="s2">            else &#39;40%+&#39;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="s2">        end as leverage_bin,</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="s2">        count(*) as total_count, </span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="s2">        round(avg(target),3) as risk_probability   </span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="s2">    from applications</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="s2">    group by </span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="s2">        1,2   </span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="s2">    order by</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="s2">        risk_probability desc</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="n">t2</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="n">t2</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<div style="max-height: 400px; overflow: auto; white-space: nowrap;">
+
+| education                     | leverage_bin   |   total_count |   risk_probability |
+|:------------------------------|:---------------|--------------:|-------------------:|
+| Lower secondary               | 20-30%         |          1053 |              0.13  |
+| Lower secondary               | 30-40%         |           371 |              0.113 |
+| Lower secondary               | 10-20%         |          1733 |              0.106 |
+| Incomplete higher             | 30-40%         |           606 |              0.097 |
+| Secondary / secondary special | 20-30%         |         55254 |              0.096 |
+| Lower secondary               | 40%+           |           137 |              0.095 |
+| Incomplete higher             | 10-20%         |          5041 |              0.09  |
+| Secondary / secondary special | 10-20%         |        104022 |              0.089 |
+| Secondary / secondary special | 40%+           |          6261 |              0.087 |
+| Incomplete higher             | 20-30%         |          2150 |              0.087 |
+| Secondary / secondary special | 30-40%         |         17916 |              0.086 |
+| Secondary / secondary special | 0-10%          |         34938 |              0.084 |
+| Lower secondary               | 0-10%          |           522 |              0.079 |
+| Incomplete higher             | 40%+           |           170 |              0.071 |
+| Incomplete higher             | 0-10%          |          2310 |              0.069 |
+| Higher education              | 40%+           |          1376 |              0.062 |
+| Higher education              | 30-40%         |          4586 |              0.058 |
+| Higher education              | 20-30%         |         15454 |              0.056 |
+| Higher education              | 10-20%         |         36998 |              0.053 |
+| Higher education              | 0-10%          |         16449 |              0.049 |
+| Academic degree               | 10-20%         |            73 |              0.027 |
+| Academic degree               | 0-10%          |            49 |              0.02  |
+| Academic degree               | 20-30%         |            25 |              0     |
+| Academic degree               | 30-40%         |            13 |              0     |
+| Academic degree               | 40%+           |             4 |              0     |
+
+</div>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>The analysis reveals a strong association between education level and default risk, as well as a nonlinear relationship between the debt-to-income (DTI) ratio and default probability. Default risk is elevated among applicants with secondary or lower secondary education and materially lower among those with academic or higher education credentials. Risk concentration is most pronounced within the lower secondary education group, particularly for DTI ratios between 10% and 40%, peaking around the 20%–30% range.</p>
+<p>This pattern is consistent with the hypothesis that higher education correlates with greater income stability, financial literacy, and job security, which collectively improve debt-servicing capacity. Conversely, lower education levels are associated with income volatility and limited financial buffers, increasing sensitivity to leverage. These interpretations are correlational and do not imply causality.</p>
+<h4 id="task-3-the-age-occupation-risk-heatmap"><font color="#8da2e0"> Task 3. The "Age &amp; Occupation" Risk Heatmap</font><a class="headerlink" href="#task-3-the-age-occupation-risk-heatmap" title="Permanent link">&para;</a></h4>
+<p><strong>Business Question: Which specific career stage creates the highest risk?</strong></p>
+<p><strong>Objective:</strong> To identify ”High-Risk Clusters” that standard models might miss. Age alone is
+a strong predictor, but a ”Young Manager” might behave totally differently from a ”Young
+Laborer.” Identifying these specific intersections allows us to adjust the credit score for specific
+job types based on the applicant’s life stage.</p>
+<p><strong>Solution:</strong> Since the <code>DAYS_BIRTH</code> column indicating the applicant age in unit of days is negative, the first thing must be done is changing its sign and divide by 365 which will yield the applicant age in years. Then, ages will be binned with 10 years bin size and for each group joined with the occupation type, total number of loans and risk probability will be obtained.</p>
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="s2">    select</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="s2">        case </span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="s2">            when round(-days_birth/365,0) &lt; 25 then &#39;&lt;25&#39;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="s2">            when round(-days_birth/365,0) &lt; 35 then &#39;25-35&#39;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="s2">            when round(-days_birth/365,0) &lt; 45 then &#39;35-45&#39;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="s2">            when round(-days_birth/365,0) &lt; 55 then &#39;45-55&#39;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="s2">            else &#39;55+&#39;</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="s2">        end as age_group, </span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="s2">        occupation_type,</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="s2">        count(*) as total_loans, </span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="s2">        round(avg(target), 3) * 100 as risk_probability</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="s2">        from </span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="s2">            applications</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="s2">        group by </span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="s2">            1, 2</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="s2">        order by </span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="s2">            risk_probability desc            </span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="n">t3</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+</code></pre></div>
+</details>
+
+<p><br></p>
+<p><strong>Results:</strong></p>
+<div style="max-height: 400px; overflow: auto; white-space: nowrap;">
+
+| age_group   | OCCUPATION_TYPE       |   total_loans |   risk_probability |
+|:------------|:----------------------|--------------:|-------------------:|
+| 25-35       | Low-skill Laborers    |           664 |               20   |
+| <25         | Low-skill Laborers    |           110 |               20   |
+| <25         | HR staff              |            26 |               19.2 |
+| 25-35       | Cleaning staff        |           515 |               17.7 |
+| 35-45       | Low-skill Laborers    |           707 |               16.8 |
+| 25-35       | Security staff        |          1071 |               16.1 |
+| 25-35       | Cooking staff         |          1375 |               15.9 |
+| <25         | Cleaning staff        |            38 |               15.8 |
+| <25         | Laborers              |          2134 |               14.4 |
+| 55+         | Low-skill Laborers    |           133 |               14.3 |
+| <25         | Medicine staff        |           244 |               14.3 |
+| 25-35       | Waiters/barmen staff  |           492 |               14.2 |
+| <25         | Drivers               |           549 |               14.2 |
+| 45-55       | Low-skill Laborers    |           479 |               13.8 |
+| <25         | Security staff        |           132 |               13.6 |
+| 25-35       | Drivers               |          4540 |               13.4 |
+| <25         | Secretaries           |            83 |               13.3 |
+| 25-35       | Laborers              |         15364 |               13.3 |
+| <25         | Waiters/barmen staff  |           205 |               13.2 |
+| <25         | Cooking staff         |           199 |               13.1 |
+| <25         | Sales staff           |          1949 |               12.9 |
+| <25         |                       |          1765 |               12.8 |
+| 25-35       | Sales staff           |         10343 |               11.7 |
+| 25-35       | Realty agents         |           275 |               11.6 |
+| 35-45       | Security staff        |          1897 |               11.1 |
+| 35-45       | Drivers               |          6353 |               10.9 |
+| 35-45       | Cooking staff         |          1987 |               10.7 |
+| <25         | Core staff            |          1525 |               10.7 |
+| 35-45       | Cleaning staff        |          1170 |               10.7 |
+| 35-45       | Laborers              |         18825 |               10.6 |
+| 45-55       | IT staff              |            57 |               10.5 |
+| 45-55       | Drivers               |          5263 |               10.5 |
+| <25         | IT staff              |            40 |               10   |
+| 25-35       |                       |         11814 |                9.6 |
+| 45-55       | Security staff        |          2155 |                9.6 |
+| <25         | Managers              |           261 |                9.6 |
+| 25-35       | Medicine staff        |          1683 |                9.4 |
+| 55+         | Drivers               |          1898 |                9.3 |
+| <25         | High skill tech staff |           443 |                9.3 |
+| 25-35       | Private service staff |           787 |                9.3 |
+| 35-45       | Waiters/barmen staff  |           356 |                9.3 |
+| 35-45       | Sales staff           |         10780 |                9.2 |
+| <25         | Private service staff |           120 |                9.2 |
+| 45-55       | Cleaning staff        |          1794 |                8.8 |
+| 35-45       | Secretaries           |           396 |                8.8 |
+| <25         | Accountants           |           286 |                8.7 |
+| 45-55       | Waiters/barmen staff  |           223 |                8.5 |
+| 25-35       | Managers              |          4798 |                8.5 |
+| 45-55       | Laborers              |         14168 |                8.4 |
+| 35-45       |                       |         13917 |                8.2 |
+| 25-35       | IT staff              |           249 |                8   |
+| 55+         | Security staff        |          1466 |                7.8 |
+| 45-55       | Cooking staff         |          1907 |                7.6 |
+| 25-35       | Core staff            |          9507 |                7.5 |
+| 25-35       | HR staff              |           188 |                7.4 |
+| 45-55       | Sales staff           |          7484 |                7.3 |
+| 35-45       | Realty agents         |           265 |                7.2 |
+| 35-45       | Medicine staff        |          3017 |                7.1 |
+| 25-35       | High skill tech staff |          3403 |                7   |
+| 45-55       |                       |         15536 |                6.8 |
+| 25-35       | Secretaries           |           466 |                6.7 |
+| 55+         | Laborers              |          4695 |                6.5 |
+| 45-55       | Private service staff |           615 |                6.3 |
+| 35-45       | High skill tech staff |          3512 |                6.2 |
+| 35-45       | HR staff              |           180 |                6.1 |
+| 25-35       | Accountants           |          2923 |                6.1 |
+| 55+         | Cleaning staff        |          1136 |                5.9 |
+| 35-45       | Core staff            |          8676 |                5.9 |
+| 55+         | Sales staff           |          1546 |                5.8 |
+| 35-45       | Managers              |          7850 |                5.7 |
+| 45-55       | Secretaries           |           252 |                5.6 |
+| 45-55       | High skill tech staff |          2864 |                5.6 |
+| 45-55       | Managers              |          6290 |                5.5 |
+| 55+         |                       |         53359 |                5.1 |
+| 45-55       | Medicine staff        |          2508 |                4.8 |
+| 35-45       | Private service staff |          1004 |                4.8 |
+| 45-55       | Core staff            |          5808 |                4.7 |
+| 55+         | Managers              |          2172 |                4.7 |
+| 45-55       | Realty agents         |           152 |                4.6 |
+| 45-55       | HR staff              |           115 |                4.3 |
+| 45-55       | Accountants           |          2409 |                4.3 |
+| 55+         | Cooking staff         |           478 |                4.2 |
+| 35-45       | Accountants           |          3206 |                4.2 |
+| 55+         | Waiters/barmen staff  |            72 |                4.2 |
+| 55+         | Medicine staff        |          1085 |                4.1 |
+| 55+         | Core staff            |          2054 |                3.7 |
+| 55+         | High skill tech staff |          1158 |                3.6 |
+| 55+         | Private service staff |           126 |                3.2 |
+| 55+         | Accountants           |           989 |                3.1 |
+| 55+         | Realty agents         |            34 |                2.9 |
+| 35-45       | IT staff              |           150 |                2.7 |
+| 55+         | HR staff              |            54 |                1.9 |
+| 55+         | Secretaries           |           108 |                0.9 |
+| 55+         | IT staff              |            30 |                0   |
+| <25         | Realty agents         |            25 |                0   |
+
+</div>
+
+<p><br></p>
+<p><strong>Insights:</strong>
+The results shows default risk across occupations and age groups, where color represents risk level and bubble size reflects the number of applicants. Across all age groups, the majority of applicants are concentrated in laborer (physical worker) occupations, making this segment the largest in the portfolio.</p>
+<p>Default risk among laborers varies noticeably with age. Younger laborers exhibit higher default rates, while risk declines steadily for older groups. The default rate for younger laborers is around 14%, which is more than 35% higher than that observed among older laborers. Other low-skill occupations—such as cleaning staff, cooking staff, and security personnel—also display elevated risk levels, generally in the 17%–20% range.</p>
+<p>Higher-skilled occupations tend to have lower default risk overall. However, younger applicants within these roles still fall into a moderate-risk category, whereas older applicants are consistently low risk. Overall, the results suggest that age is a strong predictor of default risk, especially when considered together with occupation and education level.</p>
+<h4 id="task-4-the-asset-shield-analysis"><font color="#8da2e0"> Task 4. The ”Asset Shield” Analysis</font><a class="headerlink" href="#task-4-the-asset-shield-analysis" title="Permanent link">&para;</a></h4>
+<p><strong>Business Question: Does owning ”Hard Assets” (Car/Real Estate) serve as a safety net for clients who don’t own their home (Renters/Living with Parents)?</strong></p>
+<p><strong>Objective:</strong> To quantify the ”Safety Net” effect of assets. We need to know if owning a car or
+real estate compensates for a ”risky” housing situation (like renting). This helps us approve
+loans for Renters if they demonstrate stability through other assets (like owning a car)</p>
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; </span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="s2">    select </span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="s2">        case</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="s2">            when flag_own_car = &#39;Y&#39; then &#39;Have Car&#39;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="s2">            else &#39;No Car&#39;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="s2">        end as Owned_Car, </span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="s2">        case </span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="s2">            when flag_own_realty = &#39;Y&#39; then &#39;Have Estate&#39;</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="s2">            else &#39;No Estate&#39;</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="s2">        end as Owned_Estate,</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="s2">        count(*) as total_loans,</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="s2">        round(avg(target) * 100, 2) as risk_probability</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="s2">    from applications</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="s2">    group by 1,2</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="s2">    order by 4 desc</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="n">t4</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="n">t4</span>
+</code></pre></div>
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Owned_Car</th>
+<th style="text-align: left;">Owned_Estate</th>
+<th style="text-align: right;">total_loans</th>
+<th style="text-align: right;">risk_probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">No Car</td>
+<td style="text-align: left;">No Estate</td>
+<td style="text-align: right;">61972</td>
+<td style="text-align: right;">8.99</td>
+</tr>
+<tr>
+<td style="text-align: left;">No Car</td>
+<td style="text-align: left;">Have Estate</td>
+<td style="text-align: right;">140952</td>
+<td style="text-align: right;">8.28</td>
+</tr>
+<tr>
+<td style="text-align: left;">Have Car</td>
+<td style="text-align: left;">Have Estate</td>
+<td style="text-align: right;">72360</td>
+<td style="text-align: right;">7.33</td>
+</tr>
+<tr>
+<td style="text-align: left;">Have Car</td>
+<td style="text-align: left;">No Estate</td>
+<td style="text-align: right;">32227</td>
+<td style="text-align: right;">7.04</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insights:</strong>
+The results show no strong relationship between owning a car or real estate and default risk, as the risk rates across groups are very close to each other. Car ownership appears to be weakly associated with lower risk, since applicants who own a car have slightly lower default rates. However, real estate ownership does not show a clear or consistent pattern, as both the highest and lowest risk groups include applicants without real estate. Overall, these variables provide limited predictive power on their own and are unlikely to be strong standalone risk indicators.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,4 +1,4 @@
-# Advanced SQL Analysis with DuckDB
+# Advanced SQL Analysis with DuckDB SQL 
 
 ## <font color="#94d6d5">Introduction  </font>
 This is the first step of the analysis. In this step, I will use DuckDB SQL to do the data ingestion and initial exploration of the data. I will read the data from the csv files and do the initial exploration of the data to understand the structure of the data. The dataset consists of the following tables: 
@@ -269,6 +269,7 @@ without increasing risk.
 
 <details>
 <summary>Click here to see the solution</summary>
+<br>
 
 ```python
 query = """ 
@@ -294,7 +295,7 @@ t2
 ```
 
 </details>
-
+<br>
 
 **Results:**
 
@@ -531,6 +532,7 @@ t4 = con.execute(query).fetchdf()
 t4
 ```
 </details>
+<br>
 
 **Results:**
 
@@ -541,9 +543,616 @@ t4
 | Have Car    | Have Estate    |         72360 |               7.33 |
 | Have Car    | No Estate      |         32227 |               7.04 |
 
+<br>
 
 **Insights:**
 The results show no strong relationship between owning a car or real estate and default risk, as the risk rates across groups are very close to each other. Car ownership appears to be weakly associated with lower risk, since applicants who own a car have slightly lower default rates. However, real estate ownership does not show a clear or consistent pattern, as both the highest and lowest risk groups include applicants without real estate. Overall, these variables provide limited predictive power on their own and are unlikely to be strong standalone risk indicators.
+
+
+#### <font color="#8da2e0"> Task 5. The ”External Score” Validation</font>
+
+**Business Question: Is the external credit score (EXT SOURCE 2) equally predictive for small
+”Consumer Loans” vs. large ”Cash Loans”?**
+
+**Objective:** To validate the reliability of external data sources (EXT SOURCE 2) across dif-
+ferent product types. If the external score is highly predictive for ”Cash Loans” but fails for
+”Revolving Loans,” we need to treat those products differently in our final machine learning
+pipeline.
+
+
+**Solution:** There are 3 external scores in the data and they can be better resembled by the average external score. So, the step is derivation of external source score by taking the null values and division by zero case into consideration. Then, the scores can be binned and for each individual bin group the average risk rate can be obtained.
+
+
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+```python
+query = """
+with Score_Calc AS (
+    SELECT
+        NAME_CONTRACT_TYPE,
+        TARGET,
+        (
+            COALESCE(EXT_SOURCE_1, 0) + 
+            COALESCE(EXT_SOURCE_2, 0) + 
+            COALESCE(EXT_SOURCE_3, 0)
+        ) / NULLIF(
+            (CASE WHEN EXT_SOURCE_1 IS NOT NULL THEN 1 ELSE 0 END +
+             CASE WHEN EXT_SOURCE_2 IS NOT NULL THEN 1 ELSE 0 END +
+             CASE WHEN EXT_SOURCE_3 IS NOT NULL THEN 1 ELSE 0 END), 0
+        ) AS Avg_Ext_Score
+    FROM applications
+)
+SELECT 
+    NAME_CONTRACT_TYPE as contract_type,
+    CASE 
+        WHEN Avg_Ext_Score < 0.2 THEN '0.0 - 0.2'
+        WHEN Avg_Ext_Score < 0.4 THEN '0.2 - 0.4'
+        WHEN Avg_Ext_Score < 0.6 THEN '0.4 - 0.6'
+        WHEN Avg_Ext_Score < 0.8 THEN '0.6 - 0.8'
+        ELSE '0.8 - 1.0'
+    END AS avg_external_score,
+    COUNT(*) AS total_loans,
+    ROUND(AVG(TARGET) * 100, 3) AS risk_rate
+FROM Score_Calc
+where Avg_Ext_Score is not null
+GROUP BY 1, 2
+ORDER BY 
+    risk_rate desc
+"""
+
+t5 = con.execute(query).fetchdf()
+t5
+```
+</details>
+<br>
+
+**Results:**
+
+| contract_type   | avg_external_score   |   total_loans |   risk_rate |
+|:----------------|:---------------------|--------------:|------------:|
+| Cash loans      | 0.0 - 0.2            |          9569 |      29.031 |
+| Revolving loans | 0.0 - 0.2            |           879 |      19.681 |
+| Cash loans      | 0.2 - 0.4            |         53331 |      16.634 |
+| Revolving loans | 0.2 - 0.4            |          5619 |      11.372 |
+| Cash loans      | 0.4 - 0.6            |        129885 |       6.915 |
+| Revolving loans | 0.4 - 0.6            |         13838 |       4.473 |
+| Cash loans      | 0.6 - 0.8            |         84735 |       3.027 |
+| Cash loans      | 0.8 - 1.0            |           560 |       1.964 |
+| Revolving loans | 0.6 - 0.8            |          8846 |       1.956 |
+| Revolving loans | 0.8 - 1.0            |            77 |       0     |
+
+<br>
+
+**Insights:**
+
+The analysis shows a strong negative relationship between external credit scores and default risk, with default probability decreasing monotonically as credit score increases. This pattern indicates that external credit scores are among the most informative predictors in the dataset.
+
+In addition, default risk differs substantially by loan type. Revolving loans exhibit consistently lower default rates compared to cash loans—approximately 50% lower risk at low credit score levels—and converge toward near-zero default risk at the highest score ranges. In contrast, cash loans display significantly higher risk, with default rates of approximately 30% for low external scores (0–0.2) and remaining non-zero even at high score levels (0.8–1.0).
+
+
+
+#### <font color="#8da2e0"> Task 6. The ”Housing Quality” Tier (Feature Engineering) </font>
+
+**Business Question: Does living in a ”High-Quality” building significantly reduce default risk,
+and is the ”Absence of Data” (Missing Housing Info) a risk factor in itself?**
+
+**Objective:** The dataset has 47 columns about the building (ELEVATORS, ENTRANCES,
+APARTMENTS AVG). Using them individually is messy. We want to engineer a proxy for
+”Wealth” based on where they live. If a client lives in a building with an elevator and a large
+apartment, they likely have hidden wealth, even if their reported income is low.
+
+
+**Solution:** There are lots of columns representing the house parameters in median, mode and average. In my opinion, the better option is doing analysis based on the average scores, then comparing the results with the ones obtained by using the median scores. That will guarantee that there is not such a big difference between using either of the scores and it will let us to drop unnecessary columns. So, in the first query, average house metrics are calculated using the housing parameter columns ended with `_AVG` and then they will be grouped as 'low quality', 'mid quality' and 'high quality' segments. For the applicants falling in each segment, average income amount will be derived to investigate whether there are applicants showing low income but living in the high quality houses which may be a strong predictor of default risk.
+
+
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+```python
+query = """
+with housing_feature_averages as (
+    select
+        sk_id_curr,
+        target,
+
+        -- AVERAGE HOUSE METRICS
+        nullif(apartments_avg, 0) as apartments_avg,
+        nullif(basementarea_avg, 0) as basementarea_avg,
+        nullif(commonarea_avg, 0) as commonarea_avg,
+        nullif(elevators_avg, 0) as elevators_avg,
+        nullif(entrances_avg, 0) as entrances_avg,
+        nullif(FLOORSMAX_AVG, 0) as floorsmax_avg, 
+        nullif(FLOORSMIN_AVG, 0) as FLOORSMIN_AVG, 
+        nullif(LANDAREA_AVG, 0) as LANDAREA_AVG, 
+        nullif(LIVINGAPARTMENTS_AVG, 0) as LIVINGAPARTMENTS_AVG , 
+        nullif(NONLIVINGAPARTMENTS_AVG, 0) as NONLIVINGAPARTMENTS_AVG, 
+        nullif(NONLIVINGAREA_AVG, 0) as NONLIVINGAREA_AVG , 
+        coalesce(AMT_INCOME_TOTAL, 0) as total_income
+        from applications        
+),
+
+house_metric_avg as (
+    select 
+        target,
+        round (
+            (
+                apartments_avg + basementarea_avg + commonarea_avg + elevators_avg + 
+                entrances_avg + FLOORSMAX_AVG + FLOORSMIN_AVG + LANDAREA_AVG +LIVINGAPARTMENTS_AVG +
+                NONLIVINGAPARTMENTS_AVG + NONLIVINGAREA_AVG 
+            ) / 
+            (
+                case when apartments_avg is not null then 1 else 0 end + 
+                case when basementarea_avg is not null then 1 else 0 end + 
+                case when commonarea_avg is not null then 1 else 0 end + 
+                case when elevators_avg is not null then 1 else 0 end + 
+                case when entrances_avg is not null then 1 else 0 end + 
+                case when FLOORSMAX_AVG is not null then 1 else 0 end + 
+                case when FLOORSMIN_AVG is not null then 1 else 0 end + 
+                case when LANDAREA_AVG is not null then 1 else 0 end + 
+                case when LIVINGAPARTMENTS_AVG is not null then 1 else 0 end + 
+                case when NONLIVINGAPARTMENTS_AVG is not null then 1 else 0 end + 
+                case when NONLIVINGAREA_AVG is not null then 1 else 0 end             
+        ), 3) as avg_house_metric, 
+        total_income
+    from housing_feature_averages
+)
+select
+        case 
+            when avg_house_metric is null then 'Missing'
+            when avg_house_metric < 0.2 then 'Low Quality House'
+            when avg_house_metric < 0.4 then 'Mid Quality House'
+            else 'High Quality House'
+        end as house_quality,
+        count(*) as total_loans,
+        round(avg(total_income),2) as avg_income,
+        round(avg(target) * 100, 3) as risk_rate
+    from house_metric_avg
+    group by 1
+    order by 
+        risk_rate desc,
+        avg_income desc
+"""
+
+t6 = con.execute(query).fetchdf()
+t6
+```
+
+</details>
+<br>
+
+**Results:**
+
+| house_quality      |   total_loans |   avg_income |   risk_rate |
+|:-------------------|--------------:|-------------:|------------:|
+| Missing            |        293941 |       167546 |       8.167 |
+| High Quality House |           221 |       268364 |       6.335 |
+| Low Quality House  |         10078 |       190013 |       6.033 |
+| Mid Quality House  |          3271 |       209240 |       6.023 |
+
+
+<br>
+
+**Insights:**
+
+Green line in the graph corresponds to the risk rate and the blue line corresponds to the total number of credits taken in the corresponding category. The red bubble sizes define the average annual income of the applicants falling in the group. Based on the visual it is observed that the default risk is highest among applicants with missing housing information, exceeding 8%, and this group also represents the largest share of the portfolio, with approximately 294K applicants.
+
+Applicants reporting mid- or low-quality housing exhibit the lowest default risk, at around 6%, representing roughly a 40% reduction relative to applicants with missing housing information. Interestingly, applicants reporting high-quality housing show slightly higher default risk than the mid- and low-quality groups, despite having substantially higher average annual income.
+
+Overall, these results suggest that missing housing information is associated with elevated default risk, while applicants who explicitly report housing characteristics tend to exhibit more stable repayment behavior.
+
+
+**SOLUTION 2** 
+
+In the second solution, the median values will be used as housing scores.
+
+
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+```python
+query = """
+with housing_feature_averages as (
+    select
+        sk_id_curr,
+        target,
+
+        -- AVERAGE HOUSE METRICS
+        nullif(APARTMENTS_MEDI, 0) as APARTMENTS_MEDI,
+        nullif(BASEMENTAREA_MEDI, 0) as BASEMENTAREA_MEDI,
+        nullif(COMMONAREA_MEDI, 0) as COMMONAREA_MEDI,
+        nullif(ELEVATORS_MEDI, 0) as ELEVATORS_MEDI,
+        nullif(ENTRANCES_MEDI, 0) as ENTRANCES_MEDI,
+        nullif(FLOORSMAX_MEDI, 0) as FLOORSMAX_MEDI, 
+        nullif(FLOORSMIN_MEDI, 0) as FLOORSMIN_MEDI, 
+        nullif(LANDAREA_MEDI, 0) as LANDAREA_MEDI, 
+        nullif(LIVINGAPARTMENTS_MEDI, 0) as LIVINGAPARTMENTS_MEDI , 
+        nullif(LIVINGAREA_MEDI, 0) as LIVINGAREA_MEDI, 
+        nullif(NONLIVINGAPARTMENTS_MEDI, 0) as NONLIVINGAPARTMENTS_MEDI , 
+        nullif(NONLIVINGAREA_MEDI,0) as NONLIVINGAREA_MEDI,
+        coalesce(AMT_INCOME_TOTAL, 0) as total_income
+        from applications        
+),
+
+house_metric_avg as (
+    select 
+        target,
+        round (
+            (
+                apartments_medi + basementarea_medi + commonarea_medi + elevators_medi + 
+                entrances_medi + FLOORSMAX_medi + FLOORSMIN_medi + LANDAREA_medi + LIVINGAPARTMENTS_medi +
+                LIVINGAREA_MEDI + NONLIVINGAPARTMENTS_MEDI + NONLIVINGAREA_MEDI 
+            ) / 
+            (
+                case when APARTMENTS_MEDI is not null then 1 else 0 end + 
+                case when BASEMENTAREA_MEDI is not null then 1 else 0 end + 
+                case when COMMONAREA_MEDI is not null then 1 else 0 end + 
+                case when ELEVATORS_MEDI is not null then 1 else 0 end + 
+                case when entrances_medi is not null then 1 else 0 end + 
+                case when FLOORSMAX_medi is not null then 1 else 0 end + 
+                case when FLOORSMIN_medi is not null then 1 else 0 end + 
+                case when LANDAREA_medi is not null then 1 else 0 end + 
+                case when LIVINGAPARTMENTS_medi is not null then 1 else 0 end + 
+                case when LIVINGAREA_MEDI is not null then 1 else 0 end + 
+                case when NONLIVINGAPARTMENTS_MEDI is not null then 1 else 0 end + 
+                case when NONLIVINGAREA_MEDI is not null then 1 else 0 end             
+        ), 3) as med_house_metric, 
+        total_income
+    from housing_feature_averages
+)
+select
+        case 
+            when med_house_metric is null then 'Missing'
+            when med_house_metric < 0.2 then 'Low Quality House'
+            when med_house_metric < 0.4 then 'Mid Quality House'
+            else 'High Quality House'
+        end as house_quality,
+        count(*) as total_loans,
+        round(avg(total_income),2) as avg_income,
+        round(avg(target) * 100, 3) as risk_rate
+    from house_metric_avg
+    group by 1
+    order by 
+        risk_rate desc,
+        avg_income desc
+"""
+
+t6_2 = con.execute(query).fetchdf()
+t6_2
+```
+
+</details>
+
+**Results:**
+
+<br>
+
+| house_quality      |   total_loans |   avg_income |   risk_rate |
+|:-------------------|--------------:|-------------:|------------:|
+| Missing            |        295182 |       167697 |       8.157 |
+| High Quality House |           275 |       262860 |       6.182 |
+| Low Quality House  |          8736 |       188778 |       6.136 |
+| Mid Quality House  |          3318 |       206298 |       5.847 |
+
+<br>
+
+**Insights:**
+
+The results are almost identical with the ones obtained by using average house metrics. Therefore, there is no need such number of columns as this will increase the model size and complexity without giving any beneficial information. These housing parameters can be considered as highly multicollinear features as if average increasing the mid also will increase. **Hence, the best option will be to drop all scores except the average parameters which in my opinion is better score to evaluate.**
+
+
+#### <font color="#8da2e0"> Task 7. The ”Commuter Stability” Mismatch </font>
+
+**Business Question: Do clients with a ”Commuter Mismatch” (Living in a different city than
+where they work or are registered) have significantly higher default risk, and should we treat them as a separate segment in our risk models?**
+
+**Objective:** To detect ”Flight Risk” or instability. We have flags for whether a client lives
+in a different city than where they work or are registered (REG CITY NOT LIVE CITY,
+REG CITY NOT WORK CITY). A mismatch suggests a transient lifestyle or a long commute,
+which correlates with job turnover or fraud.
+
+
+
+**Solution:** The solution is quite straightforward. The applicants will be grouped based on the flags indicating whether they live in a different city than where they work or are registered and for each group the default risk will be calculated.
+
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+```python
+query = """
+
+with stats as (
+select
+    case
+        when (
+            reg_city_not_live_city + 
+            reg_city_not_work_city + 
+            live_city_not_work_city
+        ) = 0 then 'stable_resident'
+        when (
+            reg_city_not_live_city + 
+            reg_city_not_work_city + 
+            live_city_not_work_city
+        ) = 1 then 'moderate_instability'
+        else 'instable_applicant'
+    end as risk_segment,
+    count(*) as client_count,
+    round(avg(target) * 100, 2) as risk_rate
+from applications
+group by 
+    1
+)
+
+select 
+    risk_segment, 
+    client_count,
+    round(client_count / (select count(*) from applications) * 100,2) as percent_of_total,
+    risk_rate
+from stats
+order by 4 desc
+"""
+
+t7 = con.execute(query).fetchdf()
+t7
+```
+
+</details>
+
+| risk_segment         |   client_count |   percent_of_total |   risk_rate |
+|:---------------------|---------------:|-------------------:|------------:|
+| instable_applicant   |          72192 |              23.48 |       10.61 |
+| moderate_instability |           1925 |               0.63 |        8.68 |
+| stable_resident      |         233394 |              75.9  |        7.28 |
+
+<br>
+
+**Insights:**
+
+Applicants are classified as unstable if they satisfy at least two of the following conditions: residing in a city different from the one reported, working in a city different from the one reported, or living in a city in which they do not work. Moderately stable applicants satisfy exactly one of these conditions, while stable residents report consistent living and working locations and do not meet any of the listed criteria.
+
+The resulting table indicates that unstable applicants exhibit the highest default risk, at approximately 10.61%, whereas stable residents show the lowest default risk, around 7.3%. Given that nearly 75% of customers are classified as stable, the lower risk observed in this large segment suggests that residential and employment stability is associated with stronger repayment behavior. From a credit risk perspective, customer stability may therefore be considered a relevant factor when assessing default likelihood.
+
+
+#### <font color="#8da2e0"> Task 8. The ”Bad Influence” Ratio (Social Circle) </font>
+
+**Business Question: What is the tipping point where a client’s social circle becomes ”Toxic”?
+(i.e., If ¿10% of your network defaults, do you follow them?)**
+
+**Objective** To refine the Social Circle analysis. Merely knowing people with loans (OBS 30)
+isn’t bad. Knowing people who default (DEF 30) is bad. We need the Ratio of bad apples in
+their network.
+
+
+
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+```python
+query = """ 
+with tab1 as(
+    select
+        sk_id_curr,
+        target,
+        OBS_60_CNT_SOCIAL_CIRCLE,
+        DEF_60_CNT_SOCIAL_CIRCLE,
+        case
+            when coalesce(OBS_60_CNT_SOCIAL_CIRCLE, 0) = 0  then 0
+            else cast(cast(DEF_60_CNT_SOCIAL_CIRCLE as double) / OBS_60_CNT_SOCIAL_CIRCLE as double)
+        end as bad_influence_ratio
+    
+    from applications
+),
+
+tab2 as (
+    select
+        target,
+        bad_influence_ratio,
+        case 
+            when OBS_60_CNT_SOCIAL_CIRCLE = 0 or OBS_60_CNT_SOCIAL_CIRCLE is null then 'no social data'
+            when  bad_influence_ratio = 0  then 'clean circle'
+            when bad_influence_ratio between 0 and 0.2 then 'low_toxic_circle'
+            else 'high_toxic_circle'
+        end as social_circle_segments
+    from tab1
+)
+select
+    social_circle_segments,
+    round(avg(bad_influence_ratio),2) as avg_bad_influence_ratio,
+    count(*) as total_loans,
+    round(count(*) / (select count(*) from applications),3)*100 as percent_of_total,
+    round(avg(target)*100, 3) as risk_rate
+from tab2
+group by 1
+order by 5 desc
+
+"""
+
+t8 = con.execute(query).fetchdf()
+t8
+```
+</details>
+<br>
+
+**Results:**
+
+| social_circle_segments   |   avg_bad_influence_ratio |   total_loans |   percent_of_total |   risk_rate |
+|:-------------------------|--------------------------:|--------------:|-------------------:|------------:|
+| high_toxic_circle        |                      0.67 |         22281 |                7.2 |      10.902 |
+| low_toxic_circle         |                      0.16 |          3488 |                1.1 |      10.493 |
+| no social data           |                      0    |        165687 |               53.9 |       7.881 |
+| clean circle             |                      0    |        116055 |               37.7 |       7.732 |
+
+<br>
+
+**Insights:**
+
+
+The analysis shows that the majority of applicants either have no recorded social data or belong to a clean social circle, and these groups exhibit the lowest default risk among all segments.
+
+In contrast, applicants associated with highly toxic social circles show substantially higher default risk, reaching approximately 11%, and account for around 7.2% of the total applicant population. Applicants with low toxic social circles represent a much smaller segment—about 1% of the data (approximately 3,500 applicants)—yet they also display elevated default risk at around 10.5%, closely aligning with the high-toxicity group.
+
+Overall, the results suggest that social circle toxicity is positively associated with default risk, indicating that this variable may serve as a useful predictor in default risk modeling.
+
+
+#### <font color="#8da2e0"> Task 9: The ”Impulse Loan” Timing Analysis </font>
+
+**Business Question: Do applications submitted during ”Off-Peak” hours (Late Night / Weekends) carry higher default risk?**
+
+**Objective:** Behavioral psychology. People who apply for loans at 10 AM on a Tuesday are
+usually treating it as a business transaction. People who apply at 3 AM on a Sunday might be
+desperate or impulsive.
+
+
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+```python
+query  =  """
+
+with general_time_data as (
+    select
+        sk_id_curr,
+        target,
+        WEEKDAY_APPR_PROCESS_START,
+        case when WEEKDAY_APPR_PROCESS_START = 'SUNDAY' or WEEKDAY_APPR_PROCESS_START = 'SATURDAY'
+                then 'weekend'
+            else 'weekday'
+        end as appr_day,
+     
+        HOUR_APPR_PROCESS_START,
+        case 
+            when HOUR_APPR_PROCESS_START >= 20 or HOUR_APPR_PROCESS_START <= 8 then 'late night / too early'
+            else 'standard time'
+        end as appr_time
+    from applications 
+    where WEEKDAY_APPR_PROCESS_START is not null and HOUR_APPR_PROCESS_START is not null
+)
+select
+    appr_day,
+    appr_time,
+    count(*) as total_loans, 
+    round(count(*) / (select count(*) from applications), 3) * 100 as percent_of_total,
+    round(avg(target),3) as risk_rate
+from general_time_data
+group by 1,2
+order by risk_rate desc
+"""
+
+t9 = con.execute(query).fetchdf()
+t9
+```
+
+</details>
+<br>
+
+**Results:**
+
+| appr_day   | appr_time              |   total_loans |   percent_of_total |   risk_rate |
+|:-----------|:-----------------------|--------------:|-------------------:|------------:|
+| weekend    | late night / too early |          7010 |                2.3 |       0.096 |
+| weekday    | late night / too early |         32271 |               10.5 |       0.096 |
+| weekday    | standard time          |        225207 |               73.2 |       0.079 |
+| weekend    | standard time          |         43023 |               14   |       0.076 |
+
+
+<br>
+
+**Insights:**
+
+The tabular results indicates no relationship between between approving the loan weekend or weekday ; midnight or standard working hours. Hence, this can not be used as a good predictor in the prediction model.
+
+
+#### <font color="#8da2e0"> Task 10. The ”Document Transparency” Score </font>
+
+**Business: Question Does the total number of documents provided correlate with repayment? (Are ”Over-documenters” safer?)**
+
+**Objective:** To measure client ”Effort.” The dataset has 20 flags (FLAG DOCUMENT 2 to
+FLAG DOCUMENT 21). Most are 0. We hypothesize that clients who provide more docu-
+mentation than required (High transparency) are safer.
+
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+```python
+
+query = """
+with tab1 as (
+    select 
+        sk_id_curr,
+        target,
+        coalesce(FLAG_DOCUMENT_2,0) + coalesce(FLAG_DOCUMENT_3,0) + 
+        coalesce(FLAG_DOCUMENT_4,0) + coalesce(FLAG_DOCUMENT_5,0) + coalesce(FLAG_DOCUMENT_6,0) +
+        coalesce(FLAG_DOCUMENT_7,0) + coalesce(FLAG_DOCUMENT_8,0) + coalesce(FLAG_DOCUMENT_9,0) +
+        coalesce(FLAG_DOCUMENT_10,0) + coalesce(FLAG_DOCUMENT_11,0) + coalesce(FLAG_DOCUMENT_12,0) +
+        coalesce(FLAG_DOCUMENT_13,0) + coalesce(FLAG_DOCUMENT_14,0) + coalesce(FLAG_DOCUMENT_15,0) +
+        coalesce(FLAG_DOCUMENT_16,0) + coalesce(FLAG_DOCUMENT_17,0) + coalesce(FLAG_DOCUMENT_18,0) +
+        coalesce(FLAG_DOCUMENT_19,0) + coalesce(FLAG_DOCUMENT_20,0) + coalesce(FLAG_DOCUMENT_21,0) as total_docs_provided
+    from applications
+)
+select 
+    total_docs_provided,
+    count(*) as total_loans,
+    round(count(*)/(select count(*) from applications) * 100,2) as percent_of_total,
+    round(avg(target),2) as risk_rate
+
+    from tab1
+    group by 1
+    order by risk_rate desc
+"""
+
+t10 = con.execute(query).fetchdf()
+t10
+```
+
+</details>
+<br>
+
+**Results:**
+
+|   total_docs_provided |   total_loans |   percent_of_total |   risk_rate |
+|----------------------:|--------------:|-------------------:|------------:|
+|                     4 |             1 |               0    |        1    |
+|                     3 |           163 |               0.05 |        0.1  |
+|                     1 |        270056 |              87.82 |        0.08 |
+|                     0 |         29549 |               9.61 |        0.06 |
+|                     2 |          7742 |               2.52 |        0.05 |
+
+
+<br>
+
+**Insights:**
+
+According to the results, there is not a clear connection between the risk of being default and the number of documents provided. Moreover, most of the entries for these columns are missing. Hence the best option will be to drop all of these columns as they do not reveal any significant predictive information.
+
+
+
+## <font color="#94d6d5"> End of Section 1 </font>
+
+*In this section, we have completed the followings:*
+
+1. **Data Import and Setup with DuckDB:** We created the DuckDB connection, created a database and imported all the csv files into the database as tables. 
+2. **Data Export as Parquet Files:** We exported the tables as parquet files to be used in the further sections if the database or connection fails.
+3. **Data Analysis with SQL:** We have completed 10 different tasks on the main table - *Applications* - to understand the data and get insights about the default risk across different segments. 
+
+*What will be covered in the next sections:*
+
+1. **Data Analysis with SQL Part 2:** We will do analysis using SQL on all remaining tables to clear out the necessary of features and get insights about the data.
+2. **Feature Engineering with SQL:** We will do feature engineering using SQL to create new features that can be used in the model. Also, we will drop unnecessary features that we have identified in the previous sections. At the end of this section, we will have a clean and ready to use dataset for the model building phase.
+3. **Data Wrangling with Python:** We will do data wrangling using Python to handle missing values, outliers and do encoding for the categorical variables using the newly created dataset in the previous section. At the end of this section, we will have a clean and ready to use dataset for the model building phase.
+4. **Model Building:** We will build a machine learning model to predict the default risk using the clean dataset we have created in the previous sections. We will use different algorithms and compare their performance to select the best model for our use case.
+ 
+
+
+
+ 
+
 
 
 

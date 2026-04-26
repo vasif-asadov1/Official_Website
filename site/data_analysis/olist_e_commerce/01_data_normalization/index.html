@@ -1,0 +1,2556 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+        <link rel="prev" href="../00_problem_description/">
+      
+      
+        <link rel="next" href="../02_business_questions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Data Normalization - Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-ingestion-and-cleaning" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Normalization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-cleaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Cleaning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Cleaning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compact-readable-table-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compact Readable Table Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-type-and-length-adjustments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Type and Length Adjustments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#star-schema-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Star Schema Modelling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Star Schema Modelling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#foreign-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foreign Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-assignment-for-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index Assignment for Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicit-date-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Date Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#star-schema-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Star Schema Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Database
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Create Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-cleaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Cleaning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Cleaning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compact-readable-table-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compact Readable Table Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-type-and-length-adjustments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Type and Length Adjustments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#star-schema-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Star Schema Modelling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Star Schema Modelling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primary-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primary Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#foreign-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Foreign Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#index-assignment-for-performance-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index Assignment for Performance Optimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explicit-date-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Explicit Date Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#star-schema-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Star Schema Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="data-ingestion-and-cleaning">Data Ingestion and Cleaning<a class="headerlink" href="#data-ingestion-and-cleaning" title="Permanent link">&para;</a></h1>
+<h2 id="data-ingestion"><font color="#4f46e5"> Data Ingestion </font><a class="headerlink" href="#data-ingestion" title="Permanent link">&para;</a></h2>
+<p>The first step in our analysis process is to import the data into our analysis environment. We will be using SQL Server as our database management system, and we will import the data from the provided CSV files into a new database called <code>Olist-E-Commerce</code>. We can create the database and import data both using SQL scripts and graphical user interface (GUI) tools. I am using DBeaver as my SQL client, which provides a user-friendly interface for managing databases and importing data. For simpllicity, I will use Dbeaver GUI to create database and import the csv files into the database. </p>
+<h2 id="create-database"><font color="#4f46e5"> Create Database </font><a class="headerlink" href="#create-database" title="Permanent link">&para;</a></h2>
+<ul>
+<li>After connecting to the SQL Server instance using DBeaver, right click on the 'master' database and select 'Create New Database'. Name the database <code>Olist-E-Commerce</code> and click 'OK' to create the database. </li>
+<li>Click to <em>Refresh</em> the database list to see the newly created database. </li>
+</ul>
+<h3 id="import-data"><font color="#4f46e5"> Import Data </font><a class="headerlink" href="#import-data" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Right click on the <code>Olist-E-Commerce</code> database and select 'Import Data'.</li>
+<li>In the import wizard, select 'CSV' as the data source and click 'Next'.</li>
+<li>Click 'Browse' to select the CSV file you want to import. Select the first CSV file (e.g., <code>olist_customers_dataset.csv</code>) and click 'Next'.</li>
+<li>In the next step, you can review the data and make any necessary adjustments to the import settings (e.g., delimiter, text qualifier, etc.). Click 'Next' to proceed.</li>
+<li>In the next step, you can choose the target table and specify the mapping between the CSV columns and the database columns. You can also choose to create a new table or append the data to an existing table. Click 'Next' to proceed.</li>
+<li>In the final step, review the import summary and click 'Finish' to start the import process. Repeat these steps for each of the CSV files provided in the dataset. </li>
+</ul>
+<p>!!! note 
+When you import the <code>olist_order_reviews_dataset.csv</code> you may encounter with error since that table have <code>comment message</code> column that contains text data with special characters. To handle this issue, the better way is to change the data types of all columns to either <code>text</code> or <code>varchar(max)</code> before importing the data. This will allow you to import the data without any issues related to special characters in the text data. We can further change the data types of the columns to more appropriate types after the data has been imported into the database.</p>
+<h2 id="data-cleaning"><font color="#4f46e5"> Data Cleaning </font><a class="headerlink" href="#data-cleaning" title="Permanent link">&para;</a></h2>
+<h3 id="compact-readable-table-names"><font color="#4f46e5"> Compact Readable Table Names </font><a class="headerlink" href="#compact-readable-table-names" title="Permanent link">&para;</a></h3>
+<p>Initial data cleaning steps consist of checking data types, handling each feature for missing values and dropping unnecessary columns. This step will prepare the data for building clean star schema and conducting analysis. </p>
+<p>Firstly, we should change the names of tables to more compact and explanatory names. So, I did the following changes to the table names:</p>
+<ol>
+<li><code>olist_customers_dataset</code> to <code>customers</code></li>
+<li><code>olist_geolocation_dataset</code> to <code>geolocation</code></li>
+<li><code>olist_order_items_dataset</code> to <code>order_items</code></li>
+<li><code>olist_order_payments_dataset</code> to <code>order_payments</code></li>
+<li><code>olist_order_reviews_dataset</code> to <code>order_reviews</code></li>
+<li><code>olist_orders_dataset</code> to <code>orders</code></li>
+<li><code>olist_products_dataset</code> to <code>products</code></li>
+<li><code>olist_sellers_dataset</code> to <code>sellers</code></li>
+<li><code>product_category_name_translation</code> </li>
+</ol>
+<p>Table name changes can be done either by using SQL script or GUI method. I used GUI method in DBeaver but by using the following SQL script, you can change the table names easily:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;olist_customers_dataset&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;customers&#39;</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;olist_geolocation_dataset&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;geolocation&#39;</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;olist_order_items_dataset&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;order_items&#39;</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;olist_order_payments_dataset&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;order_payments&#39;</span><span class="p">;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;olist_order_reviews_dataset&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;order_reviews&#39;</span><span class="p">;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;olist_orders_dataset&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;orders&#39;</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;olist_products_dataset&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;products&#39;</span><span class="p">;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;olist_sellers_dataset&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;sellers&#39;</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="data-type-and-length-adjustments"><font color="#4f46e5"> Data Type and Length Adjustments </font><a class="headerlink" href="#data-type-and-length-adjustments" title="Permanent link">&para;</a></h3>
+<p>During the import process, some columns may have been assigned incorrect data types or lengths. We should check all the tables and columns to ensure that they have the appropriate data types and lengths for the data they contain. </p>
+<p><strong>Customers Table:</strong>  This table should have the following data types and lengths for each column:</p>
+<ul>
+<li><code>customer_id</code>: <code>nvarchar(100)</code> - This column contains identifiers for customers but it is not unique. For each transaction, all customers are assigned different <code>customer_id</code> values, even if they are the same customer. Therefore, same customer may have multiple <strong>customer_id</strong> values. A length of 100 characters should be sufficient to accommodate all customer IDs. This column will be used only to build relationships between the  <strong>orders</strong> table.</li>
+<li><code>customer_unique_id</code>: <code>nvarchar(100)</code> - This column contains unique identifiers for each customer. Unlike the <strong>customer_id</strong> column, the <strong>customer_unique_id</strong> column contains unique values for each customer, which can be used to identify customers across different transactions. So, this column will be used to obtain retention and customer lifetime value metrics. A length of 100 characters should be sufficient to accommodate all unique customer IDs.</li>
+<li><code>customer_zip_code_prefix</code>: <code>int</code> - All zip codes in the dataset are integer values, therefore, data type must be <strong>int</strong>. This column contains the zip code prefix for each customer and will be used to establish relationships with the <strong>geolocation</strong> table.</li>
+<li><code>customer_city</code>: <code>nvarchar(100)</code> - This column contains the city where each customer is located. </li>
+<li><code>customer_state</code>: <code>nvarchar(100)</code> - This column contains the state where each customer is located. </li>
+</ul>
+<p><strong>Geolocation Table:</strong> This table should have the following data types and lengths for each column:</p>
+<ul>
+<li><code>geolocation_zip_code_prefix</code>: <code>int</code> - This column contains the zip code prefix for each geolocation entry. All zip codes in the dataset are integer values, therefore, data type must be <strong>int</strong>.</li>
+<li><code>geolocation_lat</code>: <code>float</code> - This column contains the latitude for each geolocation entry. </li>
+<li><code>geolocation_lng</code>: <code>float</code> - This column contains the longitude for each geolocation entry.</li>
+<li><code>geolocation_city</code>: <code>nvarchar(100)</code> - This column contains the city for each geolocation entry. </li>
+<li><code>geolocation_state</code>: <code>nvarchar(100)</code> - This column contains the state for each geolocation entry. </li>
+</ul>
+<p><strong>Orders Table:</strong> This table should have the following data types and lengths for each column:</p>
+<ul>
+<li><code>order_id</code>: <code>nvarchar(100)</code> - This column contains the unique identifier for each order.</li>
+<li><code>customer_id</code>: <code>nvarchar(100)</code> - This column contains the identifier for the customer who placed the order. This is different for all transactions, even for the same customer. </li>
+<li><code>order_status</code>: <code>nvarchar(100)</code> - This column contains the status of the order (e.g., delivered, shipped, etc.). </li>
+<li><code>order_purchase_timestamp</code>: <code>datetime</code> - This column contains the timestamp when the order was purchased. </li>
+<li><code>order_approved_at</code>: <code>datetime</code> - This column contains the timestamp when the order was approved. </li>
+<li><code>order_delivered_carrier_date</code>: <code>datetime</code> - This column contains the timestamp when the order was delivered by the carrier. </li>
+<li><code>order_delivered_customer_date</code>: <code>datetime</code> - This column contains the timestamp when the order was delivered to the customer. </li>
+<li><code>order_estimated_delivery_date</code>: <code>datetime</code> - This column contains the estimated delivery date for the order. </li>
+</ul>
+<p><strong>Order Items Table:</strong> This table should have the following data types and lengths for each column:</p>
+<ul>
+<li><code>order_id</code>: <code>nvarchar(100)</code> - This column contains the identifier for the order to which the item belongs.</li>
+<li><code>order_item_id</code>: <code>int</code> - This column contains the identifier for each item within an order. </li>
+<li><code>product_id</code>: <code>nvarchar(100)</code> - This column contains the identifier for the product being ordered.</li>
+<li><code>seller_id</code>: <code>nvarchar(100)</code> - This column contains the identifier for the seller of the product. </li>
+<li><code>shipping_limit_date</code>: <code>datetime</code> - This column contains the timestamp for the shipping limit date of the item. </li>
+<li><code>price</code>: <code>float</code> - This column contains the price of the item..</li>
+<li><code>freight_value</code>: <code>float</code> - This column contains the freight value for the item. </li>
+</ul>
+<p><strong>Order Payments Table:</strong> This table should have the following data types and lengths for each column:</p>
+<ul>
+<li><code>order_id</code>: <code>nvarchar(100)</code> - This column contains the identifier for the order to which the payment belongs. </li>
+<li><code>payment_sequential</code>: <code>int</code> - This column contains the sequential number of the payment for the order. </li>
+<li><code>payment_type</code>: <code>nvarchar(100)</code> - This column contains the type of payment (e.g., credit card, boleto, etc.). A length of 100 characters should be sufficient to accommodate all payment type values.</li>
+<li><code>payment_installments</code>: <code>int</code> - This column contains the number of installments for the payment. </li>
+<li><code>payment_value</code>: <code>float</code> - This column contains the value of the payment.     </li>
+</ul>
+<p><strong>Order Reviews Table:</strong> This table should have the following data types and lengths for each column:</p>
+<ul>
+<li><code>review_id</code>: <code>nvarchar(100)</code> - This column contains the unique identifier for each review. </li>
+<li><code>order_id</code>: <code>nvarchar(100)</code> - This column contains the identifier for the order to which the review belongs. </li>
+<li><code>review_score</code>: <code>int</code> - This column contains the score given in the review (e.g., 1 to 5).</li>
+<li><code>review_creation_date</code>: <code>datetime</code> - This column contains the timestamp for when the review was created. </li>
+<li><code>review_answer_timestamp</code>: <code>datetime</code> - This column contains the timestamp for when the review was answered. </li>
+</ul>
+<p><strong>Products Table:</strong> This table should have the following data types and lengths for each column:</p>
+<ul>
+<li><code>product_id</code>: <code>nvarchar(100)</code> - This column contains the unique identifier for each product. </li>
+<li><code>product_category_name</code>: <code>nvarchar(100)</code> - This column contains the category name for each product. </li>
+<li><code>product_name_length</code>: <code>int</code> - This column contains the length of the product name. </li>
+<li><code>product_description_length</code>: <code>int</code> - This column contains the length of the product description. </li>
+<li><code>product_photos_qty</code>: <code>int</code> - This column contains the quantity of photos for the product. </li>
+<li><code>product_weight_g</code>: <code>float</code> - This column contains the weight of the product in grams. </li>
+<li><code>product_length_cm</code>: <code>float</code> - This column contains the length of the product in centimeters. </li>
+<li><code>product_height_cm</code>: <code>float</code> - This column contains the height of the product in centimeters. </li>
+<li><code>product_width_cm</code>: <code>float</code> - This column contains the width of the product in centimeters. </li>
+</ul>
+<p><strong>Sellers Table:</strong> This table should have the following data types and lengths for each column:</p>
+<ul>
+<li><code>seller_id</code>: <code>nvarchar(100)</code> - This column contains the unique identifier for each seller. </li>
+<li><code>seller_zip_code_prefix</code>: <code>nvarchar(20)</code> - This column contains the zip code prefix for each seller. </li>
+<li><code>seller_city</code>: <code>nvarchar(100)</code> - This column contains the city where each seller is located. </li>
+<li><code>seller_state</code>: <code>nvarchar(100)</code> - This column contains the state where each seller is located. </li>
+</ul>
+<p>*<em>Product Category Name Translation Table:</em> This table should have the following data types and lengths for each column:
+- <code>product_category_name</code>: <code>nvarchar(200)</code> - This column contains the category name for each product in Portuguese. 
+- <code>product_category_name_english</code>: <code>nvarchar(200)</code> - This column contains the category name for each product in English. </p>
+<p>All of these conversions can be done using the following SQL script: </p>
+<details>
+<summary>SQL Script </summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">customer_unique_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">customer_zip_code_prefix</span><span class="w">  </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">customer_city</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">customer_state</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">-- GEOLOCATION TABLE DATA TYPES</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">geolocation</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">geolocation_zip_code_prefix</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">geolocation</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">geolocation_lat</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">geolocation</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">geolocation_lng</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">geolocation</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">geolocation_city</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">geolocation</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">geolocation_state</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1">-- ORDERS TABLE DATA TYPES</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">customer_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_status</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_purchase_timestamp</span><span class="w"> </span><span class="n">datetime</span><span class="p">;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_approved_at</span><span class="w"> </span><span class="n">datetime</span><span class="p">;</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_delivered_carrier_date</span><span class="w"> </span><span class="n">datetime</span><span class="p">;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_delivered_customer_date</span><span class="w"> </span><span class="n">datetime</span><span class="p">;</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_estimated_delivery_date</span><span class="w"> </span><span class="n">datetime</span><span class="p">;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="c1">-- ORDER ITEMS TABLE DATA TYPES</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_item_id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">seller_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">shipping_limit_date</span><span class="w"> </span><span class="n">datetime</span><span class="p">;</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">price</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">freight_value</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="c1">-- PAYMENTS TABLE DATA TYPES</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">payments</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">payments</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">payment_sequential</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">payments</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">payment_type</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">payments</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">payment_installments</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">payments</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">payment_value</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="c1">-- PRODUCTS TABLE DATA TYPES</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_category_name</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_name_lenght</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_description_lenght</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_photos_qty</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_weight_g</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_length_cm</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_height_cm</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">product_width_cm</span><span class="w"> </span><span class="nb">float</span><span class="p">;</span>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="c1">-- SELLERS TABLE DATA TYPES</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">sellers</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">seller_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">sellers</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">seller_zip_code_prefix</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">sellers</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">seller_city</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">sellers</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">seller_state</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">    </span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a><span class="c1">-- ORDER REVIEWS TABLE DATA TYPES</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">review_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">order_id</span><span class="w"> </span><span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">review_score</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">review_comment_title</span><span class="w"> </span><span class="nb">text</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">review_comment_message</span><span class="w"> </span><span class="nb">text</span><span class="p">;</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">review_creation_date</span><span class="w"> </span><span class="n">datetime</span><span class="p">;</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">review_answer_timestamp</span><span class="w"> </span><span class="n">datetime</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<h2 id="star-schema-modelling"><font color="#4f46e5"> Star Schema Modelling </font><a class="headerlink" href="#star-schema-modelling" title="Permanent link">&para;</a></h2>
+<h3 id="primary-keys"><font color="#4f46e5"> Primary Keys </font><a class="headerlink" href="#primary-keys" title="Permanent link">&para;</a></h3>
+<p>Before building the star schema, we should also identify the primary keys for each table. Primary keys are unique identifiers for each record in a table and are essential for establishing relationships between tables in a star schema.</p>
+<p>We can identify the primary keys for each table as follows:</p>
+<ol>
+<li><strong>Customers Table:</strong> - <code>customer_id</code>.</li>
+<li><strong>Geolocation Table:</strong> - no unique identifier for geolocation entries, so we will not have a primary key for this table.</li>
+<li><strong>Orders Table:</strong> - <code>order_id</code>.</li>
+<li><strong>Order Items Table:</strong> - composite primary key consisting of <code>order_id</code> and <code>order_item_id</code>.</li>
+<li><strong>Order Payments Table:</strong> - composite primary key consisting of <code>order_id</code> and <code>payment_sequential</code>.</li>
+<li><strong>Order Reviews Table:</strong> -  composite primary key consisting of <code>review_id</code> and <code>order_id</code>. Because there can be multiple reviews for the same order, we will use a composite primary key to ensure that each review is uniquely identified by both the <code>review_id</code> and the <code>order_id</code>.</li>
+<li><strong>Products Table:</strong> - <code>product_id</code>.</li>
+<li><strong>Sellers Table:</strong> - <code>seller_id</code>. </li>
+</ol>
+<p>We can assign the primary keys to the tables using the following SQL script:</p>
+<details>
+<summary>SQL Script</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- customers table</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">customers</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">PK_Customers</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">);</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">-- orders table</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">PK_Orders</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">);</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">-- order_items table</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">PK_Order_Items</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">order_item_id</span><span class="p">);</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">-- order_reviews table</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">PK_Order_Reviews</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">review_id</span><span class="p">);</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1">-- payments table</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">payments</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">PK_Payments</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">,</span><span class="w"> </span><span class="n">payment_sequential</span><span class="p">);</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1">-- products table</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">products</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">PK_Products</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">product_id</span><span class="p">);</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1">-- sellers table </span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">sellers</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">PK_Seller</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">seller_id</span><span class="p">);</span>
+</code></pre></div>
+
+</details>
+
+<h3 id="foreign-keys"><font color="#4f46e5"> Foreign Keys </font><a class="headerlink" href="#foreign-keys" title="Permanent link">&para;</a></h3>
+<p>After identifying the primary keys for each table, we can establish relationships between the tables by creating foreign key constraints. Foreign keys are used to link records in one table to records in another table based on the primary key and foreign key relationships.</p>
+<p>We can identify the foreign key relationships between the tables as follows:</p>
+<ol>
+<li><strong>Customers Table:</strong> This is dimension table and does not have any foreign key relationships with other tables.</li>
+<li><strong>Geolocation Table:</strong> This is also dimension table and does not have foreign key relationships with other tables.</li>
+<li><strong>Orders Table:</strong> This is the fact table and has the following foreign key relationships:<ul>
+<li><code>customer_id</code> is a foreign key that references <em>Customers</em> table. </li>
+</ul>
+</li>
+<li><strong>Order Items Table:</strong> This is a fact table and has the following foreign key relationships:<ul>
+<li><code>order_id</code> is a foreign key that references <em>Orders</em> table.</li>
+<li><code>product_id</code> is a foreign key that references <em>Products</em> table.</li>
+<li><code>seller_id</code> is a foreign key that references <em>Sellers</em> table.</li>
+</ul>
+</li>
+<li><strong>Order Payments Table:</strong> This is a fact table and has the following foreign key relationships:<ul>
+<li><code>order_id</code> is a foreign key that references <em>Orders</em> table.</li>
+</ul>
+</li>
+<li><strong>Order Reviews Table:</strong> This is a fact table and has the following foreign key relationships:<ul>
+<li><code>order_id</code> is a foreign key that references <em>Orders</em> table.</li>
+</ul>
+</li>
+<li><strong>Products Table:</strong> This is a dimension table and does not have any foreign key relationships with other tables.</li>
+<li><strong>Sellers Table:</strong> This is a dimension table and does not have any foreign key relationships with other tables.</li>
+</ol>
+<p>We can create the foreign key constraints using the following SQL script:</p>
+<details>
+<summary>SQL Script</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- orders table foreign key constraint</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Orders_Customers</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">customer_id</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">customers</span><span class="p">(</span><span class="n">customer_id</span><span class="p">);</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">-- order_items table foreign key constraints</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Order_Items_Orders</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span><span class="n">order_id</span><span class="p">);</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Order_Items_Products</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">product_id</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">products</span><span class="p">(</span><span class="n">product_id</span><span class="p">);</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Order_Items_Sellers</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">seller_id</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">sellers</span><span class="p">(</span><span class="n">seller_id</span><span class="p">);</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1">-- order_payments table foreign key constraint</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">payments</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Payments_Orders</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span><span class="n">order_id</span><span class="p">);</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">-- order_reviews table foreign key constraint</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Order_Reviews_Orders</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span><span class="n">order_id</span><span class="p">);</span>
+</code></pre></div>
+
+</details>
+
+<p>After creating the primary and foreign key constraints, to ensure that the relationships between the tables are properly established, we can use the following SQL script to check the foreign key constraints:</p>
+<details>
+<summary>SQL Script</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">select</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">fk</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">foreign_key_name</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">object_name</span><span class="p">(</span><span class="n">fk</span><span class="p">.</span><span class="n">parent_object_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">child_table</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">c1</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">child_column</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">object_name</span><span class="p">(</span><span class="n">fk</span><span class="p">.</span><span class="n">referenced_object_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">parent_table</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">c2</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">parent_column</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">from</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">foreign_keys</span><span class="w"> </span><span class="n">fk</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">join</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">foreign_key_columns</span><span class="w"> </span><span class="n">fkc</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="k">on</span><span class="w"> </span><span class="n">fk</span><span class="p">.</span><span class="n">object_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fkc</span><span class="p">.</span><span class="n">constraint_object_id</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">join</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="n">c1</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="k">on</span><span class="w"> </span><span class="n">c1</span><span class="p">.</span><span class="n">object_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fkc</span><span class="p">.</span><span class="n">parent_object_id</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">c1</span><span class="p">.</span><span class="n">column_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fkc</span><span class="p">.</span><span class="n">parent_column_id</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="k">join</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">columns</span><span class="w"> </span><span class="n">c2</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span><span class="k">on</span><span class="w"> </span><span class="n">c2</span><span class="p">.</span><span class="n">object_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fkc</span><span class="p">.</span><span class="n">referenced_object_id</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">c2</span><span class="p">.</span><span class="n">column_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fkc</span><span class="p">.</span><span class="n">referenced_column_id</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="n">child_table</span><span class="p">,</span><span class="w"> </span><span class="n">foreign_key_name</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p>The above SQL script should return the following results: </p>
+<table>
+<thead>
+<tr>
+<th>foreign_key_name</th>
+<th>child_table</th>
+<th>child_column</th>
+<th>parent_table</th>
+<th>parent_column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FK_Order_Items_Orders</td>
+<td>order_items</td>
+<td>order_id</td>
+<td>orders</td>
+<td>order_id</td>
+</tr>
+<tr>
+<td>FK_Order_Items_Products</td>
+<td>order_items</td>
+<td>product_id</td>
+<td>products</td>
+<td>product_id</td>
+</tr>
+<tr>
+<td>FK_Order_Items_Sellers</td>
+<td>order_items</td>
+<td>seller_id</td>
+<td>sellers</td>
+<td>seller_id</td>
+</tr>
+<tr>
+<td>FK_Order_Reviews_Orders</td>
+<td>order_reviews</td>
+<td>order_id</td>
+<td>orders</td>
+<td>order_id</td>
+</tr>
+<tr>
+<td>FK_Orders_Customers</td>
+<td>orders</td>
+<td>customer_id</td>
+<td>customers</td>
+<td>customer_id</td>
+</tr>
+<tr>
+<td>FK_Payments_Orders</td>
+<td>payments</td>
+<td>order_id</td>
+<td>orders</td>
+<td>order_id</td>
+</tr>
+</tbody>
+</table>
+<h3 id="index-assignment-for-performance-optimization"><font color="#4f46e5"> Index Assignment for Performance Optimization </font><a class="headerlink" href="#index-assignment-for-performance-optimization" title="Permanent link">&para;</a></h3>
+<p>Assigning indexes is crucial for optimizing query performance in a star schema. Indexes allow the database engine to quickly locate and retrieve data based on the indexed columns, which can significantly improve query performance, especially for large datasets. However, during the assignment of indexes, we should consider the trade-off between query performance and storage space. Additional and unused indexes can consume storage space and may also slow down data modification operations (e.g., INSERT, UPDATE, DELETE) since the indexes need to be updated whenever the data changes. Therefore, it is important to carefully select the columns for indexing based on the query patterns and the most frequently used columns in the analysis.</p>
+<p>The best approach is to assign indexes to the primary key columns and foreign key columns, as these are commonly used in join operations and filtering conditions in queries. Additionally, we can also consider indexing other columns that are frequently used in WHERE clauses or as part of the analysis.  </p>
+<p>We can assign indexes to the tables using the following SQL script:</p>
+<details>
+<summary>SQL Script</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">-- index on orders(customer_id)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">IX_orders_customer_id</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">orders</span><span class="p">(</span><span class="n">customer_id</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">-- index on order_items(order_id)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">IX_order_items_order_id</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">order_items</span><span class="p">(</span><span class="n">order_id</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">-- index on order_items(product_id)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">IX_order_items_product_id</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">order_items</span><span class="p">(</span><span class="n">product_id</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1">-- index on order_items(seller_id)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">IX_order_items_seller_id</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">order_items</span><span class="p">(</span><span class="n">seller_id</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1">-- index on payments(order_id)</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">IX_payments_order_id</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">payments</span><span class="p">(</span><span class="n">order_id</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="c1">-- index on order_reviews(order_id)</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">IX_order_reviews_order_id</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">order_reviews</span><span class="p">(</span><span class="n">order_id</span><span class="p">);</span><span class="w"> </span>
+</code></pre></div>
+
+</details>
+
+<p>After assigning the indexes, we can check the execution plans of our queries to ensure that the indexes are being utilized effectively and that query performance is optimized. We can also monitor the performance of our queries and make adjustments to the indexes as needed based on the query patterns and performance metrics. </p>
+<h3 id="explicit-date-table"><font color="#4f46e5"> Explicit Date Table </font><a class="headerlink" href="#explicit-date-table" title="Permanent link">&para;</a></h3>
+<p>To support time-based analysis, we should create an explicit date table in our database. A date table is a dimension table that contains a record for each date in a specified range, along with various attributes related to the date (e.g., year, month, day, quarter, etc.). This allows us to easily perform time-based analysis and filtering in our queries and visualizations.</p>
+<p>We should create a date table that covers the range of dates present in our orders data, which includes the order purchase timestamps. The date table should include attributes such as year, month, day, quarter, and any other relevant time-based attributes that can support our analysis. </p>
+<p>Firstly, define the minimum and maximum dates in the database using the following SQL script:</p>
+<details>
+<summary>SQL Script</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">-- define the minimum and maximum dates </span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">select</span><span class="w"> </span><span class="k">min</span><span class="p">(</span><span class="n">shipping_limit_date</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">order_items</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 2016-09-19</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">select</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">shipping_limit_date</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">order_items</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 2020-04-09</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">orders</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">SET</span><span class="w"> </span><span class="n">order_approved_at</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">order_approved_at</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">;</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="k">min</span><span class="p">(</span><span class="n">order_approved_at</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">min_order_approved</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="k">min</span><span class="p">(</span><span class="n">order_purchase_timestamp</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">min_order_purchased</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="k">max</span><span class="p">(</span><span class="n">order_estimated_delivery_date</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">max_estimated_delivery</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">    </span><span class="k">max</span><span class="p">(</span><span class="n">order_delivered_customer_date</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">max_delivered_customer</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="k">from</span><span class="w"> </span><span class="n">orders</span><span class="p">;</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="c1">-- max: 2018-11-12 00:00:00.0000000;  min: 2016-09-04 21:15:19.0000000</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="k">select</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">    </span><span class="k">min</span><span class="p">(</span><span class="n">review_creation_date</span><span class="p">),</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">    </span><span class="k">max</span><span class="p">(</span><span class="n">review_answer_timestamp</span><span class="p">)</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="k">from</span><span class="w"> </span><span class="n">order_reviews</span><span class="p">;</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="c1">-- so, min date :2016-01-01</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="c1">-- max date: 2020-04-30</span>
+</code></pre></div>
+
+</details>
+
+<p>After finding the minimum and maximum dates, we can create a date table that covers the range of dates from <code>2016-01-01</code> to <code>2020-04-30</code>. We can use the following SQL script to create the date table:</p>
+<details>
+<summary>SQL Script</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">-- create date table</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">start_date</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2016-01-01&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- define the start date</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">end_date</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2020-04-30&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- define the end date</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">SET</span><span class="w"> </span><span class="n">DATEFIRST</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">-- set Monday as the first day of the week</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">Calendar</span><span class="p">;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">Calendar</span><span class="p">(</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="n">datekey</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="n">full_date</span><span class="w"> </span><span class="n">datetime2</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="p">[</span><span class="k">year</span><span class="p">]</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="n">semester</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="p">[</span><span class="n">quarter</span><span class="p">]</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="n">month_number</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="n">month_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="n">week_of_year</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="n">week_of_month</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">    </span><span class="n">day_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w">  </span><span class="k">null</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">    </span><span class="n">day_of_week</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w">  </span><span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">    </span><span class="n">day_of_month</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">    </span><span class="n">day_of_year</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">    </span><span class="n">is_weekend</span><span class="w"> </span><span class="nb">bit</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="p">);</span><span class="w"> </span><span class="c1">-- create a date table with the specified columns and data types</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="w"> </span><span class="nb">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;2016-01-01&#39;</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="n">WHILE</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">@</span><span class="n">end_date</span><span class="w"> </span><span class="c1">-- loop through each date from the start date to the end date</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="k">BEGIN</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">    </span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">Calendar</span><span class="p">(</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">        </span><span class="n">datekey</span><span class="p">,</span><span class="w"> </span><span class="n">full_date</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="k">year</span><span class="p">],</span><span class="w"> </span><span class="n">semester</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">quarter</span><span class="p">],</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="w">        </span><span class="n">month_number</span><span class="p">,</span><span class="w"> </span><span class="n">month_name</span><span class="p">,</span><span class="w"> </span><span class="n">week_of_year</span><span class="p">,</span><span class="w"> </span><span class="n">week_of_month</span><span class="p">,</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="w">        </span><span class="n">day_name</span><span class="p">,</span><span class="w"> </span><span class="n">day_of_week</span><span class="p">,</span><span class="w"> </span><span class="n">day_of_month</span><span class="p">,</span><span class="w"> </span><span class="n">day_of_year</span><span class="p">,</span><span class="w"> </span><span class="n">is_weekend</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="c1">-- insert a record for each date with the corresponding attributes</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">        </span><span class="k">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="o">@</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyyMMdd&#39;</span><span class="p">)),</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="w">        </span><span class="k">cast</span><span class="p">(</span><span class="o">@</span><span class="n">d</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">datetime2</span><span class="p">),</span>
+<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="w">        </span><span class="k">year</span><span class="p">(</span><span class="o">@</span><span class="n">d</span><span class="p">),</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="k">month</span><span class="p">(</span><span class="o">@</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">end</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="w">        </span><span class="n">datepart</span><span class="p">(</span><span class="n">quarter</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="p">),</span>
+<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="w">        </span><span class="k">month</span><span class="p">(</span><span class="o">@</span><span class="n">d</span><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a><span class="w">        </span><span class="n">datename</span><span class="p">(</span><span class="k">month</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a><span class="w">        </span><span class="n">datepart</span><span class="p">(</span><span class="n">week</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="w">        </span><span class="n">datediff</span><span class="p">(</span><span class="n">week</span><span class="p">,</span><span class="w"> </span><span class="n">DATEFROMPARTS</span><span class="p">(</span><span class="k">year</span><span class="p">(</span><span class="o">@</span><span class="n">d</span><span class="p">),</span><span class="w"> </span><span class="k">month</span><span class="p">(</span><span class="o">@</span><span class="n">d</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="w">        </span><span class="n">datename</span><span class="p">(</span><span class="n">weekday</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a><span class="w">        </span><span class="n">datepart</span><span class="p">(</span><span class="n">weekday</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a><span class="w">        </span><span class="k">day</span><span class="p">(</span><span class="o">@</span><span class="n">d</span><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a><span class="w">        </span><span class="n">datepart</span><span class="p">(</span><span class="n">DAYOFYEAR</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="p">),</span>
+<a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="n">DATEPART</span><span class="p">(</span><span class="n">weekday</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">end</span>
+<a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a><span class="w">    </span><span class="p">);</span><span class="w"> </span><span class="c1">-- calculate the date attributes and insert them into the date table</span>
+<a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a>
+<a id="__codelineno-7-51" name="__codelineno-7-51" href="#__codelineno-7-51"></a><span class="w">    </span><span class="k">set</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DATEADD</span><span class="p">(</span><span class="k">day</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">@</span><span class="n">d</span><span class="p">);</span><span class="w"> </span><span class="c1">-- move to the next date</span>
+<a id="__codelineno-7-52" name="__codelineno-7-52" href="#__codelineno-7-52"></a><span class="k">END</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<h3 id="star-schema-design"><font color="#4f46e5"> Star Schema Design </font><a class="headerlink" href="#star-schema-design" title="Permanent link">&para;</a></h3>
+<p>After creating the date table, we can establish relationships between the date table and the fact tables (e.g., orders, order_items, order_reviews) based on the relevant date columns (e.g., order_purchase_timestamp, shipping_limit_date, review_creation_date, etc.). This will allow us to easily perform time-based analysis and filtering in our queries and visualizations. We can also create indexes on the date columns in the fact tables to further optimize query performance when joining with the date table.</p>
+<p>Firstly, we should create datekey columns in the tables that have date columns.</p>
+<details>
+<summary>SQL Script</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">-- add datekey columns to the orders table</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">order_purchase_datekey</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">order_approved_datekey</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">order_delivered_carrier_datekey</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">order_delivered_customer_datekey</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">order_estimated_delivery_datekey</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1">-- add datekey column to the order_items table</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">shipping_limit_datekey</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="c1">-- add datekey columns to the order_reviews table</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">review_creation_datekey</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">review_answer_timestamp_datekey</span><span class="w"> </span><span class="nb">int</span><span class="p">;</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="c1">-- update the datekey columns in the orders table</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="k">update</span><span class="w"> </span><span class="n">orders</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="k">set</span><span class="w"> </span><span class="n">order_purchase_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">order_purchase_timestamp</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyyMMdd&#39;</span><span class="p">)),</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span><span class="n">order_approved_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">order_approved_at</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyyMMdd&#39;</span><span class="p">)),</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="n">order_delivered_carrier_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">order_delivered_carrier_date</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyyMMdd&#39;</span><span class="p">)),</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="n">order_delivered_customer_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">order_delivered_customer_date</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyyMMdd&#39;</span><span class="p">)),</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span><span class="n">order_estimated_delivery_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">order_estimated_delivery_date</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyyMMdd&#39;</span><span class="p">));</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="c1">-- update the datekey column in the order_items table</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="k">update</span><span class="w"> </span><span class="n">order_items</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="k">set</span><span class="w"> </span><span class="n">shipping_limit_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">shipping_limit_date</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyyMMdd&#39;</span><span class="p">));</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="c1">-- update the datekey columns in the order_reviews table</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="k">update</span><span class="w"> </span><span class="n">order_reviews</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="k">set</span><span class="w"> </span><span class="n">review_creation_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">review_creation_date</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyyMMdd&#39;</span><span class="p">)),</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">    </span><span class="n">review_answer_timestamp_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">(</span><span class="n">review_answer_timestamp</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyyMMdd&#39;</span><span class="p">));</span>
+</code></pre></div>
+
+</details>
+
+<p>After creating the datekey columns and populating them with the corresponding date values, we can establish foreign key relationships between the date table and the fact tables based on the datekey columns. This will allow us to easily perform time-based analysis and filtering in our queries and visualizations. </p>
+<details>
+<summary>SQL Script</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">-- establish foreign key relationships between the date table and the orders table</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Orders_Purchase_Date</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_purchase_datekey</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Calendar</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Orders_Approved_Date</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_approved_datekey</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Calendar</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Orders_Delivered_Carrier_Date</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_delivered_carrier_datekey</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Calendar</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Orders_Delivered_Customer_Date</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_delivered_customer_datekey</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Calendar</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">orders</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Orders_Estimated_Delivery_Date</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">order_estimated_delivery_datekey</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Calendar</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1">-- establish foreign key relationship between the date table and the order_items table</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_items</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Order_Items_Shipping_Limit_Date</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">shipping_limit_datekey</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Calendar</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1">-- establish foreign key relationships between the date table and the order_reviews table</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Order_Reviews_Creation_Date</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">review_creation_datekey</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Calendar</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">order_reviews</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Order_Reviews_Answer_Timestamp</span><span class="w"> </span><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">review_answer_timestamp_datekey</span><span class="p">)</span><span class="w"> </span><span class="k">references</span><span class="w"> </span><span class="n">Calendar</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+</code></pre></div>
+
+</details>
+
+<p>After completing all foreign key - primary key pairing process, we can finally visualize our star schema diagram using the DBeaver. By clicking the following link you can download the pdf version of diagram for clear visualization. I am putting the image version here. </p>
+<p><img alt="Olist E-Commerce Star Schema" src="../../images/olist_diagram.png" /></p>
+<h2 id="conclusion"><font color="#4f46e5"> Conclusion </font><a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>In this section we have completed the following tasks: </p>
+<ol>
+<li>Imported the data from the provided CSV files into a new database called <code>Olist-E-Commerce</code> using DBeaver GUI.</li>
+<li>Performed data cleaning by changing the names of tables to more compact and explanatory names, adjusting data types and lengths for each column. </li>
+<li>Identified the <strong>primary keys</strong> for each table. </li>
+<li>Established <strong>foreign key relationships</strong> between the tables based on the primary key and foreign key relationships.</li>
+<li>Assigned <strong>indexes</strong> to the primary key columns and foreign key columns to optimize query performance.</li>
+<li>Created an <strong>explicit date table</strong> to support time-based analysis and established relationships between the date table and the fact tables based on the relevant date columns.</li>
+<li>Designed a <strong>star schema</strong> for the Olist E-Commerce dataset, which includes the fact tables (orders, order_items, order_reviews) and dimension tables (customers, geolocation, products, sellers, calendar).</li>
+<li>Generated a star schema diagram to visualize the relationships between the tables in the database.</li>
+</ol>
+<p>In the next section, we will generate real world analytical business questions by emphasizing the business context and the effect of the results on the decision making process. In the further sections, we will solve each questions one by one using SQL queries and explain each step of the analysis process.</p>
+<h1 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h1>
+<ol>
+<li>SQL Script of this section: </li>
+<li>Database Diagram (pdf version): </li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

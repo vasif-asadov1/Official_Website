@@ -1,0 +1,3223 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+        <link rel="prev" href="../03_customer_retention/">
+      
+      
+        <link rel="next" href="../05_delivery_logistics/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Orders & Sales Performance - Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#orders-and-sales-performance-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Orders & Sales Performance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adventureworks_bike_sales/07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monthly-sales-trends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monthly Sales Trends
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pareto-principles-for-product-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Principles for Product Categories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-month-rolling-average-for-total-revenue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-Month Rolling Average for Total Revenue
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monthly-sales-trends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monthly Sales Trends
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pareto-principles-for-product-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Principles for Product Categories
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-month-rolling-average-for-total-revenue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-Month Rolling Average for Total Revenue
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="orders-and-sales-performance-analysis">Orders and Sales Performance Analysis<a class="headerlink" href="#orders-and-sales-performance-analysis" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In this section, we will analyze the following aspects of Olist's sales performance:</p>
+<ol>
+<li><strong>Monthly Sales Trends</strong>. We will examine the monthly sales trends for Olist over the past few years to identify any seasonal patterns or significant flu
+ctuations in sales performance.</li>
+<li><strong>Pareto Principle for Product Categories</strong>. We will identify which product categories constitute the top 20% of sales volume and whether they align with the top 20% of revenue generators. We will also classify categories into 'High Volume / Low Value' and 'Low Volume / High Value' segments.</li>
+<li><strong>Rolling Average for Revenue</strong>. We will calculate the 3-month rolling average for total revenue to smooth out daily and weekly volatility and compare this trendline to the raw sales data to understand the true direction of business growth. </li>
+<li><strong>Regional Sales Distribution</strong>. We will analyze how revenue is distributed across different states and cities, identifying the top 5 regions with the highest sales density per capita versus regions with high order volume but low total revenue.</li>
+<li><strong>AOV and Basket Size Analysis</strong>. We will analyze the Average Order Value (AOV) and average basket size over time to understand customer purchasing behavior and identify any trends or shifts in these metrics.</li>
+</ol>
+<h2 id="monthly-sales-trends">Monthly Sales Trends<a class="headerlink" href="#monthly-sales-trends" title="Permanent link">&para;</a></h2>
+<p><font color = "#9dc9cf">6. Monthly Sales Trends: What are the monthly sales trends for Olist over the past few years? Are there any seasonal patterns or significant fluctuations in sales performance that can be identified?</font></p>
+<p><strong>Solution:</strong>  </p>
+<p>Solution Steps for Review Response Analysis</p>
+<ol>
+<li>
+<p><strong>Firstly, we calculate the time gap for survey responses (<code>review_response_times</code> CTE)</strong>: We use the <code>datediff</code> function to calculate the <code>response_time_hours</code> between <code>review_creation_date</code> (when the satisfaction survey was sent) and <code>review_answer_timestamp</code> (when the customer submitted it). We filter out records where <code>review_score</code> is null.</p>
+</li>
+<li>
+<p><strong>Secondly, we segment the response times into analytical cohorts (<code>response_buckets</code> CTE)</strong>: We use a <code>CASE</code> statement to group the continuous hour values into logical buckets: "Fast (Under 24 Hours)", "Medium (1 - 3 Days)", "Slow (3 - 7 Days)", and "Very Slow (Over 1 Week)", alongside handling missing timestamps.</p>
+</li>
+<li>
+<p><strong>Finally, we aggregate the scores to find correlations (Final <code>SELECT</code>)</strong>: We group the results by the new <code>response_speed_category</code>. We calculate the <code>avg_review_score</code> for each bucket and use conditional summation (<code>sum(case when...)</code>) to find the exact percentage of 1-star and 5-star reviews, revealing how response speed correlates with customer satisfaction.</p>
+</li>
+</ol>
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">with</span><span class="w"> </span><span class="n">monthly_sales</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="c1">-- step 1: aggregate core metrics by month</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="c1">-- we use the calendar table to ensure clean date grouping</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="k">year</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">payment_value</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_revenue</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="n">payments</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="n">Calendar</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">purchase_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">datekey</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">        </span><span class="n">o</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;canceled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unavailable&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">month_number</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">month_name</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="p">),</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">growth_metrics</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="c1">-- step 2: use lag() to fetch values from the previous month and previous year</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">        </span><span class="c1">-- previous month values</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">        </span><span class="n">prev_month_orders</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lag</span><span class="p">(</span><span class="n">total_orders</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">month_number</span><span class="p">),</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">        </span><span class="n">prev_month_revenue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lag</span><span class="p">(</span><span class="n">total_revenue</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">month_number</span><span class="p">),</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">        </span><span class="c1">-- previous year values (offset of 12 rows)</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">        </span><span class="n">prev_year_orders</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lag</span><span class="p">(</span><span class="n">total_orders</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">month_number</span><span class="p">),</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="n">prev_year_revenue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lag</span><span class="p">(</span><span class="n">total_revenue</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">month_number</span><span class="p">)</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">        </span><span class="n">monthly_sales</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="p">)</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="c1">-- final output: calculating percentage growth</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">    </span><span class="k">year</span><span class="p">,</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">    </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="n">total_revenue</span><span class="p">,</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">    </span><span class="c1">-- month-over-month (mom) growth</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">    </span><span class="n">mom_revenue_growth_pct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">total_revenue</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prev_month_revenue</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">prev_month_revenue</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">    </span><span class="c1">-- year-over-year (yoy) growth</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">    </span><span class="n">yoy_revenue_growth_pct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">total_revenue</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">prev_year_revenue</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">prev_year_revenue</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">)),</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">    </span><span class="c1">-- identifying seasonal spikes</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">month_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Black Friday Period&#39;</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">month_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Holiday Season&#39;</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">month_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;New Year Peak&#39;</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Standard Period&#39;</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">    </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">seasonality_tag</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">    </span><span class="n">growth_metrics</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">    </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">month_number</span><span class="p">;</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="k">go</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong> <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1"></p>
+<table>
+<thead>
+<tr>
+<th>year</th>
+<th>month_name</th>
+<th>total_orders</th>
+<th>total_revenue</th>
+<th>mom_revenue_growth_pct</th>
+<th>yoy_revenue_growth_pct</th>
+<th>seasonality_tag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2016</td>
+<td>September</td>
+<td>1</td>
+<td>136.22999572753906</td>
+<td></td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>October</td>
+<td>293</td>
+<td>51657.52999472618</td>
+<td>37819.35</td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>December</td>
+<td>1</td>
+<td>19.6200008392334</td>
+<td>-99.96</td>
+<td></td>
+<td>Holiday Season</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>January</td>
+<td>787</td>
+<td>137006.76003867388</td>
+<td>698201.50</td>
+<td></td>
+<td>New Year Peak</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>February</td>
+<td>1718</td>
+<td>283621.93943831325</td>
+<td>107.01</td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>March</td>
+<td>2617</td>
+<td>425656.3995541632</td>
+<td>50.08</td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>April</td>
+<td>2377</td>
+<td>405988.3795110285</td>
+<td>-4.62</td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>May</td>
+<td>3640</td>
+<td>582926.160167003</td>
+<td>43.58</td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>June</td>
+<td>3205</td>
+<td>499827.47035080194</td>
+<td>-14.26</td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>July</td>
+<td>3946</td>
+<td>578858.5795211494</td>
+<td>15.81</td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>August</td>
+<td>4272</td>
+<td>662071.7698084246</td>
+<td>14.38</td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>September</td>
+<td>4227</td>
+<td>717195.2203616947</td>
+<td>8.33</td>
+<td></td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>October</td>
+<td>4547</td>
+<td>764785.2796836384</td>
+<td>6.64</td>
+<td>561292.72</td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>November</td>
+<td>7423</td>
+<td>1172639.2297811043</td>
+<td>53.33</td>
+<td>2170.03</td>
+<td>Black Friday Period</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>December</td>
+<td>5620</td>
+<td>861914.4599985629</td>
+<td>-26.50</td>
+<td>4392939.87</td>
+<td>Holiday Season</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>January</td>
+<td>7187</td>
+<td>1102639.4091129452</td>
+<td>27.93</td>
+<td>704.81</td>
+<td>New Year Peak</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>February</td>
+<td>6625</td>
+<td>979966.2302345932</td>
+<td>-11.13</td>
+<td>245.52</td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>March</td>
+<td>7168</td>
+<td>1152736.7396906763</td>
+<td>17.63</td>
+<td>170.81</td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>April</td>
+<td>6919</td>
+<td>1156303.9107048158</td>
+<td>0.31</td>
+<td>184.81</td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>May</td>
+<td>6833</td>
+<td>1145748.6310662013</td>
+<td>-0.91</td>
+<td>96.55</td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>June</td>
+<td>6145</td>
+<td>1020494.2907593064</td>
+<td>-10.93</td>
+<td>104.17</td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>July</td>
+<td>6233</td>
+<td>1039880.1590387616</td>
+<td>1.90</td>
+<td>79.64</td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>August</td>
+<td>6421</td>
+<td>996896.1512343884</td>
+<td>-4.13</td>
+<td>50.57</td>
+<td>Standard Period</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>September</td>
+<td>1</td>
+<td>166.4600067138672</td>
+<td>-99.98</td>
+<td>-99.98</td>
+<td>Standard Period</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Insights:</strong></p>
+<ul>
+<li>There is a clear seasonal pattern with significant spikes in revenue during the Black Friday period (November) and the Holiday Season (December). The New Year Peak in January also shows a notable increase in sales.</li>
+<li>The month-over-month growth rates are highly volatile, especially around the holiday season, indicating that raw monthly revenue can be influenced by short-term factors. This underscores the importance of using rolling averages to identify long-term trends.</li>
+<li>The year-over-year growth rates show a strong upward trajectory, particularly in the early months of 2018 compared to 2017, suggesting that Olist is experiencing significant growth year over year, despite the volatility in month-over-month performance.</li>
+<li>The data reveals distinct patterns in product category performance, with some categories driving high sales volumes while others generate substantial revenue per unit sold. This highlights the need for a nuanced approach to inventory and marketing strategies, focusing on both high-volume and high-value categories to optimize overall sales performance.</li>
+</ul>
+<h2 id="pareto-principles-for-product-categories">Pareto Principles for Product Categories<a class="headerlink" href="#pareto-principles-for-product-categories" title="Permanent link">&para;</a></h2>
+<p><font color = "#9dc9cf">7. Which product categories constitute the top 20% of sales volume, and do they align with the top 20% of revenue generators? Can we identify 'High Volume / Low Value' categories versus 'Low Volume / High Value' (Niche/Luxury) categories?</font></p>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>
+<p><strong>Firstly, we aggregate volume and revenue per category (<code>category_metrics</code> CTE)</strong>: We join the <code>order_items</code>, <code>products</code>, and <code>orders</code> tables to calculate the total number of items sold (<code>total_volume</code>) and the sum of their prices (<code>total_revenue</code>) for each <code>product_category_name</code>. We also ensure to filter out any 'canceled' or 'unavailable' orders so our metrics reflect actual successful sales.</p>
+</li>
+<li>
+<p><strong>Secondly, we calculate the percentile rankings (<code>category_rankings</code> CTE)</strong>: We utilize the <code>percent_rank()</code> window function, ordering descendingly by volume and revenue respectively. This gives us a statistical ranking from 0 to 1 (<code>volume_percentile</code> and <code>revenue_percentile</code>), showing exactly where each category stands relative to all others.</p>
+</li>
+<li>
+<p><strong>Finally, we segment the categories based on the top 20% thresholds (Final <code>SELECT</code>)</strong>: We compute the <code>avg_unit_price</code> and use a <code>CASE</code> statement to classify each category. Since <code>percent_rank()</code> outputs 0 for the highest value, checking for <code>&lt;= 0.20</code> captures the top 20%. By intersecting the volume and revenue conditions, we can easily identify the 'High Vol / Low Rev' (cheap but popular) and 'Low Vol / High Rev' (niche/luxury) segments.</p>
+</li>
+</ol>
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">with</span><span class="w"> </span><span class="n">category_metrics</span><span class="w"> </span><span class="k">as</span><span class="w">  </span><span class="p">(</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="n">products</span><span class="p">.</span><span class="n">product_category_name</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="n">order_items</span><span class="p">.</span><span class="n">order_item_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w">  </span><span class="n">total_volume</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">order_items</span><span class="p">.</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_revenue</span><span class="w">       </span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="n">order_items</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="n">products</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">product_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">order_items</span><span class="p">.</span><span class="n">product_id</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">order_items</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="k">where</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="n">orders</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;canceled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unavailable&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">            </span><span class="k">and</span><span class="w"> </span><span class="n">products</span><span class="p">.</span><span class="n">product_category_name</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="w"> </span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="n">products</span><span class="p">.</span><span class="n">product_category_name</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">category_rankings</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="k">select</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span><span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">        </span><span class="n">percent_rank</span><span class="p">()</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">total_volume</span><span class="w"> </span><span class="k">desc</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">volume_percentile</span><span class="p">,</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">        </span><span class="n">percent_rank</span><span class="p">()</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">total_revenue</span><span class="w"> </span><span class="k">desc</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">revenue_percentile</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="k">from</span><span class="w">  </span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">        </span><span class="n">category_metrics</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="p">)</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="k">select</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="n">product_category_name</span><span class="p">,</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="n">total_volume</span><span class="p">,</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">    </span><span class="n">total_revenue</span><span class="p">,</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="w"> </span><span class="n">total_revenue</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_volume</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_unit_price</span><span class="p">,</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">    </span><span class="k">case</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">volume_percentile</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">revenue_percentile</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">20</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;High Vol / High Rev&#39;</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">volume_percentile</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">revenue_percentile</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">20</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;High Vol / Low Rev&#39;</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">volume_percentile</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">revenue_percentile</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">20</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Low Vol / High Rev&#39;</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Standard&#39;</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">category_segmentation</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">    </span><span class="n">category_rankings</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">    </span><span class="n">total_revenue</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span>
+</code></pre></div>
+
+
+</details>
+
+<p><strong>Results:</strong> <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1"></p>
+<table>
+<thead>
+<tr>
+<th>product_category_name</th>
+<th>total_volume</th>
+<th>total_revenue</th>
+<th>avg_unit_price</th>
+<th>category_segmentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>beleza_saude</td>
+<td>9634</td>
+<td>1255695.130966425</td>
+<td>130.34</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>relogios_presentes</td>
+<td>5970</td>
+<td>1198185.207540512</td>
+<td>200.70</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>cama_mesa_banho</td>
+<td>11097</td>
+<td>1035964.0600271225</td>
+<td>93.36</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>esporte_lazer</td>
+<td>8590</td>
+<td>979740.9188661575</td>
+<td>114.06</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>informatica_acessorios</td>
+<td>7781</td>
+<td>904322.0174894333</td>
+<td>116.22</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>moveis_decoracao</td>
+<td>8298</td>
+<td>727465.0523052216</td>
+<td>87.67</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>utilidades_domesticas</td>
+<td>6915</td>
+<td>626825.8007874489</td>
+<td>90.65</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>cool_stuff</td>
+<td>3779</td>
+<td>620770.4918966293</td>
+<td>164.27</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>automotivo</td>
+<td>4204</td>
+<td>586585.7307322025</td>
+<td>139.53</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>ferramentas_jardim</td>
+<td>4328</td>
+<td>481009.94201755524</td>
+<td>111.14</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>brinquedos</td>
+<td>4083</td>
+<td>479808.5404686928</td>
+<td>117.51</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>bebes</td>
+<td>3043</td>
+<td>410312.2000389099</td>
+<td>134.84</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>perfumaria</td>
+<td>3402</td>
+<td>396599.30858802795</td>
+<td>116.58</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>telefonia</td>
+<td>4527</td>
+<td>322342.6394162178</td>
+<td>71.20</td>
+<td>High Vol / High Rev</td>
+</tr>
+<tr>
+<td>moveis_escritorio</td>
+<td>1690</td>
+<td>273580.70111846924</td>
+<td>161.88</td>
+<td>Low Vol / High Rev</td>
+</tr>
+<tr>
+<td>papelaria</td>
+<td>2505</td>
+<td>229593.83988118172</td>
+<td>91.65</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>pcs</td>
+<td>203</td>
+<td>222963.1298828125</td>
+<td>1098.34</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>pet_shop</td>
+<td>1942</td>
+<td>213766.63003492355</td>
+<td>110.08</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>eletroportateis</td>
+<td>671</td>
+<td>187907.2599811554</td>
+<td>280.04</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>instrumentos_musicais</td>
+<td>669</td>
+<td>187788.44005393982</td>
+<td>280.70</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td></td>
+<td>1589</td>
+<td>178572.54968833923</td>
+<td>112.38</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>eletronicos</td>
+<td>2755</td>
+<td>157079.53940558434</td>
+<td>57.02</td>
+<td>High Vol / Low Rev</td>
+</tr>
+<tr>
+<td>consoles_games</td>
+<td>1127</td>
+<td>154927.27038812637</td>
+<td>137.47</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>fashion_bolsas_e_acessorios</td>
+<td>2025</td>
+<td>151622.75041007996</td>
+<td>74.88</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_construcao</td>
+<td>927</td>
+<td>144550.18987429142</td>
+<td>155.93</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>malas_acessorios</td>
+<td>1088</td>
+<td>140111.37979125977</td>
+<td>128.78</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>eletrodomesticos_2</td>
+<td>235</td>
+<td>110649.73986434937</td>
+<td>470.85</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>casa_construcao</td>
+<td>603</td>
+<td>83010.11981487274</td>
+<td>137.66</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>eletrodomesticos</td>
+<td>769</td>
+<td>80001.24019479752</td>
+<td>104.03</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>agro_industria_e_comercio</td>
+<td>212</td>
+<td>72530.46979904175</td>
+<td>342.12</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>moveis_sala</td>
+<td>501</td>
+<td>68638.55983161926</td>
+<td>137.00</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>casa_conforto</td>
+<td>434</td>
+<td>58572.04043722153</td>
+<td>134.96</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>telefonia_fixa</td>
+<td>261</td>
+<td>57824.20998239517</td>
+<td>221.55</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>climatizacao</td>
+<td>295</td>
+<td>54723.15971946716</td>
+<td>185.50</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>363</td>
+<td>50668.59962081909</td>
+<td>139.58</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>portateis_casa_forno_e_cafe</td>
+<td>76</td>
+<td>47445.71008014679</td>
+<td>624.29</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>moveis_cozinha_area_de_servico_jantar_e_jardim</td>
+<td>279</td>
+<td>46070.37002372742</td>
+<td>165.13</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>livros_interesse_geral</td>
+<td>546</td>
+<td>45622.29049873352</td>
+<td>83.56</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_iluminacao</td>
+<td>302</td>
+<td>40002.00014305115</td>
+<td>132.46</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>industria_comercio_e_negocios</td>
+<td>268</td>
+<td>39669.61002922058</td>
+<td>148.02</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_seguranca</td>
+<td>189</td>
+<td>39589.01976776123</td>
+<td>209.47</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>alimentos</td>
+<td>509</td>
+<td>29243.509969711304</td>
+<td>57.45</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>market_place</td>
+<td>310</td>
+<td>28288.470039367676</td>
+<td>91.25</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_jardim</td>
+<td>234</td>
+<td>25552.180088043213</td>
+<td>109.20</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>artes</td>
+<td>208</td>
+<td>24167.639976978302</td>
+<td>116.19</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>fashion_calcados</td>
+<td>260</td>
+<td>23352.87992477417</td>
+<td>89.82</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>bebidas</td>
+<td>378</td>
+<td>22378.71004676819</td>
+<td>59.20</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>sinalizacao_e_seguranca</td>
+<td>199</td>
+<td>21509.230089187622</td>
+<td>108.09</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>moveis_quarto</td>
+<td>109</td>
+<td>20028.77994632721</td>
+<td>183.75</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>livros_tecnicos</td>
+<td>267</td>
+<td>19096.060108184814</td>
+<td>71.52</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>construcao_ferramentas_ferramentas</td>
+<td>103</td>
+<td>15903.94997882843</td>
+<td>154.41</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>alimentos_bebidas</td>
+<td>276</td>
+<td>15119.4800491333</td>
+<td>54.78</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>fashion_roupa_masculina</td>
+<td>131</td>
+<td>10748.8200340271</td>
+<td>82.05</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>fashion_underwear_e_moda_praia</td>
+<td>131</td>
+<td>9541.550102233887</td>
+<td>72.84</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>artigos_de_natal</td>
+<td>152</td>
+<td>8787.830072879791</td>
+<td>57.81</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>tablets_impressao_imagem</td>
+<td>83</td>
+<td>7528.410045623779</td>
+<td>90.70</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>cine_foto</td>
+<td>72</td>
+<td>6933.459958076477</td>
+<td>96.30</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>musica</td>
+<td>38</td>
+<td>6034.349970340729</td>
+<td>158.80</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>livros_importados</td>
+<td>60</td>
+<td>4639.849992752075</td>
+<td>77.33</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>dvds_blu_ray</td>
+<td>62</td>
+<td>4559.4899826049805</td>
+<td>73.54</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>artigos_de_festas</td>
+<td>43</td>
+<td>4485.180006027222</td>
+<td>104.31</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>moveis_colchao_e_estofado</td>
+<td>38</td>
+<td>4368.079982757568</td>
+<td>114.95</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>portateis_cozinha_e_preparadores_de_alimentos</td>
+<td>14</td>
+<td>3933.6299953460693</td>
+<td>280.97</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>fashion_roupa_feminina</td>
+<td>48</td>
+<td>2803.6400108337402</td>
+<td>58.41</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>fashion_esporte</td>
+<td>30</td>
+<td>2119.510019302368</td>
+<td>70.65</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>la_cuisine</td>
+<td>14</td>
+<td>2054.9899978637695</td>
+<td>146.78</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>artes_e_artesanato</td>
+<td>24</td>
+<td>1814.0100049972534</td>
+<td>75.58</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>fraldas_higiene</td>
+<td>38</td>
+<td>1538.7899932861328</td>
+<td>40.49</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>pc_gamer</td>
+<td>8</td>
+<td>1306.9500274658203</td>
+<td>163.37</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>flores</td>
+<td>33</td>
+<td>1110.0400066375732</td>
+<td>33.64</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>casa_conforto_2</td>
+<td>30</td>
+<td>760.2699966430664</td>
+<td>25.34</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>cds_dvds_musicais</td>
+<td>14</td>
+<td>730.0</td>
+<td>52.14</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>fashion_roupa_infanto_juvenil</td>
+<td>8</td>
+<td>569.8500022888184</td>
+<td>71.23</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td>seguros_e_servicos</td>
+<td>2</td>
+<td>283.2899932861328</td>
+<td>141.64</td>
+<td>Standard</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Insights:</strong> According to the results, we can obtain the following insights:</p>
+<ul>
+<li><strong>Volume and Revenue Align Well:</strong> The biggest sellers are also the biggest earners. Categories like <em>beleza_saude</em> (health &amp; beauty), <em>relogios_presentes</em> (watches &amp; gifts), and <em>cama_mesa_banho</em> (bed &amp; bath) are the backbone of the platform, bringing in both massive order counts and top-tier revenue.</li>
+<li><strong>The "High Volume / Low Revenue" Trap:</strong> <em>Eletronicos</em> (electronics) fits this perfectly. People buy a lot of them (2,755 units), but because the average item is cheap (just $57.02), the total revenue stays relatively low compared to the effort of shipping that many boxes.</li>
+<li><strong>The "Low Volume / High Revenue" Winners:</strong> <em>Moveis_escritorio</em> (office furniture) is our official high-value niche. It only took 1,690 sales to generate over $273K in revenue thanks to a solid $161.88 average price. </li>
+<li><strong>The Ultimate Premium Outlier:</strong> While the system tagged it as "Standard," <em>pcs</em> (personal computers) is the perfect example of a luxury/high-ticket item. With an average price of $1,098, it only took 203 sales to make $222K—almost matching the revenue of categories that sold thousands of items.</li>
+</ul>
+<h2 id="3-month-rolling-average-for-total-revenue">3-Month Rolling Average for Total Revenue<a class="headerlink" href="#3-month-rolling-average-for-total-revenue" title="Permanent link">&para;</a></h2>
+<p><font color = "#9dc9cf">8. Can we calculate the 3-month rolling average for total revenue to smooth out daily and weekly volatility? How does this long-term trendline compare to the raw sales data in identifying the true direction of business growth?</font></p>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>
+<p><strong>Firstly, we aggregate the raw monthly revenue (<code>monthly_revenue</code> CTE)</strong>: We join the <code>orders</code>, <code>payments</code>, and <code>Calendar</code> tables to calculate the total <code>payment_value</code> (<code>raw_monthly_revenue</code>) for each month and year. We also filter out 'canceled' or 'unavailable' orders to ensure we only look at valid sales data.</p>
+</li>
+<li>
+<p><strong>Secondly, we calculate the 3-month rolling average (Final <code>SELECT</code>)</strong>: We use the <code>avg()</code> window function coupled with <code>rows between 2 preceding and current row</code>. By ordering chronologically by year and month, this smooths out short-term volatility by averaging the current month's revenue with the two previous months to establish a trendline.</p>
+</li>
+<li>
+<p><strong>Finally, we calculate the variance from the trend</strong>: We determine how much the current month's raw revenue deviates from the calculated 3-month rolling average. We compute this as a percentage <code>((raw - average) / raw) * 100</code> using <code>nullif</code> to prevent division by zero, which helps easily identify months that significantly overperformed or underperformed the smoothed long-term growth trend.</p>
+</li>
+</ol>
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">with</span><span class="w"> </span><span class="n">monthly_revenue</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">select</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="n">Calendar</span><span class="p">.</span><span class="k">year</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="n">Calendar</span><span class="p">.</span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="n">Calendar</span><span class="p">.</span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">payments</span><span class="p">.</span><span class="n">payment_value</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">raw_monthly_revenue</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="n">payments</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">payments</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="n">Calendar</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Calendar</span><span class="p">.</span><span class="n">datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">purchase_datekey</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="n">orders</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;canceled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unavailable&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">        </span><span class="n">Calendar</span><span class="p">.</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">calendar</span><span class="p">.</span><span class="n">month_number</span><span class="p">,</span><span class="w"> </span><span class="n">Calendar</span><span class="p">.</span><span class="n">month_name</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="p">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="p">[</span><span class="k">year</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">    </span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="n">raw_monthly_revenue</span><span class="p">,</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">    </span><span class="c1">-- average the current month and 2 preceding (last) months</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">    </span><span class="k">cast</span><span class="w"> </span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">raw_monthly_revenue</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">[</span><span class="k">year</span><span class="p">],</span><span class="w"> </span><span class="n">month_number</span><span class="w"> </span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">            </span><span class="k">rows</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="k">row</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">rolling_avg_3m</span><span class="p">,</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="c1">-- calculate deviation from the trend = (current_month - rolling_avg_3m) / current_month * 100.0 = var_dev %</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">raw_monthly_revenue</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">raw_monthly_revenue</span><span class="p">)</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="p">[</span><span class="k">year</span><span class="p">],</span><span class="w"> </span><span class="n">month_number</span><span class="w"> </span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">            </span><span class="k">rows</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">preceding</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">current</span><span class="w"> </span><span class="k">row</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">nullif</span><span class="p">(</span><span class="n">raw_monthly_revenue</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">variance_from_trend</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">    </span><span class="n">monthly_revenue</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">    </span><span class="p">[</span><span class="k">year</span><span class="p">],</span><span class="w"> </span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">    </span><span class="n">month_number</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">    </span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">    </span><span class="n">raw_monthly_revenue</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">    </span><span class="p">[</span><span class="k">year</span><span class="p">],</span><span class="w"> </span><span class="n">month_number</span><span class="p">;</span>
+</code></pre></div>
+
+
+**Results:** <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1">
+
+|year|month_number|month_name|raw_monthly_revenue|rolling_avg_3m|variance_from_trend|
+|----|------------|----------|-------------------|--------------|-------------------|
+|2016|9|September|136.22999572753906|136.230|0.00|
+|2016|10|October|51657.52999472618|25896.880|49.87|
+|2016|12|December|19.6200008392334|17271.127|-87928.16|
+|2017|1|January|137006.76003867388|62894.637|54.09|
+|2017|2|February|283621.93943831325|140216.106|50.56|
+|2017|3|March|425656.3995541632|282095.033|33.73|
+|2017|4|April|405988.3795110285|371755.573|8.43|
+|2017|5|May|582926.160167003|471523.646|19.11|
+|2017|6|June|499827.47035080194|496247.337|0.72|
+|2017|7|July|578858.5795211494|553870.737|4.32|
+|2017|8|August|662071.7698084246|580252.607|12.36|
+|2017|9|September|717195.2203616947|652708.523|8.99|
+|2017|10|October|764785.2796836384|714684.090|6.55|
+|2017|11|November|1172639.2297811043|884873.243|24.54|
+|2017|12|December|861914.4599985629|933112.990|-8.26|
+|2018|1|January|1102639.4091129452|1045731.033|5.16|
+|2018|2|February|979966.2302345932|981506.700|-0.16|
+|2018|3|March|1152736.7396906763|1078447.460|6.44|
+|2018|4|April|1156303.9107048158|1096335.627|5.19|
+|2018|5|May|1145748.6310662013|1151596.427|-0.51|
+|2018|6|June|1020494.2907593064|1107515.611|-8.53|
+|2018|7|July|1039880.1590387616|1068707.694|-2.77|
+|2018|8|August|996896.1512343884|1019090.200|-2.23|
+|2018|9|September|166.4600067138672|678980.923|-407794.33|
+
+</div>
+
+**Insights:** 
+
+* **A Clearer Picture of Growth:** The 3-month rolling average successfully smooths out the messy monthly jumps. It reveals a very clean, consistent upward curve throughout 2017 before settling into a steady, flat line in 2018.
+* **Isolating the Black Friday Boom:** In November 2017, raw revenue jumped 24.5% higher than the rolling trendline. This confirms that the Black Friday success was a temporary seasonal spike rather than a permanent shift in baseline sales.
+* **The Post-Holiday Drop:** December 2017 shows an 8.2% negative variance from the trend. Because November pulled the 3-month average so high, this negative variance perfectly illustrates the sudden "hangover" effect as customer spending dropped off.
+* **Highly Predictable 2018:** Between February and August 2018, the raw revenue tracks incredibly closely to the 3-month average. The variance is tiny (mostly between -2% and +6%), showing that the business matured into a very stable phase, predictably earning around $1M to $1.15M per month.
+* **Spotting Bad Data Instantly:** The rolling average makes data cutoffs obvious. The massive negative variance in September 2018 immediately flags that our dataset ends abruptly, preventing us from accidentally using that raw number in any serious forecasting.
+
+
+
+## Revenue Distribution across States and Cities
+
+
+
+<font color = "#9dc9cf">9. How is revenue distributed across different states (`customer_state`) and cities? specifically, identifying the top 5 regions with the highest sales density per capita versus regions with high order volume but low total revenue?</font>
+
+**Solution:** 
+
+1. **Firstly, we calculate regional baseline metrics (`region_performance` CTE)**: We join the `orders`, `customers`, and `payments` tables to aggregate the `total_orders` and `total_revenue` for each `customer_state` and `customer_city`. We also calculate the `avg_order_value` (revenue density) by dividing total revenue by the distinct order count, ensuring we exclude 'canceled' or 'unavailable' orders.
+
+2. **Secondly, we rank the regions (`region_rankings` CTE)**: We use the `rank()` window function to assign a `revenue_rank` and a `volume_rank` to each city/state combination. By ordering descendingly, the regions with the highest revenue and order counts receive the top ranks (e.g., Rank 1, 2, 3).
+
+3. **Finally, we segment the regions based on their rankings (Final `SELECT`)**: We use a `CASE` statement to classify each region's profile by evaluating its volume and revenue ranks. This allows us to categorize regions into distinct business profiles such as 'Major Economic Hub' (top ranks in both volume and revenue) or 'Affluent Niche' (lower volume rank but high revenue rank), clearly identifying the sales density and distribution across different geographies.
+
+
+
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">with</span><span class="w"> </span><span class="n">region_performance</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">SELECT</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="n">customers</span><span class="p">.</span><span class="n">customer_state</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="n">customers</span><span class="p">.</span><span class="n">customer_city</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">payments</span><span class="p">.</span><span class="n">payment_value</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_revenue</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="c1">-- avg order value -&gt; revenue density</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">payments</span><span class="p">.</span><span class="n">payment_value</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="k">distinct</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_order_value</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="n">orders</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="k">join</span><span class="w">   </span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="n">customers</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">customers</span><span class="p">.</span><span class="n">customer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">customer_id</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="n">payments</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">payments</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">orders</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="n">orders</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;canceled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unavailable&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="n">customers</span><span class="p">.</span><span class="n">customer_state</span><span class="p">,</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="n">customers</span><span class="p">.</span><span class="n">customer_city</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="p">),</span><span class="w"> </span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="n">region_rankings</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">        </span><span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">        </span><span class="n">rank</span><span class="p">()</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">total_revenue</span><span class="w"> </span><span class="k">desc</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">revenue_rank</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">        </span><span class="n">rank</span><span class="p">()</span><span class="w"> </span><span class="n">over</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">total_orders</span><span class="w"> </span><span class="k">desc</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">volume_rank</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">        </span><span class="n">region_performance</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="p">)</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">    </span><span class="n">customer_state</span><span class="p">,</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">    </span><span class="n">customer_city</span><span class="p">,</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">    </span><span class="n">total_revenue</span><span class="p">,</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">avg_order_value</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_order_value</span><span class="p">,</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">revenue_rank</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">volume_rank</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Major Economic Hub (High Vol / High Rev)&#39;</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">revenue_rank</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">volume_rank</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">50</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Affluent Niche (Low Vol / High Rev)&#39;</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">        </span><span class="k">when</span><span class="w"> </span><span class="n">revenue_rank</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">volume_rank</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="s1">&#39;Mass Market (High Vol / Low Rev)&#39;</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Standard Market&#39;</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">    </span><span class="k">end</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">regional_profile</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="w">    </span><span class="n">region_rankings</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="w">    </span><span class="n">total_revenue</span><span class="w"> </span><span class="k">desc</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+
+**Results:** <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1">
+
+|customer_state|customer_city|total_orders|total_revenue|avg_order_value|regional_profile|
+|--------------|-------------|------------|-------------|---------------|----------------|
+|SP|sao paulo|15291|2150534.770117907|140.64|Major Economic Hub (High Vol / High Rev)|
+|RJ|rio de janeiro|6801|1147675.809347108|168.75|Major Economic Hub (High Vol / High Rev)|
+|MG|belo horizonte|2737|411571.5802227948|150.37|Major Economic Hub (High Vol / High Rev)|
+|DF|brasilia|2112|350563.3297816515|165.99|Major Economic Hub (High Vol / High Rev)|
+|PR|curitiba|1502|240889.5599949062|160.38|Major Economic Hub (High Vol / High Rev)|
+|RS|porto alegre|1370|220135.7902894616|160.68|Major Economic Hub (High Vol / High Rev)|
+|BA|salvador|1234|216352.82025164366|175.33|Major Economic Hub (High Vol / High Rev)|
+|SP|campinas|1422|211539.7600118816|148.76|Major Economic Hub (High Vol / High Rev)|
+|SP|guarulhos|1167|161739.5199765265|138.59|Major Economic Hub (High Vol / High Rev)|
+|RJ|niteroi|842|137399.449943915|163.18|Standard Market|
+|SP|sao bernardo do campo|921|118343.4201908093|128.49|Standard Market|
+|CE|fortaleza|647|117983.99994421005|182.36|Standard Market|
+|GO|goiania|681|117095.89010572433|171.95|Standard Market|
+|SP|santos|706|111670.21002027392|158.17|Standard Market|
+|PE|recife|610|109421.82003313303|179.38|Standard Market|
+|SP|santo andre|786|103892.71011769772|132.18|Standard Market|
+|SC|florianopolis|563|99524.4301700592|176.78|Standard Market|
+|PA|belem|440|95455.55000805855|216.94|Standard Market|
+|SP|osasco|736|93696.3600088805|127.30|Standard Market|
+|SP|jundiai|556|91147.71014773846|163.93|Standard Market|
+|SP|sao jose dos campos|683|89081.69994664192|130.43|Standard Market|
+|SP|sorocaba|621|86911.57992458344|139.95|Standard Market|
+|SP|ribeirao preto|507|75379.01995331049|148.68|Standard Market|
+|MG|juiz de fora|425|75089.71999931335|176.68|Standard Market|
+|RJ|nova iguacu|438|70736.99004948139|161.50|Standard Market|
+|MS|campo grande|315|65520.08040642738|208.00|Standard Market|
+|MA|sao luis|345|63114.89991879463|182.94|Standard Market|
+|PB|joao pessoa|253|62606.56971311569|247.46|Standard Market|
+|ES|vitoria|376|62057.10984182358|165.05|Standard Market|
+|RJ|sao goncalo|405|61570.400188207626|152.03|Standard Market|
+|PI|teresina|278|60322.97010374069|216.99|Standard Market|
+|SP|piracicaba|363|58216.87995111942|160.38|Standard Market|
+|SP|barueri|425|58004.639814246446|136.48|Standard Market|
+|SP|mogi das cruzes|377|57979.230025827885|153.79|Standard Market|
+|MG|contagem|419|57814.660032749176|137.98|Standard Market|
+|MG|uberlandia|372|56786.0901248306|152.65|Standard Market|
+|ES|vila velha|329|55557.45991837978|168.87|Standard Market|
+|SP|sao jose do rio preto|332|53719.34991595149|161.81|Standard Market|
+|AL|maceio|246|53101.38010084629|215.86|Standard Market|
+|PR|londrina|302|53029.720022678375|175.60|Standard Market|
+|SP|maua|319|48421.219797849655|151.79|Standard Market|
+|MT|cuiaba|248|47117.16004541516|189.99|Standard Market|
+|SP|bauru|269|44903.49977505207|166.93|Standard Market|
+|PR|maringa|264|44655.54022991657|169.15|Standard Market|
+|SE|aracaju|220|44598.79984438419|202.72|Standard Market|
+|RS|caxias do sul|223|44111.57005023956|197.81|Standard Market|
+|SP|praia grande|304|44072.049874305725|144.97|Standard Market|
+|ES|serra|285|42965.76991789043|150.76|Standard Market|
+|RN|natal|205|42851.00978708267|209.03|Standard Market|
+|SP|indaiatuba|277|41590.47012972832|150.15|Standard Market|
+|SC|joinville|262|40905.22002220154|156.13|Standard Market|
+|RJ|duque de caxias|263|39908.03999757767|151.74|Standard Market|
+|RJ|campos dos goytacazes|237|39898.530123472214|168.35|Standard Market|
+|SP|taboao da serra|288|39766.34001151472|138.08|Standard Market|
+|RJ|petropolis|237|39532.84000623226|166.81|Standard Market|
+|MG|divinopolis|134|38727.710107803345|289.01|Standard Market|
+|RJ|volta redonda|228|38645.94992351532|169.50|Standard Market|
+|RJ|macae|236|37543.26006150246|159.08|Standard Market|
+|SP|marilia|196|37493.970249176025|191.30|Standard Market|
+|RS|santa maria|194|37224.64966106415|191.88|Standard Market|
+|SP|carapicuiba|324|37196.800077438354|114.80|Standard Market|
+|SP|sao caetano do sul|274|36571.90995502472|133.47|Standard Market|
+|SP|cotia|247|34772.90995979309|140.78|Standard Market|
+|SP|taubate|266|34560.32997727394|129.93|Standard Market|
+|MG|betim|201|34349.920018196106|170.90|Standard Market|
+|SP|sao carlos|231|33906.410032749176|146.78|Standard Market|
+|SP|guaruja|224|33690.860169410706|150.41|Standard Market|
+|SP|diadema|282|33675.98999106884|119.42|Standard Market|
+|BA|feira de santana|185|32466.80003336072|175.50|Standard Market|
+|RS|canoas|209|31982.830045431852|153.03|Standard Market|
+|MG|uberaba|187|31911.67006677389|170.65|Standard Market|
+|MG|montes claros|209|31283.009807288647|149.68|Standard Market|
+|RJ|nova friburgo|148|31206.370090961456|210.85|Standard Market|
+|SP|presidente prudente|160|29916.460077762604|186.98|Standard Market|
+|SC|blumenau|186|29206.580057948828|157.02|Standard Market|
+|SP|suzano|232|29022.78001856804|125.10|Standard Market|
+|SP|americana|219|28545.730053901672|130.35|Standard Market|
+|PR|cascavel|148|27649.599861621857|186.82|Standard Market|
+|RS|pelotas|184|27356.58004850149|148.68|Standard Market|
+|SP|limeira|187|26206.299997091293|140.14|Standard Market|
+|RO|porto velho|109|26121.920029640198|239.65|Standard Market|
+|SP|santana de parnaiba|180|26074.63006234169|144.86|Standard Market|
+|MG|ipatinga|170|26003.559985399246|152.96|Standard Market|
+|AM|manaus|139|25793.0799767375|185.56|Standard Market|
+|SP|franca|158|25736.110070228577|162.89|Standard Market|
+|SP|valinhos|182|25607.430002212524|140.70|Standard Market|
+|PE|jaboatao dos guararapes|133|25458.900188446045|191.42|Standard Market|
+|SP|sumare|179|24509.429921627045|136.92|Standard Market|
+|SC|sao jose|168|24347.42995071411|144.93|Standard Market|
+|MG|pouso alegre|131|24195.410016059875|184.70|Standard Market|
+|SP|atibaia|157|23783.42003250122|151.49|Standard Market|
+|RJ|rio das ostras|135|23584.38001394272|174.70|Standard Market|
+|MG|nova lima|98|23287.82988166809|237.63|Standard Market|
+|SP|rio claro|152|23181.3299202919|152.51|Standard Market|
+|SP|araraquara|153|23106.97009086609|151.03|Standard Market|
+|RJ|barra mansa|120|22938.179938793182|191.15|Standard Market|
+|SP|embu das artes|162|22846.049993515015|141.02|Standard Market|
+|PB|campina grande|68|22783.29009628296|335.05|Standard Market|
+|SP|braganca paulista|144|22683.220050811768|157.52|Standard Market|
+|MG|governador valadares|135|22368.88001060486|165.70|Standard Market|
+|SP|sao vicente|161|22237.13000050187|138.12|Standard Market|
+|PR|ponta grossa|142|22152.279952526093|156.00|Standard Market|
+|RJ|sao joao de meriti|131|21932.93999648094|167.43|Standard Market|
+|TO|palmas|90|21790.370041251183|242.12|Standard Market|
+|RS|gravatai|112|21719.35986328125|193.92|Standard Market|
+|SP|itaquaquecetuba|170|21716.27007201314|127.74|Standard Market|
+|RJ|angra dos reis|84|21567.900049209595|256.76|Standard Market|
+|SC|itajai|119|21465.519989013672|180.38|Standard Market|
+|PA|ananindeua|88|21236.850120782852|241.33|Standard Market|
+|SP|itapevi|170|21190.409993935376|124.65|Standard Market|
+|SP|jacarei|191|21113.10000383854|110.54|Standard Market|
+|ES|cariacica|138|20593.749937057495|149.23|Standard Market|
+|RS|novo hamburgo|121|20527.589955329895|169.65|Standard Market|
+|RJ|teresopolis|119|20266.340026408434|170.31|Standard Market|
+|MG|sete lagoas|127|20239.31993675232|159.36|Standard Market|
+|GO|anapolis|111|20029.820016860962|180.45|Standard Market|
+|RJ|cabo frio|114|19568.42012345791|171.65|Standard Market|
+|SP|aracatuba|140|19530.12003302574|139.50|Standard Market|
+|MG|pocos de caldas|118|19415.190086126328|164.54|Standard Market|
+|SC|balneario camboriu|99|19358.679819107056|195.54|Standard Market|
+|MG|patos de minas|100|19349.550039052963|193.50|Standard Market|
+|RS|rio grande|123|19338.510021209717|157.22|Standard Market|
+|BA|vitoria da conquista|88|19252.20994949341|218.78|Standard Market|
+|RJ|araruama|77|19196.049936294556|249.30|Standard Market|
+|ES|cachoeiro de itapemirim|121|19175.44999051094|158.47|Standard Market|
+|SP|botucatu|101|19053.070067703724|188.64|Standard Market|
+|SP|paulinia|129|18790.840075671673|145.67|Standard Market|
+|SP|hortolandia|145|18748.569893836975|129.30|Standard Market|
+|RJ|mage|110|18679.999910354614|169.82|Standard Market|
+|MG|vicosa|89|18649.7098236084|209.55|Standard Market|
+|RJ|marica|137|18511.419981002808|135.12|Standard Market|
+|RS|passo fundo|112|18088.809967041016|161.51|Standard Market|
+|SC|criciuma|92|17812.22989654541|193.61|Standard Market|
+|PR|sao jose dos pinhais|131|17763.43998658657|135.60|Standard Market|
+|SC|chapeco|102|17607.440014123917|172.62|Standard Market|
+|SP|ferraz de vasconcelos|110|17471.239877700806|158.83|Standard Market|
+|GO|aparecida de goiania|109|16962.150075912476|155.62|Standard Market|
+|PE|petrolina|65|16959.21994781494|260.91|Standard Market|
+|AC|rio branco|70|16928.469888687134|241.84|Standard Market|
+|SP|birigui|78|16626.830087661743|213.16|Standard Market|
+|SP|guaratingueta|96|16593.199988663197|172.85|Standard Market|
+|MG|itajuba|94|16505.20000600815|175.59|Standard Market|
+|RJ|resende|117|16496.71998155117|141.00|Standard Market|
+|RJ|belford roxo|110|16281.119910791516|148.01|Standard Market|
+|MG|varginha|88|16022.510070800781|182.07|Standard Market|
+|RJ|nilopolis|106|15881.68000793457|149.83|Standard Market|
+|PE|olinda|93|15650.040005683899|168.28|Standard Market|
+|SC|jaragua do sul|89|15357.909955978394|172.56|Standard Market|
+|MG|lavras|83|15307.959968531504|184.43|Standard Market|
+|SP|araras|94|15187.249944269657|161.57|Standard Market|
+|SP|caraguatatuba|86|15082.739949911833|175.38|Standard Market|
+|MG|araxa|75|15041.850039482117|200.56|Standard Market|
+|SP|santa barbara d'oeste|118|14980.129915863276|126.95|Standard Market|
+|MG|ribeirao das neves|99|14890.069915771484|150.40|Standard Market|
+|SP|caieiras|98|14729.870056152344|150.30|Standard Market|
+|SP|itu|132|14614.819989204407|110.72|Standard Market|
+|SP|pindamonhangaba|100|14375.700001001358|143.76|Standard Market|
+|SP|ourinhos|77|14325.329902648926|186.04|Standard Market|
+|MG|barbacena|80|14321.699979782104|179.02|Standard Market|
+|MT|rondonopolis|65|14105.620091438293|217.01|Standard Market|
+|SP|itapetininga|77|14048.460102081299|182.45|Standard Market|
+|ES|linhares|64|13987.340067327023|218.55|Standard Market|
+|SP|mogi-guacu|91|13972.309995651245|153.54|Standard Market|
+|PR|foz do iguacu|87|13902.670015335083|159.80|Standard Market|
+|SP|assis|84|13819.309928894043|164.52|Standard Market|
+|AP|macapa|54|13666.030033111572|253.07|Standard Market|
+|SP|itatiba|97|13634.020051956177|140.56|Standard Market|
+|SC|lages|83|13616.230019569397|164.05|Standard Market|
+|SP|sao joao da boa vista|81|13608.180032730103|168.00|Standard Market|
+|MG|santa luzia|91|13575.690139114857|149.18|Standard Market|
+|CE|sobral|35|13295.730205535889|379.88|Standard Market|
+|RS|sao leopoldo|104|13291.570051595569|127.80|Standard Market|
+|SC|palhoca|93|13273.769969940186|142.73|Standard Market|
+|SP|amparo|66|13001.819974184036|197.00|Standard Market|
+|BA|barreiras|52|12952.729969024658|249.09|Standard Market|
+|SP|tatui|73|12815.720006942749|175.56|Standard Market|
+|MG|itabira|79|12748.300029754639|161.37|Standard Market|
+|SP|varzea paulista|78|12659.479978561401|162.30|Standard Market|
+|PE|caruaru|64|12579.229939937592|196.55|Standard Market|
+|MG|muriae|63|12532.070067167282|198.92|Standard Market|
+|SP|itanhaem|79|12338.11986541748|156.18|Standard Market|
+|SP|salto|93|12137.629947304726|130.51|Standard Market|
+|SC|tubarao|60|12130.980094909668|202.18|Standard Market|
+|SP|votorantim|84|12085.639886379242|143.88|Standard Market|
+|MG|araguari|54|12048.940017700195|223.13|Standard Market|
+|ES|guarapari|67|12021.139976501465|179.42|Standard Market|
+|RS|santa cruz do sul|62|11974.649991989136|193.14|Standard Market|
+|SP|franco da rocha|109|11893.329976558685|109.11|Standard Market|
+|GO|rio verde|64|11847.880012512207|185.12|Standard Market|
+|SP|ribeirao pires|107|11780.649990081787|110.10|Standard Market|
+|PR|toledo|70|11688.66003036499|166.98|Standard Market|
+|BA|porto seguro|39|11671.599877357483|299.27|Standard Market|
+|SC|gaspar|29|11602.949851989746|400.10|Standard Market|
+|SP|cacapava|73|11520.139964461327|157.81|Standard Market|
+|SP|cajamar|98|11515.510002374649|117.51|Standard Market|
+|GO|jatai|54|11337.930023908615|209.96|Standard Market|
+|BA|lauro de freitas|75|11278.609934806824|150.38|Standard Market|
+|MG|caratinga|62|11211.449956178665|180.83|Standard Market|
+|MG|conselheiro lafaiete|84|11192.38003563881|133.24|Standard Market|
+|SP|catanduva|74|11183.029972076416|151.12|Standard Market|
+
+</div>
+
+
+**Insights:**
+
+* **The Dominance of São Paulo (SP):** São Paulo completely crushes the competition. It acts as our absolute major economic hub, pulling in $2.15M in revenue from over 15,000 orders. This single city brings in almost double the revenue of the second-place city, Rio de Janeiro.
+* **Top 5 Revenue Centers:** The top 5 regions driving the highest total revenue are all major state capitals: São Paulo (SP), Rio de Janeiro (RJ), Belo Horizonte (MG), Brasília (DF), and Curitiba (PR). Together, they represent the core market for Olist.
+* **State Performance (The "SP" Factor):** Even outside of the main capital, the state of São Paulo (SP) is dominant. Cities like Campinas, Guarulhos, and Santos pull in massive volumes, showing that the platform's logistics and marketing are incredibly effective throughout this entire state. 
+* **High Volume vs. High Revenue Outliers:**
+    * **High Average Order Value (AOV) in Remote Regions:** If you look at standard markets like Belém (PA), João Pessoa (PB), or Macapá (AP), their order volumes are lower (under 500 orders), but their Average Order Values are huge ($216, $247, and $253 respectively). Customers in these regions are likely buying heavier, more expensive items because local retail options are limited.
+    * **Volume Does Not Always Equal Value:** Take Carapicuiba (SP) as an example. It generated 324 orders (higher than many standard markets), but only pulled in $37K with a very low AOV of $114.80. This tells us the city generates high engagement but mostly for cheaper items.
+
+
+## Average Order Value and Basket Size Analysis
+
+
+<font color = "#9dc9cf">10. AOV and Busket Size Analysis: What is the average order value (AOV) and average basket size (number of items per order) for Olist? How do these metrics vary across year and months? </font>
+
+**Solution:**
+
+
+1. **Firstly, we isolate order-level totals (`order_item_totals` and `order_payment_totals` CTEs)**: This is crucial to prevent data duplication caused by 1-to-many relationships (multiple items or payment methods per order). We calculate the total number of items (`items_in_basket`) and the total payment value (`total_order_payment`) grouped strictly by unique `order_id`.
+
+2. **Secondly, we aggregate these metrics by month (`monthly_metrics` CTE)**: We join our safe order-level totals with the `orders` and `Calendar` tables, ensuring we filter out 'canceled' or 'unavailable' orders. This gives us the absolute `total_orders`, `monthly_revenue`, and `monthly_items_count` for each specific year and month.
+
+3. **Finally, we calculate the key performance indicators (Final `SELECT`)**: By dividing the monthly revenue by total orders, we get the Average Order Value (AOV). Dividing the total items by total orders gives us the Average Basket Size. We also calculate an `avg_price_per_item` proxy (AOV divided by basket size) to understand the value density of the baskets over time.
+
+
+
+
+<details>
+<summary>Show SQL Code</summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">with</span><span class="w"> </span><span class="n">order_item_totals</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="c1">-- step 1: calculate total items and total price per order</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="c1">-- this prevents duplication before joining with payments</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="n">order_id</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="n">order_item_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">items_in_basket</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">price</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_items_price</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="n">order_items</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="n">order_id</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">),</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="n">order_payment_totals</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="c1">-- step 2: calculate total payment value per order </span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="c1">-- (accounts for multi-payment methods/installments)</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="n">order_id</span><span class="p">,</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">payment_value</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_order_payment</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">        </span><span class="n">payments</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">        </span><span class="n">order_id</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="p">),</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="n">monthly_metrics</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">    </span><span class="c1">-- step 3: aggregate metrics by month</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">    </span><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="k">year</span><span class="p">,</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">month_number</span><span class="p">,</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">        </span><span class="k">count</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">total_order_payment</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">monthly_revenue</span><span class="p">,</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">        </span><span class="k">sum</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">items_in_basket</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">monthly_items_count</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">    </span><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">        </span><span class="n">orders</span><span class="w"> </span><span class="n">o</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">        </span><span class="n">Calendar</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">purchase_datekey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">datekey</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">        </span><span class="n">order_item_totals</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="w">    </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="w">        </span><span class="n">order_payment_totals</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">order_id</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="w">    </span><span class="k">where</span><span class="w"> </span>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w">        </span><span class="n">o</span><span class="p">.</span><span class="n">order_status</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;canceled&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;unavailable&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="w">    </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="w">        </span><span class="k">c</span><span class="p">.</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">month_number</span><span class="p">,</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">month_name</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="p">)</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="c1">-- final output: calculating aov and avg basket size trends</span>
+<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="k">select</span><span class="w"> </span>
+<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="w">    </span><span class="k">year</span><span class="p">,</span>
+<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a><span class="w">    </span><span class="n">month_name</span><span class="p">,</span>
+<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="w">    </span><span class="n">total_orders</span><span class="p">,</span>
+<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a><span class="w">    </span><span class="c1">-- aov: total revenue / total orders</span>
+<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">monthly_revenue</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_orders</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">aov</span><span class="p">,</span>
+<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="w">    </span><span class="c1">-- avg basket size: total items / total orders</span>
+<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a><span class="w">    </span><span class="k">cast</span><span class="p">(</span><span class="n">monthly_items_count</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_orders</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_basket_size</span><span class="p">,</span>
+<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a><span class="w">    </span><span class="c1">-- item value proxy: aov / avg basket size (average price per item)</span>
+<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a><span class="w">    </span><span class="k">cast</span><span class="p">((</span><span class="n">monthly_revenue</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_orders</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">monthly_items_count</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_orders</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_price_per_item</span>
+<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a><span class="k">from</span><span class="w"> </span>
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="w">    </span><span class="n">monthly_metrics</span>
+<a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span>
+<a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a><span class="w">    </span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">month_number</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+
+
+**Results:** <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1">
+
+
+|year|month_name|total_orders|aov|avg_basket_size|avg_price_per_item|
+|----|----------|------------|---|---------------|------------------|
+|2016|September|1|136.23|2.00|68.11|
+|2016|October|290|177.35|1.18|150.38|
+|2016|December|1|19.62|1.00|19.62|
+|2017|January|787|174.09|1.21|143.76|
+|2017|February|1718|165.09|1.13|146.50|
+|2017|March|2617|162.65|1.14|143.08|
+|2017|April|2377|170.80|1.12|152.63|
+|2017|May|3640|160.14|1.13|141.97|
+|2017|June|3205|155.95|1.11|139.97|
+|2017|July|3946|146.70|1.14|128.84|
+|2017|August|4272|154.98|1.14|135.61|
+|2017|September|4227|169.67|1.14|148.95|
+|2017|October|4547|168.20|1.17|144.30|
+|2017|November|7421|157.98|1.16|135.91|
+|2017|December|5618|153.37|1.12|136.77|
+|2018|January|7187|153.42|1.14|134.91|
+|2018|February|6624|147.92|1.15|128.98|
+|2018|March|7168|160.82|1.14|140.66|
+|2018|April|6919|167.12|1.15|145.32|
+|2018|May|6833|167.68|1.16|145.07|
+|2018|June|6145|166.07|1.15|144.55|
+|2018|July|6233|166.83|1.13|147.73|
+|2018|August|6421|155.26|1.12|138.15|
+|2018|September|1|166.46|1.00|166.46|
+
+</div>
+
+
+**İnsights:**
+
+* **Single-Item Shoppers:** The most striking takeaway is the average basket size. It stays completely flat, hovering between 1.11 and 1.17 items per order across all active months. Olist customers almost exclusively buy just one item at a time.
+* **Stable Average Order Value (AOV):** AOV is remarkably consistent, generally floating between $150 and $170. There are slight dips (like $146.70 in July 2017 or $147.92 in Feb 2018), but it always bounces back into the $160s quickly.
+* **The Black Friday Shopping Behavior:** During the massive sales peak in November 2017, the AOV ($157.98) and basket size (1.16) were completely average. This proves the Black Friday revenue boom came entirely from a massive flood of *new orders*, not from customers stuffing their carts with multiple discounted items.
+* **Price Per Item Controls AOV:** Because the basket size is practically stuck at 1, the AOV is directly controlled by the `avg_price_per_item`. When customers buy slightly cheaper goods overall (like in early 2018), the AOV drops right alongside it.
+
+
+## Conclusion
+
+**What We Did:**
+* Analyzed overall order and revenue trends using both raw monthly groupings and a 3-month rolling average to smooth out volatility.
+* Segmented product categories to compare raw sales volume against actual revenue generated.
+* Mapped out the geographic distribution of sales to find high-performing states and cities.
+* Tracked Average Order Value (AOV) and average basket size across the entire timeline.
+
+**What We Obtained (Key Findings):**
+* **Growth & Plateau:** Olist experienced explosive growth in 2017 and matured into a stable business in 2018, consistently generating between $1M and $1.15M monthly.
+* **Single-Item Baskets:** Customers are overwhelmingly single-item shoppers. The average basket size is practically locked at ~1.14 items across all months.
+* **Volume Over Cart Size:** The massive Black Friday peak in November 2017 was driven entirely by a flood of new orders, not by customers stuffing more items into their carts.
+* **The São Paulo Anchor:** São Paulo (SP) is the undisputed core market for volume and revenue. However, remote regions consistently show a higher AOV, likely due to a lack of local retail alternatives.
+* **Category Efficiency:** Categories like health/beauty and watches are highly efficient (high volume + high revenue). In contrast, electronics are a "trap" category, moving lots of units but yielding relatively low revenue.
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

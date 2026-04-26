@@ -1,0 +1,2178 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+        <link rel="prev" href="../00_problem_description/">
+      
+      
+        <link rel="next" href="../02_macro_performance/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Data Preparation - Vasif Asadov Portfolio</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-preparation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-header__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Portfolio
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Preparation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Portfolio" class="md-nav__button md-logo" aria-label="Vasif Asadov Portfolio" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Portfolio
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-cleaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Cleaning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Cleaning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customer-dimension-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customer Dimension Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geography-dimension-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geography Dimension Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#product-dimension-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Dimension Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Tables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Modelling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#business-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../olist_e_commerce/09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with DuckDB SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home_credit_risk/04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_science/road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-ingestion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Ingestion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-cleaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Cleaning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Cleaning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customer-dimension-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customer Dimension Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geography-dimension-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geography Dimension Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#product-dimension-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product Dimension Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other Tables
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-modelling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Modelling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#business-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="data-preparation">Data Preparation<a class="headerlink" href="#data-preparation" title="Permanent link">&para;</a></h1>
+<h2 id="data-ingestion">Data Ingestion<a class="headerlink" href="#data-ingestion" title="Permanent link">&para;</a></h2>
+<p>The first step in our analysis process is data ingestion, where we will load the sales data into our analysis environment. The sales data for Adventureworks is provided in a .bak file, which is a backup file format used by SQL Server. We will restore this .bak file to our SQL Server instance running through Docker, and then connect to the database using Dbeaver to access the sales data for analysis.</p>
+<p>Firstly, as I am using Docker to run SQL Server, I should activate the Docker container of SQL Server using the following commands in the terminal:</p>
+<p>Note: I am running Docker on a Linux system - Fedora Linux, so I need to use <code>sudo</code> to run the Docker commands. If you are using Docker on Windows or Mac, you will not need to use <code>sudo</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>docker<span class="w"> </span><span class="c1"># Start the Docker service</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>docker<span class="w"> </span>start<span class="w"> </span>sqlserver<span class="w"> </span><span class="c1"># Start the SQL Server container</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span><span class="c1"># Check if the container is running</span>
+</code></pre></div>
+<p>After starting the Docker container, we will restore the .bak file to the SQL Server instance. After downloading the .bak file from the provided link, we should place it in a directory that is accessible to the Docker container.   </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>cp<span class="w"> </span>AdventureWorksDW2022.bak<span class="w"> </span>80ac0912ffb9:/var/opt/mssql/data/AdventureWorksDW2022.bak<span class="w"> </span><span class="c1"># Copy the .bak file to the Docker container</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>80ac0912ffb9<span class="w"> </span>ls<span class="w"> </span>-lh<span class="w"> </span>/var/opt/mssql/data/AdventureWorksDW2022.bak<span class="w"> </span><span class="c1"># Verify that the file has been copied successfully</span>
+</code></pre></div>
+<p>Now we are ready to restore the .bak file to the SQL Server instance. We can do this using Dbeaver by connecting to the SQL Server instance and running the following SQL command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">RESTORE</span><span class="w"> </span><span class="n">FILELISTONLY</span><span class="w"> </span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">DISK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/var/opt/mssql/data/AdventureWorksDW2022.bak&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>This will give us the logical file names of the data and log files contained in the .bak file. We will use these logical file names to restore the database to our SQL Server instance. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">RESTORE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="p">[</span><span class="n">AdventureWorksDW2022</span><span class="p">]</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">DISK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/var/opt/mssql/data/AdventureWorksDW2022.bak&#39;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">WITH</span><span class="w"> </span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="k">MOVE</span><span class="w"> </span><span class="s1">&#39;AdventureWorksDW2022&#39;</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/var/opt/mssql/data/AdventureWorksDW2022.mdf&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">MOVE</span><span class="w"> </span><span class="s1">&#39;AdventureWorksDW2022_log&#39;</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;/var/opt/mssql/data/AdventureWorksDW2022_log.ldf&#39;</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">RECOVERY</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">REPLACE</span><span class="p">;</span>
+</code></pre></div>
+<p>Finally, we will see the restored database in Dbeaver and we can start analyzing the sales data using SQL queries. We will connect to the AdventureWorksDW2022 database in Dbeaver and explore the tables and data to understand the structure of the sales data and prepare it for analysis.</p>
+<h2 id="data-cleaning">Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permanent link">&para;</a></h2>
+<p>After successfully restoring the sales data to our SQL Server instance, the next step in our analysis process is data cleaning. Data cleaning is a crucial step in any data analysis project, as it ensures that the data we are working with is accurate, consistent, and ready for analysis.</p>
+<p>Firstly, we should define the database and schema we will be working with in our SQL queries. In this case, we will be working with the <code>AdventureWorksDW2022</code> database and the <code>dbo</code> schema, which contains the sales data we need for our analysis. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">use</span><span class="w"> </span><span class="n">AdventureWorksDW2022</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Set the database context to AdventureWorksDW2022</span>
+</code></pre></div>
+<p>Restored AdventureWorksDW2022 database contains a lot of tables, representing both Business to Customer (B2C) and Business to Business (B2B) sales data. B2C sales data shows the sales made directly to individual customers, while B2B sales data shows the sales made to other markets-sellers. For our analysis, we will focus on the B2C sales data, which is more relevant for understanding customer behavior and preferences. Therefore, we should identify the tables that contain B2C sales data and focus our cleaning efforts on those tables. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">AdventureWorksDWBuildVersion</span><span class="p">,</span><span class="n">DatabaseLog</span><span class="p">,</span><span class="n">DimAccount</span><span class="p">,</span><span class="n">DimOrganization</span><span class="p">,</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">DimScenario</span><span class="p">,</span><span class="n">FactAdditionalInternationalProductDescription</span><span class="p">,</span><span class="n">FactCallCenter</span><span class="p">,</span><span class="n">FactCurrencyRate</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">FactFinance</span><span class="p">,</span><span class="n">FactSalesQuota</span><span class="p">,</span><span class="n">FactSurveyResponse</span><span class="p">,</span><span class="n">NewFactCurrencyRate</span><span class="p">,</span><span class="n">ProspectiveBuyer</span><span class="p">;</span><span class="w"> </span><span class="n">FactResellerSales</span><span class="p">,</span><span class="n">FactResellerSalesReason</span><span class="p">,</span><span class="n">FactResellerSalesSummary</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">go</span>
+</code></pre></div>
+<p>After running the above SQL command, we will encounter the error message which indicates that the tables can not be dropped because they are referenced by foreign key constraints. This is because there are relationships between the tables in the database, and dropping one table may affect the integrity of the data in other tables. To resolve this issue, we should disable/remove all the foreign key constraints in the database before dropping the tables. After dropping the unnecessary tables, we can re-enable the foreign key constraints to maintain data integrity. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">-- Disable all foreign key constraints in the database</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">DECLARE</span><span class="w"> </span><span class="o">@</span><span class="k">sql</span><span class="w"> </span><span class="n">NVARCHAR</span><span class="p">(</span><span class="k">MAX</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Initialize an empty string to hold the SQL commands to disable all foreign key constraints</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">@</span><span class="k">sql</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s1">&#39;ALTER TABLE [&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">OBJECT_SCHEMA_NAME</span><span class="p">(</span><span class="n">parent_object_id</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;].[&#39;</span><span class="w"> </span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="o">+</span><span class="w"> </span><span class="n">OBJECT_NAME</span><span class="p">(</span><span class="n">parent_object_id</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;] DROP CONSTRAINT [&#39;</span><span class="w"> </span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;];&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span><span class="w"> </span><span class="c1">-- Append the SQL command to disable the foreign key constraint to the @sql variable</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">FROM</span><span class="w"> </span><span class="n">sys</span><span class="p">.</span><span class="n">foreign_keys</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Query the sys.foreign_keys system catalog view to get the names of all foreign key constraints in the database and append the SQL command to disable each constraint to the @sql variable</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="k">EXEC</span><span class="w"> </span><span class="n">sp_executesql</span><span class="w"> </span><span class="o">@</span><span class="k">sql</span><span class="p">;</span><span class="w"> </span><span class="c1">-- Execute the SQL commands to disable all foreign key constraints in the database</span>
+</code></pre></div>
+<p>Now if you run the previous SQL command to drop the unnecessary tables, you will see that the tables are dropped successfully without any errors. After dropping the unnecessary tables, we can now analyze each table individually to identify the necessary columns for our analysis and remove any unnecessary columns that are not relevant to our analysis. This will help us to focus on the relevant data and make our analysis more efficient.</p>
+<h3 id="customer-dimension-table">Customer Dimension Table<a class="headerlink" href="#customer-dimension-table" title="Permanent link">&para;</a></h3>
+<p>Firstly, analyze the first table, which is the <code>DimCustomer</code> table. This table contains information about the customers, such as their demographics and contact information. We will identify the necessary columns for our analysis and remove any unnecessary columns that are not relevant to our analysis.</p>
+<p>Firstly, we will look at the structure of the <code>DimCustomer</code> table to understand the columns it contains and their data types. We can do this by running the following SQL command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">select</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dimcustomer</span><span class="p">;</span><span class="w"> </span><span class="c1">-- View the first 10 rows of the DimCustomer table to understand its structure and the columns it contains</span>
+</code></pre></div>
+<p>The raw tables will not be given here visually, since they are not cleaned yet, and will make the webpage look messy. I will clean the tables in the next step and show the cleaned tables in the next section. You can see the raw - original, uncleaned tables by following the Google Spreadsheet link given in the sources section of this project. </p>
+<p>After analyzing the first 10 rows of the <code>DimCustomer</code> table, we can identify the necessary columns for our analysis and remove any unnecessary columns that are not relevant to our analysis. I dropped the following columns from the <code>DimCustomer</code> table: </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimcustomer</span><span class="w"> </span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">drop</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">middlename</span><span class="p">,</span><span class="n">namestyle</span><span class="p">,</span><span class="w"> </span><span class="n">suffix</span><span class="p">,</span><span class="w"> </span><span class="n">emailaddress</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">spanisheducation</span><span class="p">,</span><span class="w"> </span><span class="n">frencheducation</span><span class="p">,</span><span class="w"> </span><span class="n">spanishoccupation</span><span class="p">,</span><span class="w"> </span><span class="n">frenchoccupation</span><span class="p">,</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">addressline1</span><span class="p">,</span><span class="w"> </span><span class="n">addressline2</span><span class="p">,</span><span class="w"> </span><span class="n">phone</span><span class="p">;</span>
+</code></pre></div>
+After running the above SQL command, we will have a cleaned <code>DimCustomer</code> table that contains only the necessary columns for our analysis.  </p>
+<h3 id="geography-dimension-table">Geography Dimension Table<a class="headerlink" href="#geography-dimension-table" title="Permanent link">&para;</a></h3>
+<p>Next, we will analyze the <code>DimGeography</code> table, which contains information about the geographical locations of the customers, such as their city, state, and country. We will identify the necessary columns for our analysis and remove any unnecessary columns that are not relevant to our analysis.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimgeography</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">drop</span><span class="w"> </span><span class="k">column</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">spanishcountryregionname</span><span class="p">,</span><span class="w"> </span><span class="n">frenchcountryregionname</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="product-dimension-table">Product Dimension Table<a class="headerlink" href="#product-dimension-table" title="Permanent link">&para;</a></h3>
+<p>Next, we will analyze the <code>DimProduct</code> table, which contains information about the products that were sold, such as their names, categories, and prices. We will identify the necessary columns for our analysis and remove any unnecessary columns that are not relevant to our analysis.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimproduct</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">drop</span><span class="w"> </span><span class="k">column</span><span class="w"> </span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">englishdescription</span><span class="p">,</span><span class="w"> </span><span class="n">spanishproductname</span><span class="p">,</span><span class="w"> </span><span class="n">frenchproductname</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">safetystocklevel</span><span class="p">,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">reorderpoint</span><span class="p">,</span><span class="w"> </span><span class="n">largephoto</span><span class="p">,</span><span class="w"> </span><span class="n">frenchdescription</span><span class="p">,</span><span class="w"> </span><span class="n">chinesedescription</span><span class="p">,</span><span class="w"> </span><span class="n">arabicdescription</span><span class="p">,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">hebrewdescription</span><span class="p">,</span><span class="w"> </span><span class="n">thaidescription</span><span class="p">,</span><span class="w"> </span><span class="n">germandescription</span><span class="p">,</span><span class="w"> </span><span class="n">japanesedescription</span><span class="p">,</span><span class="w"> </span><span class="n">turkishdescription</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="other-tables">Other Tables<a class="headerlink" href="#other-tables" title="Permanent link">&para;</a></h3>
+<p>We will also take all other tables into consideration and analyze them individually to identify the necessary columns for our analysis and remove any unnecessary columns that are not relevant to our analysis. I am giving the full SQL command to clean all those tables here. </p>
+<details>
+<summary>Show SQL Code</summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">-- DATE DIMENSION</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimdate</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">drop</span><span class="w"> </span><span class="k">column</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">spanishdaynameofweek</span><span class="p">,</span><span class="w"> </span><span class="n">frenchdaynameofweek</span><span class="p">,</span><span class="w"> </span><span class="n">spanishmonthname</span><span class="p">,</span><span class="w"> </span><span class="n">frenchmonthname</span><span class="p">;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1">-- EMPLOYEES</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">DimEmployee</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">drop</span><span class="w"> </span><span class="k">column</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="n">parentemployeenationalidalternatekey</span><span class="p">,</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">middlename</span><span class="p">,</span><span class="w"> </span><span class="n">namestyle</span><span class="p">,</span><span class="w"> </span><span class="n">loginid</span><span class="p">,</span><span class="w"> </span><span class="n">emailaddress</span><span class="p">,</span><span class="w"> </span><span class="n">phone</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="n">emergencycontactname</span><span class="p">,</span><span class="w"> </span><span class="n">emergencycontactphone</span><span class="p">,</span><span class="w"> </span><span class="n">employeephoto</span><span class="p">;</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="c1">-- PRODUCT CATEGORY</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimproductcategory</span><span class="w"> </span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="k">drop</span><span class="w"> </span><span class="k">column</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="n">spanishproductcategoryname</span><span class="p">,</span><span class="w"> </span><span class="n">frenchproductcategoryname</span><span class="p">;</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="c1">-- PRODUCT SUBCATEGORY</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">DimProductSubcategory</span><span class="w"> </span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="k">drop</span><span class="w"> </span><span class="k">column</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="n">spanishproductsubcategoryname</span><span class="p">,</span><span class="w"> </span><span class="n">frenchproductsubcategoryname</span><span class="p">;</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="c1">-- SALES TERRITORY</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">DimSalesTerritory</span><span class="w"> </span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="k">drop</span><span class="w"> </span><span class="k">column</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="n">salesterritoryimage</span><span class="p">;</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="c1">-- FACT INTERNET SALES</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">FactInternetSales</span><span class="w"> </span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="k">drop</span><span class="w"> </span><span class="k">column</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="n">promotionkey</span><span class="p">,</span><span class="w"> </span><span class="n">carriertrackingnumber</span><span class="p">,</span><span class="w"> </span><span class="n">customerponumber</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
+<p>After running the above SQL commands, we will have cleaned tables that contain only the necessary columns for our analysis. This will help us to focus on the relevant data and make our analysis more efficient. We can now proceed to the next step of our analysis process, which is data modelling, where we will create foreign key relationships between the tables to create a star schema for our analysis.</p>
+<h2 id="data-modelling">Data Modelling<a class="headerlink" href="#data-modelling" title="Permanent link">&para;</a></h2>
+<p>Now we should create foreign key relationships between the tables to create a star schema for our analysis. A star schema is a type of database schema that is commonly used in data warehousing and business intelligence applications. It consists of a central fact table that contains the measures of interest, and several dimension tables that contain the attributes related to those measures.</p>
+<p>In our database, the <code>FactInternetSales</code> table will serve as our central fact table, which contains the measures of interest such as sales amount, quantity, and discount. The dimension tables that we will use in our star schema include <code>DimCustomer</code>, <code>DimGeography</code>, <code>DimProduct</code>, <code>DimDate</code>, <code>DimEmployee</code>, <code>DimProductCategory</code>, <code>DimProductSubcategory</code>, and <code>DimSalesTerritory</code>.</p>
+<p>Creating a foreign key relationship between the fact table and the dimension tables will allow us to join the tables together and perform analysis on the sales data based on the attributes in the dimension tables. It allows us to efficient ly query the data and perform aggregations and calculations based on the measures in the fact table and the attributes in the dimension tables. Creationg a foreign key is simply done by running the following SQL command:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factinternetsales</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_InternetSales_Products</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">ProductKey</span><span class="p">)</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">references</span><span class="w"> </span><span class="n">dimproduct</span><span class="p">(</span><span class="n">ProductKey</span><span class="p">);</span>
+</code></pre></div>
+<p>With the above code, we have created a foreign key called <code>FK_InternetSales_Products</code> that references the <code>ProductKey</code> column in the <code>dimproduct</code> table from the <code>ProductKey</code> column in the <code>factinternetsales</code> table. We will repeat this process to create foreign key relationships between the fact table and all the dimension tables to complete our star schema for analysis.</p>
+<p>For simplicity, I am giving the full SQL command to create all the necessary foreign key relationships between the fact table and the dimension tables here, as it is a straightforward process and does not require any complex logic.</p>
+<details>
+<summary>Show SQL Code</summary>
+
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">-- internetsales and calendar (orderdate, duedate, shipdate)</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factinternetsales</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_InternetSales_Date_Orderdate</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">orderdatekey</span><span class="p">)</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="k">references</span><span class="w"> </span><span class="n">dimdate</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">go</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factinternetsales</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_InternetSales_Date_Duedate</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">duedatekey</span><span class="p">)</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="k">references</span><span class="w"> </span><span class="n">dimdate</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="k">go</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factinternetsales</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_InternetSales_Date_Shipdate</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">shipdatekey</span><span class="p">)</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="k">references</span><span class="w"> </span><span class="n">dimdate</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="k">go</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="c1">-- internetsales and customers</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factinternetsales</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_InternetSales_Customers</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">customerkey</span><span class="p">)</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="k">references</span><span class="w"> </span><span class="n">dimcustomer</span><span class="p">(</span><span class="n">customerkey</span><span class="p">);</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="k">go</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="c1">-- internetsales and currency</span>
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factinternetsales</span>
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_InternetSales_Currency</span>
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">currencykey</span><span class="p">)</span>
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span class="k">references</span><span class="w"> </span><span class="n">dimcurrency</span><span class="p">(</span><span class="n">currencykey</span><span class="p">);</span>
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span class="k">go</span>
+<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>
+<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a><span class="c1">-- internetsales and salesterritory</span>
+<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factinternetsales</span>
+<a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_InternetSales_SalesTerritory</span>
+<a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">salesterritorykey</span><span class="p">)</span>
+<a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a><span class="k">references</span><span class="w"> </span><span class="n">dimsalesterritory</span><span class="p">(</span><span class="n">salesterritorykey</span><span class="p">);</span>
+<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a><span class="k">go</span>
+<a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>
+<a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>
+<a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>
+<a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a><span class="c1">-- dimcustomer and dimgeography</span>
+<a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimcustomer</span>
+<a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Customer_Geography</span>
+<a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">geographykey</span><span class="p">)</span>
+<a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a><span class="k">references</span><span class="w"> </span><span class="n">dimgeography</span><span class="p">(</span><span class="n">geographykey</span><span class="p">);</span>
+<a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a><span class="k">go</span>
+<a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>
+<a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a>
+<a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a><span class="c1">-- dimemployee and dimsalesterritory</span>
+<a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimemployee</span>
+<a id="__codelineno-13-53" name="__codelineno-13-53" href="#__codelineno-13-53"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Employee_SalesTerritory</span>
+<a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">salesterritorykey</span><span class="p">)</span>
+<a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a><span class="k">references</span><span class="w"> </span><span class="n">dimsalesterritory</span><span class="p">(</span><span class="n">salesterritorykey</span><span class="p">);</span>
+<a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a><span class="k">go</span>
+<a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a>
+<a id="__codelineno-13-58" name="__codelineno-13-58" href="#__codelineno-13-58"></a><span class="c1">-- dimgeography and dimsalesterritory</span>
+<a id="__codelineno-13-59" name="__codelineno-13-59" href="#__codelineno-13-59"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimgeography</span>
+<a id="__codelineno-13-60" name="__codelineno-13-60" href="#__codelineno-13-60"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Geography_SalesTerritory</span>
+<a id="__codelineno-13-61" name="__codelineno-13-61" href="#__codelineno-13-61"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">salesterritorykey</span><span class="p">)</span>
+<a id="__codelineno-13-62" name="__codelineno-13-62" href="#__codelineno-13-62"></a><span class="k">references</span><span class="w"> </span><span class="n">dimsalesterritory</span><span class="p">(</span><span class="n">salesterritorykey</span><span class="p">);</span>
+<a id="__codelineno-13-63" name="__codelineno-13-63" href="#__codelineno-13-63"></a><span class="k">go</span>
+<a id="__codelineno-13-64" name="__codelineno-13-64" href="#__codelineno-13-64"></a>
+<a id="__codelineno-13-65" name="__codelineno-13-65" href="#__codelineno-13-65"></a>
+<a id="__codelineno-13-66" name="__codelineno-13-66" href="#__codelineno-13-66"></a><span class="c1">-- dimproduct and dimproductsubcategory</span>
+<a id="__codelineno-13-67" name="__codelineno-13-67" href="#__codelineno-13-67"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimproduct</span>
+<a id="__codelineno-13-68" name="__codelineno-13-68" href="#__codelineno-13-68"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_Product_ProductSubcategory</span>
+<a id="__codelineno-13-69" name="__codelineno-13-69" href="#__codelineno-13-69"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">productsubcategorykey</span><span class="p">)</span>
+<a id="__codelineno-13-70" name="__codelineno-13-70" href="#__codelineno-13-70"></a><span class="k">references</span><span class="w"> </span><span class="n">dimproductsubcategory</span><span class="p">(</span><span class="n">productsubcategorykey</span><span class="p">);</span>
+<a id="__codelineno-13-71" name="__codelineno-13-71" href="#__codelineno-13-71"></a><span class="k">go</span>
+<a id="__codelineno-13-72" name="__codelineno-13-72" href="#__codelineno-13-72"></a>
+<a id="__codelineno-13-73" name="__codelineno-13-73" href="#__codelineno-13-73"></a><span class="c1">-- dimproductsubcategory and dimproductcategory</span>
+<a id="__codelineno-13-74" name="__codelineno-13-74" href="#__codelineno-13-74"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">dimproductsubcategory</span>
+<a id="__codelineno-13-75" name="__codelineno-13-75" href="#__codelineno-13-75"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_ProductSubcategory_ProductCategory</span>
+<a id="__codelineno-13-76" name="__codelineno-13-76" href="#__codelineno-13-76"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">productcategorykey</span><span class="p">)</span>
+<a id="__codelineno-13-77" name="__codelineno-13-77" href="#__codelineno-13-77"></a><span class="k">references</span><span class="w"> </span><span class="n">dimproductcategory</span><span class="p">(</span><span class="n">productcategorykey</span><span class="p">);</span>
+<a id="__codelineno-13-78" name="__codelineno-13-78" href="#__codelineno-13-78"></a><span class="k">go</span>
+<a id="__codelineno-13-79" name="__codelineno-13-79" href="#__codelineno-13-79"></a>
+<a id="__codelineno-13-80" name="__codelineno-13-80" href="#__codelineno-13-80"></a><span class="c1">-- factinternetsalesreason and salesreason</span>
+<a id="__codelineno-13-81" name="__codelineno-13-81" href="#__codelineno-13-81"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factinternetsalesreason</span>
+<a id="__codelineno-13-82" name="__codelineno-13-82" href="#__codelineno-13-82"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_InternetSalesReason_SalesReason</span>
+<a id="__codelineno-13-83" name="__codelineno-13-83" href="#__codelineno-13-83"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">salesreasonkey</span><span class="p">)</span>
+<a id="__codelineno-13-84" name="__codelineno-13-84" href="#__codelineno-13-84"></a><span class="k">references</span><span class="w"> </span><span class="n">salesreason</span><span class="p">(</span><span class="n">salesreasonkey</span><span class="p">);</span>
+<a id="__codelineno-13-85" name="__codelineno-13-85" href="#__codelineno-13-85"></a><span class="k">go</span>
+<a id="__codelineno-13-86" name="__codelineno-13-86" href="#__codelineno-13-86"></a>
+<a id="__codelineno-13-87" name="__codelineno-13-87" href="#__codelineno-13-87"></a><span class="c1">-- FACTPRODUCTINVENTORY - another fact table that contains inventory data, which can be used for analysis related to inventory levels and stock management. We will create foreign key relationships between the `factproductinventory` table and the relevant dimension tables to integrate the inventory data into our star schema for analysis.</span>
+<a id="__codelineno-13-88" name="__codelineno-13-88" href="#__codelineno-13-88"></a>
+<a id="__codelineno-13-89" name="__codelineno-13-89" href="#__codelineno-13-89"></a><span class="c1">-- factproductinventory and dimproduct</span>
+<a id="__codelineno-13-90" name="__codelineno-13-90" href="#__codelineno-13-90"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factproductinventory</span>
+<a id="__codelineno-13-91" name="__codelineno-13-91" href="#__codelineno-13-91"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_ProductInventory_Products</span>
+<a id="__codelineno-13-92" name="__codelineno-13-92" href="#__codelineno-13-92"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">productkey</span><span class="p">)</span>
+<a id="__codelineno-13-93" name="__codelineno-13-93" href="#__codelineno-13-93"></a><span class="k">references</span><span class="w"> </span><span class="n">dimproduct</span><span class="p">(</span><span class="n">productkey</span><span class="p">);</span>
+<a id="__codelineno-13-94" name="__codelineno-13-94" href="#__codelineno-13-94"></a><span class="k">go</span>
+<a id="__codelineno-13-95" name="__codelineno-13-95" href="#__codelineno-13-95"></a>
+<a id="__codelineno-13-96" name="__codelineno-13-96" href="#__codelineno-13-96"></a><span class="c1">-- factproductinventory and dimdate</span>
+<a id="__codelineno-13-97" name="__codelineno-13-97" href="#__codelineno-13-97"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">factproductinventory</span>
+<a id="__codelineno-13-98" name="__codelineno-13-98" href="#__codelineno-13-98"></a><span class="k">add</span><span class="w"> </span><span class="k">constraint</span><span class="w"> </span><span class="n">FK_ProductInventory_Date</span>
+<a id="__codelineno-13-99" name="__codelineno-13-99" href="#__codelineno-13-99"></a><span class="k">foreign</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">datekey</span><span class="p">)</span>
+<a id="__codelineno-13-100" name="__codelineno-13-100" href="#__codelineno-13-100"></a><span class="k">references</span><span class="w"> </span><span class="n">DimDate</span><span class="p">(</span><span class="n">datekey</span><span class="p">);</span>
+<a id="__codelineno-13-101" name="__codelineno-13-101" href="#__codelineno-13-101"></a><span class="k">go</span>
+</code></pre></div>
+
+</details>
+
+<p>With the above SQL commands, we have created all the necessary foreign key relationships between the fact table and the dimension tables to complete our star schema for analysis. This will allow us to efficiently query the data and perform aggregations and calculations based on the measures in the fact table and the attributes in the dimension tables. </p>
+<p>For simplicity and readilibity, I have changed the names of the tables and columns to more user-friendly names. For example, I have changed the name of the <code>DimCustomer</code> table to <code>Customers</code>, <code>DimProduct</code> table to <code>Products</code>, and <code>DimDate</code> table to <code>Calendar</code>. I have also changed the names of the columns in the tables to more user-friendly names. This will make it easier for us to write SQL queries and understand the data when we perform our analysis in the next step.</p>
+<p>By writing the following SQL commands, we can rename the tables and columns to more user-friendly names:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">-- Rename tables</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">exec</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;DimCustomer&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Customers&#39;</span><span class="p">;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">exec</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;DimProduct&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Products&#39;</span><span class="p">;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">exec</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;DimDate&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Calendar&#39;</span><span class="p">;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="k">exec</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;DimEmployee&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Employees&#39;</span><span class="p">;</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="k">exec</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;DimProductCategory&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ProductCategory&#39;</span><span class="p">;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="k">exec</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;DimProductSubcategory&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ProductSubcategory&#39;</span><span class="p">;</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="k">exec</span><span class="w"> </span><span class="n">sp_rename</span><span class="w"> </span><span class="s1">&#39;DimSalesTerritory&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;SalesTerritory&#39;</span><span class="p">;</span>
+</code></pre></div>
+<h2 id="business-questions">Business Questions<a class="headerlink" href="#business-questions" title="Permanent link">&para;</a></h2>
+<p>To perform our deep analysis, we need to define some business questions that will guide our analysis and help us to focus on the relevant data. Business questions are specific questions that we want to answer through our analysis, and they should be based on the goals and objectives of the business. I used LLM and AI tools to help me generate real world business questions that are relevant to the sales data we have in our database. These business questions will help us to understand customer behavior, identify trends and patterns in the sales data, and make informed business decisions based on our analysis.</p>
+<p>I will note all questions here and then in the next pages, I will answer each question one by one using SQL queries and data analysis techniques.</p>
+<p><code>1.  What is the overall Gross Profit and Gross Margin for the B2C channel, and how has it trended year over year?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand the profitability of the B2C channel and how it has changed over time. <strong>Gross Profit</strong> and <strong>Gross Margin</strong> are key financial metrics that indicate the profitability of sales, and analyzing their trends can provide insights into the performance of the B2C channel and help identify areas for improvement.</p>
+<p><code>2. What is the Year-over-Year (YoY) revenue growth rate for each month?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand the growth rate of revenue for each month and identify any seasonal trends or patterns in the sales data. Analyzing YoY revenue growth can provide insights into the performance of the business and help identify opportunities for growth and improvement.</p>
+<p><code>3. What is the monthly seasonality of our sales, and which quarter  drives the most revenue historically?</code></p>
+<p><em>Business Insight</em>: This question  helps us to understand the seasonal patterns in our sales data and identify which quarter drives the most revenue historically. Analyzing seasonality can provide insights into customer behavior and help us to optimize our marketing and sales strategies to capitalize on peak sales periods.</p>
+<p><code>4. What are the top 10 products by revenue, and how has their performance changed over time?</code></p>
+<p><em>Business Insight</em>: This question helps us to identify the top-performing products in terms of revenue and analyze how their performance has changed over time. Understanding which products are driving the most revenue can help us to focus our marketing and sales efforts on those products and identify opportunities for growth and improvement.</p>
+<p><code>5. What is the Year-to-Date (YTD) cumulative revenue for the most recent fully completed year?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand the cumulative revenue for the most recent fully completed year and compare it to previous years. Analyzing YTD cumulative revenue can provide insights into the overall performance of the business and help us to identify trends and patterns in our sales data.</p>
+<p><code>6. Which demographic segments (based on Income and Education) drive the highest overall revenue?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand which demographic segments, based on income and education, are driving the highest overall revenue. Analyzing demographic segments can provide insights into customer behavior and preferences, and help us to tailor our marketing and sales strategies to target the most profitable customer segments.</p>
+<p><code>7. Does the customer's commute distance and vehicle ownership impact their lifetime value?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand if the customer's commute distance and vehicle ownership impact their lifetime value. Analyzing the relationship between commute distance and vehicle ownership with customer lifetime value can provide insights into customer behavior and preferences, and help us to identify opportunities for improving customer retention and increasing customer lifetime value.</p>
+<p><code>8. Who are our "Whales" (Top 100 Most Valuable Customers), and what is their purchasing frequency?</code></p>
+<p><em>Business Insight</em>: This question helps us to identify our "Whales", which are the top 100 most valuable customers, and analyze their purchasing frequency. Understanding who our most valuable customers are and how frequently they make purchases can provide us with insights which may be helpful to tailor our marketing and sales strategies to retain these customers and encourage repeat purchases, ultimately increasing customer lifetime value and driving revenue growth.</p>
+<p><code>9. What is our generational spend distribution (Age Brackets)?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand our generational spend distribution based on age brackets. Age can be an important factor in customer behavior and preferences, and analyzing our generational spend distribution can provide insights into which age groups are driving the most revenue. As a result, we can create targeted marketing and sales strategies for each age group to optimize our revenue and improve customer engagement.</p>
+<p><code>10. What is our Customer Retention Rate (One-and-Done vs. Repeat Buyers)?</code></p>
+<p>Customers are one-and-done if they made only one purchase and never returned, while repeat buyers are customers who made multiple purchases over time. Defining one-and-done customers and repeat buyers can help us to understand our customer retention rate and identify opportunities for improving customer retention. This will allow us why some customers are not returning and what we can do to encourage them to make repeat purchases, ultimately increasing customer lifetime value and driving revenue growth.</p>
+<p><code>11. Which product categories and subcategories drive the highest profit margins, and which are drag on profitability?</code></p>
+<p><em>Business Insight</em>: This question asks us to analyze profit margins which is a key financial metric that indicates the profitability of products. Profit margin is calculated as (Revenue - Cost) / Revenue, and it helps us to understand how much profit we are making on each product. By analyzing which product categories and subcategories drive the highest profit margins, we can identify which products are the most profitable and focus our marketing and sales efforts on those products. Conversely, by identifying which product categories and subcategories are a drag on profitability, we can identify opportunities for improvement, such as reducing costs or increasing prices, or putting promotions for those products to improve our overall profitability.</p>
+<p><code>12. What is the disparity between our "High Volume" products and our "High Value" products?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand the disparity between our "High Volume" products, which are products that sell in large quantities but may have lower profit margins, and our "High Value" products, which are products that sell in smaller quantities but have higher profit margins. Analyzing the disparity between high volume and high value products can provide insights into our product mix and help us to optimize our inventory and marketing strategies to maximize revenue and profitability.</p>
+<p><code>13. What is our basket size distribution, and how frequently do customers buy multiple items in a single transaction?</code></p>
+<p><em>Business Insight</em>: Basket size distribution refers to the number of items that customers purchase in a single transaction. Analyzing our basket size distribution can provide insights into customer purchasing behavior and help us to identify opportunities for increasing our average order value. By understanding how frequently customers buy multiple items in a single transaction, we can create targeted marketing and sales strategies to encourage customers to add more items to their baskets, ultimately increasing revenue and profitability.</p>
+<p><code>14. Are there any "Dead Weight" products in our active catalog that have negligible sales in the most recent year?</code></p>
+<p><em>Business Insight</em>: "Dead Weight" products refer to products that are still active in our catalog but have negligible sales in the most recent year. Analyzing our product catalog to identify any dead weight products can help us to optimize our inventory and focus our marketing and sales efforts on products that are driving revenue. By identifying and potentially discontinuing dead weight products, we can reduce costs associated with inventory management and improve our overall profitability.</p>
+<p><code>15. How does product pricing tier affect consumer purchasing behavior?</code></p>
+<p><em>Business Insight</em>: Product pricing tiers mean that we have different price points for our products, such as low, medium, and high price tiers. Price tier is the price point at which a product is sold, and it can have a significant impact on consumer purchasing behavior. It shows directly how price-sensitive our customers are and how they respond to different price points. By analyzing how product pricing tier affects consumer purchasing behavior, we can gain insights into our customers' price sensitivity and optimize our pricing strategy to maximize revenue and profitability. For example, if we find that customers are more likely to purchase products in the medium price tier, we can focus our marketing efforts on promoting those products and potentially adjust our pricing strategy to encourage more purchases in that tier.</p>
+<p><code>16. What are the primary psychological drivers (Sales Reasons) behind our B2C purchases?</code></p>
+<p><em>Business Insight</em>: Sales reasons refer to the primary psychological drivers that influence customers' purchasing decisions. Analyzing the sales reasons behind our B2C purchases can provide insights into customer behavior and preferences, and help us to tailor our marketing and sales strategies to better meet the needs and desires of our customers. By understanding the primary psychological drivers behind our B2C purchases, we can create targeted marketing campaigns that resonate with our customers and encourage them to make purchases, ultimately increasing revenue and profitability. </p>
+<p><code>17. What percentage of our total B2C volume is driven by promotional discounts versus standard pricing?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand the impact of promotional discounts on our B2C sales volume. By analyzing the percentage of our total B2C volume that is driven by promotional discounts versus standard pricing, we can gain insights into the effectiveness of our promotional strategies and how they influence customer purchasing behavior. This information can help us to optimize our promotional campaigns and pricing strategy to maximize revenue and profitability. For example, if we find that a significant portion of our sales volume is driven by promotional discounts, we may want to consider adjusting our pricing strategy or creating more targeted promotions to encourage customers to purchase at standard pricing, ultimately improving our profit margins.</p>
+<p><code>18. What is our Customer Lifetime Value (CLV) distribution, and how long does it take for a customer to reach their maximum value?</code></p>
+<p><em>Business Insight</em>: Customer Lifetime Value (CLV) is a key metric that estimates the total revenue a business can expect from a single customer over the course of their relationship. Analyzing our CLV distribution can provide insights into the value of our customers and help us to identify opportunities for improving customer retention and increasing customer lifetime value. By understanding how long it takes for a customer to reach their maximum value, we can create targeted marketing and sales strategies to encourage customers to make repeat purchases and increase their lifetime value, ultimately driving revenue growth and profitability.</p>
+<p><code>19. Do the primary sales drivers change depending on the Product Category?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand if the primary sales drivers, which are the factors that influence customers' purchasing decisions, change depending on the product category. Analyzing the primary sales drivers for different product categories can provide insights into customer behavior and preferences, and help us to tailor our marketing and sales strategies for each product category to better meet the needs and desires of our customers. By understanding if the primary sales drivers change depending on the product category, we can create more targeted marketing campaigns that resonate with our customers and encourage them to make purchases, ultimately increasing revenue and profitability.</p>
+<p><code>20. Which countries and regions drive the most B2C revenue, and how does the Average Order Value (AOV) differ geographically?*</code></p>
+<p><em>Business Insight</em>: This question helps us to understand which countries and regions are driving the most B2C revenue, and how the Average Order Value (AOV) differs geographically. Analyzing our sales data by geography can provide insights into customer behavior and preferences in different regions, and help us to tailor our marketing and sales strategies to better meet the needs of customers in those regions. By understanding which countries and regions drive the most B2C revenue, we can focus our marketing efforts on those areas to maximize revenue. Additionally, by analyzing how AOV differs geographically, we can identify opportunities for optimizing our pricing strategy and product offerings in different regions to increase revenue and profitability.</p>
+<p><code>21. Are we meeting our operational Service Level Agreements (SLAs)? What is the average lead time between Order Date and Ship Date?</code></p>
+<p><em>Business Insight</em>: Service Level Agreements (SLAs) will show us the operational performance of our business in terms of order fulfillment. Analyzing the average lead time between Order Date and Ship Date can provide insights into our operational efficiency and help us to identify areas for improvement in our order fulfillment process. By understanding if we are meeting our SLAs and analyzing the lead time between Order Date and Ship Date, we can optimize our operations to improve customer satisfaction and retention, ultimately driving revenue growth and profitability.</p>
+<p><code>22. How heavily do freight and tax costs impact the final landed cost for the consumer across different countries?</code></p>
+<p><em>Business Insight</em>: This question helps us to understand the impact of freight and tax costs on the final landed cost for the consumer across different countries. Analyzing the impact of freight and tax costs can provide insights about the tax and logistics landscape in different regions, and help us to optimize our pricing strategy and supply chain management to minimize costs for our customers. By understanding how heavily freight and tax costs impact the final landed cost for the consumer across different countries, we can identify opportunities for reducing costs and improving our competitiveness in those markets, ultimately increasing revenue and profitability.</p>
+<p><code>23. Is there a regional bias for specific Product Categories?</code></p>
+<p><em>Business Insight</em>: Regional bias for specific product categories refers to the tendency for certain product categories to perform better in specific regions. For example, customers in the rural areas may purchase largely from the "Mountain Bikes" category, while customers in urban areas may purchase more from the "Road Bikes" category. Analyzing regional bias for specific product categories can provide insights into customer behavior and preferences in different regions, and help us to tailor our marketing and sales strategies to better meet the needs of customers in those regions. By understanding if there is a regional bias for specific product categories, we can create more targeted marketing campaigns that resonate with our customers and encourage them to make purchases, ultimately increasing revenue and profitability.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>In this section, we have prepared our sales data for analysis by restoring the .bak file to our SQL Server instance, cleaning the data by removing unnecessary columns and tables, and creating a star schema by establishing foreign key relationships between the fact table and dimension tables. We have also defined 23 business questions that will guide our analysis and help us to focus on the relevant data to gain insights into customer behavior, identify trends and patterns in the sales data, and make informed business decisions based on our analysis. In the next sections, we will answer each of these business questions one by one using SQL queries and data analysis techniques.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
