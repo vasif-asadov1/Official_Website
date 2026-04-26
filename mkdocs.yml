@@ -71,6 +71,8 @@ nav:
     - Best Desktop Environment: linux_roadmap/01_best_desktop_environment.md
 
 markdown_extensions:
+  - admonition         # Normal uyarı blokları için
+  - pymdownx.details
   - attr_list     # Kartlar için zorunlu (YENİ)
   - md_in_html    # İç içe HTML desteklemek için zorunlu (YENİ)
   - toc:
