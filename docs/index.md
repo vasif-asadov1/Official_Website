@@ -22,10 +22,6 @@
       <a href="https://www.youtube.com/@data_insights_vasif" target="_blank" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
         <strong>📺 YouTube</strong>
       </a>
-      <!-- Download CV Button -->
-      <a href="certificates/Vasif_Asadov_Data_Analyst.pdf" target="_blank" style="text-decoration: none; color: #4f46e5; border: 1.5px solid #4f46e5; padding: 6px 15px; border-radius: 10px; display: flex; align-items: center; gap: 8px; transition: 0.3s;" onmouseover="this.style.background='rgba(79, 70, 229, 0.1)'" onmouseout="this.style.background='transparent'">
-        <strong>📄 Download CV</strong>
-      </a>
     </div>
   </div>
 </div>
