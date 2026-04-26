@@ -2147,8 +2147,10 @@
 <li>In the next step, you can choose the target table and specify the mapping between the CSV columns and the database columns. You can also choose to create a new table or append the data to an existing table. Click 'Next' to proceed.</li>
 <li>In the final step, review the import summary and click 'Finish' to start the import process. Repeat these steps for each of the CSV files provided in the dataset. </li>
 </ul>
-<p>!!! note 
-When you import the <code>olist_order_reviews_dataset.csv</code> you may encounter with error since that table have <code>comment message</code> column that contains text data with special characters. To handle this issue, the better way is to change the data types of all columns to either <code>text</code> or <code>varchar(max)</code> before importing the data. This will allow you to import the data without any issues related to special characters in the text data. We can further change the data types of the columns to more appropriate types after the data has been imported into the database.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>When you import the <code>olist_order_reviews_dataset.csv</code> you may encounter with error since that table have <code>comment message</code> column that contains text data with special characters. To handle this issue, the better way is to change the data types of all columns to either <code>text</code> or <code>varchar(max)</code> before importing the data. This will allow you to import the data without any issues related to special characters in the text data. We can further change the data types of the columns to more appropriate types after the data has been imported into the database.</p>
 <h2 id="data-cleaning"><font color="#4f46e5"> Data Cleaning </font><a class="headerlink" href="#data-cleaning" title="Permanent link">&para;</a></h2>
 <h3 id="compact-readable-table-names"><font color="#4f46e5"> Compact Readable Table Names </font><a class="headerlink" href="#compact-readable-table-names" title="Permanent link">&para;</a></h3>
 <p>Initial data cleaning steps consist of checking data types, handling each feature for missing values and dropping unnecessary columns. This step will prepare the data for building clean star schema and conducting analysis. </p>
