@@ -11,10 +11,11 @@ theme:
   features:
     - content.code.copy
     - toc.follow
-    - navigation.top
-    - navigation.tracking
+    - navigation.expand
+    - navigation.sections
     - search.suggest
     - search.highlight
+    - navigation.tabs.sticky
 
 nav:
   - Home / About Me: index.md

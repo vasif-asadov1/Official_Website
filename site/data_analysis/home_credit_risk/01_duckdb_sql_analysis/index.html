@@ -16,7 +16,7 @@
         <link rel="prev" href="../00_problem_description/">
       
       
-        <link rel="next" href="../02_duckdb_feature_engineering/">
+        <link rel="next" href="../01_duckdb_sql_analysis2/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Data Analysis with DuckDB SQL - Vasif Asadov Portfolio</title>
+        <title>Data Analysis with SQL Part 1 - Vasif Asadov Portfolio</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#advanced-sql-analysis-with-duckdb" class="md-skip">
+        <a href="#advanced-sql-analysis-with-duckdb-sql" class="md-skip">
           Skip to content
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Data Analysis with DuckDB SQL
+              Data Analysis with SQL Part 1
             
           </span>
         </div>
@@ -993,7 +993,7 @@
   <span class="md-ellipsis">
     
   
-    Data Analysis with DuckDB SQL
+    Data Analysis with SQL Part 1
   
 
     
@@ -1011,7 +1011,7 @@
   <span class="md-ellipsis">
     
   
-    Data Analysis with DuckDB SQL
+    Data Analysis with SQL Part 1
   
 
     
@@ -1147,10 +1147,49 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#end-of-section-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End of Section 1
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_duckdb_sql_analysis2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with SQL Part 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1170,7 +1209,7 @@
   <span class="md-ellipsis">
     
   
-    Feature Engineering with DuckDB SQL
+    Feature Engineering with SQL Part
   
 
     
@@ -1804,6 +1843,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#end-of-section-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End of Section 1
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1821,7 +1871,7 @@
 
 
 
-<h1 id="advanced-sql-analysis-with-duckdb">Advanced SQL Analysis with DuckDB<a class="headerlink" href="#advanced-sql-analysis-with-duckdb" title="Permanent link">&para;</a></h1>
+<h1 id="advanced-sql-analysis-with-duckdb-sql">Advanced SQL Analysis with DuckDB SQL<a class="headerlink" href="#advanced-sql-analysis-with-duckdb-sql" title="Permanent link">&para;</a></h1>
 <h2 id="introduction"><font color="#94d6d5">Introduction  </font><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>This is the first step of the analysis. In this step, I will use DuckDB SQL to do the data ingestion and initial exploration of the data. I will read the data from the csv files and do the initial exploration of the data to understand the structure of the data. The dataset consists of the following tables: </p>
 <ul>
@@ -2027,6 +2077,7 @@ without increasing risk.</p>
 <p><strong>Solution:</strong> For each of the education level (<code>NAME_EDUCATION_TYPE</code>), we should create bins using the ratio of annual credit amount (<code>AMT_ANNUITY</code>) to the total income amount (<code>AMT_INCOME_TOTAL</code>). Then for each education level - ratio bin groups, total loan volume and risk probability rate can be calculated.</p>
 <details>
 <summary>Click here to see the solution</summary>
+<br>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; </span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="s2">    select</span>
@@ -2051,7 +2102,7 @@ without increasing risk.</p>
 </code></pre></div>
 
 </details>
-
+<p><br></p>
 <p><strong>Results:</strong></p>
 <div style="max-height: 400px; overflow: auto; white-space: nowrap;">
 
@@ -2263,7 +2314,7 @@ loans for Renters if they demonstrate stability through other assets (like ownin
 <a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="n">t4</span>
 </code></pre></div>
 </details>
-
+<p><br></p>
 <p><strong>Results:</strong></p>
 <table>
 <thead>
@@ -2301,8 +2352,757 @@ loans for Renters if they demonstrate stability through other assets (like ownin
 </tr>
 </tbody>
 </table>
+<p><br></p>
 <p><strong>Insights:</strong>
 The results show no strong relationship between owning a car or real estate and default risk, as the risk rates across groups are very close to each other. Car ownership appears to be weakly associated with lower risk, since applicants who own a car have slightly lower default rates. However, real estate ownership does not show a clear or consistent pattern, as both the highest and lowest risk groups include applicants without real estate. Overall, these variables provide limited predictive power on their own and are unlikely to be strong standalone risk indicators.</p>
+<h4 id="task-5-the-external-score-validation"><font color="#8da2e0"> Task 5. The ”External Score” Validation</font><a class="headerlink" href="#task-5-the-external-score-validation" title="Permanent link">&para;</a></h4>
+<p><strong>Business Question: Is the external credit score (EXT SOURCE 2) equally predictive for small
+”Consumer Loans” vs. large ”Cash Loans”?</strong></p>
+<p><strong>Objective:</strong> To validate the reliability of external data sources (EXT SOURCE 2) across dif-
+ferent product types. If the external score is highly predictive for ”Cash Loans” but fails for
+”Revolving Loans,” we need to treat those products differently in our final machine learning
+pipeline.</p>
+<p><strong>Solution:</strong> There are 3 external scores in the data and they can be better resembled by the average external score. So, the step is derivation of external source score by taking the null values and division by zero case into consideration. Then, the scores can be binned and for each individual bin group the average risk rate can be obtained.</p>
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="s2">with Score_Calc AS (</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="s2">    SELECT</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="s2">        NAME_CONTRACT_TYPE,</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="s2">        TARGET,</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="s2">        (</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="s2">            COALESCE(EXT_SOURCE_1, 0) + </span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="s2">            COALESCE(EXT_SOURCE_2, 0) + </span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="s2">            COALESCE(EXT_SOURCE_3, 0)</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="s2">        ) / NULLIF(</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="s2">            (CASE WHEN EXT_SOURCE_1 IS NOT NULL THEN 1 ELSE 0 END +</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="s2">             CASE WHEN EXT_SOURCE_2 IS NOT NULL THEN 1 ELSE 0 END +</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="s2">             CASE WHEN EXT_SOURCE_3 IS NOT NULL THEN 1 ELSE 0 END), 0</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="s2">        ) AS Avg_Ext_Score</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="s2">    FROM applications</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="s2">)</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="s2">SELECT </span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="s2">    NAME_CONTRACT_TYPE as contract_type,</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="s2">    CASE </span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="s2">        WHEN Avg_Ext_Score &lt; 0.2 THEN &#39;0.0 - 0.2&#39;</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="s2">        WHEN Avg_Ext_Score &lt; 0.4 THEN &#39;0.2 - 0.4&#39;</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="s2">        WHEN Avg_Ext_Score &lt; 0.6 THEN &#39;0.4 - 0.6&#39;</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="s2">        WHEN Avg_Ext_Score &lt; 0.8 THEN &#39;0.6 - 0.8&#39;</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="s2">        ELSE &#39;0.8 - 1.0&#39;</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="s2">    END AS avg_external_score,</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="s2">    COUNT(*) AS total_loans,</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="s2">    ROUND(AVG(TARGET) * 100, 3) AS risk_rate</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="s2">FROM Score_Calc</span>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="s2">where Avg_Ext_Score is not null</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="s2">GROUP BY 1, 2</span>
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="s2">ORDER BY </span>
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="s2">    risk_rate desc</span>
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a>
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a><span class="n">t5</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="n">t5</span>
+</code></pre></div>
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">contract_type</th>
+<th style="text-align: left;">avg_external_score</th>
+<th style="text-align: right;">total_loans</th>
+<th style="text-align: right;">risk_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Cash loans</td>
+<td style="text-align: left;">0.0 - 0.2</td>
+<td style="text-align: right;">9569</td>
+<td style="text-align: right;">29.031</td>
+</tr>
+<tr>
+<td style="text-align: left;">Revolving loans</td>
+<td style="text-align: left;">0.0 - 0.2</td>
+<td style="text-align: right;">879</td>
+<td style="text-align: right;">19.681</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cash loans</td>
+<td style="text-align: left;">0.2 - 0.4</td>
+<td style="text-align: right;">53331</td>
+<td style="text-align: right;">16.634</td>
+</tr>
+<tr>
+<td style="text-align: left;">Revolving loans</td>
+<td style="text-align: left;">0.2 - 0.4</td>
+<td style="text-align: right;">5619</td>
+<td style="text-align: right;">11.372</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cash loans</td>
+<td style="text-align: left;">0.4 - 0.6</td>
+<td style="text-align: right;">129885</td>
+<td style="text-align: right;">6.915</td>
+</tr>
+<tr>
+<td style="text-align: left;">Revolving loans</td>
+<td style="text-align: left;">0.4 - 0.6</td>
+<td style="text-align: right;">13838</td>
+<td style="text-align: right;">4.473</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cash loans</td>
+<td style="text-align: left;">0.6 - 0.8</td>
+<td style="text-align: right;">84735</td>
+<td style="text-align: right;">3.027</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cash loans</td>
+<td style="text-align: left;">0.8 - 1.0</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">1.964</td>
+</tr>
+<tr>
+<td style="text-align: left;">Revolving loans</td>
+<td style="text-align: left;">0.6 - 0.8</td>
+<td style="text-align: right;">8846</td>
+<td style="text-align: right;">1.956</td>
+</tr>
+<tr>
+<td style="text-align: left;">Revolving loans</td>
+<td style="text-align: left;">0.8 - 1.0</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>The analysis shows a strong negative relationship between external credit scores and default risk, with default probability decreasing monotonically as credit score increases. This pattern indicates that external credit scores are among the most informative predictors in the dataset.</p>
+<p>In addition, default risk differs substantially by loan type. Revolving loans exhibit consistently lower default rates compared to cash loans—approximately 50% lower risk at low credit score levels—and converge toward near-zero default risk at the highest score ranges. In contrast, cash loans display significantly higher risk, with default rates of approximately 30% for low external scores (0–0.2) and remaining non-zero even at high score levels (0.8–1.0).</p>
+<h4 id="task-6-the-housing-quality-tier-feature-engineering"><font color="#8da2e0"> Task 6. The ”Housing Quality” Tier (Feature Engineering) </font><a class="headerlink" href="#task-6-the-housing-quality-tier-feature-engineering" title="Permanent link">&para;</a></h4>
+<p><strong>Business Question: Does living in a ”High-Quality” building significantly reduce default risk,
+and is the ”Absence of Data” (Missing Housing Info) a risk factor in itself?</strong></p>
+<p><strong>Objective:</strong> The dataset has 47 columns about the building (ELEVATORS, ENTRANCES,
+APARTMENTS AVG). Using them individually is messy. We want to engineer a proxy for
+”Wealth” based on where they live. If a client lives in a building with an elevator and a large
+apartment, they likely have hidden wealth, even if their reported income is low.</p>
+<p><strong>Solution:</strong> There are lots of columns representing the house parameters in median, mode and average. In my opinion, the better option is doing analysis based on the average scores, then comparing the results with the ones obtained by using the median scores. That will guarantee that there is not such a big difference between using either of the scores and it will let us to drop unnecessary columns. So, in the first query, average house metrics are calculated using the housing parameter columns ended with <code>_AVG</code> and then they will be grouped as 'low quality', 'mid quality' and 'high quality' segments. For the applicants falling in each segment, average income amount will be derived to investigate whether there are applicants showing low income but living in the high quality houses which may be a strong predictor of default risk.</p>
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="s2">with housing_feature_averages as (</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="s2">    select</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="s2">        sk_id_curr,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="s2">        target,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="s2">        -- AVERAGE HOUSE METRICS</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="s2">        nullif(apartments_avg, 0) as apartments_avg,</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="s2">        nullif(basementarea_avg, 0) as basementarea_avg,</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="s2">        nullif(commonarea_avg, 0) as commonarea_avg,</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="s2">        nullif(elevators_avg, 0) as elevators_avg,</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="s2">        nullif(entrances_avg, 0) as entrances_avg,</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="s2">        nullif(FLOORSMAX_AVG, 0) as floorsmax_avg, </span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="s2">        nullif(FLOORSMIN_AVG, 0) as FLOORSMIN_AVG, </span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="s2">        nullif(LANDAREA_AVG, 0) as LANDAREA_AVG, </span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="s2">        nullif(LIVINGAPARTMENTS_AVG, 0) as LIVINGAPARTMENTS_AVG , </span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="s2">        nullif(NONLIVINGAPARTMENTS_AVG, 0) as NONLIVINGAPARTMENTS_AVG, </span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="s2">        nullif(NONLIVINGAREA_AVG, 0) as NONLIVINGAREA_AVG , </span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="s2">        coalesce(AMT_INCOME_TOTAL, 0) as total_income</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="s2">        from applications        </span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="s2">),</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="s2">house_metric_avg as (</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="s2">    select </span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="s2">        target,</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="s2">        round (</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="s2">            (</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="s2">                apartments_avg + basementarea_avg + commonarea_avg + elevators_avg + </span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="s2">                entrances_avg + FLOORSMAX_AVG + FLOORSMIN_AVG + LANDAREA_AVG +LIVINGAPARTMENTS_AVG +</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="s2">                NONLIVINGAPARTMENTS_AVG + NONLIVINGAREA_AVG </span>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="s2">            ) / </span>
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="s2">            (</span>
+<a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="s2">                case when apartments_avg is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="s2">                case when basementarea_avg is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="s2">                case when commonarea_avg is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="s2">                case when elevators_avg is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a><span class="s2">                case when entrances_avg is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="s2">                case when FLOORSMAX_AVG is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="s2">                case when FLOORSMIN_AVG is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="s2">                case when LANDAREA_AVG is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="s2">                case when LIVINGAPARTMENTS_AVG is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a><span class="s2">                case when NONLIVINGAPARTMENTS_AVG is not null then 1 else 0 end + </span>
+<a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a><span class="s2">                case when NONLIVINGAREA_AVG is not null then 1 else 0 end             </span>
+<a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="s2">        ), 3) as avg_house_metric, </span>
+<a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a><span class="s2">        total_income</span>
+<a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a><span class="s2">    from housing_feature_averages</span>
+<a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a><span class="s2">)</span>
+<a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a><span class="s2">select</span>
+<a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a><span class="s2">        case </span>
+<a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a><span class="s2">            when avg_house_metric is null then &#39;Missing&#39;</span>
+<a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a><span class="s2">            when avg_house_metric &lt; 0.2 then &#39;Low Quality House&#39;</span>
+<a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a><span class="s2">            when avg_house_metric &lt; 0.4 then &#39;Mid Quality House&#39;</span>
+<a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a><span class="s2">            else &#39;High Quality House&#39;</span>
+<a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a><span class="s2">        end as house_quality,</span>
+<a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a><span class="s2">        count(*) as total_loans,</span>
+<a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a><span class="s2">        round(avg(total_income),2) as avg_income,</span>
+<a id="__codelineno-11-57" name="__codelineno-11-57" href="#__codelineno-11-57"></a><span class="s2">        round(avg(target) * 100, 3) as risk_rate</span>
+<a id="__codelineno-11-58" name="__codelineno-11-58" href="#__codelineno-11-58"></a><span class="s2">    from house_metric_avg</span>
+<a id="__codelineno-11-59" name="__codelineno-11-59" href="#__codelineno-11-59"></a><span class="s2">    group by 1</span>
+<a id="__codelineno-11-60" name="__codelineno-11-60" href="#__codelineno-11-60"></a><span class="s2">    order by </span>
+<a id="__codelineno-11-61" name="__codelineno-11-61" href="#__codelineno-11-61"></a><span class="s2">        risk_rate desc,</span>
+<a id="__codelineno-11-62" name="__codelineno-11-62" href="#__codelineno-11-62"></a><span class="s2">        avg_income desc</span>
+<a id="__codelineno-11-63" name="__codelineno-11-63" href="#__codelineno-11-63"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-11-64" name="__codelineno-11-64" href="#__codelineno-11-64"></a>
+<a id="__codelineno-11-65" name="__codelineno-11-65" href="#__codelineno-11-65"></a><span class="n">t6</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-11-66" name="__codelineno-11-66" href="#__codelineno-11-66"></a><span class="n">t6</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">house_quality</th>
+<th style="text-align: right;">total_loans</th>
+<th style="text-align: right;">avg_income</th>
+<th style="text-align: right;">risk_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Missing</td>
+<td style="text-align: right;">293941</td>
+<td style="text-align: right;">167546</td>
+<td style="text-align: right;">8.167</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Quality House</td>
+<td style="text-align: right;">221</td>
+<td style="text-align: right;">268364</td>
+<td style="text-align: right;">6.335</td>
+</tr>
+<tr>
+<td style="text-align: left;">Low Quality House</td>
+<td style="text-align: right;">10078</td>
+<td style="text-align: right;">190013</td>
+<td style="text-align: right;">6.033</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mid Quality House</td>
+<td style="text-align: right;">3271</td>
+<td style="text-align: right;">209240</td>
+<td style="text-align: right;">6.023</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>Green line in the graph corresponds to the risk rate and the blue line corresponds to the total number of credits taken in the corresponding category. The red bubble sizes define the average annual income of the applicants falling in the group. Based on the visual it is observed that the default risk is highest among applicants with missing housing information, exceeding 8%, and this group also represents the largest share of the portfolio, with approximately 294K applicants.</p>
+<p>Applicants reporting mid- or low-quality housing exhibit the lowest default risk, at around 6%, representing roughly a 40% reduction relative to applicants with missing housing information. Interestingly, applicants reporting high-quality housing show slightly higher default risk than the mid- and low-quality groups, despite having substantially higher average annual income.</p>
+<p>Overall, these results suggest that missing housing information is associated with elevated default risk, while applicants who explicitly report housing characteristics tend to exhibit more stable repayment behavior.</p>
+<p><strong>SOLUTION 2</strong> </p>
+<p>In the second solution, the median values will be used as housing scores.</p>
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="s2">with housing_feature_averages as (</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="s2">    select</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="s2">        sk_id_curr,</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="s2">        target,</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="s2">        -- AVERAGE HOUSE METRICS</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="s2">        nullif(APARTMENTS_MEDI, 0) as APARTMENTS_MEDI,</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="s2">        nullif(BASEMENTAREA_MEDI, 0) as BASEMENTAREA_MEDI,</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="s2">        nullif(COMMONAREA_MEDI, 0) as COMMONAREA_MEDI,</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="s2">        nullif(ELEVATORS_MEDI, 0) as ELEVATORS_MEDI,</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="s2">        nullif(ENTRANCES_MEDI, 0) as ENTRANCES_MEDI,</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="s2">        nullif(FLOORSMAX_MEDI, 0) as FLOORSMAX_MEDI, </span>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="s2">        nullif(FLOORSMIN_MEDI, 0) as FLOORSMIN_MEDI, </span>
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="s2">        nullif(LANDAREA_MEDI, 0) as LANDAREA_MEDI, </span>
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="s2">        nullif(LIVINGAPARTMENTS_MEDI, 0) as LIVINGAPARTMENTS_MEDI , </span>
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="s2">        nullif(LIVINGAREA_MEDI, 0) as LIVINGAREA_MEDI, </span>
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="s2">        nullif(NONLIVINGAPARTMENTS_MEDI, 0) as NONLIVINGAPARTMENTS_MEDI , </span>
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="s2">        nullif(NONLIVINGAREA_MEDI,0) as NONLIVINGAREA_MEDI,</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="s2">        coalesce(AMT_INCOME_TOTAL, 0) as total_income</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="s2">        from applications        </span>
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="s2">),</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="s2">house_metric_avg as (</span>
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="s2">    select </span>
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="s2">        target,</span>
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="s2">        round (</span>
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a><span class="s2">            (</span>
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a><span class="s2">                apartments_medi + basementarea_medi + commonarea_medi + elevators_medi + </span>
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a><span class="s2">                entrances_medi + FLOORSMAX_medi + FLOORSMIN_medi + LANDAREA_medi + LIVINGAPARTMENTS_medi +</span>
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="s2">                LIVINGAREA_MEDI + NONLIVINGAPARTMENTS_MEDI + NONLIVINGAREA_MEDI </span>
+<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span class="s2">            ) / </span>
+<a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a><span class="s2">            (</span>
+<a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="s2">                case when APARTMENTS_MEDI is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a><span class="s2">                case when BASEMENTAREA_MEDI is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a><span class="s2">                case when COMMONAREA_MEDI is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a><span class="s2">                case when ELEVATORS_MEDI is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a><span class="s2">                case when entrances_medi is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a><span class="s2">                case when FLOORSMAX_medi is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a><span class="s2">                case when FLOORSMIN_medi is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a><span class="s2">                case when LANDAREA_medi is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a><span class="s2">                case when LIVINGAPARTMENTS_medi is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a><span class="s2">                case when LIVINGAREA_MEDI is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a><span class="s2">                case when NONLIVINGAPARTMENTS_MEDI is not null then 1 else 0 end + </span>
+<a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a><span class="s2">                case when NONLIVINGAREA_MEDI is not null then 1 else 0 end             </span>
+<a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a><span class="s2">        ), 3) as med_house_metric, </span>
+<a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a><span class="s2">        total_income</span>
+<a id="__codelineno-12-48" name="__codelineno-12-48" href="#__codelineno-12-48"></a><span class="s2">    from housing_feature_averages</span>
+<a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a><span class="s2">)</span>
+<a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a><span class="s2">select</span>
+<a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a><span class="s2">        case </span>
+<a id="__codelineno-12-52" name="__codelineno-12-52" href="#__codelineno-12-52"></a><span class="s2">            when med_house_metric is null then &#39;Missing&#39;</span>
+<a id="__codelineno-12-53" name="__codelineno-12-53" href="#__codelineno-12-53"></a><span class="s2">            when med_house_metric &lt; 0.2 then &#39;Low Quality House&#39;</span>
+<a id="__codelineno-12-54" name="__codelineno-12-54" href="#__codelineno-12-54"></a><span class="s2">            when med_house_metric &lt; 0.4 then &#39;Mid Quality House&#39;</span>
+<a id="__codelineno-12-55" name="__codelineno-12-55" href="#__codelineno-12-55"></a><span class="s2">            else &#39;High Quality House&#39;</span>
+<a id="__codelineno-12-56" name="__codelineno-12-56" href="#__codelineno-12-56"></a><span class="s2">        end as house_quality,</span>
+<a id="__codelineno-12-57" name="__codelineno-12-57" href="#__codelineno-12-57"></a><span class="s2">        count(*) as total_loans,</span>
+<a id="__codelineno-12-58" name="__codelineno-12-58" href="#__codelineno-12-58"></a><span class="s2">        round(avg(total_income),2) as avg_income,</span>
+<a id="__codelineno-12-59" name="__codelineno-12-59" href="#__codelineno-12-59"></a><span class="s2">        round(avg(target) * 100, 3) as risk_rate</span>
+<a id="__codelineno-12-60" name="__codelineno-12-60" href="#__codelineno-12-60"></a><span class="s2">    from house_metric_avg</span>
+<a id="__codelineno-12-61" name="__codelineno-12-61" href="#__codelineno-12-61"></a><span class="s2">    group by 1</span>
+<a id="__codelineno-12-62" name="__codelineno-12-62" href="#__codelineno-12-62"></a><span class="s2">    order by </span>
+<a id="__codelineno-12-63" name="__codelineno-12-63" href="#__codelineno-12-63"></a><span class="s2">        risk_rate desc,</span>
+<a id="__codelineno-12-64" name="__codelineno-12-64" href="#__codelineno-12-64"></a><span class="s2">        avg_income desc</span>
+<a id="__codelineno-12-65" name="__codelineno-12-65" href="#__codelineno-12-65"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-12-66" name="__codelineno-12-66" href="#__codelineno-12-66"></a>
+<a id="__codelineno-12-67" name="__codelineno-12-67" href="#__codelineno-12-67"></a><span class="n">t6_2</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-12-68" name="__codelineno-12-68" href="#__codelineno-12-68"></a><span class="n">t6_2</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">house_quality</th>
+<th style="text-align: right;">total_loans</th>
+<th style="text-align: right;">avg_income</th>
+<th style="text-align: right;">risk_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Missing</td>
+<td style="text-align: right;">295182</td>
+<td style="text-align: right;">167697</td>
+<td style="text-align: right;">8.157</td>
+</tr>
+<tr>
+<td style="text-align: left;">High Quality House</td>
+<td style="text-align: right;">275</td>
+<td style="text-align: right;">262860</td>
+<td style="text-align: right;">6.182</td>
+</tr>
+<tr>
+<td style="text-align: left;">Low Quality House</td>
+<td style="text-align: right;">8736</td>
+<td style="text-align: right;">188778</td>
+<td style="text-align: right;">6.136</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mid Quality House</td>
+<td style="text-align: right;">3318</td>
+<td style="text-align: right;">206298</td>
+<td style="text-align: right;">5.847</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>The results are almost identical with the ones obtained by using average house metrics. Therefore, there is no need such number of columns as this will increase the model size and complexity without giving any beneficial information. These housing parameters can be considered as highly multicollinear features as if average increasing the mid also will increase. <strong>Hence, the best option will be to drop all scores except the average parameters which in my opinion is better score to evaluate.</strong></p>
+<h4 id="task-7-the-commuter-stability-mismatch"><font color="#8da2e0"> Task 7. The ”Commuter Stability” Mismatch </font><a class="headerlink" href="#task-7-the-commuter-stability-mismatch" title="Permanent link">&para;</a></h4>
+<p><strong>Business Question: Do clients with a ”Commuter Mismatch” (Living in a different city than
+where they work or are registered) have significantly higher default risk, and should we treat them as a separate segment in our risk models?</strong></p>
+<p><strong>Objective:</strong> To detect ”Flight Risk” or instability. We have flags for whether a client lives
+in a different city than where they work or are registered (REG CITY NOT LIVE CITY,
+REG CITY NOT WORK CITY). A mismatch suggests a transient lifestyle or a long commute,
+which correlates with job turnover or fraud.</p>
+<p><strong>Solution:</strong> The solution is quite straightforward. The applicants will be grouped based on the flags indicating whether they live in a different city than where they work or are registered and for each group the default risk will be calculated.</p>
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="s2">with stats as (</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="s2">select</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="s2">    case</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="s2">        when (</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="s2">            reg_city_not_live_city + </span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="s2">            reg_city_not_work_city + </span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s2">            live_city_not_work_city</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="s2">        ) = 0 then &#39;stable_resident&#39;</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="s2">        when (</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="s2">            reg_city_not_live_city + </span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="s2">            reg_city_not_work_city + </span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="s2">            live_city_not_work_city</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="s2">        ) = 1 then &#39;moderate_instability&#39;</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="s2">        else &#39;instable_applicant&#39;</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="s2">    end as risk_segment,</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="s2">    count(*) as client_count,</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="s2">    round(avg(target) * 100, 2) as risk_rate</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="s2">from applications</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="s2">group by </span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="s2">    1</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="s2">)</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="s2">select </span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="s2">    risk_segment, </span>
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="s2">    client_count,</span>
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="s2">    round(client_count / (select count(*) from applications) * 100,2) as percent_of_total,</span>
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a><span class="s2">    risk_rate</span>
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a><span class="s2">from stats</span>
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span class="s2">order by 4 desc</span>
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>
+<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a><span class="n">t7</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a><span class="n">t7</span>
+</code></pre></div>
+
+</details>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">risk_segment</th>
+<th style="text-align: right;">client_count</th>
+<th style="text-align: right;">percent_of_total</th>
+<th style="text-align: right;">risk_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">instable_applicant</td>
+<td style="text-align: right;">72192</td>
+<td style="text-align: right;">23.48</td>
+<td style="text-align: right;">10.61</td>
+</tr>
+<tr>
+<td style="text-align: left;">moderate_instability</td>
+<td style="text-align: right;">1925</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">8.68</td>
+</tr>
+<tr>
+<td style="text-align: left;">stable_resident</td>
+<td style="text-align: right;">233394</td>
+<td style="text-align: right;">75.9</td>
+<td style="text-align: right;">7.28</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>Applicants are classified as unstable if they satisfy at least two of the following conditions: residing in a city different from the one reported, working in a city different from the one reported, or living in a city in which they do not work. Moderately stable applicants satisfy exactly one of these conditions, while stable residents report consistent living and working locations and do not meet any of the listed criteria.</p>
+<p>The resulting table indicates that unstable applicants exhibit the highest default risk, at approximately 10.61%, whereas stable residents show the lowest default risk, around 7.3%. Given that nearly 75% of customers are classified as stable, the lower risk observed in this large segment suggests that residential and employment stability is associated with stronger repayment behavior. From a credit risk perspective, customer stability may therefore be considered a relevant factor when assessing default likelihood.</p>
+<h4 id="task-8-the-bad-influence-ratio-social-circle"><font color="#8da2e0"> Task 8. The ”Bad Influence” Ratio (Social Circle) </font><a class="headerlink" href="#task-8-the-bad-influence-ratio-social-circle" title="Permanent link">&para;</a></h4>
+<p><strong>Business Question: What is the tipping point where a client’s social circle becomes ”Toxic”?
+(i.e., If ¿10% of your network defaults, do you follow them?)</strong></p>
+<p><strong>Objective</strong> To refine the Social Circle analysis. Merely knowing people with loans (OBS 30)
+isn’t bad. Knowing people who default (DEF 30) is bad. We need the Ratio of bad apples in
+their network.</p>
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot; </span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="s2">with tab1 as(</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="s2">    select</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="s2">        sk_id_curr,</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="s2">        target,</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="s2">        OBS_60_CNT_SOCIAL_CIRCLE,</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="s2">        DEF_60_CNT_SOCIAL_CIRCLE,</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="s2">        case</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="s2">            when coalesce(OBS_60_CNT_SOCIAL_CIRCLE, 0) = 0  then 0</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="s2">            else cast(cast(DEF_60_CNT_SOCIAL_CIRCLE as double) / OBS_60_CNT_SOCIAL_CIRCLE as double)</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="s2">        end as bad_influence_ratio</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="s2">    from applications</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="s2">),</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="s2">tab2 as (</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="s2">    select</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="s2">        target,</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="s2">        bad_influence_ratio,</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="s2">        case </span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="s2">            when OBS_60_CNT_SOCIAL_CIRCLE = 0 or OBS_60_CNT_SOCIAL_CIRCLE is null then &#39;no social data&#39;</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="s2">            when  bad_influence_ratio = 0  then &#39;clean circle&#39;</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="s2">            when bad_influence_ratio between 0 and 0.2 then &#39;low_toxic_circle&#39;</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a><span class="s2">            else &#39;high_toxic_circle&#39;</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a><span class="s2">        end as social_circle_segments</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a><span class="s2">    from tab1</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a><span class="s2">)</span>
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a><span class="s2">select</span>
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="s2">    social_circle_segments,</span>
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="s2">    round(avg(bad_influence_ratio),2) as avg_bad_influence_ratio,</span>
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a><span class="s2">    count(*) as total_loans,</span>
+<a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a><span class="s2">    round(count(*) / (select count(*) from applications),3)*100 as percent_of_total,</span>
+<a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a><span class="s2">    round(avg(target)*100, 3) as risk_rate</span>
+<a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="s2">from tab2</span>
+<a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a><span class="s2">group by 1</span>
+<a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a><span class="s2">order by 5 desc</span>
+<a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a>
+<a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a>
+<a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a><span class="n">t8</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a><span class="n">t8</span>
+</code></pre></div>
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">social_circle_segments</th>
+<th style="text-align: right;">avg_bad_influence_ratio</th>
+<th style="text-align: right;">total_loans</th>
+<th style="text-align: right;">percent_of_total</th>
+<th style="text-align: right;">risk_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">high_toxic_circle</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">22281</td>
+<td style="text-align: right;">7.2</td>
+<td style="text-align: right;">10.902</td>
+</tr>
+<tr>
+<td style="text-align: left;">low_toxic_circle</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">3488</td>
+<td style="text-align: right;">1.1</td>
+<td style="text-align: right;">10.493</td>
+</tr>
+<tr>
+<td style="text-align: left;">no social data</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">165687</td>
+<td style="text-align: right;">53.9</td>
+<td style="text-align: right;">7.881</td>
+</tr>
+<tr>
+<td style="text-align: left;">clean circle</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">116055</td>
+<td style="text-align: right;">37.7</td>
+<td style="text-align: right;">7.732</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>The analysis shows that the majority of applicants either have no recorded social data or belong to a clean social circle, and these groups exhibit the lowest default risk among all segments.</p>
+<p>In contrast, applicants associated with highly toxic social circles show substantially higher default risk, reaching approximately 11%, and account for around 7.2% of the total applicant population. Applicants with low toxic social circles represent a much smaller segment—about 1% of the data (approximately 3,500 applicants)—yet they also display elevated default risk at around 10.5%, closely aligning with the high-toxicity group.</p>
+<p>Overall, the results suggest that social circle toxicity is positively associated with default risk, indicating that this variable may serve as a useful predictor in default risk modeling.</p>
+<h4 id="task-9-the-impulse-loan-timing-analysis"><font color="#8da2e0"> Task 9: The ”Impulse Loan” Timing Analysis </font><a class="headerlink" href="#task-9-the-impulse-loan-timing-analysis" title="Permanent link">&para;</a></h4>
+<p><strong>Business Question: Do applications submitted during ”Off-Peak” hours (Late Night / Weekends) carry higher default risk?</strong></p>
+<p><strong>Objective:</strong> Behavioral psychology. People who apply for loans at 10 AM on a Tuesday are
+usually treating it as a business transaction. People who apply at 3 AM on a Sunday might be
+desperate or impulsive.</p>
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">query</span>  <span class="o">=</span>  <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="s2">with general_time_data as (</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="s2">    select</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="s2">        sk_id_curr,</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="s2">        target,</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="s2">        WEEKDAY_APPR_PROCESS_START,</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="s2">        case when WEEKDAY_APPR_PROCESS_START = &#39;SUNDAY&#39; or WEEKDAY_APPR_PROCESS_START = &#39;SATURDAY&#39;</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="s2">                then &#39;weekend&#39;</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="s2">            else &#39;weekday&#39;</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="s2">        end as appr_day,</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="s2">        HOUR_APPR_PROCESS_START,</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="s2">        case </span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="s2">            when HOUR_APPR_PROCESS_START &gt;= 20 or HOUR_APPR_PROCESS_START &lt;= 8 then &#39;late night / too early&#39;</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="s2">            else &#39;standard time&#39;</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="s2">        end as appr_time</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="s2">    from applications </span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="s2">    where WEEKDAY_APPR_PROCESS_START is not null and HOUR_APPR_PROCESS_START is not null</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="s2">)</span>
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="s2">select</span>
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="s2">    appr_day,</span>
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="s2">    appr_time,</span>
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="s2">    count(*) as total_loans, </span>
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="s2">    round(count(*) / (select count(*) from applications), 3) * 100 as percent_of_total,</span>
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="s2">    round(avg(target),3) as risk_rate</span>
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="s2">from general_time_data</span>
+<a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a><span class="s2">group by 1,2</span>
+<a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="s2">order by risk_rate desc</span>
+<a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a>
+<a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a><span class="n">t9</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a><span class="n">t9</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">appr_day</th>
+<th style="text-align: left;">appr_time</th>
+<th style="text-align: right;">total_loans</th>
+<th style="text-align: right;">percent_of_total</th>
+<th style="text-align: right;">risk_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">weekend</td>
+<td style="text-align: left;">late night / too early</td>
+<td style="text-align: right;">7010</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">0.096</td>
+</tr>
+<tr>
+<td style="text-align: left;">weekday</td>
+<td style="text-align: left;">late night / too early</td>
+<td style="text-align: right;">32271</td>
+<td style="text-align: right;">10.5</td>
+<td style="text-align: right;">0.096</td>
+</tr>
+<tr>
+<td style="text-align: left;">weekday</td>
+<td style="text-align: left;">standard time</td>
+<td style="text-align: right;">225207</td>
+<td style="text-align: right;">73.2</td>
+<td style="text-align: right;">0.079</td>
+</tr>
+<tr>
+<td style="text-align: left;">weekend</td>
+<td style="text-align: left;">standard time</td>
+<td style="text-align: right;">43023</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0.076</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>The tabular results indicates no relationship between between approving the loan weekend or weekday ; midnight or standard working hours. Hence, this can not be used as a good predictor in the prediction model.</p>
+<h4 id="task-10-the-document-transparency-score"><font color="#8da2e0"> Task 10. The ”Document Transparency” Score </font><a class="headerlink" href="#task-10-the-document-transparency-score" title="Permanent link">&para;</a></h4>
+<p><strong>Business: Question Does the total number of documents provided correlate with repayment? (Are ”Over-documenters” safer?)</strong></p>
+<p><strong>Objective:</strong> To measure client ”Effort.” The dataset has 20 flags (FLAG DOCUMENT 2 to
+FLAG DOCUMENT 21). Most are 0. We hypothesize that clients who provide more docu-
+mentation than required (High transparency) are safer.</p>
+<details>
+<summary>Click here to see the solution</summary>
+<br>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="s2">with tab1 as (</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="s2">    select </span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="s2">        sk_id_curr,</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="s2">        target,</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="s2">        coalesce(FLAG_DOCUMENT_2,0) + coalesce(FLAG_DOCUMENT_3,0) + </span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="s2">        coalesce(FLAG_DOCUMENT_4,0) + coalesce(FLAG_DOCUMENT_5,0) + coalesce(FLAG_DOCUMENT_6,0) +</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="s2">        coalesce(FLAG_DOCUMENT_7,0) + coalesce(FLAG_DOCUMENT_8,0) + coalesce(FLAG_DOCUMENT_9,0) +</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="s2">        coalesce(FLAG_DOCUMENT_10,0) + coalesce(FLAG_DOCUMENT_11,0) + coalesce(FLAG_DOCUMENT_12,0) +</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="s2">        coalesce(FLAG_DOCUMENT_13,0) + coalesce(FLAG_DOCUMENT_14,0) + coalesce(FLAG_DOCUMENT_15,0) +</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="s2">        coalesce(FLAG_DOCUMENT_16,0) + coalesce(FLAG_DOCUMENT_17,0) + coalesce(FLAG_DOCUMENT_18,0) +</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="s2">        coalesce(FLAG_DOCUMENT_19,0) + coalesce(FLAG_DOCUMENT_20,0) + coalesce(FLAG_DOCUMENT_21,0) as total_docs_provided</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="s2">    from applications</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="s2">)</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="s2">select </span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="s2">    total_docs_provided,</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="s2">    count(*) as total_loans,</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="s2">    round(count(*)/(select count(*) from applications) * 100,2) as percent_of_total,</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="s2">    round(avg(target),2) as risk_rate</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="s2">    from tab1</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="s2">    group by 1</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="s2">    order by risk_rate desc</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="s2">&quot;&quot;&quot;</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a>
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="n">t10</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">fetchdf</span><span class="p">()</span>
+<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="n">t10</span>
+</code></pre></div>
+
+</details>
+<p><br></p>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">total_docs_provided</th>
+<th style="text-align: right;">total_loans</th>
+<th style="text-align: right;">percent_of_total</th>
+<th style="text-align: right;">risk_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">163</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.1</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">270056</td>
+<td style="text-align: right;">87.82</td>
+<td style="text-align: right;">0.08</td>
+</tr>
+<tr>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">29549</td>
+<td style="text-align: right;">9.61</td>
+<td style="text-align: right;">0.06</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">7742</td>
+<td style="text-align: right;">2.52</td>
+<td style="text-align: right;">0.05</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p><strong>Insights:</strong></p>
+<p>According to the results, there is not a clear connection between the risk of being default and the number of documents provided. Moreover, most of the entries for these columns are missing. Hence the best option will be to drop all of these columns as they do not reveal any significant predictive information.</p>
+<h2 id="end-of-section-1"><font color="#94d6d5"> End of Section 1 </font><a class="headerlink" href="#end-of-section-1" title="Permanent link">&para;</a></h2>
+<p><em>In this section, we have completed the followings:</em></p>
+<ol>
+<li><strong>Data Import and Setup with DuckDB:</strong> We created the DuckDB connection, created a database and imported all the csv files into the database as tables. </li>
+<li><strong>Data Export as Parquet Files:</strong> We exported the tables as parquet files to be used in the further sections if the database or connection fails.</li>
+<li><strong>Data Analysis with SQL:</strong> We have completed 10 different tasks on the main table - <em>Applications</em> - to understand the data and get insights about the default risk across different segments. </li>
+</ol>
+<p><em>What will be covered in the next sections:</em></p>
+<ol>
+<li><strong>Data Analysis with SQL Part 2:</strong> We will do analysis using SQL on all remaining tables to clear out the necessary of features and get insights about the data.</li>
+<li><strong>Feature Engineering with SQL:</strong> We will do feature engineering using SQL to create new features that can be used in the model. Also, we will drop unnecessary features that we have identified in the previous sections. At the end of this section, we will have a clean and ready to use dataset for the model building phase.</li>
+<li><strong>Data Wrangling with Python:</strong> We will do data wrangling using Python to handle missing values, outliers and do encoding for the categorical variables using the newly created dataset in the previous section. At the end of this section, we will have a clean and ready to use dataset for the model building phase.</li>
+<li><strong>Model Building:</strong> We will build a machine learning model to predict the default risk using the clean dataset we have created in the previous sections. We will use different algorithms and compare their performance to select the best model for our use case.</li>
+</ol>
 
 
 
