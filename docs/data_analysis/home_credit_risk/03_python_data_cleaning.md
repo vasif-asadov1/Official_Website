@@ -1642,7 +1642,7 @@ File Size: 54.41 MB
 ```
 
 
-## <font color="#94d6d5"> Conclusion and Next Steps </font>
+## <font color="#94d6d5"> Conclusion </font>
 
 We have successfully completed the Data Cleaning and Feature Engineering phase. The dataset is now in a pristine, numeric format with powerful new features that capture the underlying risk patterns in the data. We have also implemented robust checks to ensure data integrity and prevent common pitfalls that could cause model training to fail.
 
