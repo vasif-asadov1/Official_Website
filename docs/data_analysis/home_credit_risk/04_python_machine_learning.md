@@ -1240,7 +1240,7 @@ Ultimately, this divergence confirms that default risk is highly **non-linear**.
 
 
 
-## <font color="#94d6d5"> Conclusion: Model Selection and Business Implications </font>
+## <font color="#94d6d5"> Model Selection  </font>
 
 **Executive Summary: The "Champion" vs. The "Challenger"**
 
@@ -1256,6 +1256,14 @@ While less predictive (AUC 0.685), the **Logistic Regression** pipeline served a
 Across all models, one truth remained constant: **External Sources** (credit bureau scores) are the strongest predictors. However, our feature engineering proved its worth. Variables we created, like `ratio_annuity_to_credit` and `cc_avg_monthly_atm_count`, consistently ranked in the top 10. This confirms that a customer's **liquidity behavior** (how much cash they take out, how burdened they are by payments) is just as important as their static credit history.
 
 **Final Verdict:** We deploy **LightGBM** to make the decisions, and we use the **Logistic Regression Scorecard** to explain those decisions to regulators and loan officers. We have the best of both worlds: maximum security and full transparency.
+
+
+## <font color="#94d6d5"> Conclusion </font>
+
+
+In terms of the reasons of credit default, we concluded that the most important features are the ones related to the external sources, which are the credit bureau scores. This is consistent with the fact that these scores are designed to capture a wide range of financial behaviors and histories, making them powerful predictors of default risk. Additionally, our engineered features related to liquidity and payment burden also emerged as significant, highlighting the importance of understanding a customer's current financial stress in addition to their historical creditworthiness. In addition to these, factors like social trust and employment verification also play a crucial role, suggesting that non-financial indicators can provide valuable insights into a borrower's reliability. Overall, the combination of traditional credit scores and innovative behavioral features gives us a comprehensive view of default risk.
+
+Conversely, the least important features were those that had low Information Value in the Logistic Regression model and low Gain in the tree-based models. These often included features that were either redundant (highly correlated with stronger predictors) or had very little variation across the dataset (e.g., features with many missing values or low cardinality). For instance, certain demographic variables or rarely used flags may have shown minimal impact on the model's predictions, indicating that they do not provide meaningful information about default risk in this context. This reinforces the importance of feature selection and engineering in building effective credit risk models, as including irrelevant features can add noise and reduce overall performance.
 
 
 
