@@ -30,15 +30,15 @@
 
 ## **Professional Summary**
 
-I am **Vasif Asadov**, a **Junior Data Scientist** and a Master's student in **Control and Automation Engineering** at **Yildiz Technical University**. My academic background is based on high-level analytical performance, starting with a **perfect score of 700/700** on the Azerbaijan National Entrance Exam, which earned me a **Presidential Scholarship**.
+I am **Vasif Asadov**, a Data Scientist and Master's student in Control and Automation Engineering at Yildiz Technical University. My analytical foundation was established early — a perfect score of 700/700 on the Azerbaijan National Entrance Exam earned me a Presidential Scholarship, and that same precision carries into everything I build today.
 
-I have a strong engineering foundation and practical experience in data lifecycle management. During my internship at **SOCAR**, I worked with **SQL Server** to clean and store data and developed plant automation systems. Later, I completed a 6-month **Full Stack Data Science** internship where I mastered the entire pipeline: from data cleaning and **Exploratory Data Analysis (EDA)** to building and deploying **Machine Learning** models using **Python, SQL, R, and Tableau**.
+My path into data science is rooted in real engineering experience. At **SOCAR**, one of the region's largest energy companies, I worked hands-on with SQL Server for data management and plant automation systems. That foundation led me to a 6-month **Full Stack Data Science** internship, where I took ownership of the entire ML pipeline — from raw data cleaning and exploratory analysis all the way through to model deployment using **Python, SQL, R, and Tableau**.
 
-As a **Microsoft Certified Power BI Data Analyst Associate**, I am experienced in creating professional dashboards that help in decision-making processes. My technical focus is on high-performance tools; I prefer using **Polars** and **DuckDB** for fast data processing. My current Master's thesis focuses on **"AI-based Model Predictive Control of Nonlinear Systems,"** where I combine deep learning with control theory.
+On the analytics side, I hold a **Microsoft Certified Power BI Data Analyst Associate** certification and have built production-grade dashboards that directly support business decision-making. I gravitate toward high-performance tooling — **DuckDB** and **Polars** are my go-to stack for fast, efficient data processing, and I document everything meticulously using Markdown, Quarto, and LaTeX.
 
-I am an advanced **Linux user** (CachyOS/Niri) and I enjoy documenting my technical processes using **Markdown, Quarto, and LaTeX**. I am a self-motivated learner who aims to build efficient, automated, and data-driven systems.
+Currently, my Master's thesis sits at the intersection of deep learning and control theory: **AI-based Model Predictive Control of Nonlinear Systems**. I am drawn to problems where rigorous engineering meets modern machine learning — and I build systems that are not just accurate, but production-ready, automated, and built to last.
 
----
+
 
 ## About Webpage
 
@@ -59,9 +59,10 @@ This platform is my official digital space, built using the **MkDocs-Material** 
 5.  ### <font color="#4f46e5">Master Thesis</font>
     A dedicated log of my academic journey at **Yildiz Technical University**. My thesis, titled *"Deep Learning based Model Predictive Control of Nonlinear Systems,"* aims to build a bridge between **AI** and **Classical Control Theory**. This section is *constantly updated* as my research progresses.
 
----
+
 
 *I hope you find the content here valuable. Feel free to contact me regarding any technical topics, collaborations, or feedback. I am committed to maintaining this site as a high-quality knowledge base.*
+
 
 
 ## Technical Skillset

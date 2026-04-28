@@ -1,3 +1,36 @@
+/* --- 0. FONT IMPORT --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --md-code-font: "Fira Code", "JetBrains Mono", monospace;
+}
+
+body, .md-content, .md-nav, .md-toc {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+code, pre, .md-content code, .highlight {
+  font-family: "Fira Code", "JetBrains Mono", monospace !important;
+  font-variant-ligatures: contextual;
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+.md-content h1 { font-weight: 700; letter-spacing: -0.5px; }
+.md-content h2 { font-weight: 600; letter-spacing: -0.3px; }
+.md-content h3 { font-weight: 500; letter-spacing: -0.2px; }
+.md-content p, .md-content li { 
+  font-weight: 400; 
+  line-height: 1.75; 
+  letter-spacing: 0.01em;
+}
+
+
+
 /* --- 1. ANA YERLEŞİM (LAYOUT) VE RENKLER --- */
 .md-grid { max-width: 85rem; }
 @media screen and (min-width: 76.25em) { .md-main__inner { display: flex; max-width: 100%; } }
