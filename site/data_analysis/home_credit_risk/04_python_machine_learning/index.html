@@ -1428,10 +1428,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusion-model-selection-and-business-implications" class="md-nav__link">
+  <a href="#model-selection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conclusion: Model Selection and Business Implications
+        Model Selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
       
     </span>
   </a>
@@ -2147,10 +2158,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conclusion-model-selection-and-business-implications" class="md-nav__link">
+  <a href="#model-selection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conclusion: Model Selection and Business Implications
+        Model Selection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
       
     </span>
   </a>
@@ -3269,7 +3291,7 @@ Simultaneously, we will calculate the <strong>Information Value (IV)</strong> fo
 <p>The root cause lies in how these models handle <strong>Multicollinearity</strong> and <strong>Information Redundancy</strong>. Tree-based models like LightGBM differ because they use a 'greedy' splitting strategy. When two features are highly correlated (e.g., <code>EXT_SOURCE_2</code> and <code>EXT_SOURCE_3</code>), the tree picks the slightly stronger one to make a split and ignores the other for that specific node because it adds no <em>new</em> information. This 'Winner-Takes-All' approach causes the strongest predictors to accumulate massive Importance (Gain) scores, pushing them to the top of the list while suppressing their correlated peers.</p>
 <p>In contrast, Logistic Regression solves for the <strong>Marginal Contribution</strong> of each feature simultaneously. Its coefficients do not measure total predictive power; they measure the impact of a variable <em>holding all other variables constant</em> ('ceteris paribus'). Because <code>EXT_SOURCE</code> shares information with many other financial indicators (like Income or Age), the regression model 'spreads' the credit across these correlated features, diluting the coefficient of <code>EXT_SOURCE</code>. Meanwhile, variables like <code>degree_of_trust_avg_prev</code> or <code>FLAG_OWN_CAR</code> (binary flags) appear as top drivers in the regression because they provide <strong>orthogonal</strong> (unique) information that the other variables do not capture. They act as distinct 'levers' or 'step-changes' in the Log-Odds equation, creating a large marginal impact even if their standalone predictive power is lower than <code>EXT_SOURCE</code>.</p>
 <p>Ultimately, this divergence confirms that default risk is highly <strong>non-linear</strong>. The LightGBM model captures the complex, interaction-based reality of the data (achieving higher AUC), while the Logistic Regression reveals the specific, linear 'penalties' and 'bonuses' required for a transparent banking scorecard. Both views are correct, but they answer different questions: Trees tell us <em>what predicts best</em>, while Regression tells us <em>how a specific variable changes the odds independent of others</em>.</p>
-<h2 id="conclusion-model-selection-and-business-implications"><font color="#94d6d5"> Conclusion: Model Selection and Business Implications </font><a class="headerlink" href="#conclusion-model-selection-and-business-implications" title="Permanent link">&para;</a></h2>
+<h2 id="model-selection"><font color="#94d6d5"> Model Selection  </font><a class="headerlink" href="#model-selection" title="Permanent link">&para;</a></h2>
 <p><strong>Executive Summary: The "Champion" vs. The "Challenger"</strong></p>
 <p>We have successfully concluded our end-to-end machine learning pipeline, rigorously testing three different architectures to solve the Credit Default Risk problem. Our journey took us from raw, messy data to two distinct final products: a high-performance "Black Box" engine for automated decision-making and a transparent "White Box" scorecard for business explainability.</p>
 <p><strong>1. The Champion: LightGBM (The "Engine")</strong>
@@ -3279,6 +3301,9 @@ While less predictive (AUC 0.685), the <strong>Logistic Regression</strong> pipe
 <p><strong>3. Key Drivers &amp; Business Insight</strong>
 Across all models, one truth remained constant: <strong>External Sources</strong> (credit bureau scores) are the strongest predictors. However, our feature engineering proved its worth. Variables we created, like <code>ratio_annuity_to_credit</code> and <code>cc_avg_monthly_atm_count</code>, consistently ranked in the top 10. This confirms that a customer's <strong>liquidity behavior</strong> (how much cash they take out, how burdened they are by payments) is just as important as their static credit history.</p>
 <p><strong>Final Verdict:</strong> We deploy <strong>LightGBM</strong> to make the decisions, and we use the <strong>Logistic Regression Scorecard</strong> to explain those decisions to regulators and loan officers. We have the best of both worlds: maximum security and full transparency.</p>
+<h2 id="conclusion"><font color="#94d6d5"> Conclusion </font><a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>In terms of the reasons of credit default, we concluded that the most important features are the ones related to the external sources, which are the credit bureau scores. This is consistent with the fact that these scores are designed to capture a wide range of financial behaviors and histories, making them powerful predictors of default risk. Additionally, our engineered features related to liquidity and payment burden also emerged as significant, highlighting the importance of understanding a customer's current financial stress in addition to their historical creditworthiness. In addition to these, factors like social trust and employment verification also play a crucial role, suggesting that non-financial indicators can provide valuable insights into a borrower's reliability. Overall, the combination of traditional credit scores and innovative behavioral features gives us a comprehensive view of default risk.</p>
+<p>Conversely, the least important features were those that had low Information Value in the Logistic Regression model and low Gain in the tree-based models. These often included features that were either redundant (highly correlated with stronger predictors) or had very little variation across the dataset (e.g., features with many missing values or low cardinality). For instance, certain demographic variables or rarely used flags may have shown minimal impact on the model's predictions, indicating that they do not provide meaningful information about default risk in this context. This reinforces the importance of feature selection and engineering in building effective credit risk models, as including irrelevant features can add noise and reduce overall performance.</p>
 
 
 

@@ -4,6 +4,9 @@ site_author: Vasif Asadov
 
 theme:
   name: material
+  font:
+    text: Inter
+    code: Fira Code
   palette:
     scheme: slate 
     primary: indigo
