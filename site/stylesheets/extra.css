@@ -6,111 +6,184 @@
   --md-code-font: "Fira Code", "JetBrains Mono", monospace;
 }
 
+/* --- 1. FONT TANIMLAMALARI --- */
 body, .md-content, .md-nav, .md-toc {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-code, pre, .md-content code, .highlight {
+/* MkDocs Material asil content class - kesinlikle Inter */
+.md-typeset {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+
+.md-typeset p,
+.md-typeset li,
+.md-typeset strong,
+.md-typeset em,
+.md-typeset blockquote {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Fira Code sadece kod bloklarinda */
+code, pre,
+.md-typeset code,
+.md-typeset pre,
+.highlight {
   font-family: "Fira Code", "JetBrains Mono", monospace !important;
   font-variant-ligatures: contextual;
   font-feature-settings: "liga" 1, "calt" 1;
 }
 
-.md-content h1 { font-weight: 700; letter-spacing: -0.5px; }
-.md-content h2 { font-weight: 600; letter-spacing: -0.3px; }
-.md-content h3 { font-weight: 500; letter-spacing: -0.2px; }
-.md-content p, .md-content li { 
-  font-weight: 400; 
-  line-height: 1.75; 
+/* Heading font weights */
+.md-content h1, .md-typeset h1 { font-weight: 700; letter-spacing: -0.5px; }
+.md-content h2, .md-typeset h2 { font-weight: 600; letter-spacing: -0.3px; }
+.md-content h3, .md-typeset h3 { font-weight: 500; letter-spacing: -0.2px; }
+.md-content h4, .md-typeset h4 { font-weight: 500; }
+
+.md-content p,
+.md-content li,
+.md-typeset p,
+.md-typeset li {
+  font-weight: 400;
+  line-height: 1.85;
   letter-spacing: 0.01em;
 }
 
+.md-content strong,
+.md-typeset strong {
+  font-weight: 600 !important;
+}
 
-
-/* --- 1. ANA YERLEŞİM (LAYOUT) VE RENKLER --- */
+/* --- 2. ANA YERLESIM (LAYOUT) --- */
 .md-grid { max-width: 85rem; }
-@media screen and (min-width: 76.25em) { .md-main__inner { display: flex; max-width: 100%; } }
 
+@media screen and (min-width: 76.25em) {
+  .md-main__inner { display: flex; max-width: 100%; }
+}
+
+/* --- 3. DARK MODE CONTENT & RENKLER --- */
 .md-content {
-    background-color: rgba(255, 255, 255, 0.04);
-    color: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.md-content h1, .md-content h2, .md-content h3, .md-content h4, .md-content h5, .md-content h6 {
-    color: #ffffff !important;
-}
-.md-content code { color: var(--md-code-fg-color); }
-
-/* --- 2. YAN MENÜLER (GHOSTING / TRANSPARENT) --- */
-.md-nav__link, .md-toc__link {
-    color: rgba(255, 255, 255, 0.4) !important;
-    transition: color 0.3s ease;
-}
-.md-nav__link:hover, .md-toc__link:hover, .md-nav__link--active, .md-toc__link--active {
-    color: rgba(255, 255, 255, 0.95) !important;
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4,
+.md-content h5,
+.md-content h6 {
+  color: #ffffff !important;
 }
 
-/* --- 3. NOTION STYLE CARDS & TAGS (YENİ EKLENEN KISIM) --- */
+.md-content code {
+  color: var(--md-code-fg-color);
+}
 
-/* Kartların üzerine gelince yukarı doğru süzülme efekti (Float Effect) */
+/* --- 4. YAN MENULER - DARK MODE (GHOSTING) --- */
+.md-nav__link,
+.md-toc__link {
+  color: rgba(255, 255, 255, 0.4) !important;
+  transition: color 0.3s ease;
+}
+
+.md-nav__link:hover,
+.md-toc__link:hover,
+.md-nav__link--active,
+.md-toc__link--active {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* --- 5. LIGHT MODE OVERRIDES --- */
+[data-md-color-scheme="default"] .md-content {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  color: rgba(0, 0, 0, 0.85) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+[data-md-color-scheme="default"] .md-content h1,
+[data-md-color-scheme="default"] .md-content h2,
+[data-md-color-scheme="default"] .md-content h3,
+[data-md-color-scheme="default"] .md-content h4,
+[data-md-color-scheme="default"] .md-content h5,
+[data-md-color-scheme="default"] .md-content h6 {
+  color: #1a1a2e !important;
+}
+
+[data-md-color-scheme="default"] .md-content p,
+[data-md-color-scheme="default"] .md-content li,
+[data-md-color-scheme="default"] .md-content strong,
+[data-md-color-scheme="default"] .md-content a,
+[data-md-color-scheme="default"] .md-typeset p,
+[data-md-color-scheme="default"] .md-typeset li,
+[data-md-color-scheme="default"] .md-typeset strong {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Sidebar - light modda soluk */
+[data-md-color-scheme="default"] .md-nav__link,
+[data-md-color-scheme="default"] .md-toc__link {
+  color: rgba(0, 0, 0, 0.30) !important;
+}
+
+[data-md-color-scheme="default"] .md-nav__link:hover,
+[data-md-color-scheme="default"] .md-toc__link:hover,
+[data-md-color-scheme="default"] .md-nav__link--active,
+[data-md-color-scheme="default"] .md-toc__link--active {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* --- 6. NOTION STYLE CARDS --- */
 .cards > ul > li {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: rgba(255, 255, 255, 0.03) !important; /* Kart içi çok hafif aydınlık */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.03) !important;
 }
 
 .cards > ul > li:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3) !important;
-    border-color: var(--md-primary-fg-color) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3) !important;
+  border-color: var(--md-primary-fg-color) !important;
 }
 
-/* Etiketlerin (Tags) kapsayıcısı */
+[data-md-color-scheme="default"] .cards > ul > li {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+[data-md-color-scheme="default"] .cards > ul > li:hover {
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* --- 7. PROJECT TAGS --- */
 .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-/* Genel Etiket (Tag) Stili - Minimal ve Yuvarlak Hatlı */
-.tag {
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.25rem 0.6rem;
-    border-radius: 6px;
-    letter-spacing: 0.3px;
-    display: inline-block;
-}
-
-/* Renkli Etiketler (Notion Dark Mode Renk Paleti) */
-.tag.sql     { background-color: rgba(65, 137, 230, 0.15); color: #6fb3ff; border: 1px solid rgba(65, 137, 230, 0.3); }
-.tag.duckdb  { background-color: rgba(255, 210, 63, 0.15);  color: #ffd659; border: 1px solid rgba(255, 210, 63, 0.3); }
-.tag.python  { background-color: rgba(55, 118, 171, 0.15); color: #64a6e8; border: 1px solid rgba(55, 118, 171, 0.3); }
-.tag.pandas  { background-color: rgba(164, 145, 249, 0.15); color: #bcaafc; border: 1px solid rgba(164, 145, 249, 0.3); }
-.tag.powerbi { background-color: rgba(242, 200, 17, 0.15);  color: #f2cb30; border: 1px solid rgba(242, 200, 17, 0.3); }
-.tag.ml      { background-color: rgba(232, 62, 140, 0.15);  color: #f07aa0; border: 1px solid rgba(232, 62, 140, 0.3); }
-
-
-/* Renkli proje tag'leri */
 .tag {
   display: inline-block;
   font-size: 11px;
+  font-family: "Inter", sans-serif !important;
   font-weight: 500;
   padding: 3px 10px;
   border-radius: 999px;
   margin: 2px 4px 2px 0;
   line-height: 1.6;
+  letter-spacing: 0.2px;
 }
 
 .tag.sql        { background: #185FA5; color: #B5D4F4; }
@@ -131,48 +204,3 @@ code, pre, .md-content code, .highlight {
 .tag.databricks { background: #993C1D; color: #F5C4B3; }
 .tag.sklearn    { background: #993556; color: #FBEAF0; }
 .tag.airflow    { background: #3C3489; color: #EEEDFE; }
-
-/* --- LIGHT MODE OVERRIDES --- */
-[data-md-color-scheme="default"] .md-content {
-  background-color: rgba(255, 255, 255, 0.85) !important;
-  color: rgba(0, 0, 0, 0.85) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-[data-md-color-scheme="default"] .md-content h1,
-[data-md-color-scheme="default"] .md-content h2,
-[data-md-color-scheme="default"] .md-content h3,
-[data-md-color-scheme="default"] .md-content h4,
-[data-md-color-scheme="default"] .md-content h5,
-[data-md-color-scheme="default"] .md-content h6 {
-  color: #1a1a2e !important;
-}
-
-[data-md-color-scheme="default"] .md-content p,
-[data-md-color-scheme="default"] .md-content li,
-[data-md-color-scheme="default"] .md-content strong,
-[data-md-color-scheme="default"] .md-content a {
-  color: rgba(0, 0, 0, 0.85) !important;
-}
-
-/* Sidebar light modda soluk */
-[data-md-color-scheme="default"] .md-nav__link,
-[data-md-color-scheme="default"] .md-toc__link {
-  color: rgba(0, 0, 0, 0.30) !important;
-}
-
-[data-md-color-scheme="default"] .md-nav__link:hover,
-[data-md-color-scheme="default"] .md-toc__link:hover,
-[data-md-color-scheme="default"] .md-nav__link--active,
-[data-md-color-scheme="default"] .md-toc__link--active {
-  color: rgba(0, 0, 0, 0.85) !important;
-}
-
-/* Kartlar light modda */
-[data-md-color-scheme="default"] .cards > ul > li {
-  background-color: rgba(0, 0, 0, 0.02) !important;
-}
-
-[data-md-color-scheme="default"] .cards > ul > li:hover {
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12) !important;
-}
