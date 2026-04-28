@@ -132,11 +132,10 @@ code, pre, .md-content code, .highlight {
 .tag.sklearn    { background: #993556; color: #FBEAF0; }
 .tag.airflow    { background: #3C3489; color: #EEEDFE; }
 
-
 /* --- LIGHT MODE OVERRIDES --- */
 [data-md-color-scheme="default"] .md-content {
-  background-color: rgba(0, 0, 0, 0.03);
-  color: rgba(0, 0, 0, 0.87);
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  color: rgba(0, 0, 0, 0.85) !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
@@ -149,17 +148,24 @@ code, pre, .md-content code, .highlight {
   color: #1a1a2e !important;
 }
 
-/* Sidebar transparent - light modda da soluk kalsin */
+[data-md-color-scheme="default"] .md-content p,
+[data-md-color-scheme="default"] .md-content li,
+[data-md-color-scheme="default"] .md-content strong,
+[data-md-color-scheme="default"] .md-content a {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Sidebar light modda soluk */
 [data-md-color-scheme="default"] .md-nav__link,
 [data-md-color-scheme="default"] .md-toc__link {
-  color: rgba(0, 0, 0, 0.35) !important;
+  color: rgba(0, 0, 0, 0.30) !important;
 }
 
 [data-md-color-scheme="default"] .md-nav__link:hover,
 [data-md-color-scheme="default"] .md-toc__link:hover,
 [data-md-color-scheme="default"] .md-nav__link--active,
 [data-md-color-scheme="default"] .md-toc__link--active {
-  color: rgba(0, 0, 0, 0.87) !important;
+  color: rgba(0, 0, 0, 0.85) !important;
 }
 
 /* Kartlar light modda */
