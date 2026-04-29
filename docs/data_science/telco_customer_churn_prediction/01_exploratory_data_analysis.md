@@ -551,6 +551,7 @@ This will return a DataFrame where all numerical features are standardized, and 
  
 The final dataset `df_scaled` contains the following columns:
 
+
 <div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1">
 
 

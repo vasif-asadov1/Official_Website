@@ -154,6 +154,9 @@ model_metrics_df = model_metrics_df.sort_values(by = "f1", ascending = False).so
 
 **Results:**
 
+<div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1">
+
+
 |   accuracy |   precision |   recall |       f1 |   roc_auc |     gini |
 |-----------:|------------:|---------:|---------:|----------:|---------:|
 |   0.805536 |    0.657233 | 0.558824 | 0.604046 |  0.841848 | 0.683696 |
@@ -166,6 +169,7 @@ model_metrics_df = model_metrics_df.sort_values(by = "f1", ascending = False).so
 |   0.762952 |    0.553763 | 0.550802 | 0.552279 |  0.793551 | 0.587101 |
 |   0.741661 |    0.513889 | 0.494652 | 0.504087 |  0.662297 | 0.324594 |
 
+</div>
 
 The model comparison table highlights clear performance differences across the evaluated algorithms and provides insight into the trade-offs between overall accuracy, churn detection ability, and ranking performance.
 
@@ -299,6 +303,9 @@ logreg_tuned_metrics_df = pd.concat([a,logreg_tuned_metrics_df], axis=1)
 
 **Results:**
 
+<div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1">
+
+
 |           |   LogisticRegression |   LogisticRegression Tuned |
 |:----------|---------------------:|---------------------------:|
 | accuracy  |             0.805536 |                   0.800568 |
@@ -308,6 +315,8 @@ logreg_tuned_metrics_df = pd.concat([a,logreg_tuned_metrics_df], axis=1)
 | roc_auc   |             0.841848 |                   0.840564 |
 | gini      |             0.683696 |                   0.681128 |
 
+
+</div>
 
 The **tuned Logistic Regression** model demonstrates **small but consistent numerical improvements** compared to the baseline version. **Accuracy** increases from **0.8028 to 0.8036**, indicating a marginal gain in overall predictive performance. **Precision** remains virtually unchanged (**0.6610 → 0.6611**), which shows that the model’s ability to avoid false churn predictions is stable after tuning.
 
