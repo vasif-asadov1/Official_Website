@@ -86,6 +86,8 @@ nav:
     - Best Desktop Environment: linux_roadmap/01_best_desktop_environment.md
 
 markdown_extensions:
+  - tables          # Tablo desteği için
+  - fenced_code     # Kod blokları için
   - admonition         # Normal uyarı blokları için
   - pymdownx.details
   - attr_list     # Kartlar için zorunlu (YENİ)
