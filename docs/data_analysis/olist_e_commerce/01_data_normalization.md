@@ -142,7 +142,7 @@ During the import process, some columns may have been assigned incorrect data ty
 - `seller_city`: `nvarchar(100)` - This column contains the city where each seller is located. 
 - `seller_state`: `nvarchar(100)` - This column contains the state where each seller is located. 
 
-**Product Category Name Translation Table:* This table should have the following data types and lengths for each column:
+**Product Category Name Translation Table:** This table should have the following data types and lengths for each column:
 - `product_category_name`: `nvarchar(200)` - This column contains the category name for each product in Portuguese. 
 - `product_category_name_english`: `nvarchar(200)` - This column contains the category name for each product in English. 
 
@@ -566,9 +566,10 @@ alter table order_reviews add constraint FK_Order_Reviews_Answer_Timestamp forei
 
 After completing all foreign key - primary key pairing process, we can finally visualize our star schema diagram using the DBeaver. By clicking the following link you can download the pdf version of diagram for clear visualization. I am putting the image version here. 
 
-![Olist E-Commerce Star Schema](../../images/olist_diagram.png)
+![Olist E-Commerce Star Schema](files/olist_diagram.png)
 
 
+PDF version of the diagram can be downloaded from [here](files/diagram.pdf).
 ## <font color="#4f46e5"> Conclusion </font>
 
 In this section we have completed the following tasks: 
