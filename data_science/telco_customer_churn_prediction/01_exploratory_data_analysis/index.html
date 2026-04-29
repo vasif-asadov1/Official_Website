@@ -2042,18 +2042,152 @@
 <p>I use Google Colab Pro for this project, so the dataset is loaded from my Google Drive. You can adjust the file path as needed to load the dataset from your local machine or another source.</p>
 </div>
 <p>We can see the first 3 entries for each column in the dataset, which gives us a glimpse of the data types and the kind of information each column contains. </p>
-<div max-height="400px" style="overflow-y: auto;">
-
-| customerID   | gender   |   SeniorCitizen | Partner   | Dependents   |   tenure | PhoneService   | MultipleLines    | InternetService   | OnlineSecurity   | OnlineBackup   | DeviceProtection   | TechSupport   | StreamingTV   | StreamingMovies   | Contract       | PaperlessBilling   | PaymentMethod             |   MonthlyCharges |   TotalCharges | Churn   |
-|:-------------|:---------|----------------:|:----------|:-------------|---------:|:---------------|:-----------------|:------------------|:-----------------|:---------------|:-------------------|:--------------|:--------------|:------------------|:---------------|:-------------------|:--------------------------|-----------------:|---------------:|:--------|
-| 7590-VHVEG   | Female   |               0 | Yes       | No           |        1 | No             | No phone service | DSL               | No               | Yes            | No                 | No            | No            | No                | Month-to-month | Yes                | Electronic check          |            29.85 |          29.85 | No      |
-| 5575-GNVDE   | Male     |               0 | No        | No           |       34 | Yes            | No               | DSL               | Yes              | No             | Yes                | No            | No            | No                | One year       | No                 | Mailed check              |            56.95 |        1889.5  | No      |
-| 3668-QPYBK   | Male     |               0 | No        | No           |        2 | Yes            | No               | DSL               | Yes              | Yes            | No                 | No            | No            | No                | Month-to-month | Yes                | Mailed check              |            53.85 |         108.15 | Yes     |
-| 7795-CFOCW   | Male     |               0 | No        | No           |       45 | No             | No phone service | DSL               | Yes              | No             | Yes                | Yes           | No            | No                | One year       | No                 | Bank transfer (automatic) |            42.3  |        1840.75 | No      |
-| 9237-HQITU   | Female   |               0 | No        | No           |        2 | Yes            | No               | Fiber optic       | No               | No             | No                 | No            | No            | No                | Month-to-month | Yes                | Electronic check          |            70.7  |         151.65 | Yes     |
-
+<div style="max-height: 400px; overflow-y: auto; overflow-x: auto;">
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">customerID</th>
+<th style="text-align: left;">gender</th>
+<th style="text-align: right;">SeniorCitizen</th>
+<th style="text-align: left;">Partner</th>
+<th style="text-align: left;">Dependents</th>
+<th style="text-align: right;">tenure</th>
+<th style="text-align: left;">PhoneService</th>
+<th style="text-align: left;">MultipleLines</th>
+<th style="text-align: left;">InternetService</th>
+<th style="text-align: left;">OnlineSecurity</th>
+<th style="text-align: left;">OnlineBackup</th>
+<th style="text-align: left;">DeviceProtection</th>
+<th style="text-align: left;">TechSupport</th>
+<th style="text-align: left;">StreamingTV</th>
+<th style="text-align: left;">StreamingMovies</th>
+<th style="text-align: left;">Contract</th>
+<th style="text-align: left;">PaperlessBilling</th>
+<th style="text-align: left;">PaymentMethod</th>
+<th style="text-align: right;">MonthlyCharges</th>
+<th style="text-align: right;">TotalCharges</th>
+<th style="text-align: left;">Churn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">7590-VHVEG</td>
+<td style="text-align: left;">Female</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No phone service</td>
+<td style="text-align: left;">DSL</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Month-to-month</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Electronic check</td>
+<td style="text-align: right;">29.85</td>
+<td style="text-align: right;">29.85</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr>
+<td style="text-align: left;">5575-GNVDE</td>
+<td style="text-align: left;">Male</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">DSL</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">One year</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Mailed check</td>
+<td style="text-align: right;">56.95</td>
+<td style="text-align: right;">1889.5</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr>
+<td style="text-align: left;">3668-QPYBK</td>
+<td style="text-align: left;">Male</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">DSL</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Month-to-month</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Mailed check</td>
+<td style="text-align: right;">53.85</td>
+<td style="text-align: right;">108.15</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr>
+<td style="text-align: left;">7795-CFOCW</td>
+<td style="text-align: left;">Male</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No phone service</td>
+<td style="text-align: left;">DSL</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">One year</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Bank transfer (automatic)</td>
+<td style="text-align: right;">42.3</td>
+<td style="text-align: right;">1840.75</td>
+<td style="text-align: left;">No</td>
+</tr>
+<tr>
+<td style="text-align: left;">9237-HQITU</td>
+<td style="text-align: left;">Female</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Fiber optic</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Month-to-month</td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;">Electronic check</td>
+<td style="text-align: right;">70.7</td>
+<td style="text-align: right;">151.65</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+</tbody>
+</table>
 </div>
-
 <p>In this step, we remove the <code>customerID</code> column from the dataset. This column serves only as a unique identifier for each customer and does not contain any predictive information related to churn. Keeping such identifier variables can introduce noise and is unnecessary for both exploratory analysis and machine learning models. By dropping this column, we ensure that the dataset contains only meaningful features that can contribute to understanding customer behavior and predicting churn.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;customerID&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
@@ -2512,7 +2646,8 @@ This will return a DataFrame where all numerical features are standardized, and 
 
 The final dataset `df_scaled` contains the following columns:
 
-<div max-height="400px" style="overflow-y: auto;">
+<div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1">
+
 
 |   SeniorCitizen |     tenure |   MonthlyCharges |   TotalCharges |   Churn |   gender_Male |   Partner_Yes |   Dependents_Yes |   PhoneService_Yes |   MultipleLines_No phone service |   MultipleLines_Yes |   InternetService_Fiber optic |   InternetService_No |   OnlineSecurity_No internet service |   OnlineSecurity_Yes |   OnlineBackup_No internet service |   OnlineBackup_Yes |   DeviceProtection_No internet service |   DeviceProtection_Yes |   TechSupport_No internet service |   TechSupport_Yes |   StreamingTV_No internet service |   StreamingTV_Yes |   StreamingMovies_No internet service |   StreamingMovies_Yes |   Contract_One year |   Contract_Two year |   PaperlessBilling_Yes |   PaymentMethod_Credit card (automatic) |   PaymentMethod_Electronic check |   PaymentMethod_Mailed check |
 |----------------:|-----------:|-----------------:|---------------:|--------:|--------------:|--------------:|-----------------:|-------------------:|---------------------------------:|--------------------:|------------------------------:|---------------------:|-------------------------------------:|---------------------:|-----------------------------------:|-------------------:|---------------------------------------:|-----------------------:|----------------------------------:|------------------:|----------------------------------:|------------------:|--------------------------------------:|----------------------:|--------------------:|--------------------:|-----------------------:|----------------------------------------:|---------------------------------:|-----------------------------:|
