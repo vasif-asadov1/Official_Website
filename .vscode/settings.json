@@ -1,0 +1,8 @@
+{
+  "workbench.colorTheme": "Evans Dark",
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#1e1e1e", 
+    "titleBar.activeForeground": "#ffffff",
+    "statusBar.background": "#303030"
+  }
+}
