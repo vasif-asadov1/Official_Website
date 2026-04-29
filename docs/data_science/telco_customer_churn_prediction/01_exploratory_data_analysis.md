@@ -117,7 +117,7 @@ df.isnull().sum()
 
 **Output:**
 
-<div max-height="400px" style="overflow-y: auto;">
+
 
 ```
 gender               0
@@ -144,6 +144,7 @@ dtype: int64
 ```
 
 The results show that the dataset is largely complete, with no missing values in most variables. The only column containing missing data is `TotalCharges`, which has 11 null entries. This confirms that the missing values observed earlier were successfully identified after converting invalid entries to `NaN`. Since the number of missing values is very small compared to the total number of observations, this issue can be handled easily in the next steps without significantly affecting the analysis or model performance.
+
 
 ### <font color="#94d6d5"> Impute Missing Values </font>
 
