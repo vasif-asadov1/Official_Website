@@ -66,10 +66,10 @@ nav:
   - Data Science Projects:
     - data_science/index.md
     - Telco Customer Churn Prediction: 
-      - Problem Description: data_science/telco_customer_churn/00_problem_description.md
-      - Exploratory Data Analysis: data_science/telco_customer_churn/01_exploratory_data_analysis.md
-      - Model Development and Evaluation: data_science/telco_customer_churn/02_churn_prediction_ml.md
-      - Model Deployment with Streamlit: data_science/telco_customer_churn/03_model_deployment_streamlit.md
+      - Problem Description: data_science/telco_customer_churn_prediction/00_problem_description.md
+      - Exploratory Data Analysis: data_science/telco_customer_churn_prediction/01_exploratory_data_analysis.md
+      - Model Development and Evaluation: data_science/telco_customer_churn_prediction/02_churn_prediction_ml.md
+      - Model Deployment with Streamlit: data_science/telco_customer_churn_prediction/03_model_deployment_streamlit.md
       
   - Master Thesis Research:
     - master_thesis/index.md
