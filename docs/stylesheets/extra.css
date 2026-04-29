@@ -205,6 +205,6 @@ code, pre,
 .tag.streamlit   { background: #0C447C; color: #B5D4F4; }
 .tag.sklearn    { background: #993556; color: #FBEAF0; }
 .tag.airflow    { background: #3C3489; color: #EEEDFE; }
-.tag.desc_stats  { background: #712B13; color: #F5C4B3; }
-.tag.data_model  { background: #A32D2D; color: #F7C1C1; }
-.tag.pred_stats  { background: #185FA5; color: #E6F1FB; }
+.tag.descstats  { background: #712B13; color: #F5C4B3; }
+.tag.datamodel  { background: #A32D2D; color: #F7C1C1; }
+.tag.predstats  { background: #185FA5; color: #E6F1FB; }

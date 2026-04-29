@@ -27,7 +27,6 @@ In this section, I showcase my ability to extract actionable insights from compl
 
     <span class="tag duckdb">DuckDB SQL</span><span class="tag python">Python</span><span class="tag ml">Machine Learning</span> <span class="tag data_model">Data Modeling</span><span class="tag pred_stats">Predictive Statistics</span>
 
-    [Read Full Documentation ➜](home_credit_risk/00_problem_description.md)
 
 
 </div>
