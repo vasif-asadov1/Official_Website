@@ -14,9 +14,9 @@ In this section, I showcase my ability to extract actionable insights from compl
 
     A deep dive into sales performance, regional analysis, and macro trends resulting in a fully interactive executive dashboard.
 
-    <span class="tag sql">SQL Server</span><span class="tag powerbi">Power BI</span>
+    <span class="tag sql">SQL Server</span><span class="tag tableau">Tableau</span> <span class="tag desc_stats">Descriptive Statistics</span>
 
-    [Read Full Analysis ➜](adventureworks_bike_sales/00_problem_description.md)
+    [Read Full Documentation ➜](adventureworks_bike_sales/00_problem_description.md)
 
 -   __Olist E-Commerce Analysis__
 
@@ -24,9 +24,9 @@ In this section, I showcase my ability to extract actionable insights from compl
 
     An exploration of the Brazilian e-commerce market, focusing on customer retention, delivery logistics, and seller performance.
 
-    <span class="tag python">Python</span><span class="tag pandas">Pandas / Polars</span><span class="tag sql">SQL</span>
+    <span class="tag sql">SQL Server</span><span class="tag data_model">Data Modeling</span><span class="tag tableau">Tableau</span>
 
-    [Read Full Analysis ➜](olist_e_commerce/00_problem_description.md)
+    [Read Full Documentation ➜](olist_e_commerce/00_problem_description.md)
 
 -   __Home Credit Default Risk__
 
@@ -34,9 +34,9 @@ In this section, I showcase my ability to extract actionable insights from compl
 
     Advanced risk analysis utilizing DuckDB for SQL-based feature engineering and Python for data cleaning and predictive modeling.
 
-    <span class="tag duckdb">DuckDB</span><span class="tag python">Python</span><span class="tag ml">Machine Learning</span>
+    <span class="tag duckdb">DuckDB</span><span class="tag python">Python</span><span class="tag ml">Machine Learning</span> <span class="tag data_model">Data Modeling</span><span class="tag pred_stats">Predictive Statistics</span>
 
-    [Read Full Analysis ➜](home_credit_risk/00_problem_description.md)
+    [Read Full Documentation ➜](home_credit_risk/00_problem_description.md)
 
 
 </div>
