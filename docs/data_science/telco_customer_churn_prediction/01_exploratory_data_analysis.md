@@ -32,7 +32,8 @@ df.head()
 
 We can see the first 3 entries for each column in the dataset, which gives us a glimpse of the data types and the kind of information each column contains. 
 
-<div max-height="400px" style="overflow-y: auto;">
+<div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1">
+
 
 | customerID   | gender   |   SeniorCitizen | Partner   | Dependents   |   tenure | PhoneService   | MultipleLines    | InternetService   | OnlineSecurity   | OnlineBackup   | DeviceProtection   | TechSupport   | StreamingTV   | StreamingMovies   | Contract       | PaperlessBilling   | PaymentMethod             |   MonthlyCharges |   TotalCharges | Churn   |
 |:-------------|:---------|----------------:|:----------|:-------------|---------:|:---------------|:-----------------|:------------------|:-----------------|:---------------|:-------------------|:--------------|:--------------|:------------------|:---------------|:-------------------|:--------------------------|-----------------:|---------------:|:--------|
@@ -550,7 +551,8 @@ This will return a DataFrame where all numerical features are standardized, and 
  
 The final dataset `df_scaled` contains the following columns:
 
-<div max-height="400px" style="overflow-y: auto;">
+<div style="max-height: 400px; overflow-y: auto; overflow-x: auto;" markdown="1">
+
 
 |   SeniorCitizen |     tenure |   MonthlyCharges |   TotalCharges |   Churn |   gender_Male |   Partner_Yes |   Dependents_Yes |   PhoneService_Yes |   MultipleLines_No phone service |   MultipleLines_Yes |   InternetService_Fiber optic |   InternetService_No |   OnlineSecurity_No internet service |   OnlineSecurity_Yes |   OnlineBackup_No internet service |   OnlineBackup_Yes |   DeviceProtection_No internet service |   DeviceProtection_Yes |   TechSupport_No internet service |   TechSupport_Yes |   StreamingTV_No internet service |   StreamingTV_Yes |   StreamingMovies_No internet service |   StreamingMovies_Yes |   Contract_One year |   Contract_Two year |   PaperlessBilling_Yes |   PaymentMethod_Credit card (automatic) |   PaymentMethod_Electronic check |   PaymentMethod_Mailed check |
 |----------------:|-----------:|-----------------:|---------------:|--------:|--------------:|--------------:|-----------------:|-------------------:|---------------------------------:|--------------------:|------------------------------:|---------------------:|-------------------------------------:|---------------------:|-----------------------------------:|-------------------:|---------------------------------------:|-----------------------:|----------------------------------:|------------------:|----------------------------------:|------------------:|--------------------------------------:|----------------------:|--------------------:|--------------------:|-----------------------:|----------------------------------------:|---------------------------------:|-----------------------------:|
