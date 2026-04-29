@@ -2349,6 +2349,7 @@
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">model_metrics_df</span> <span class="o">=</span> <span class="n">model_metrics_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s2">&quot;f1&quot;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s2">&quot;roc_auc&quot;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Results:</strong></p>
+<div style="max-height: 400px; overflow-y: auto; overflow-x: auto;">
 <table>
 <thead>
 <tr>
@@ -2435,6 +2436,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>The model comparison table highlights clear performance differences across the evaluated algorithms and provides insight into the trade-offs between overall accuracy, churn detection ability, and ranking performance.</p>
 <p><strong>Logistic Regression</strong> emerges as the strongest overall model. It achieves the highest accuracy (≈ 0.80) and the best ROC–AUC (≈ 0.84), indicating excellent discriminatory power between churned and non-churned customers. Its precision is relatively high, meaning that when the model predicts churn, it is often correct. Although its recall is moderate, the balance between precision and recall results in the highest F1-score, making it a robust and reliable baseline model for churn prediction.</p>
 <p>Among ensemble methods, <strong>LightGBM</strong> and <strong>Random Forest</strong> perform competitively but slightly below Logistic Regression. LightGBM shows strong ranking capability with a high ROC–AUC, but its lower recall suggests it misses a larger portion of churned customers. <strong>Random Forest</strong> and <strong>XGBoost</strong> display similar behavior, offering stable accuracy and good discrimination, but neither significantly outperforms the simpler logistic model in this setup. This suggests that the relationships in the data may be captured effectively by linear decision boundaries after proper preprocessing.</p>
@@ -2539,6 +2541,7 @@
 </details>
 
 <p><strong>Results:</strong></p>
+<div style="max-height: 400px; overflow-y: auto; overflow-x: auto;">
 <table>
 <thead>
 <tr>
@@ -2580,6 +2583,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>The <strong>tuned Logistic Regression</strong> model demonstrates <strong>small but consistent numerical improvements</strong> compared to the baseline version. <strong>Accuracy</strong> increases from <strong>0.8028 to 0.8036</strong>, indicating a marginal gain in overall predictive performance. <strong>Precision</strong> remains virtually unchanged (<strong>0.6610 → 0.6611</strong>), which shows that the model’s ability to avoid false churn predictions is stable after tuning.</p>
 <p>A more meaningful improvement is observed in <strong>recall</strong>, which rises from <strong>0.5242 to 0.5296</strong>. This means the tuned model successfully identifies a higher proportion of churned customers, reducing the number of missed churners. As a result, the <strong>F1-score</strong> improves from <strong>0.5847 to 0.5881</strong>, reflecting a better balance between precision and recall. The <strong>ROC–AUC</strong> (<strong>0.8404 → 0.8402</strong>) and <strong>Gini coefficient</strong> (<strong>0.6807 → 0.6803</strong>) remain almost unchanged, indicating that the model’s overall ranking and class separation ability are stable. Overall, tuning refines the decision boundary without materially altering the model’s discriminatory power.</p>
 <p>Save this tuned model metrics into a csv file for further analysis.</p>
