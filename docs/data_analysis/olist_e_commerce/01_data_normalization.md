@@ -21,7 +21,7 @@ The first step in our analysis process is to import the data into our analysis e
 
 
 !!! note 
-When you import the `olist_order_reviews_dataset.csv` you may encounter with error since that table have `comment message` column that contains text data with special characters. To handle this issue, the better way is to change the data types of all columns to either `text` or `varchar(max)` before importing the data. This will allow you to import the data without any issues related to special characters in the text data. We can further change the data types of the columns to more appropriate types after the data has been imported into the database.
+	When you import the `olist_order_reviews_dataset.csv` you may encounter with error since that table have `comment message` column that contains text data with special characters. To handle this issue, the better way is to change the data types of all columns to either `text` or `varchar(max)` before importing the data. This will allow you to import the data without any issues related to special characters in the text data. We can further change the data types of the columns to more appropriate types after the data has been imported into the database.
 
 
 
@@ -583,12 +583,6 @@ In this section we have completed the following tasks:
 8. Generated a star schema diagram to visualize the relationships between the tables in the database.
 
 In the next section, we will generate real world analytical business questions by emphasizing the business context and the effect of the results on the decision making process. In the further sections, we will solve each questions one by one using SQL queries and explain each step of the analysis process.
-
-# References
-
-1. SQL Script of this section: 
-2. Database Diagram (pdf version): 
-
 
 
 

@@ -48,7 +48,7 @@ This project will be structured in the following way:
 
 
 ## <font color="#4f46e5">References</font>
-
+- [Tableau Executive Dashboard](https://public.tableau.com/app/profile/vasif.asadov2730/viz/Olist_E_Commerce_Dashboard_17718506423160/Dashboard1?publish=yes)
 - **Olist E-Commerce Dataset**: The primary source of data for this analysis will be the Olist E-Commerce dataset, which is available on Kaggle. This dataset contains information about orders, customers, products, reviews, sellers and payments, which will be used to conduct our analysis and build our machine learning model.
 - Olist E-Commerce Dataset: [Olist Dataset in Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 - **Visual Studio Code**: We will use Visual Studio Code as our code editor for writing SQL queries, Python code for machine learning model development, and documenting our analysis process in Quarto. 
