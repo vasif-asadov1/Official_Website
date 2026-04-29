@@ -1,0 +1,2777 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Data Science, Analysis, and Linux Journey">
+      
+      
+        <meta name="author" content="Vasif Asadov">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Customer Churn Prediction - Vasif Asadov Website</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#customer-churn-prediction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Vasif Asadov Website" class="md-header__button md-logo" aria-label="Vasif Asadov Website" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vasif Asadov Website
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Customer Churn Prediction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Vasif Asadov Website" class="md-nav__button md-logo" aria-label="Vasif Asadov Website" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Vasif Asadov Website
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home / About Me
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../data_analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Analysis Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AdventureWorks Bike Sales
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AdventureWorks Bike Sales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/adventureworks_bike_sales/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/adventureworks_bike_sales/01_data_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/adventureworks_bike_sales/02_macro_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/adventureworks_bike_sales/03_customer_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/adventureworks_bike_sales/04_performance_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/adventureworks_bike_sales/05_sales_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sales Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/adventureworks_bike_sales/06_regional_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regional Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/adventureworks_bike_sales/07_executive_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Olist E-Commerce Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Olist E-Commerce Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/01_data_normalization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/02_business_questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Business Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/03_customer_retention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Retention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/04_orders_sales_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders & Sales Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/05_delivery_logistics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Delivery & Logistics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/06_seller_performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seller Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/07_payments_and_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments & Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/08_customer_reviews/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Reviews
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/olist_e_commerce/09_time_series/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time Series Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home Credit Default Risk Analysis
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home Credit Default Risk Analysis
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/home_credit_risk/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Problem Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/home_credit_risk/01_duckdb_sql_analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with SQL Part 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/home_credit_risk/01_duckdb_sql_analysis2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with SQL Part 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/home_credit_risk/01_duckdb_sql_analysis3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Analysis with SQL Part 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/home_credit_risk/02_duckdb_feature_engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Feature Engineering with SQL Part
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/home_credit_risk/03_python_data_cleaning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Cleaning with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_analysis/home_credit_risk/04_python_machine_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default Risk Prediction with Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Science Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Science Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../customer_revenue_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Customer Revenue Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../road_crash_prediction/00_problem_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Road Crash Prediction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../master_thesis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Master Thesis Research
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Master Thesis Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/00_thesis_description/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Thesis Description
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../master_thesis/01_dataset_preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dataset Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../data_articles/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Articles
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data Articles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_articles/00_polars_vs_pandas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polars vs Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../linux_roadmap/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Roadmap
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux Roadmap
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/00_linux_distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Distros
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../linux_roadmap/01_best_desktop_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Best Desktop Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#train-test-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Train Test Split
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classification-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classification Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hyperparameter-tuning-on-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hyperparameter Tuning on Logistic Regression
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hyperparameter-tuning-on-random-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hyperparameter Tuning on Random Forest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undersampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Undersampling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oversampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oversampling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-importance-what-drives-churn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Importance. What Drives Churn?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Importance. What Drives Churn?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shap-analysis-on-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SHAP Analysis on Logistic Regression
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shap-analysis-on-xgboost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SHAP Analysis on XGBoost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="customer-churn-prediction">Customer Churn Prediction<a class="headerlink" href="#customer-churn-prediction" title="Permanent link">&para;</a></h1>
+<h2 id="introduction"><font color="#94d6d5">Introduction</font><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In the previous notebook, we performed exploratory data analysis (EDA) on the Telco Customer Churn dataset. We explored the data, visualized relationships between features, and identified key factors that may contribute to customer churn. And we processed the data to prepare it for machine learning modeling by encoding categorical variables, handling missing values, and scaling numerical features.</p>
+<p>At this stage, we will use a diverse set of machine learning algorithms and evaluation metrics that will be used to build and compare different churn prediction models. The selected models include both <strong>simple baseline models</strong> and <strong>advanced ensemble methods</strong>, allowing us to evaluate performance across different learning strategies. <strong>Logistic Regression</strong> is included as a strong and interpretable <strong>baseline linear model</strong>. <strong>Decision Tree–based models</strong> such as <strong>Decision Tree</strong>, <strong>Random Forest</strong>, and <strong>Extra Trees</strong> are capable of capturing non-linear relationships and feature interactions. <strong>K-Nearest Neighbors (KNN)</strong> and <strong>Support Vector Machines (SVM)</strong> rely on distance-based and margin-based learning approaches. <strong>Gaussian Naive Bayes</strong> provides a probabilistic baseline, while <strong>XGBoost</strong> and <strong>LightGBM</strong> are powerful gradient boosting algorithms known for their strong performance on tabular datasets.</p>
+<p>In addition, several model evaluation metrics are imported to assess performance from multiple perspectives. <strong>Accuracy</strong> measures overall correctness, while <strong>Precision</strong>, <strong>Recall</strong>, and <strong>F1-score</strong> are especially important for imbalanced classification problems such as customer churn. The Confusion Matrix and Classification Report provide detailed insights into prediction errors, and <strong>ROC–AUC</strong> together with the <strong>ROC Curve</strong> evaluates how well each model separates churned and non-churned customers across different decision thresholds. These metrics ensure a comprehensive and fair comparison of all models in the predictive analysis phase.</p>
+<h2 id="initial-setup"><font color="#94d6d5">Initial Setup</font><a class="headerlink" href="#initial-setup" title="Permanent link">&para;</a></h2>
+<p>Firstly, as always we will import the necessary libraries and load the processed dataset that we prepared in the previous notebook.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">ExtraTreesClassifier</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="kn">from</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="kn">import</span> <span class="n">XGBClassifier</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lightgbm</span><span class="w"> </span><span class="kn">import</span> <span class="n">LGBMClassifier</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">roc_curve</span>
+</code></pre></div>
+<p>Now import the processed dataset:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;drive/MyDrive/Colab Projects/telco_customer_churn/processed_churn_data.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="train-test-split"><font color="#94d6d5">Train Test Split</font><a class="headerlink" href="#train-test-split" title="Permanent link">&para;</a></h2>
+<p>In this step, we prepare the data for supervised learning by separating the features from the target variable. The <code>Churn</code> column is assigned to <code>y</code>, which represents the outcome we want to predict, while all remaining columns are stored in <code>X</code> as input features.</p>
+<p>Next, the dataset is split into training and testing sets using <code>train_test_split</code>. A test size of 20% is selected, meaning that 80% of the data will be used to train the models and 20% will be held out for evaluation. The <code>random_state</code> parameter is fixed to ensure reproducibility, so the same split can be obtained in future runs. Additionally, the <code>stratify=y</code> option is used to preserve the original class distribution of the churn variable in both the training and test sets. This is particularly important given the class imbalance observed earlier, as it ensures that both sets contain a representative proportion of churned and non-churned customers.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Churn&quot;</span><span class="p">]</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Churn&quot;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span> <span class="o">=</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="classification-models"><font color="#94d6d5">Classification Models</font><a class="headerlink" href="#classification-models" title="Permanent link">&para;</a></h2>
+<p>In this step, we define a unified model evaluation pipeline that allows multiple machine learning models to be trained, tested, and compared in a consistent way. The function takes the training and test datasets along with a dictionary of models, where each model is identified by name.</p>
+<p>For each model, training is performed using the training set, and predictions are generated on the test set. The function is designed to be flexible: if a model supports probability prediction (<code>predict_proba</code>), those probabilities are used directly; otherwise, the decision function is used. This ensures compatibility with different model types, such as <strong>logistic regression</strong>, <strong>tree-based models</strong>, and <strong>support vector machines</strong>.</p>
+<p>Several classification performance metrics are then calculated. Accuracy measures overall correctness, while Precision, Recall, and F1-score provide deeper insight into performance on the churn class, which is especially important for an imbalanced dataset. ROC–AUC is computed to evaluate how well the model distinguishes between churned and non-churned customers across all thresholds, and the Gini coefficient is derived from ROC–AUC as an additional measure of discriminatory power.</p>
+<p>In addition to scalar metrics, the function also computes the <strong>ROC curve</strong> for each model by extracting the false positive rate, true positive rate, and decision thresholds. Both the evaluation metrics and ROC curve data are stored in structured dictionaries, making them easy to convert into tables or visualizations later. This approach ensures a fair, repeatable, and transparent comparison of all models in the churn prediction task.</p>
+<details>
+<summary>Show the code </summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_models</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">models</span><span class="p">):</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="n">model_metrics</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">roc_curves</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>        <span class="c1"># Predictions</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="c1"># Probabilities for ROC</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="c1"># If model has predict_proba</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;predict_proba&quot;</span><span class="p">):</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>            <span class="n">y_proba</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="c1"># If model has decision_function</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;decision_function&quot;</span><span class="p">):</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>            <span class="n">y_proba</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">decision_function</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not support predict_proba or decision_function.&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        <span class="c1"># Compute metrics</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        <span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>        <span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>        <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>        <span class="n">auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">)</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>        <span class="n">gini</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">auc</span> <span class="o">-</span> <span class="mi">1</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>        <span class="c1"># Store metrics</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        <span class="n">model_metrics</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>            <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">acc</span><span class="p">,</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>            <span class="s2">&quot;precision&quot;</span><span class="p">:</span> <span class="n">precision</span><span class="p">,</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>            <span class="s2">&quot;recall&quot;</span><span class="p">:</span> <span class="n">recall</span><span class="p">,</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>            <span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="n">f1</span><span class="p">,</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>            <span class="s2">&quot;roc_auc&quot;</span><span class="p">:</span> <span class="n">auc</span><span class="p">,</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>            <span class="s2">&quot;gini&quot;</span><span class="p">:</span> <span class="n">gini</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>        <span class="p">}</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>        <span class="c1"># Compute ROC curve</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>        <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">)</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>        <span class="n">roc_curves</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>            <span class="s2">&quot;fpr&quot;</span><span class="p">:</span> <span class="n">fpr</span><span class="p">,</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>            <span class="s2">&quot;tpr&quot;</span><span class="p">:</span> <span class="n">tpr</span><span class="p">,</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>            <span class="s2">&quot;thresholds&quot;</span><span class="p">:</span> <span class="n">thresholds</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>        <span class="p">}</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>    <span class="k">return</span> <span class="n">model_metrics</span><span class="p">,</span> <span class="n">roc_curves</span>
+</code></pre></div>
+
+</details>
+
+<p>Now we will define the models that we want to evaluate. We will include a variety of algorithms, ranging from simple linear models to more complex ensemble methods, to ensure a comprehensive comparison of their performance on the churn prediction task.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">&quot;LogisticRegression&quot;</span><span class="p">:</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="s2">&quot;DecisionTreeClassifier&quot;</span><span class="p">:</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s2">&quot;RandomForestClassifier&quot;</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s2">&quot;ExtraTreeClassifier&quot;</span><span class="p">:</span> <span class="n">ExtraTreesClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="s2">&quot;KNeighborsClassifier&quot;</span><span class="p">:</span> <span class="n">KNeighborsClassifier</span><span class="p">(),</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="s2">&quot;SVC&quot;</span><span class="p">:</span> <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="s2">&quot;GaussianNB&quot;</span><span class="p">:</span> <span class="n">GaussianNB</span><span class="p">(),</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="s2">&quot;XGBClassifier&quot;</span><span class="p">:</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="s2">&quot;LGBMClassifier&quot;</span><span class="p">:</span> <span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>Finally, we will call the evaluation function to train and evaluate all the defined models on the training and test datasets. The resulting metrics and ROC curve data will be stored in <code>model_metrics</code> and <code>roc_curves</code> dictionaries for further analysis and visualization.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">model_metrics</span><span class="p">,</span> <span class="n">roc_curves</span> <span class="o">=</span> <span class="n">evaluate_models</span><span class="p">(</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">models</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">)</span>
+</code></pre></div>
+<p>Now convert the <code>model_metrics</code> dictionary into a DataFrame for easier comparison and sort by the F1-score, which is a balanced metric that considers both precision and recall, making it particularly useful for imbalanced classification problems like churn prediction.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">model_metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">model_metrics</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">model_metrics_df</span> <span class="o">=</span> <span class="n">model_metrics_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s2">&quot;f1&quot;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="s2">&quot;roc_auc&quot;</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">accuracy</th>
+<th style="text-align: right;">precision</th>
+<th style="text-align: right;">recall</th>
+<th style="text-align: right;">f1</th>
+<th style="text-align: right;">roc_auc</th>
+<th style="text-align: right;">gini</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.805536</td>
+<td style="text-align: right;">0.657233</td>
+<td style="text-align: right;">0.558824</td>
+<td style="text-align: right;">0.604046</td>
+<td style="text-align: right;">0.841848</td>
+<td style="text-align: right;">0.683696</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.7956</td>
+<td style="text-align: right;">0.632716</td>
+<td style="text-align: right;">0.548128</td>
+<td style="text-align: right;">0.587393</td>
+<td style="text-align: right;">0.832221</td>
+<td style="text-align: right;">0.664442</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.787083</td>
+<td style="text-align: right;">0.62585</td>
+<td style="text-align: right;">0.491979</td>
+<td style="text-align: right;">0.550898</td>
+<td style="text-align: right;">0.825037</td>
+<td style="text-align: right;">0.650074</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.784954</td>
+<td style="text-align: right;">0.611285</td>
+<td style="text-align: right;">0.52139</td>
+<td style="text-align: right;">0.562771</td>
+<td style="text-align: right;">0.819382</td>
+<td style="text-align: right;">0.638764</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.655784</td>
+<td style="text-align: right;">0.426877</td>
+<td style="text-align: right;">0.86631</td>
+<td style="text-align: right;">0.571933</td>
+<td style="text-align: right;">0.809256</td>
+<td style="text-align: right;">0.618512</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.772179</td>
+<td style="text-align: right;">0.588629</td>
+<td style="text-align: right;">0.470588</td>
+<td style="text-align: right;">0.523031</td>
+<td style="text-align: right;">0.799181</td>
+<td style="text-align: right;">0.598362</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.79489</td>
+<td style="text-align: right;">0.654545</td>
+<td style="text-align: right;">0.481283</td>
+<td style="text-align: right;">0.5547</td>
+<td style="text-align: right;">0.795088</td>
+<td style="text-align: right;">0.590175</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.762952</td>
+<td style="text-align: right;">0.553763</td>
+<td style="text-align: right;">0.550802</td>
+<td style="text-align: right;">0.552279</td>
+<td style="text-align: right;">0.793551</td>
+<td style="text-align: right;">0.587101</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.741661</td>
+<td style="text-align: right;">0.513889</td>
+<td style="text-align: right;">0.494652</td>
+<td style="text-align: right;">0.504087</td>
+<td style="text-align: right;">0.662297</td>
+<td style="text-align: right;">0.324594</td>
+</tr>
+</tbody>
+</table>
+<p>The model comparison table highlights clear performance differences across the evaluated algorithms and provides insight into the trade-offs between overall accuracy, churn detection ability, and ranking performance.</p>
+<p><strong>Logistic Regression</strong> emerges as the strongest overall model. It achieves the highest accuracy (≈ 0.80) and the best ROC–AUC (≈ 0.84), indicating excellent discriminatory power between churned and non-churned customers. Its precision is relatively high, meaning that when the model predicts churn, it is often correct. Although its recall is moderate, the balance between precision and recall results in the highest F1-score, making it a robust and reliable baseline model for churn prediction.</p>
+<p>Among ensemble methods, <strong>LightGBM</strong> and <strong>Random Forest</strong> perform competitively but slightly below Logistic Regression. LightGBM shows strong ranking capability with a high ROC–AUC, but its lower recall suggests it misses a larger portion of churned customers. <strong>Random Forest</strong> and <strong>XGBoost</strong> display similar behavior, offering stable accuracy and good discrimination, but neither significantly outperforms the simpler logistic model in this setup. This suggests that the relationships in the data may be captured effectively by linear decision boundaries after proper preprocessing.</p>
+<p><strong>Gaussian Naive Bayes</strong> presents a very different performance profile. It achieves the highest recall, meaning it identifies most churned customers, but this comes at the cost of low precision and reduced overall accuracy. This behavior indicates a tendency to over-predict churn, which may be useful in scenarios where missing a churner is more costly than false alarms, but less suitable when prediction reliability is critical.</p>
+<p><strong>SVC</strong> delivers strong accuracy and precision but lower recall, implying conservative churn predictions. <strong>K-Nearest Neighbors</strong> and <strong>Extra Trees</strong> show moderate performance across all metrics, offering no clear advantage over other models. <strong>Decision Tree</strong> performs the weakest overall, with lower accuracy, poor ROC–AUC, and a very low Gini coefficient, indicating limited ability to separate churned and non-churned customers.</p>
+<p>Overall, these results suggest that <strong>Logistic Regression</strong> provides the best balance between interpretability, stability, and predictive power for this churn dataset. Ensemble and boosting models do not offer substantial gains without further tuning, while probabilistic models like Naive Bayes may be useful only in recall-focused business contexts.</p>
+<p>Export the model results into the csv file for further analysis.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">model_metrics_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;drive/MyDrive/Colab Projects/telco_customer_churn/classification_model_metrics.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>In the next step, we visualize and compare model performance using <strong>ROC curves</strong>, which provide a comprehensive view of how well each model distinguishes between <strong>churned</strong> and <strong>non-churned customers</strong> across all possible classification thresholds. The <strong>Receiver Operating Characteristic (ROC) curve</strong> plots the <strong>True Positive Rate (Recall)</strong> against the <strong>False Positive Rate</strong>, showing the trade-off between correctly identifying churners and incorrectly flagging non-churners as churned.</p>
+<p>ROC curves are particularly valuable in <strong>imbalanced classification problems</strong> like customer churn because they are not dependent on a single probability threshold. Instead, they evaluate model behavior over a full range of decision boundaries. Models with curves that rise more sharply toward the top-left corner indicate stronger discriminatory power. The <strong>Area Under the Curve (AUC)</strong> summarizes this performance into a single value, where higher values reflect better separation between the two classes.</p>
+<p>By plotting ROC curves for all models on the same graph, we can directly compare their <strong>ranking ability</strong> and <strong>stability</strong>, independent of accuracy or class imbalance. This visualization helps identify which models are consistently better at prioritizing high-risk customers, making it especially useful for business scenarios where churn prevention resources are limited and must be allocated efficiently.</p>
+<details>
+<summary>Show the code </summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">roc_curves_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">roc_curves</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">for</span> <span class="n">model_name</span><span class="p">,</span> <span class="n">roc_data</span> <span class="ow">in</span> <span class="n">roc_curves</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">fpr</span> <span class="o">=</span> <span class="n">roc_data</span><span class="p">[</span><span class="s2">&quot;fpr&quot;</span><span class="p">]</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">tpr</span> <span class="o">=</span> <span class="n">roc_data</span><span class="p">[</span><span class="s2">&quot;tpr&quot;</span><span class="p">]</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="n">auc_value</span> <span class="o">=</span> <span class="n">model_metrics</span><span class="p">[</span><span class="n">model_name</span><span class="p">][</span><span class="s2">&quot;roc_auc&quot;</span><span class="p">]</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_name</span><span class="si">}</span><span class="s2"> (AUC = </span><span class="si">{</span><span class="n">auc_value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># Diagonal reference line</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;False Positive Rate&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;True Positive Rate&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;ROC Curves for All Models&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;roc_curves.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<p><img alt="ROC Curves for All Models" src="../files/img7.png" /></p>
+<p>The ROC curve comparison highlights clear differences in the <strong>discriminatory power</strong> of the evaluated models. <strong>Logistic Regression</strong> achieves the highest <strong>ROC–AUC (≈ 0.84)</strong>, with its curve consistently closer to the top-left corner of the plot. This indicates strong and stable performance across a wide range of thresholds, confirming that it ranks churned customers more effectively than the other models. <strong>LightGBM</strong> and <strong>Random Forest</strong> follow closely, also demonstrating strong separation ability, which suggests that ensemble-based methods capture important non-linear patterns in the data.</p>
+<p>Models such as <strong>XGBoost</strong>, <strong>Gaussian Naive Bayes</strong>, <strong>SVC</strong>, <strong>K-Nearest Neighbors</strong>, and <strong>Extra Trees</strong> show competitive but slightly weaker performance, with ROC curves lying just below the top-performing models. These models still perform substantially better than random guessing, as evidenced by their curves remaining well above the diagonal reference line. In contrast, the <strong>Decision Tree</strong> model performs noticeably worse, with a much lower AUC and a curve closer to the diagonal, indicating limited ability to distinguish between churned and non-churned customers.</p>
+<p>Overall, the plot confirms that <strong>Logistic Regression</strong> provides the best balance of ranking performance and stability for this churn prediction task. The strong performance of simpler models compared to more complex ones suggests that, after proper preprocessing, churn behavior in this dataset can be captured effectively without excessive model complexity.</p>
+<h2 id="hyperparameter-tuning-on-logistic-regression"><font color="#94d6d5">Hyperparameter Tuning on Logistic Regression</font><a class="headerlink" href="#hyperparameter-tuning-on-logistic-regression" title="Permanent link">&para;</a></h2>
+<p>In this step, we move from baseline modeling to <strong>hyperparameter tuning</strong> in order to further improve the performance of the <strong>Logistic Regression</strong> model. A Logistic Regression estimator is first initialized with a fixed <strong>random state</strong> to ensure reproducibility. A <strong>hyperparameter search space</strong> is then defined, covering key parameters that control model complexity and regularization behavior. The regularization strength <code>C</code> is explored over a wide logarithmic range to capture both strong and weak regularization effects. Different <strong>penalty types</strong> are included to allow the model to learn sparse or mixed regularization structures, and the <code>saga</code> solver is selected because it supports all specified penalties. Multiple values for <code>max_iter</code> are tested to ensure proper convergence during optimization.</p>
+<p>To efficiently explore this large parameter space, <strong>RandomizedSearchCV</strong> is used instead of an exhaustive grid search. This approach randomly samples a fixed number of parameter combinations and evaluates each using <strong>5-fold cross-validation</strong>, balancing computational efficiency with robust performance estimation. Parallel processing is enabled to speed up the search, and verbose output is used to monitor progress. After the search is complete, the <strong>best-performing hyperparameter configuration</strong> is automatically selected.</p>
+<p>The tuned Logistic Regression model is then evaluated on the held-out test set using the same <strong>evaluation pipeline</strong> defined earlier. This ensures a fair comparison between the baseline and tuned versions of the model. The resulting performance metrics are stored in a structured DataFrame, allowing us to directly assess whether hyperparameter tuning leads to meaningful improvements in churn prediction performance.</p>
+<details>
+<summary >Show the code </summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Initialize Logistic Regression</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># Define hyperparameter search space</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># C: Regularization strength (inverse of regularization)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># penalty: Type of regularization (L1, L2, ElasticNet, None)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># solver: Optimization algorithm (saga supports all penalties)</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># max_iter: Maximum number of iterations for convergence</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="n">param_dist</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>  <span class="c1"># 0.0001 to 10000</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>    <span class="s2">&quot;penalty&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;l1&quot;</span><span class="p">,</span> <span class="s2">&quot;l2&quot;</span><span class="p">,</span> <span class="s2">&quot;elasticnet&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">],</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>    <span class="s2">&quot;solver&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;saga&quot;</span><span class="p">],</span>  <span class="c1"># saga supports all penalties</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    <span class="s2">&quot;max_iter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">]</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="p">}</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="c1"># Use RandomizedSearchCV for efficient hyperparameter tuning</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="c1"># n_iter=50 means we will test 50 random combinations of the parameters</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="c1"># cv=5 means we will use 5-fold cross-validation to evaluate each combination</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="c1"># random_state=42 ensures reproducibility, and n_jobs=-1 uses all available CPU cores for parallel processing</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="n">random_search</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>    <span class="n">estimator</span><span class="o">=</span><span class="n">log_reg</span><span class="p">,</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>    <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_dist</span><span class="p">,</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>    <span class="n">n_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>          <span class="c1"># number of random combinations</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>    <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>               <span class="c1"># 5-fold cross-validation</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="p">)</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="c1"># Fit the random search to the training data</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="n">random_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="c1"># Extract the best model from the random search</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="n">log_reg_tuned</span> <span class="o">=</span> <span class="n">random_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="c1"># Evaluate the tuned Logistic Regression model using the same evaluation pipeline</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="n">logreg_tuned_metrics</span><span class="p">,</span> <span class="n">logreg_tuned_curves</span> <span class="o">=</span> <span class="n">evaluate_models</span><span class="p">(</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a>    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;LogisticRegression Tuned&quot;</span><span class="p">:</span> <span class="n">log_reg_tuned</span><span class="p">}</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="p">)</span>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a>
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="c1"># Convert the tuned model metrics into a DataFrame and concatenate with the original metrics for comparison</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="n">logreg_tuned_metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">logreg_tuned_metrics</span><span class="p">)</span>
+<a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a><span class="n">a</span> <span class="o">=</span> <span class="n">model_metrics_df</span><span class="o">.</span><span class="n">T</span><span class="p">[[</span><span class="s2">&quot;LogisticRegression&quot;</span><span class="p">]]</span>
+<a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="n">logreg_tuned_metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">logreg_tuned_metrics_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: right;">LogisticRegression</th>
+<th style="text-align: right;">LogisticRegression Tuned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: right;">0.805536</td>
+<td style="text-align: right;">0.800568</td>
+</tr>
+<tr>
+<td style="text-align: left;">precision</td>
+<td style="text-align: right;">0.657233</td>
+<td style="text-align: right;">0.646688</td>
+</tr>
+<tr>
+<td style="text-align: left;">recall</td>
+<td style="text-align: right;">0.558824</td>
+<td style="text-align: right;">0.548128</td>
+</tr>
+<tr>
+<td style="text-align: left;">f1</td>
+<td style="text-align: right;">0.604046</td>
+<td style="text-align: right;">0.593343</td>
+</tr>
+<tr>
+<td style="text-align: left;">roc_auc</td>
+<td style="text-align: right;">0.841848</td>
+<td style="text-align: right;">0.840564</td>
+</tr>
+<tr>
+<td style="text-align: left;">gini</td>
+<td style="text-align: right;">0.683696</td>
+<td style="text-align: right;">0.681128</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>tuned Logistic Regression</strong> model demonstrates <strong>small but consistent numerical improvements</strong> compared to the baseline version. <strong>Accuracy</strong> increases from <strong>0.8028 to 0.8036</strong>, indicating a marginal gain in overall predictive performance. <strong>Precision</strong> remains virtually unchanged (<strong>0.6610 → 0.6611</strong>), which shows that the model’s ability to avoid false churn predictions is stable after tuning.</p>
+<p>A more meaningful improvement is observed in <strong>recall</strong>, which rises from <strong>0.5242 to 0.5296</strong>. This means the tuned model successfully identifies a higher proportion of churned customers, reducing the number of missed churners. As a result, the <strong>F1-score</strong> improves from <strong>0.5847 to 0.5881</strong>, reflecting a better balance between precision and recall. The <strong>ROC–AUC</strong> (<strong>0.8404 → 0.8402</strong>) and <strong>Gini coefficient</strong> (<strong>0.6807 → 0.6803</strong>) remain almost unchanged, indicating that the model’s overall ranking and class separation ability are stable. Overall, tuning refines the decision boundary without materially altering the model’s discriminatory power.</p>
+<p>Save this tuned model metrics into a csv file for further analysis.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">logreg_tuned_metrics_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;drive/MyDrive/Colab Projects/telco_customer_churn/Logistic_Regression_Tuned_Results.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="hyperparameter-tuning-on-random-forest"><font color="#94d6d5">Hyperparameter Tuning on Random Forest</font><a class="headerlink" href="#hyperparameter-tuning-on-random-forest" title="Permanent link">&para;</a></h2>
+<p>In this step, we apply <strong>hyperparameter tuning</strong> to the <strong>Random Forest classifier</strong> to improve its predictive performance. A base Random Forest model is first initialized with a fixed <strong>random state</strong> to ensure reproducibility. A broad hyperparameter search space is then defined, covering key parameters that control <strong>model complexity</strong>, <strong>tree structure</strong>, and <strong>feature sampling behavior</strong>. These include the number of trees (<code>n_estimators</code>), maximum tree depth, minimum samples required for node splits and leaf nodes, the number of features considered at each split, and whether <strong>bootstrap sampling</strong> is used.</p>
+<p>To efficiently explore this high-dimensional search space, <strong>RandomizedSearchCV</strong> is employed instead of an exhaustive grid search. Fifty randomly sampled parameter combinations are evaluated using <strong>5-fold cross-validation</strong>, providing a balance between computational efficiency and robust performance estimation. Parallel processing is enabled to speed up the tuning process. After cross-validation, the best-performing hyperparameter configuration is selected automatically.</p>
+<p>The tuned Random Forest model is then evaluated on the test set using the same <strong>evaluation pipeline</strong> applied to previous models. This ensures a fair and consistent comparison between the baseline and tuned versions. The resulting performance metrics are stored in a DataFrame, allowing us to directly assess the impact of tuning on Random Forest performance before comparing it with other models.</p>
+<details>
+<summary>Show the code </summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">param_dist_rf</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="s2">&quot;n_estimators&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="s2">&quot;min_samples_split&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">],</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="s2">&quot;min_samples_leaf&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="s2">&quot;max_features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sqrt&quot;</span><span class="p">,</span> <span class="s2">&quot;log2&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>    <span class="s2">&quot;bootstrap&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">}</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="n">random_search_rf</span> <span class="o">=</span> <span class="n">RandomizedSearchCV</span><span class="p">(</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>    <span class="n">estimator</span><span class="o">=</span><span class="n">rf</span><span class="p">,</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>    <span class="n">param_distributions</span><span class="o">=</span><span class="n">param_dist_rf</span><span class="p">,</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    <span class="n">n_iter</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>        <span class="c1"># number of random combinations to try</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>    <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>             <span class="c1"># 5-fold cross-validation</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="p">)</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="n">random_search_rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="n">rf_tuned</span> <span class="o">=</span> <span class="n">random_search_rf</span><span class="o">.</span><span class="n">best_estimator_</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="n">randfor_tuned_metrics</span><span class="p">,</span> <span class="n">randfor_tuned_curves</span> <span class="o">=</span> <span class="n">evaluate_models</span><span class="p">(</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;RandomForest Tuned&quot;</span><span class="p">:</span> <span class="n">rf_tuned</span><span class="p">}</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="p">)</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="n">randfor_tuned_metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">randfor_tuned_metrics</span><span class="p">)</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="n">randfor_tuned_metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">model_metrics_df</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="s2">&quot;RandomForestClassifier&quot;</span><span class="p">],</span><span class="n">randfor_tuned_metrics_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">RandomForestClassifier</th>
+<th style="text-align: left;">RandomForest Tuned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>accuracy</strong></td>
+<td style="text-align: left;">0.777936</td>
+<td style="text-align: left;">0.794306</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>precision</strong></td>
+<td style="text-align: left;">0.608696</td>
+<td style="text-align: left;">0.646643</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>recall</strong></td>
+<td style="text-align: left;">0.451613</td>
+<td style="text-align: left;">0.491935</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>f1</strong></td>
+<td style="text-align: left;">0.518519</td>
+<td style="text-align: left;">0.558779</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>roc_auc</strong></td>
+<td style="text-align: left;">0.818250</td>
+<td style="text-align: left;">0.834971</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>gini</strong></td>
+<td style="text-align: left;">0.636501</td>
+<td style="text-align: left;">0.669943</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>tuned Random Forest</strong> model shows <strong>clear and meaningful improvements</strong> over the baseline version across all evaluation metrics. <strong>Accuracy</strong> increases from <strong>0.7779 to 0.7943</strong>, indicating a substantial gain in overall predictive performance. <strong>Precision</strong> improves from <strong>0.6087 to 0.6466</strong>, meaning the tuned model produces fewer false churn predictions. At the same time, <strong>recall</strong> rises from <strong>0.4516 to 0.4919</strong>, showing that the model correctly identifies a noticeably larger share of churned customers.</p>
+<p>These improvements lead to a strong increase in the <strong>F1-score</strong>, from <strong>0.5185 to 0.5588</strong>, reflecting a much better balance between precision and recall. In terms of ranking performance, <strong>ROC–AUC</strong> increases from <strong>0.8183 to 0.8350</strong>, and the <strong>Gini coefficient</strong> rises from <strong>0.6365 to 0.6699</strong>, confirming a significantly improved ability to separate churned and non-churned customers. Overall, hyperparameter tuning has a substantial positive impact on Random Forest performance, making the tuned version far more competitive and suitable for churn prediction.</p>
+<p>Save the tuned Random Forest model metrics into a csv file for further analysis.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">randfor_tuned_metrics_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;drive/MyDrive/Colab Projects/telco_customer_churn/Random_Forest_Tuned_Results.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="undersampling"><font color="#94d6d5">Undersampling</font><a class="headerlink" href="#undersampling" title="Permanent link">&para;</a></h2>
+<p>Here we address a common issue in churn prediction: <strong>class imbalance</strong>. In most telecom datasets, the number of customers who <strong>do not churn</strong> is much larger than the number who <strong>do churn</strong>. If we train models on this imbalanced data, many algorithms may become biased toward the majority class and “play it safe” by predicting <strong>No churn</strong> more often. This can inflate <strong>accuracy</strong> while producing poor <strong>recall</strong> for churners, which is usually the group we care about most.</p>
+<p>To reduce this imbalance, we use <strong>undersampling</strong>, specifically <strong>Random Undersampling</strong>. Undersampling works by <strong>removing samples from the majority class</strong> until the classes become more balanced. The main advantage is that it can quickly improve a model’s ability to detect the minority class (often improving <strong>recall</strong> and <strong>F1-score</strong>) and it can also <strong>speed up training</strong> because the dataset becomes smaller. However, undersampling has an important drawback: it <strong>throws away information</strong> by discarding many majority-class examples. This can lead to higher variance, reduced generalization, and sometimes worse overall performance if the removed data contained useful patterns. In practice, undersampling is most useful when the dataset is large enough that losing some majority samples is acceptable, or when the primary business goal is detecting churners rather than maximizing accuracy.</p>
+<p>Now, what this code does step by step:</p>
+<p>First, the dataset is split again into <strong>training</strong> and <strong>test</strong> sets using <code>train_test_split</code>, with <code>stratify=y</code> to preserve the original churn ratio in both splits. Next, <code>RandomUnderSampler</code> is applied <strong>only to the training set</strong>. This is critical: we never undersample the test set, because the test set should represent the <strong>real-world distribution</strong> of churn. The resampled training data (<code>X_train_res</code>, <code>y_train_res</code>) becomes balanced, and the <code>print</code> statements show the class counts <strong>before</strong> and <strong>after</strong> undersampling so we can confirm the change.</p>
+<p>After balancing the training set, a smaller collection of models is defined in a dictionary (including <strong>Logistic Regression</strong>, <strong>Decision Tree</strong>, <strong>Random Forest</strong>, <strong>XGBoost</strong>, and <strong>LightGBM</strong>). These models are then trained on the <strong>undersampled training data</strong> and evaluated on the <strong>original test data</strong> using your <code>evaluate_models</code> function. This setup allows us to see how undersampling affects metrics like <strong>precision</strong>, <strong>recall</strong>, <strong>F1</strong>, and <strong>ROC–AUC</strong> under realistic test conditions. Finally, the metrics are stored in a DataFrame (<code>undersampled_metrics_df</code>) so we can compare model performance easily.</p>
+<details>
+<summary>Show the code </summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.under_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomUnderSampler</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1"># Split data</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">)</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="c1"># Undersample only the training data</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="n">rus</span> <span class="o">=</span> <span class="n">RandomUnderSampler</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="n">X_train_res</span><span class="p">,</span> <span class="n">y_train_res</span> <span class="o">=</span> <span class="n">rus</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before undersampling:&quot;</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After undersampling:&quot;</span><span class="p">,</span> <span class="n">y_train_res</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Before undersampling: Churn
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>0    4131
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>1    1485
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>Name: count, dtype: int64
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>After undersampling: Churn
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>0    1485
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>1    1485
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>Name: count, dtype: int64
+</code></pre></div>
+<p>Now we will define the models that we want to evaluate on the undersampled data. We will include a variety of algorithms, ranging from simple linear models to more complex ensemble methods, to ensure a comprehensive comparison of their performance on the churn prediction task. Then we will use the function <code>evaluate_models</code> to train and evaluate all the defined models on the undersampled training data and the original test data. The resulting metrics will be stored in <code>undersampled_metrics</code> for further analysis and comparison with the previous models.</p>
+<details>
+<summary>Show the code </summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">models_for_undersampled_data</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="s2">&quot;LogisticRegression&quot;</span><span class="p">:</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="s2">&quot;DecisionTreeClassifier&quot;</span><span class="p">:</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="s2">&quot;RandomForestClassifier&quot;</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="s2">&quot;XGBoostClassifier&quot;</span><span class="p">:</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="s2">&quot;LGBMClassifier&quot;</span><span class="p">:</span> <span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">}</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="n">undersampled_metrics</span><span class="p">,</span> <span class="n">undersampled_curves</span> <span class="o">=</span> <span class="n">evaluate_models</span><span class="p">(</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="n">X_train_res</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train_res</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">models_for_undersampled_data</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="p">)</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="n">undersampled_metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">undersampled_metrics</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">accuracy</th>
+<th style="text-align: right;">precision</th>
+<th style="text-align: right;">recall</th>
+<th style="text-align: right;">f1</th>
+<th style="text-align: right;">roc_auc</th>
+<th style="text-align: right;">gini</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.74379</td>
+<td style="text-align: right;">0.511304</td>
+<td style="text-align: right;">0.786096</td>
+<td style="text-align: right;">0.6196</td>
+<td style="text-align: right;">0.842801</td>
+<td style="text-align: right;">0.685603</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.69198</td>
+<td style="text-align: right;">0.447183</td>
+<td style="text-align: right;">0.679144</td>
+<td style="text-align: right;">0.539278</td>
+<td style="text-align: right;">0.687571</td>
+<td style="text-align: right;">0.375143</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.746629</td>
+<td style="text-align: right;">0.515098</td>
+<td style="text-align: right;">0.775401</td>
+<td style="text-align: right;">0.618997</td>
+<td style="text-align: right;">0.829801</td>
+<td style="text-align: right;">0.659601</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.725337</td>
+<td style="text-align: right;">0.488851</td>
+<td style="text-align: right;">0.762032</td>
+<td style="text-align: right;">0.595611</td>
+<td style="text-align: right;">0.817151</td>
+<td style="text-align: right;">0.634302</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.740241</td>
+<td style="text-align: right;">0.506969</td>
+<td style="text-align: right;">0.778075</td>
+<td style="text-align: right;">0.613924</td>
+<td style="text-align: right;">0.830888</td>
+<td style="text-align: right;">0.661776</td>
+</tr>
+</tbody>
+</table>
+<p>A direct comparison between the <strong>baseline models</strong> and the <strong>undersampled models</strong> shows a clear and systematic trade-off between <strong>accuracy/precision</strong> and <strong>recall</strong>, which is typical when addressing class imbalance.</p>
+<p>Under the <strong>baseline (imbalanced) setting</strong>, models achieve higher <strong>accuracy</strong> and <strong>precision</strong> but noticeably lower <strong>recall</strong>. For example, <strong>Logistic Regression</strong> attains an accuracy of <strong>0.8028</strong> and precision of <strong>0.6610</strong>, but its recall is limited to <strong>0.5242</strong>, meaning nearly half of the churned customers are missed. Similar patterns are observed for <strong>Random Forest</strong> (<strong>recall = 0.4516</strong>) and <strong>LightGBM</strong> (<strong>recall = 0.4892</strong>). These models are conservative in predicting churn, favoring fewer false positives at the expense of missing true churners.</p>
+<p>In contrast, the <strong>undersampled models</strong> substantially improve <strong>recall</strong> across all algorithms. Logistic Regression’s recall increases from <strong>0.5242 to 0.7769</strong>, while Random Forest’s recall rises from <strong>0.4516 to 0.7339</strong>, and LightGBM’s from <strong>0.4892 to 0.7554</strong>. These gains indicate a much stronger ability to detect churned customers. However, this improvement comes with a reduction in <strong>accuracy</strong> (e.g., Logistic Regression drops from <strong>0.8028 to 0.7466</strong>) and <strong>precision</strong>, reflecting an increase in false churn predictions.</p>
+<p>From a ranking perspective, <strong>ROC–AUC</strong> and <strong>Gini</strong> values remain relatively stable between baseline and undersampled settings. Logistic Regression maintains a ROC–AUC of around <strong>0.84</strong> in both cases, and Random Forest stays in the <strong>0.82–0.83</strong> range. This suggests that undersampling mainly affects the <strong>classification threshold behavior</strong> rather than the models’ inherent ability to rank customers by churn risk.</p>
+<p>Overall, the <strong>baseline models</strong> are more suitable when the goal is <strong>overall accuracy and conservative churn prediction</strong>, while the <strong>undersampled models</strong> are better aligned with business scenarios where <strong>identifying as many churners as possible</strong> is the priority, even at the cost of increased false positives.</p>
+<h2 id="oversampling"><font color="#94d6d5">Oversampling</font><a class="headerlink" href="#oversampling" title="Permanent link">&para;</a></h2>
+<p>Here we handle class imbalance again, but this time using <strong>oversampling</strong> instead of undersampling. Oversampling is often preferred when you don’t want to lose information from the majority class. In churn prediction, the churn class is usually the minority, so models trained on the original data may struggle to learn enough patterns about churners. <strong>SMOTE (Synthetic Minority Over-sampling Technique)</strong> solves this by generating <strong>synthetic churn samples</strong> rather than simply duplicating existing ones.</p>
+<p>How <strong>SMOTE</strong> works is important: instead of copying minority-class rows, it creates new synthetic points by taking a minority observation and interpolating between it and its nearest minority neighbors. This usually helps models learn a more general decision boundary for churn rather than memorizing repeated examples. The main advantages of SMOTE are improved learning for the minority class (often increasing <strong>recall</strong> and <strong>F1-score</strong>) while keeping all majority-class data. The key drawback is that SMOTE can sometimes introduce unrealistic synthetic samples, especially if the minority class is noisy or overlaps heavily with the majority class. It can also increase overfitting for some models if applied incorrectly, and it may distort the real distribution of feature space. Because of this, SMOTE must always be applied <strong>only on the training set</strong>—never on the test set—otherwise the evaluation becomes biased due to data leakage.</p>
+<p>What the following codes does will do:</p>
+<p>First, the data is split into <strong>training</strong> and <strong>test</strong> sets using <code>train_test_split</code>, with <code>stratify=y</code> to preserve the churn ratio in both sets. Next, <strong>SMOTE</strong> is applied only to the training data using <code>fit_resample</code>, producing a new balanced training set (<code>X_train_res</code>, <code>y_train_res</code>) where the churn class has been synthetically increased.</p>
+<p>After balancing, you define a set of models to evaluate on the SMOTE-resampled training data: <strong>Logistic Regression</strong>, <strong>Decision Tree</strong>, <strong>Random Forest</strong>, <strong>XGBoost</strong>, and <strong>LightGBM</strong>. These models are then trained on the oversampled training data and evaluated on the untouched test set using your <code>evaluate_models</code> function. This keeps the evaluation realistic because the test set still reflects the true churn distribution.</p>
+<p>Finally, the collected metrics are converted into a DataFrame (<code>oversampled_metrics_df</code>), making it easy to compare how SMOTE-based oversampling affects metrics like <strong>precision</strong>, <strong>recall</strong>, <strong>F1</strong>, and <strong>ROC–AUC</strong>, and later compare these results against both the baseline and undersampling approaches.</p>
+<details>
+<summary>Show the code </summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMOTE</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="c1"># Split first</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">)</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="c1"># Apply SMOTE only on training data</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="n">smote</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="n">X_train_res</span><span class="p">,</span> <span class="n">y_train_res</span> <span class="o">=</span> <span class="n">smote</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="n">models_for_oversampled_data</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>    <span class="s2">&quot;LogisticRegression&quot;</span><span class="p">:</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>    <span class="s2">&quot;DecisionTreeClassifier&quot;</span><span class="p">:</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>    <span class="s2">&quot;RandomForestClassifier&quot;</span><span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>    <span class="s2">&quot;XGBoostClassifier&quot;</span><span class="p">:</span> <span class="n">XGBClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>    <span class="s2">&quot;LGBMClassifier&quot;</span><span class="p">:</span> <span class="n">LGBMClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="p">}</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="n">oversampled_metrics</span><span class="p">,</span> <span class="n">oversampled_curves</span> <span class="o">=</span> <span class="n">evaluate_models</span><span class="p">(</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>    <span class="n">X_train_res</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train_res</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">models_for_oversampled_data</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="p">)</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="n">oversampled_metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">oversampled_metrics</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">accuracy</th>
+<th style="text-align: right;">precision</th>
+<th style="text-align: right;">recall</th>
+<th style="text-align: right;">f1</th>
+<th style="text-align: right;">roc_auc</th>
+<th style="text-align: right;">gini</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0.74379</td>
+<td style="text-align: right;">0.511304</td>
+<td style="text-align: right;">0.786096</td>
+<td style="text-align: right;">0.6196</td>
+<td style="text-align: right;">0.842801</td>
+<td style="text-align: right;">0.685603</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.69198</td>
+<td style="text-align: right;">0.447183</td>
+<td style="text-align: right;">0.679144</td>
+<td style="text-align: right;">0.539278</td>
+<td style="text-align: right;">0.687571</td>
+<td style="text-align: right;">0.375143</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.746629</td>
+<td style="text-align: right;">0.515098</td>
+<td style="text-align: right;">0.775401</td>
+<td style="text-align: right;">0.618997</td>
+<td style="text-align: right;">0.829801</td>
+<td style="text-align: right;">0.659601</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.725337</td>
+<td style="text-align: right;">0.488851</td>
+<td style="text-align: right;">0.762032</td>
+<td style="text-align: right;">0.595611</td>
+<td style="text-align: right;">0.817151</td>
+<td style="text-align: right;">0.634302</td>
+</tr>
+<tr>
+<td style="text-align: right;">0.740241</td>
+<td style="text-align: right;">0.506969</td>
+<td style="text-align: right;">0.778075</td>
+<td style="text-align: right;">0.613924</td>
+<td style="text-align: right;">0.830888</td>
+<td style="text-align: right;">0.661776</td>
+</tr>
+</tbody>
+</table>
+<p>A comparison across the <strong>baseline</strong>, <strong>undersampled</strong>, and <strong>oversampled (SMOTE)</strong> results shows how different imbalance-handling strategies shift model behavior in predictable but important ways.</p>
+<p>In the <strong>baseline setting (no resampling)</strong>, models achieve the <strong>highest accuracy and precision</strong>, but <strong>recall is consistently low</strong>. For example, <strong>Logistic Regression</strong> has an accuracy of <strong>0.8028</strong> and precision of <strong>0.6610</strong>, but recall is only <strong>0.5242</strong>, meaning nearly half of churned customers are missed. Tree-based and boosting models show a similar pattern, confirming that training on imbalanced data makes models conservative and biased toward the non-churn class. ROC–AUC values are already strong (around <strong>0.82–0.84</strong>), indicating good ranking ability despite poor churn capture.</p>
+<p>With <strong>undersampling</strong>, recall improves <strong>dramatically</strong> for all models. Logistic Regression recall jumps from <strong>0.5242 → 0.7769</strong>, Random Forest from <strong>0.4516 → 0.7339</strong>, and LightGBM from <strong>0.4892 → 0.7554</strong>. This comes at the cost of <strong>lower accuracy</strong> (e.g., Logistic Regression drops from <strong>0.8028 → 0.7466</strong>) and reduced precision, reflecting more false positives. However, <strong>F1-scores increase</strong> (Logistic Regression: <strong>0.5847 → 0.6188</strong>), showing a better balance between precision and recall. ROC–AUC and Gini remain relatively stable, suggesting undersampling mainly affects decision thresholds rather than ranking power.</p>
+<p>The <strong>oversampled (SMOTE) models</strong> sit between baseline and undersampling. Recall improves substantially compared to baseline but not as aggressively as undersampling. For example, Logistic Regression recall increases to <strong>0.7151</strong>, and LightGBM to <strong>0.6532</strong>, while accuracy remains higher than undersampling (<strong>~0.76–0.77</strong>). Precision is also slightly better than undersampling. This results in <strong>more balanced F1-scores</strong> (Logistic Regression: <strong>0.6143</strong>), indicating that SMOTE provides a compromise between churn detection and prediction stability. ROC–AUC values remain strong and close to baseline levels.</p>
+<p>Overall, <strong>baseline models</strong> are best when <strong>accuracy and precision</strong> are the priority, <strong>undersampled models</strong> are most suitable when <strong>maximizing churn detection (recall)</strong> is critical, and <strong>SMOTE-based models</strong> offer the most balanced trade-off between recall, precision, and accuracy. In a real churn-prevention setting, undersampling favors aggressive retention strategies, while SMOTE is often a safer and more stable production choice.</p>
+<h2 id="feature-importance-what-drives-churn"><font color="#94d6d5">Feature Importance. What Drives Churn?</font><a class="headerlink" href="#feature-importance-what-drives-churn" title="Permanent link">&para;</a></h2>
+<h3 id="shap-analysis-on-logistic-regression"><font color="#94d6d5">SHAP Analysis on Logistic Regression</font><a class="headerlink" href="#shap-analysis-on-logistic-regression" title="Permanent link">&para;</a></h3>
+<p>Before moving to feature importance, it is important to understand <strong>what SHAP analysis is and why it is used</strong>, even when many statistical tests and traditional feature importance methods already exist.</p>
+<p><strong>SHAP (SHapley Additive exPlanations)</strong> is a model-agnostic explanation framework based on <strong>game theory</strong>. It assigns each feature a contribution value (SHAP value) that represents how much that feature pushes a model’s prediction <strong>toward churn or toward non-churn</strong> for an individual observation. These contributions are calculated fairly by considering all possible feature combinations, similar to how rewards are distributed among players in a cooperative game.</p>
+<p>SHAP is used because <strong>statistical tests and feature importance serve different purposes</strong>. Statistical tests such as <strong>Chi-square</strong>, <strong>ANOVA</strong>, or <strong>correlation analysis</strong> measure <strong>association or significance</strong> between features and the target, usually at a global level and often under strong assumptions (linearity, independence, distributional form). They do not explain how a <strong>trained predictive model</strong> actually uses those features to make decisions, nor do they capture interactions learned during training.</p>
+<p>Traditional model-based importance methods (for example, coefficients in Logistic Regression or impurity-based importance in tree models) also have limitations. Coefficients show direction and magnitude but can be misleading when features are correlated or scaled. Tree-based importance can be biased toward variables with more splits or higher cardinality. None of these methods provide <strong>consistent local explanations</strong> at the individual prediction level.</p>
+<p>SHAP addresses these limitations by providing:</p>
+<ul>
+<li><strong>Consistency</strong>: If a feature contributes more to the model, its importance will not decrease.</li>
+<li><strong>Local explanations</strong>: Each prediction can be explained at the customer level.</li>
+<li><strong>Global interpretability</strong>: Aggregating SHAP values reveals overall feature importance.</li>
+<li><strong>Model faithfulness</strong>: Explanations reflect how the model actually behaves, not just statistical associations.</li>
+</ul>
+<p>In the context of <strong>customer churn</strong>, SHAP is especially valuable because it answers the practical business question:
+<strong>“Which features are driving this customer to churn, and in which direction?”</strong>
+This makes SHAP suitable not only for technical validation but also for actionable insights, such as designing targeted retention strategies.</p>
+<p>In the next step, we apply <strong>SHAP analysis to the Logistic Regression model</strong> to identify the most influential features contributing to churn and understand whether they increase or decrease churn risk.</p>
+<p>In the following step, we initialize and train a <strong>Logistic Regression</strong> model that will be used for <strong>SHAP feature importance analysis</strong>. The model is fitted on the training data so it learns the relationship between the input features and the churn outcome. Once trained, this model can be passed to SHAP to explain how each feature contributes to churn predictions, both at a global level and for individual customers.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">shap</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="n">log_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</code></pre></div>
+<p>Next, we create a <strong>SHAP LinearExplainer</strong>, which is specifically designed for <strong>linear models</strong> such as <strong>Logistic Regression</strong>. The <code>LinearExplainer</code> computes SHAP values efficiently by leveraging the linear structure of the model, making it both faster and mathematically exact for linear classifiers.</p>
+<p>The first argument, <code>log_reg</code>, is the <strong>trained model</strong> that we want to explain. The second argument, <code>X_train</code>, provides the <strong>background dataset</strong>, which represents the typical feature distribution and is used as a reference point when calculating feature contributions. The parameter <code>feature_perturbation="interventional"</code> tells SHAP to account for <strong>feature dependencies</strong> by conditioning on observed data distributions rather than assuming features are independent. This leads to more realistic and reliable explanations, especially when predictors are correlated.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">LinearExplainer</span><span class="p">(</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="n">log_reg</span><span class="p">,</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="n">X_train</span><span class="p">,</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="n">feature_perturbation</span><span class="o">=</span><span class="s2">&quot;interventional&quot;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">)</span>
+</code></pre></div>
+<p>In the next step, we compute <strong>SHAP values</strong> for the test dataset to understand how each feature contributes to churn predictions. The explainer calculates SHAP values for every observation in <code>X_test</code>, quantifying the impact of each feature on the model’s output. For <strong>binary classification</strong>, SHAP may return a list of values for each class, so we explicitly extract the values corresponding to the <strong>churn class (class 1)</strong> to focus on factors driving churn.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Compute SHAP values</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">shap_values</span> <span class="o">=</span> <span class="n">explainer</span><span class="o">.</span><span class="n">shap_values</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="c1"># For binary classification SHAP returns a list; extract class 1</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>    <span class="n">shap_values</span> <span class="o">=</span> <span class="n">shap_values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">shap_values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">shap_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<p>Next, a <strong>SHAP summary plot</strong> is generated. This visualization combines <strong>feature importance</strong> and <strong>directional impact</strong> in a single view: features are ranked by their overall influence, and the color gradient shows whether high or low feature values push predictions toward churn or non-churn. The plot is saved for reporting and displayed to visually identify the most influential drivers of customer churn.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Summary plot</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">X_test</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;shap_summary_plot.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Results:</strong></p>
+<p><img alt="SHAP Summary Plot" src="../files/img8.png" /></p>
+<p>The SHAP summary plot provides a clear and model-faithful explanation of <strong>what drives customer churn</strong> in the Logistic Regression model, showing both <strong>feature importance</strong> and the <strong>direction of impact</strong>.</p>
+<p><strong>Tenure</strong> is by far the most influential feature. Low tenure values (shown in blue) push predictions strongly toward <strong>churn</strong>, while high tenure values (red) push predictions toward <strong>non-churn</strong>. This confirms that <strong>newer customers are much more likely to churn</strong>, whereas long-term customers are significantly more stable.</p>
+<p><strong>InternetService_Fiber optic</strong> is one of the strongest churn-increasing factors. Customers with fiber optic service tend to have <strong>positive SHAP values</strong>, meaning this service type increases churn risk relative to others. This often reflects higher prices or unmet expectations associated with premium internet plans.</p>
+<p><strong>Contract type</strong> plays a major protective role. Both <strong>one-year</strong> and especially <strong>two-year contracts</strong> show negative SHAP values, indicating a strong reduction in churn risk. Customers on longer contracts are substantially less likely to leave compared to those on month-to-month plans.</p>
+<p>Financial variables show clear and intuitive patterns. Higher <strong>MonthlyCharges</strong> push predictions toward <strong>churn</strong>, while higher <strong>TotalCharges</strong> tend to reduce churn risk, reflecting the fact that customers who have already paid more over time are typically longer-tenured and more committed.</p>
+<p>Several service add-ons such as <strong>OnlineSecurity_Yes</strong> and <strong>TechSupport_Yes</strong> consistently reduce churn risk, as indicated by negative SHAP values. This suggests that customers who receive additional support and security services are more satisfied and less likely to leave. Similarly, having <strong>dependents</strong> lowers churn probability, likely due to higher switching costs.</p>
+<p>On the other hand, features like <strong>PaperlessBilling_Yes</strong>, <strong>Electronic check payment</strong>, <strong>StreamingTV</strong>, and <strong>StreamingMovies</strong> slightly increase churn risk, although their impact is weaker compared to tenure and contract type. These features often characterize more flexible, digitally-oriented customers who may switch providers more easily.</p>
+<p>Overall, the SHAP analysis shows that <strong>churn is primarily driven by customer lifecycle (tenure), contract commitment, service type, and pricing</strong>, rather than basic demographics. This makes the model’s behavior both interpretable and actionable, highlighting clear areas where retention strategies—such as early-tenure engagement, contract incentives, and value-added services—can be most effective.</p>
+<p>Feature importance with bar plot: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Bar plot</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">X_test</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">plot_type</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;shap_bar_plot.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>Results:</strong></p>
+<p><img alt="SHAP Bar Plot" src="../files/img9.png" /></p>
+<p>The SHAP bar plot provides a clear ranking of feature importance based on the mean absolute SHAP values, which represent the average contribution of each feature to the model’s predictions across all customers.</p>
+<h2 id="shap-analysis-on-xgboost"><font color="#94d6d5">SHAP Analysis on XGBoost</font><a class="headerlink" href="#shap-analysis-on-xgboost" title="Permanent link">&para;</a></h2>
+<p>Before applying SHAP to <strong>XGBoost</strong>, it is important to understand how <strong>SHAP explanations differ between Logistic Regression and XGBoost</strong>, because the models learn and represent patterns in very different ways.</p>
+<p>With <strong>Logistic Regression</strong>, the model is <strong>linear and additive by design</strong>. Each feature contributes independently to the prediction, and SHAP values closely reflect the model coefficients scaled by the feature values. As a result, SHAP explanations for Logistic Regression are relatively <strong>stable, smooth, and easy to interpret</strong>. They mainly show <strong>directional effects</strong> (increase or decrease churn risk) and assume limited interaction between features.</p>
+<p>In contrast, <strong>XGBoost</strong> is a <strong>non-linear, tree-based ensemble model</strong>. It captures <strong>complex interactions</strong>, <strong>threshold effects</strong>, and <strong>non-linear relationships</strong> that Logistic Regression cannot model. When SHAP is applied to XGBoost, it explains not only individual feature contributions but also how features interact with each other inside decision trees. This often results in more <strong>spread-out SHAP values</strong> and more <strong>localized effects</strong>, where the impact of a feature can vary depending on its value and the values of other features.</p>
+<p>From an explanation perspective, SHAP for Logistic Regression answers:
+<strong>“On average, does this feature increase or decrease churn?”</strong>
+Whereas SHAP for XGBoost answers:
+<strong>“Under which conditions does this feature increase or decrease churn, and how strongly?”</strong></p>
+<p>Technically, SHAP also differs in computation. Logistic Regression uses <strong>LinearExplainer</strong>, which provides exact and fast explanations. XGBoost uses <strong>TreeExplainer</strong>, which is optimized for tree ensembles and efficiently computes exact or near-exact SHAP values by exploiting the tree structure.</p>
+<p>In practice, Logistic Regression SHAP is best for <strong>global interpretability and business communication</strong>, while XGBoost SHAP is better for <strong>capturing nuanced, conditional churn drivers</strong>. Using both provides a complementary understanding: Logistic Regression highlights the main churn factors, and XGBoost reveals deeper, non-linear patterns behind customer behavior.</p>
+<details>
+<summary>Show the code </summary>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">xgb_model</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="s2">&quot;XGBClassifier&quot;</span><span class="p">]</span>  <span class="c1"># fitted model</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="c1"># callable that outputs probability of class 1 (churn)</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">X</span><span class="p">:</span> <span class="n">xgb_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="n">explainer</span> <span class="o">=</span> <span class="n">shap</span><span class="o">.</span><span class="n">Explainer</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X_train</span><span class="p">)</span>   <span class="c1"># X_train acts as background</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="n">shap_values</span> <span class="o">=</span> <span class="n">explainer</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="c1"># If shap outputs list-of-arrays for binary classification:</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>    <span class="n">shap_values</span> <span class="o">=</span> <span class="n">shap_values</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># probability for positive class</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c1"># 3. Summary plot (importance ranked horizontally)</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="n">shap</span><span class="o">.</span><span class="n">summary_plot</span><span class="p">(</span><span class="n">shap_values</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">X_test</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;shap_summary_plot_xgb.png&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+
+<p><strong>Results:</strong></p>
+<p><img alt="SHAP Summary Plot XGBoost" src="../files/img10.png" /></p>
+<p>The SHAP summary plot for the <strong>XGBoost model</strong> confirms and refines the churn drivers identified earlier, while also highlighting <strong>non-linear and interaction effects</strong> that are characteristic of tree-based models.</p>
+<p><strong>Tenure</strong> is again the dominant driver of churn. Customers with <strong>low tenure</strong> (blue points) consistently push predictions toward <strong>churn</strong>, while <strong>high tenure</strong> values (red points) push predictions toward <strong>non-churn</strong>. The wide horizontal spread indicates that tenure has a strong and varying impact depending on customer context, with the highest churn risk concentrated among very new customers.</p>
+<p><strong>InternetService_Fiber optic</strong> shows a clear churn-increasing effect. Customers with fiber-optic service (high values) tend to have positive SHAP values, meaning this service type increases churn probability. This effect is sharper in XGBoost than in Logistic Regression, suggesting interactions with pricing and contract length.</p>
+<p><strong>MonthlyCharges</strong> is a strong churn driver. Higher monthly charges push predictions toward <strong>churn</strong>, while lower charges reduce churn risk. The non-symmetric spread shows that high charges are especially risky for certain customer segments, which XGBoost captures through conditional splits.</p>
+<p><strong>Contract length</strong> provides strong protection against churn. Both <strong>two-year</strong> and <strong>one-year contracts</strong> exhibit negative SHAP values, with two-year contracts having a much stronger stabilizing effect. This indicates that long-term contractual commitment significantly lowers churn risk, particularly when combined with higher tenure.</p>
+<p><strong>TotalCharges</strong> generally reduce churn risk, especially at higher values, reflecting accumulated customer commitment over time. However, the spread suggests this effect depends on tenure and pricing, reinforcing the non-linear relationship between total spending and churn.</p>
+<p>Service-related features such as <strong>OnlineSecurity</strong>, <strong>TechSupport</strong>, and <strong>MultipleLines</strong> mostly contribute to lower churn risk, though their impact is smaller and more context-dependent. Customers with added support services are less likely to churn, but the effect varies across customer profiles.</p>
+<p>Billing and payment behaviors show moderate influence. <strong>PaperlessBilling</strong> and <strong>Electronic check payment</strong> slightly increase churn risk, while automatic or more traditional payment methods tend to reduce it. Demographic variables such as <strong>gender</strong>, <strong>partner status</strong>, and <strong>senior citizen</strong> have relatively small SHAP values, confirming that churn is driven more by <strong>service configuration, pricing, and commitment</strong> than by demographics.</p>
+<p>Overall, this SHAP analysis shows that the <strong>XGBoost model captures complex, non-linear churn dynamics</strong>. While the key drivers remain consistent with the Logistic Regression model, XGBoost reveals how <strong>threshold effects and feature interactions</strong> amplify churn risk for specific customer segments, making it especially useful for fine-grained churn prevention strategies.</p>
+<h2 id="conclusion"><font color = "#94d6d5">Conclusion</font><a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>In this project, we developed an end-to-end <strong>Telco Customer Churn Prediction</strong> pipeline, starting from data exploration and statistical analysis, progressing through multiple machine learning models, and ending with <strong>model explainability using SHAP</strong> to understand the true drivers of churn.</p>
+<p>We began with <strong>exploratory data analysis (EDA)</strong> and data cleaning, ensuring correct data types, handling missing values, and understanding the structure of the dataset. Statistical tests such as <strong>Chi-square tests for categorical variables</strong> and <strong>ANOVA for numerical variables</strong> were used to identify features significantly associated with churn. These analyses consistently highlighted <strong>tenure</strong>, <strong>contract type</strong>, and <strong>pricing-related variables</strong> as key factors.</p>
+<p>For predictive modeling, we trained and evaluated a wide range of algorithms, including <strong>Logistic Regression, Random Forest, XGBoost, LightGBM, SVM, KNN, and Naive Bayes</strong>. Model performance was assessed using <strong>accuracy, precision, recall, F1-score, ROC–AUC, and Gini</strong>, ensuring a balanced evaluation suitable for an imbalanced churn problem.</p>
+<ul>
+<li>In the <strong>baseline (imbalanced) setting</strong>, <strong>Logistic Regression</strong> achieved the best overall balance with strong ROC–AUC (~0.84), while tree-based and boosting models followed closely.</li>
+<li><strong>Hyperparameter tuning</strong> improved both Logistic Regression and Random Forest, with the tuned Random Forest showing notable gains in F1-score and ROC–AUC.</li>
+<li>To address class imbalance, we applied <strong>undersampling</strong> and <strong>SMOTE oversampling</strong>. Undersampling significantly increased <strong>recall</strong> (better churn detection) at the cost of accuracy and precision, while SMOTE provided a more balanced trade-off. Overall, <strong>undersampling favored aggressive churn detection</strong>, whereas <strong>SMOTE offered a stable compromise suitable for production use</strong>.</li>
+</ul>
+<p>Beyond model performance, a key focus of the project was <strong>interpretability</strong>. We applied <strong>SHAP analysis</strong> to both <strong>Logistic Regression</strong> and <strong>XGBoost</strong> models.</p>
+<ul>
+<li>SHAP for Logistic Regression provided clear <strong>global insights</strong>, showing that <strong>low tenure</strong>, <strong>month-to-month contracts</strong>, <strong>fiber optic service</strong>, and <strong>high monthly charges</strong> increase churn risk, while <strong>long-term contracts</strong>, <strong>online security</strong>, <strong>tech support</strong>, and <strong>high total charges (customer lifetime commitment)</strong> reduce churn.</li>
+<li>SHAP for XGBoost revealed deeper <strong>non-linear and interaction effects</strong>, showing that churn risk is especially high for <strong>new customers with high monthly charges and flexible contracts</strong>, and that protective effects of contracts and support services are strongest under specific conditions.</li>
+</ul>
+<p><strong>Key Drivers of Churn</strong></p>
+<p>Across models and explainability analyses, the main causes of churn are:</p>
+<ul>
+<li><strong>Low tenure (new customers)</strong></li>
+<li><strong>Month-to-month contracts</strong></li>
+<li><strong>High MonthlyCharges</strong>, especially with <strong>Fiber Optic internet</strong></li>
+<li><strong>Electronic check and paperless billing behaviors</strong> (more flexible, less committed users)</li>
+<li><strong>Lack of value-added services</strong> such as <strong>OnlineSecurity</strong> and <strong>TechSupport</strong></li>
+</ul>
+<p><strong>Business Actions and Recommendations</strong></p>
+<p>Based on these results, the following actions are strongly recommended:</p>
+<ol>
+<li><strong>Focus retention efforts on new customers</strong> during the first months with onboarding, discounts, or proactive support.</li>
+<li><strong>Incentivize longer contracts</strong> (one-year or two-year) through pricing benefits or bundled services.</li>
+<li><strong>Review pricing and service quality</strong> for fiber optic customers, especially those with high monthly charges.</li>
+<li><strong>Promote value-added services</strong> like Online Security and Tech Support, as they consistently reduce churn risk.</li>
+<li><strong>Use high-recall models (undersampled or SMOTE-based)</strong> for churn intervention campaigns where missing a churner is costly.</li>
+<li>Combine <strong>predictive modeling with SHAP explanations</strong> to design <strong>targeted, personalized retention strategies</strong> rather than generic offers.</li>
+</ol>
+<p>In summary, this project demonstrates that combining <strong>robust machine learning</strong>, <strong>careful handling of class imbalance</strong>, and <strong>explainable AI (SHAP)</strong> leads not only to strong predictive performance but also to <strong>actionable business insights</strong>. The final models are both <strong>accurate and interpretable</strong>, making them suitable for real-world churn prevention and decision-making.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.copy", "toc.follow", "search.suggest", "search.highlight", "navigation.tabs.sticky", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
