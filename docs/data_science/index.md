@@ -9,7 +9,7 @@ In this section, I showcase my ability to extract actionable insights from compl
 
 <div class="grid cards" markdown>
 
--   __Telco_Customer_Churn_Prediction__
+-   __Telco Customer Churn Prediction__
 
     ---
 
