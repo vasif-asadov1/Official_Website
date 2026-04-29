@@ -82,8 +82,10 @@ nav:
       
   - Linux Roadmap:
     - linux_roadmap/index.md
-    - Linux Distros: linux_roadmap/00_linux_distros.md
-    - Best Desktop Environment: linux_roadmap/01_best_desktop_environment.md
+    - Application Setups in Linux: 
+      - linux_roadmap/app_setups_in_linux/index.md
+    - Technical Articles about Linux: 
+      - linux_roadmap/linux_articles/index.md
 
 markdown_extensions:
   - tables          # Tablo desteği için

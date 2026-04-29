@@ -2,7 +2,7 @@
 
 Welcome to the Data Science section of my portfolio. Here, you will find comprehensive, end-to-end data science case studies focusing on predictive modeling, machine learning, and advanced analytics.
 
-In this section, I showcase my ability to extract actionable insights from complex datasets using tools like **Python (Pandas, Scikit-learn)**, **SQL (DuckDB)**, and **Power BI**.
+In this section, I have meticulously documented the entire data science workflow, from problem definition and data collection to feature engineering, model development, and evaluation. Each project is designed to demonstrate my ability to apply data science techniques to real-world problems, showcasing my proficiency in Python, SQL, and various machine learning libraries.
 
 
 ## Highlighted Projects
