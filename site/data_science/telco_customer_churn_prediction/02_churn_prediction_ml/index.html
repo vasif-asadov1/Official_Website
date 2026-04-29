@@ -13,6 +13,10 @@
       
       
       
+        <link rel="prev" href="../01_exploratory_data_analysis/">
+      
+      
+        <link rel="next" href="../03_model_deployment_streamlit/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>Customer Churn Prediction - Vasif Asadov Website</title>
+        <title>Model Development and Evaluation - Vasif Asadov Website</title>
       
     
     
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Customer Churn Prediction
+              Model Development and Evaluation
             
           </span>
         </div>
@@ -1256,6 +1260,8 @@
       
   
   
+    
+  
   
   
     
@@ -1271,11 +1277,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -1303,7 +1309,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1320,8 +1326,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -1337,11 +1345,11 @@
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -1362,7 +1370,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1380,7 +1388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../telco_customer_churn/00_problem_description.md" class="md-nav__link">
+      <a href="../00_problem_description/" class="md-nav__link">
         
   
   
@@ -1408,7 +1416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../telco_customer_churn/01_exploratory_data_analysis.md" class="md-nav__link">
+      <a href="../01_exploratory_data_analysis/" class="md-nav__link">
         
   
   
@@ -1433,10 +1441,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../telco_customer_churn/02_churn_prediction_ml.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Model Development and Evaluation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1452,6 +1487,164 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#train-test-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Train Test Split
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classification-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classification Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hyperparameter-tuning-on-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hyperparameter Tuning on Logistic Regression
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hyperparameter-tuning-on-random-forest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hyperparameter Tuning on Random Forest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#undersampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Undersampling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oversampling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Oversampling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-importance-what-drives-churn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Importance. What Drives Churn?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Importance. What Drives Churn?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shap-analysis-on-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SHAP Analysis on Logistic Regression
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shap-analysis-on-xgboost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SHAP Analysis on XGBoost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1464,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../telco_customer_churn/03_model_deployment_streamlit.md" class="md-nav__link">
+      <a href="../03_model_deployment_streamlit/" class="md-nav__link">
         
   
   
