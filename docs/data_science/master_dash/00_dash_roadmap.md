@@ -1,8 +1,24 @@
-# Dash Mastery Roadmap
-### A Complete Learning & Documentation Guide
+# Dash Mastery Roadmap. A Complete Learning & Documentation Guide
 **Author:** Vasif Asadov
 
 ---
+
+# Introduction
+
+In today's world of technology and data, creating static dashboards, web pages and reports is no longer sufficient. Users demand interactive, dynamic, and visually appealing applications that can provide real-time insights and allow them to explore data in a meaningful way. This is where Dash comes in. Dash is a powerful Python framework for building analytical web applications. It allows developers to create interactive dashboards and data visualization tools with ease, using Python's rich ecosystem of libraries. Whether you're a data scientist, analyst, or developer, mastering Dash can open up new possibilities for creating engaging and insightful applications.
+
+I am building this comprehensive roadmap to guide you through the process of mastering Dash. This roadmap is designed to take you from the fundamentals of Dash to advanced techniques, covering everything from layout design and component usage to callback systems and real-world data science integration. By following this roadmap, you'll gain the skills and knowledge needed to create powerful and interactive Dash applications that can be deployed in production environments.
+
+I am also not experienced dash user, so I will be learning and documenting everything as I go. This means that the content will be beginner-friendly and will cover all the essential topics needed to become proficient in Dash. Each phase of the roadmap will build upon the previous one, ensuring a smooth learning curve and a comprehensive understanding of Dash.
+
+Later on, I will also be creating a final project that will bring together all the concepts and techniques covered in this roadmap. This project will serve as a practical example of how to apply what you've learned and will provide a real-world use case for Dash.
+
+You can think this as a cource curriculum, where each of the next page represents a lesson or module that covers a specific topic related to Dash. By following the roadmap and completing each lesson, you'll be well on your way to mastering Dash and creating powerful interactive applications.
+
+This curriculum of this roadmap is divided into 12 phases, each focusing on a specific aspect of Dash development. The phases are designed to be sequential, allowing you to build your knowledge and skills step by step. Here's an overview of the roadmap:
+
+
+
 
 ## Phase 1 — Dash Fundamentals
 
@@ -162,4 +178,10 @@
 - `98_deploying_dash_on_render.md`
 - `99_deploying_dash_on_huggingface_spaces.md`
 - `100_final_project_architecture_review.md`
+
+
+
+This is ultimate journey to mastering Dash, and I am excited to share it with you. By following this roadmap, you'll gain the skills and knowledge needed to create powerful and interactive Dash applications that can be deployed in production environments. Let's get started on this exciting journey together!
+
+
 
